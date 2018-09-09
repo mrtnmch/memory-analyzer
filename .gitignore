@@ -1,0 +1,5 @@
+.idea
+debug.txt
+analyzer/target
+app/target
+sandbox/example-app/target
