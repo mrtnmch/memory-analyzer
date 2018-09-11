@@ -1,5 +1,7 @@
 package cz.mxmx.memoryanalyzer.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,5 +29,14 @@ public class InstanceFieldDump<T> {
 
 	public void addValue(T value) {
 		this.values.add(value);
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("name", name)
+				.append("type", type)
+				.append("values", values)
+				.toString();
 	}
 }

@@ -1,5 +1,7 @@
 package cz.mxmx.memoryanalyzer.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,4 +29,12 @@ public class DumpHeader {
 		return time;
 	}
 
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("format", format)
+				.append("idSize", idSize)
+				.append("time", time)
+				.toString();
+	}
 }

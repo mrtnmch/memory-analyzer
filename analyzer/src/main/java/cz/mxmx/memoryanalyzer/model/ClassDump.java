@@ -1,5 +1,7 @@
 package cz.mxmx.memoryanalyzer.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +67,19 @@ public class ClassDump {
 
 	public List<ClassDump> getChildrenClassDumps() {
 		return childrenClasses;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("classId", classId)
+				.append("name", name)
+				.append("superClassDump", superClassDump)
+				.append("instances", instances.size())
+				.append("childrenClasses", childrenClasses.size())
+				.append("constants", constants)
+				.append("staticFields", staticFields)
+				.append("instanceFields", instanceFields)
+				.toString();
 	}
 }
