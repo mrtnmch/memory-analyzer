@@ -28,10 +28,11 @@ public class InstanceDump extends GenericDump {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this)
+		return "";
+		/*return new ToStringBuilder(this)
 				.append("classDump", classDump)
 				.append("instanceFieldValues", instanceFieldValues)
 				.append("instanceId", instanceId)
-				.toString();
+				.toString();*/
 	}
 }

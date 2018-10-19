@@ -1,7 +1,9 @@
 package cz.mxmx.memoryanalyzer.process;
 
+import cz.mxmx.memoryanalyzer.model.ArrayDump;
 import cz.mxmx.memoryanalyzer.model.ClassDump;
 import cz.mxmx.memoryanalyzer.model.DumpHeader;
+import cz.mxmx.memoryanalyzer.model.InstanceArrayDump;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
@@ -11,10 +13,12 @@ import cz.mxmx.memoryanalyzer.model.raw.RawDumpHeader;
 import cz.mxmx.memoryanalyzer.model.raw.RawInstanceDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawLoadClassDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
+import cz.mxmx.memoryanalyzer.model.raw.RawObjectArrayDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawPrimitiveArrayDump;
 import cz.mxmx.memoryanalyzer.util.Normalization;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -53,6 +57,8 @@ public class DefaultMemoryDumpProcessor implements MemoryDumpProcessor {
 		Map<Long, InstanceDump> instances = this.getInstances(rawMemoryDump, classes);
 		Map<Long, ClassDump> userClasses = this.getUserClasses(classes);
 		Map<Long, InstanceDump> userInstances = this.getUserInstances(instances, userClasses);
+		Map<Long, ArrayDump> primitiveArrays = this.getPrimitiveArrays(rawMemoryDump.getRawPrimitiveArrayDumps());
+		Map<Long, InstanceArrayDump> instanceArrays = this.getInstanceArrays(rawMemoryDump.getRawObjectArrayDumps(), instances, classes);
 
 		return new ProcessedMemoryDump(
 				this.namespaces,
@@ -60,8 +66,36 @@ public class DefaultMemoryDumpProcessor implements MemoryDumpProcessor {
 				instances,
 				classes,
 				userInstances,
-				userClasses
+				userClasses,
+				primitiveArrays,
+				instanceArrays
 		);
+	}
+
+	private Map<Long, InstanceArrayDump> getInstanceArrays(Map<Long, RawObjectArrayDump> rawObjectArrayDumps, Map<Long, InstanceDump> instanceDumpMap, Map<Long, ClassDump> classDumpMap) {
+		Map<Long, InstanceArrayDump> arrays = new HashMap<>();
+
+		rawObjectArrayDumps.forEach((key, value) -> {
+			List<Object> instances = new ArrayList<>();
+
+			value.getItems().forEach(item -> {
+				instances.add(instanceDumpMap.get(item));
+			});
+
+			arrays.put(key, new InstanceArrayDump(key, classDumpMap.get(value.getItemClassObjectId()), instances));
+		});
+
+		return arrays;
+	}
+
+	private Map<Long, ArrayDump> getPrimitiveArrays(Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps) {
+		Map<Long, ArrayDump> arrays = new HashMap<>();
+
+		rawPrimitiveArrayDumps.forEach((key, value) -> {
+			arrays.put(key, new ArrayDump<>(key, this.getClass(value.getItemClassObjectId()), value.getItems()));
+		});
+
+		return arrays;
 	}
 
 	protected Map<Long, InstanceDump> getInstances(RawMemoryDump rawMemoryDump, Map<Long, ClassDump> classes) {

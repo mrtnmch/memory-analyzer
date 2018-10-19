@@ -8,11 +8,15 @@ public interface MemoryDump {
 
 	DumpHeader getDumpHeader();
 
-	Map<Long, InstanceDump> getObjects();
+	Map<Long, InstanceDump> getInstances();
 
 	Map<Long, ClassDump> getClasses();
 
-	Map<Long, InstanceDump> getUserObjects();
+	Map<Long, InstanceDump> getUserInstances();
 
 	Map<Long, ClassDump> getUserClasses();
+
+	Map<Long, ArrayDump> getPrimitiveArrays();
+
+	Map<Long, InstanceArrayDump> getInstanceArrays();
 }
