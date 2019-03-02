@@ -9,7 +9,7 @@ doc: sablona.tex text/main.tex text/zkratky.tex text/literatura.tex
 	$(TEX) sablona.tex
 	xdg-open sablona.pdf
 
-git: 
+git: doc
 	git add .
 	git commit -m "Text update"
 	git push

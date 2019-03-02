@@ -13,7 +13,7 @@
 \contentsline {section}{\numberline {6.3}Java Mission Control}{13}{section.14}
 \contentsline {section}{\numberline {6.4}JProfiler}{14}{section.15}
 \contentsline {chapter}{\numberline {7}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{15}{chapter.16}
-\contentsline {chapter}{\numberline {8}Anal\IeC {\'y}za a implementace...}{16}{chapter.17}
+\contentsline {chapter}{\numberline {8}Anal\IeC {\'y}za a implementace}{16}{chapter.17}
 \contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{17}{chapter.17}
 \contentsline {chapter}{Seznam zkratek}{18}{section*.20}
 \contentsline {chapter}{Literatura}{19}{section*.22}
