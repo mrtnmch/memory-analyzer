@@ -1,0 +1,588 @@
+% předělat odkazy "dostupný z..." na zdroje literatury
+
+\chapter{Wikipedie}
+Wikipedie\footnote{V~originále Wikipedia -- kombinace slov \textit{wiki} a \textit{encyclopedia}.} je webová encyklopedie tvořená dobrovolníky a~odbornou veřejností. Vytváření obsahu je založeno na otevřenosti -- nový článek či úpravu existujícího může publikovat kdokoliv. Wikipedie existuje v~několika stovkách jazykových mutací, přičemž nejobsáhlejší je anglická verze \cite{listofwikis}.
+
+\section{Obsah}
+Při užívání Wikipedie a~jí podobných projektů je nutné brát v~úvahu původ veškerého obsahu, který nemusí být vždy zcela autentický. Podle práce publikované v~magazínu Nature je však možné tvrdit, že obecně Wikipedie neobsahuje více nepřesností\footnote{Toto tvrzení se týká anglické verze Wikipedie. Důvěryhodná práce hodnotící spolehlivost verze české v~současnosti neexistuje.}, než klasické encyklopedie (v~případě tohoto porovnání \textit{Encyclop\ae{}dia Britannica}) \cite{wikireliability1}. Místo nepřesností se v~článcích projevuje spíše autorův názor a~informace, s~kterými autor nesouhlasí, jsou záměrně opomíjeny \cite{wikireliability2}. Stránky jsou také často cílem vandalismu či úmyslného pozměňování některých informací. I~přesto, že jsou tyto chyby poměrně rychle odhalovány a~opraveny zpět \cite{wikirepair}, není možné se vždy spolehnout na~autenticitu aktuálního obsahu.
+
+Kromě samotného hlavního textu články na~Wikipedii obsahují tzv. infoboxy, což jsou oddíly umístěné v~pravé části stránky obsahující především heslovité informace o~aktuálním článku. V případě infoboxů lze využít při zpracování vlastnosti, že tyto informace jsou strukturované.
+ 
+ 
+ 
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+ 
+ 
+ 
+\section{Získávání dat z~Wikipedie}
+Data z~Wikipedie lze získávat v~zásadě dvěma způsoby -- offline a~online. Oba z~těchto přístupů mají své výhody a~nevýhody. Po získání obsahu konkrétní stránky jej pak můžeme vhodným způsobem analyzovat.
+
+\subsection{Offline přístup}
+Programy umožňující prohlížení Wikipedie offline pracují s tzv. \textit{dumpem} -- vyexportovaným kompletním obsahem (většinou v rámci článků jednoho jazyka). Tento dump soubor\footnote{Dostupný na \url{https://meta.wikimedia.org/wiki/Data_dump_torrents}.} má řádově desítky GB (komprimovaný pak necelých 10 GB). Vzhledem k~povaze a~rozsahu staženého souboru je pro práci s~dumpem nutné využít některý ze~specializovaných programů.
+
+Výhodou tohoto přístupu je především rychlost -- práce s~dumpem je rychlejší, než~přístup k~webovým stránkám, a~celý soubor lze tak na~dostatečně výkonném počítači zpracovat v~rámci hodin. Dále pak odpadají problémy plynoucí z používání Wikipedie na serveru (zpravidla cizím) -- tedy kontrola počtů přístupů, stažených článků a omezování v~návaznosti na aktuální zátěž serveru. Nevýhodou je pak neaktuálnost, často také závislost na~softwaru třetích stran a~hlavně nedostupnost. Dané programy jsou většinou výhradně prohlížeče, poskytují tedy pouze přístup k obsahu a jakékoliv práce s ním je možné dosáhnout jen zásahem do zdrojového kódu. V případě, že chceme upravit existující program pro zpracování Wikipedie k určitému účelu, je nutné vzít v úvahu vlastnosti již existujícího zdrojového kódu. Díky tomu musíme výrazně omezit případnou volbu vhodného programovacího jazyka, což může mít negativní vliv na efektivitu a rychlost samotného procesu zpracovávání.
+\subsubsection{WikiTaxi}
+Pravděpodobně nejpoužívanější nástroj pro offline práci s~Wikipedií. Jeho obrovskou výhodou je, že pracuje s~původními neupravenými dumpy, uživatel tak není závislý na~zpracování dumpu třetí stranou. Bohužel ale není open source\footnote{Program s~otevřeným, veřejně dostupným zdrojovým kódem.} \cite{wikitaxi}.
+\subsubsection{XOWA}
+Open source program velmi úspěšně kopírující živou verzi Wikipedie. Pracuje s~vlastní verzí dumpu, minoritní jazyky (včetně češtiny) jsou tedy aktualizovány zřídka \cite{xowa}.
+\subsubsection{Kiwix}
+Multiplatformní open source aplikace dostupná i~pro mobilní operační systémy Android a~iOS. Pracuje s vlastním dumpem, který je aktualizován zhruba jednou za půl roku. Díky podpoře více platforem v~rámci jednoho zdrojového kódu (C++) je ale velmi obtížné tuto aplikaci jakkoliv modifikovat \cite{kiwix}.
+\subsubsection{WikiExtractor.py}
+Knihovna napsaná v Pythonu pracující s oficiálním dumpem, umožňující extrakci článků do jednoduššího formátu (s odstraněním často nepotřebného formátování). Nevýhodou tohoto přístupu je kompletní odstranění hypertextových odkazů a infoboxů -- knihovnu je tedy vhodné použít při zájmu o skutečný text článků \cite{wikiextractor}.
+
+\subsection{Online přístup}
+Programy pro offline práci se zaměřují čistě na čtení Wikipedie, naproti tomu aplikace pro práci s online verzí Wikipedie jsou úzce specializované. K obsahu lze přistupovat pomocí zpracování klasické webové stránky nebo pomocí poskytovaného programovacího rozhraní (\zk{zkAPI}\footnote{\zk{zkAPI} označuje způsob, kterým aplikace či služba umožňuje pracovat ostatním se svými zdroji a funkcemi.}), případně kombinací těchto způsobů.
+
+Vzhledem k obtížnosti zpracovávání HTML kódu je první ze způsobů vhodné zvolit pouze v případě, že uživatel pracuje s programem, který zobrazuje webovou stránku a~v~rámci~tohoto prohlížení probíhá dané zpracování -- typicky webový prohlížeč. Nejpoužívanější webové prohlížeče dnes umožňují tvorbu a instalaci rozšíření, která pak mohou pracovat s právě zobrazenou stránkou.
+
+V ostatních případech je vhodnější a spolehlivější využít \zk{zkAPI} Wikipedie. To umožňuje získat více informací o požadované stránce, vybírat pouze část obsahu a podobně. Drtivá většina aplikací pro práci s živou verzí Wikipedie pracuje právě s \zk{zkAPI}.
+\subsubsection{Wikipedia--js}
+Knihovna napsaná v JavaScriptu (respektive v jeho mutaci pro Node.js) umožňující jednoduché dotazování na články. Dokáže získané články zobrazit v několika formátech, avšak pracuje pouze s hlavním textem (či volitelně jen s perexem) \cite{wikipediajs}.
+\subsubsection{Wtf--wikipedia}
+JavaScriptová knihovna, která dokáže článek stáhnout pomocí \zk{zkAPI} a zpracovat jej do formátu JSON, s nímž už JavaScript dokáže bez problémů pracovat. Dokáže automaticky od~hlavního textu oddělit infobox a poskytnout jej programátorovi ve formě objektu, respektive asociativního pole \cite{wtfwikipedia}.
+
+\subsection{Odvozené projekty}
+Za speciální kategorii mohou být považovány projekty od Wikipedie odvozené. Ty využívají Wikipedii jako zdroj informací, které zpracovávají a mohou k nim připojovat kontext či jiné souvislosti. Často také Wikipedii propojují s jinými zdroji a stávají se tak agregátory těchto informací.
+
+\subsubsection{DBpedia}
+DBpedia je projekt tvořený komunitou \cite{dbpedia}. Jeho cílem je získávat z (nejen) Wikipedie strukturovaná data a zpřístupňovat je pomocí vlastního rozhraní. Je tak možné se  dotazovat pomocí speciálního jazyka zvaného \texttt{SPARQL} (syntaxí je tento jazyk podobný SQL). Toto rozhraní, kromě Wikipedie, rovněž zahrnuje zdroje z jiných databází a otevřených zdrojů. Užitečnou vlastností může být podpora české verze Wikipedie \cite{csdbpedia}.
+\subsubsection{BabelNet}
+Babelnet se snaží pomocí Wikipedie a dalších projektů o vytvoření lexikografické a sémantické sítě \cite{babelnet}. Ke každému pojmu se snaží přiřadit význam a propojit ho se synonymy a~dalšími příbuznými tématy. Umožňuje propojování i napříč různými jazykovými verzemi. V současnosti podporuje 271 jazyků, včetně češtiny.
+\subsubsection{Semantic MediaWiki}
+Samentic MediaWiki se rovněž snaží k informacím v článcích na Wikipedii (obecně \uv{wiki projektech}) přiřadit kontext a sémantický význam \cite{semanticwiki}. To umožňuje prohledávat a vyhodnocovat obsah článků s ohledem na jejich strojové zpracování.
+\subsubsection{Wikidata}
+Wikidata je součástí Wikimedia Foundation (a tedy rodiny projektů jako je Wikipedie) \cite{wikidata}. Od zbylých projektů se liší tím, že funguje i jako zdroj pro Wikipedii. Jedná se o~databázi strukturovaných dat, která se snaží získávat z Wikipedie a dalších Wikimedia projektů. Ta jsou pak zpětně těmito projekty využívána a zdarma zveřejněna.
+ 
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+ 
+ 
+ 
+\chapter{Zpracování textu}
+Obecně lze text z pohledu programu rozdělit na dvě kategorie. První z nich je zpracovávání přirozeného jazyka (\zk{zkNLP}), což je technika, která vyžaduje určitou formu porozumění významu a kontextu daného obsahu, navíc je nutné počítat s odlišnostmi jazyků a tak většinou nelze použít univerzální řešení. Druhou kategorií je strojově čitelný text, respektive text ve strojově čitelném formátu, který má jasně předdefinovaný význam. Takový obsah lze zpracovat pomocí jednodušších technik, případně lze kombinovat s některými metodami \zk{zkNLP}, pokud se nelze spolehnout na to, že daný formát bude skutečně dodržen (typicky člověkem psaný text).
+
+\section {Zpracování Wikipedie}
+Významnou část většiny stránek na~Wikipedii tvoří právě text v~přirozeném jazyce. Pro~jednoduchou analýzu ale není potřeba zkoumat kontext a~význam. Je možné využít přirozené součásti webových stránek -- tj. hypertextových odkazů, společně s~předpokladem, že~na~významné stránky povede velký počet zpětných odkazů. Každý odkaz ale není nutně příbuzný se~současným tématem -- text může obsahovat i~odkaz na~naprosto obecný výraz. Je tedy nutné těmto zdrojům přikládat menší váhu, případně využít jiná hodnotící kritéria.
+
+Infoboxy jsou, vzhledem k~jejich struktuře, strojově poměrně dobře čitelné. Wikipedie definuje jejich formát, který je ale pro~každý typ stránky (osobnost, událost, místo apod.) jiný. Lze ale využít faktu, že informace a~odkazy v~infoboxech jsou tvořeny lidmi a~jsou nepoměrně kratší, než hlavní text. Je tedy možné předpokládat, že odkazované stránky jsou s~velkou pravděpodobností relevantní k~danému tématu.
+
+Jako další významné kritérium lze použít \textit{tranzitivitu odkazů} -- význam odkazu ze~strán\-ky A na~stránku B můžeme zdůraznit, pokud existuje stránka C, na~kterou je odkázáno z~A a~která odkazuje na~stránku B.
+
+\subsection{Formát článků Wikipedie} 
+\label{label:wikiformat}
+Veškerý obsah Wikipedie je uložen ve speciálním formátu nazvaném \textit{wikitext} (někdy wiki-markup). Díky definici tohoto jazyka lze poměrně efektivně získávat potřebné informace -- odkazy a infoboxy. Ostatní části obsahu lze zanedbat, vzhledem k tomu, že žádná forma \zk{zkNLP} nebude na textu prováděna.
+
+Odkazy jsou zapsány v jednoduchém formátu \texttt{[[Název stránky]]}, čímž vznikne odkaz na stránku ve tvaru \texttt{<a href="/wiki/nazev\_stranky\string"\string>Název stránky</a>} při~zachování jazykové verze. Odkazy mohou mít i složitější tvar, a to \texttt{[[Název stránky|Li\-bo\-vol\-ný text]]}, což vytvoří odkaz na stejnou adresu, ale text při zobrazení odkazu bude \uv{Libovolný text}. Jak je tedy vidět, odkazy jsou zpracovatelné bez problému jak ve formátu wikitext, tak v HTML.
+
+Syntaxe pro infoboxy je, vzhledem k jejich struktuře, komplikovanější. Existuje několik různých typů doporučených dle typu článku. Pro anglickou verzi Wikipedie e\-xis\-tu\-je těchto typů infoboxů několik desítek. Obecná struktura infoboxu vypadá následovně:
+
+\begin{lstlisting}
+{{Infobox typ
+ | title      = Nazev stranky
+ | subheader  = Podtitulek infoboxu
+ ...
+}}
+\end{lstlisting} 
+
+Část za znakem \texttt{=}, tedy hodnota, samozřejmě nemusí obsahovat jen text, ale i odkazy, tabulky, obrázky a podobné struktury, což strojové zpracování infoboxů činí obtížnější. Část před tímto znakem je klíč hodnoty. Vzhledem k tomu, že existují předepsané hodnoty pro určité typy infoboxů\footnote{Dostupné z \url{https://en.wikipedia.org/wiki/Wikipedia:List_of_infoboxes}.}, je možné této vlastnosti využít při zpracování -- typicky například osoby spolehlivě budou obsahovat datum narození, které bude k nalezení vždy pod stejným klíčem. Tento fakt zpracování infoboxů významně ulehčuje a zpřesňuje odhad významu dat.
+
+Kvůli vysokému počtu typů infoboxů je velice obtížné vytvořit nástroj tak, aby byl schopen je zpracovat. Je ale možné využít informací o počtech článků, které dané infoboxy využívají (tato informace je součástí stránky se seznamem šablon pro každý typ) a pokusit se maximálně zpracovat ty, které mají nejvyšší zastoupení.
+
+ 
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+ 
+ 
+ 
+\chapter{Nástroje pro práci s časovou osou}
+\section{Knihovna časové osy}
+Knihovna \textit{cz.kajda.timeline} je projekt realizovaný jako součást diplomové práce \cite{timeline}. Tato knihovna dokáže zobrazovat vložená data na časové ose jako různé typy historických událostí a zobrazit vzájemný vztah mezi nimi (taktéž definovaný jako součást vstupu). Osa je rozdělena do několika horizontálních pruhů, z nichž každý obsahuje pouze určité typy událostí. Pokud se navíc udály ve stejném období, jsou zobrazeny souběžně bez toho, aby se překrývaly. Nástroj také umožňuje uživateli přibližovat či oddalovat požadovaná historická období -- je tak možno zobrazit si přehled v rámci tisíciletí a postupným přibližováním se dostat až na rozlišení řádu minut. Díky této vlastnosti je ale možné zobrazit poměrně velký časový rozsah (např. právě tisíciletí), což může při vyšším počtu zobrazovaných událostí vést ke zhoršení přehlednosti a vypovídací hodnoty osy. Při překročení této meze tak dokáže knihovna vhodným způsobem vybrat důležité události a ty méně podstatné dočasně skrýt, což probíhá na základě ohodnocení událostí. Toto ohodnocení je dodáno společně s~daty a o jeho výpočet se stará grafová databáze \cite{pagerank}.
+\subsection{Formát vstupu}
+Nástroj dokáže zpracovávat vstup ve formátu JSON. Příloha \ref{att1} obsahuje příklad a ukazuje možnosti tohoto způsobu definice grafu \cite{timeline} \cite{timeline2}.
+\begin{itemize}
+	\item Položka \textit{nodes} obsahuje definice jednotlivých událostí (uzlů grafu).
+	\begin{itemize}
+		\item \textit{id} -- Každá událost má své (unikátní) celočíselné ID.
+		\item \textit{stereotype} -- Typ události, která se může rovnat jedné z hodnot \textit{person, event, place, item}.
+		\item \textit{name} -- Název události či jméno osobnosti.
+		\item \textit{description} -- Volitelný slovní popis.
+		\item \textit{begin, end} -- Počátek a (volitelně) ukončení události ve formátu dle normy ISO 8601 \cite{dateiso}.
+		\item \textit{properties} -- Další volitelné vlastnosti uzlu.
+		\begin{itemize}
+			\item \textit{imageSrc} -- Adresa obrázku, který se má zobrazit společně s událostí.
+			\item \textit{startPrecision, endPrecision} -- Přesnost zobrazení počátku a ukončení události. Umožňuje definovat, s jakou přeností má být daný údaj reprezentován. Může nabývat jedné z následujících hodnot (nezávisle na sobě): \textit{century, decade, year, month, day, none}.
+		\end{itemize}
+	\end{itemize}
+	\item Položka \textit{edges} určuje vztahy mezi událostmi (respektive hrany mezi uzly grafu).
+	\begin{itemize}
+		\item \textit{id} -- Unikátní celočíselné ID vztahu.
+		\item \textit{sterepotype} -- Typ vztahu mezi událostmi. Může nabývat jedné z následujících hodnot: \textit{relationship, interaction, participation, creation, cause, part\_of, takes\_place}.
+		\item \textit{from, to} -- ID událostí, mezi kterými je vztah definován.
+		\item \textit{name} -- Slovní popis vztahu.
+		\item \textit{properties} -- Volitelné vlastnosti vztahu.
+	\end{itemize}
+\end{itemize}
+
+\section{Grafová databáze}
+Grafová databáze (volitelně) využívaná společně s časovou osou je výsledkem další diplomové práce \cite{timeline2}. Při použití samotné osy je nutné jí poskytnout data v daném formátu (viz výše). Nástroj, vytvořený v rámci této práce, především ale umožňuje uživateli načíst již existující databázi (nebo případně vytvořit novou) a v rámci ní pak přidávat, odebírat či~různě opravovat vrcholy (tedy události) a hrany (vztahy mezi nimi). Toto je umožněno díky grafickému uživatelskému rozhraní (\zk{zkGUI}), vytvořenému, stejně jako celý nástroj, v~programovacím jazyce Java. Program umí při definici uzlu zadat všechny výše zmíněné údaje (pracuje se stejnými entitami), umí také navíc definovat nové vlastnosti a~značky.
+\subsection{Implementace grafové databáze}
+Samotná databáze, s níž nástroj na pozadí manipuluje, využívá grafovou databázi Neo4j \cite{neo4j}. Typově se tato databáze velice liší od (dnes nejpoužívanějších) databází relačních. Ty lze v krajním případě využít jako určitou náhradu grafových databází, avšak pro reprezentaci dat založených na grafech se nehodí (každá hrana se tak stane cizím klíčem tabulky a jakýkoliv dotaz na druhý vrchol této hrany znamená užití operace JOIN\footnote{Sloučení 2 a více tabulek}, jejíž volání je poměrně drahé a náročné \cite{graphdb}). Naproti tomu, grafové databáze jsou na podobné operace přímo stavěny a optimalizovány. Další výhodou je, že lze k hranám připojit určitou informaci a jednotlivé hrany tak od sebe významově odlišit.
+
+Mezi Neo4j databází na pozadí a \zk{zkGUI}, s nímž komunikuje uživatel, je vytvořeno \zk{zkAPI}. To slouží jako mezivrstva pro komunikaci mezi těmito částmi a navíc umožňuje ostatním nástrojům manipulovat s databází.
+ 
+ 
+ 
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+ 
+ 
+ 
+\chapter{Návrh nástroje}
+Všechny dostupné open--source nástroje, analyzované v předchozích kapitolách, se jeví pro implementaci potřebných funkcí jako naprosto nevhodné. Kromě nedostupnosti a neaktuálnosti dumpu (interval mezi aktualizacemi může být, v případě, že nástroj používá svojí verzi dumpu, i přes rok) je největší překážkou pravděpodobně obtížná úprava již existujícího, obvykle velmi rozsáhlého kódu.
+
+Nakonec byl tedy pro vytvoření nástroje zvolen jako platforma webový prohlížeč Google Chrome, a to díky jeho podpoře doplňků a také s ohledem na fakt, že je v současnosti (prosinec 2015) s podílem přes 50 \% (přesná čísla se liší dle zdroje a způsobu měření) nejpoužívanějším prohlížečem \cite{w3chrome} \cite{gschrome}. Díky použité technologii (viz dále) je tvorba doplňků poměrně jednoduchá a je navíc možné s minimálními úpravami přenést rozšíření i~do~jiných prohlížečů (již existující podpora prohlížeče Opera, v budoucnosti Mozilla Firefox a Microsoft Edge). Rozšíření bude pracovat přímo s webovými stránkami v kombinaci s poskytovaným \zk{zkAPI}.
+
+\section{Tvorba rozšíření pro Google Chrome}
+\label{label:makingof}
+Rozšíření jsou vlastně webové stránky a tomu odpovídají i používané technologie -- tedy HTML a CSS pro tvorbu rozhraní (případně manipulaci se stránkou) a JavaScript. Chrome poskytuje rozšířením \zk{zkAPI}, díky čemuž mohou interagovat se stránkami -- měnit jejich obsah, zobrazovat okna s vlastním obsahem a podobně. Instalovaná rozšíření mají (volitelně) svou ikonu vedle adresního řádku, čímž je uživateli umožněno jej ovládat. Instalace probíhá z Internetového obchodu Chrome\footnote{Dostupný z \url{https://chrome.google.com/webstore}.}. Pro vývojové účely (nebo pokud nechceme rozšíření poskytnout veřejnosti) je možné doplňky instalovat také z disku a to pomocí volby \textit{Načíst rozbalené rozšíření} na adrese \url{chrome://extensions}\footnote{Adresy začínající \texttt{chrome://} jsou dostupné pouze z prohlížeče Google Chrome a představují standardní způsob jeho konfigurace.} nebo přetažením instalačního souboru s~koncovkou \texttt{crx}.
+\subsection{Manifest}
+\label{label:manifest}
+Manifest, tedy soubor s názvem manifest.json, je soubor ve formátu JSON, pomocí něhož lze k rozšíření připojit určité dodatečné informace. Obsahuje například zobrazované jméno a popis doplňku, verzi nebo ikonu. Především v něm ale lze definovat, k čemu rozšíření požaduje přístup -- standardně totiž není povolen přístup k internetu nebo k zobrazovaným stránkám. Můžeme uvést skripty, které mají být vloženy přímo do~kódu stránky a~s~jejich pomocí s~ní potom manipulovat a~podobně.
+\subsection{Struktura rozšíření}
+Kvůli bezpečnosti není možné přistupovat přímo ke stránce. Je nutné komunikovat pomocí \uv{pros\-třed\-ní\-ka}, tedy skript běžící na pozadí. Pomocí něho je možné zasílat zprávy mezi různými částmi rozhraní a především manipulovat se stránkou či zpracovat data na~základě obsahu stránky či uživatelovy interakci s ní. Komunikace probíhá pomocí \zk{zkAPI}, které poskytuje Chrome, nazývaného \textit{Message Passing} \cite{chromemessaging}. Strukturu jednoduchého rozšíření popisuje obrázek \ref{obr1} (názvy souborů jsou volitelné).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{obrazky/chromeext.png}
+	\caption{Struktura rozšíření pro Google Chrome}
+	\label{obr1}
+\end{figure}
+
+\textit{Rozhraní prohlížeče} je část, se kterou komunikuje uživatel a která mu dává možnost provádět poskytované akce. Za předpokladu, že v Manifestu patřičně vyplníme položku \textit{browser\_action}, bude rozhraní moci pracovat nezávisle na právě aktivní stránce -- v opačném případě (\textit{page\_action}) bude možné pracovat pouze s jedinou stránkou (nezávisle na~ostatních). Díky browser\_action se také bude zobrazovat ikona rozšíření vedle menu a~adresního řádku -- po aktivaci této ikony se zobrazí formou vyskakovacího okna soubor \textit{popup.html}, v němž můžeme nadefinovat potřebné uživatelské rozhraní. O funkcionalitu se stará příslušný skript, v tomto případě \textit{popup.js}. Pomocí Message Passing pak publikujeme akce a změny do zbylých částí rozšíření.
+
+Jako mezičlánek slouží skript na pozadí -- \textit{background.js}. Ten se stará o šíření zpráv do~skriptů provádějících dané akce. Díky unikátnosti napříč všemi panely prohlížeče je také vhodným místem k persistenci či dočasnému uložení právě zpracovávaných dat.
+
+Posledním článkem jednoduchého rozšíření je skript \textit{contentscript.js}. Ten je vkládán přímo do stránky a umožňuje přímou manipulaci s objektovým modelem stránky (\zk{zkDOM}). Je možné využít klasických technologií známých z~Ja\-va\-scrip\-tu, například vyhledávání elementů podle atributů a podobně. Je také možnost připojit některé z užitečných kni\-ho\-ven~--~pří\-kla\-dem za všechny je jQuery. Skript může také pomocí zpráv (Message Passing) komunikovat s ostatními částmi rozšíření. Vkládání tohoto skriptu je možné pomocí Manifestu omezit na stránky určité domény, subdomény nebo stránky splňující určité kritérium (na~základě adresy) -- typicky například \textit{*.server.com/*} znamená, že skript má být vložen na~všech stránkách webu server.com, včetně všech jeho subdomén. Kromě skriptů je také možné vkládat CSS soubory. Z bezpečnostních důvodů jsou však vkládané soubory spuštěny v omezeném, izolovaném prostředí. Mají tak přístup k \zk{zkDOM}, avšak není jim umožněn přístup k JavaScriptovým souborům, které jsou spuštěny přímo stránkou, a k jejím funkcím. Podobné omezení samozřejmě platí i z druhé strany -- původní skripty nemají možnost zjistit, že byly některé soubory přidány. To je, kromě již zmíněné bezpečnosti, výhodné zejména kvůli faktu, že kód skriptů nemůže kolidovat s jiným \cite{chromelimitations}.
+
+Často využívanou možností u obdobných doplňků je použití existující stránky jako součásti uživatelského rozhraní stránky. Pomocí výše popsaného skriptu je možné obsah stránky posunout či překrýt vlastní vrstvou a na ní zobrazit potřebné prvky rozhraní. To je výhodné zejména v případech, kdy se zobrazované informace přímo týkají obsahu stránky (jinak by bylo výhodnější si vytvořit nové okno či panel) a je tedy nutné zobrazovat obě položky najednou.
+
+\subsection{Omezení rozšíření}
+Rozšíření mají svá omezení a limity. Některá plynou z použité technologie (rozšíření jsou stále webové stránky a ne plnohodnotné desktopové aplikace), některá pak z bezpečnostních důvodů zavádí Chrome ve svém \zk{zkAPI}. 
+
+Poměrně velkou překážkou, plynoucí z technologie, je jen omezená práce se soubory. V~případě modulárních částí aplikace není možné dynamicky načíst všechny soubory složky, ale je potřeba soubory zaregistrovat v rozšíření a sdělit mi tak, které soubory má načíst. V případě, že by bylo možné vypsat obsah složky, by mohlo načítání modulů probíhat mnohem dynamičtěji, což by umožnilo rozšířit funkcionalitu aplikace.
+
+\section{Práce s API Wikipedie}
+Wikipedie poskytuje veřejné \zk{zkAPI}, nejen pro práci s články, ale i ostatními částmi webu~--~uživateli, revizemi článků nebo obrázky. Díky tomu je možné pracovat (především) s~obsahem bez toho, abychom jej museli zpracovávat jako HTML, ve kterém je přirozeně přístupný přes webové stránky (což je vzhledem k tomu, že ne všechny stránky mají stejné a~korektní formátování, poměrně obtížné).
+
+\zk{zkAPI} je dostupné skrze klasické HTTP dotazy a odpovědi. Jednotlivé parametry zadáváme jako položky do GET\footnote{Část adresy, v níž mohou být předány parametry ve formátu ?nazev=hodnota\&nazev2=hodnota2...} části adresy a následně odesíláme na webovou adresu \textit{https://en.wikipedia.org/w/api.php} (pro ostatní jazyky a Wikimedia podstránky na stejné adrese, pouze s jinou doménou). Můžeme si však vybrat formát, ve kterém nám server bude odpovídat.
+\begin{itemize}
+	\item \textit{JSON} -- Preferovaný způsob práce s API. Je přirozenou součástí JavaScriptu, ostatní populární jazyky pro něj mají velmi dobrou podporu ze strany knihoven. Tento formát je doporučený, použití dále zmíněných je sice podporované, avšak nedoporučené \cite{wikiformats}.
+	\item \textit{XML} -- Formát, ze kterého vychází HTML. Na rozdíl od HTML parserů, které jsou k~dodržování standardů značně benevolentní, je zpracovávání XML nekompromisní a standard je nutné dodržet (respektive je nutné dodržet příslušné schéma, např. XSD či DTD, což definuje podobu validního dokumentu). Je tak poměrně dobře strojově zpracovatelný.
+	\item \textit{PHP} -- Výstup, ve kterém jazyk PHP ukládá své objekty. Je výhodný při práci v PHP -- nemusí se tak nic zpracovávat a pomocí jediného příkazu je odpověď převedena do objektu. Pro ostatní jazyky nepoužitelný.
+\end{itemize}
+
+Dále je potřeba specifikovat akci. Nejpoužívanější a nejužitečnější je hodnota \textit{query} \cite{wikiapi}.
+
+Tím specifikujeme, odkud a v jakém formátu informace budeme čerpat. To můžeme učinit pomocí titulku (parametr titles), ID stránek (pageids) a podobně -- zde už záleží na~konkrétním druhu informace, kterou potřebujeme získat. Pro studijní a testovací účely je k dispozici sandbox -- testovací sekce, sloužící k rychlému otestování základní funkčnosti \cite{wikiapisandbox}.
+
+\section{Rozšíření JavaScriptu}
+I přesto, že JavaScript podporuje objektově orientované programování, neumožňuje definovat třídy (ve smyslu klíčového slova \texttt{class} z jiných objektově orientovaných jazyků)\footnote{Toto klíčové slovo (a tedy možnost definovat třídy) bylo přidáno ve standardu ECMAScript 6 \cite{classes} z~ro\-ku 2015, jehož podpora ještě není napříč prohlížeči 100\% \cite{es6}.}. To ale není považováno za chybu či nedostatek, je to spíše vlastnost plynoucí z funkcionálního návrhu jazyku. V JavaScriptu jsou tak pro tento účel využívány právě funk\-ce~--~tří\-dou je někdy nazývána speciální \uv{konstrukční funkce}. Je zde využíváno vlastnosti JavaScriptu, že vše, co není primitivní typ\footnote{Primitivní typ jsou v JavaScriptu data, která nejsou objektem a nemají žádné metody. V současnosti jich existuje 6: \texttt{string}, \texttt{number}, \texttt{boolean}, \texttt{null}, \texttt{undefined} a \texttt{symbol}\cite{primitives}.}, je objektem -- a tedy i funkce. A je tak možné vytvořit její instanci pomocí klíčového slova \texttt{new}, jak je vidět v ukázce \ref{lst1}.
+
+\begin{lstlisting}[float,floatplacement=h,caption={Vytváření instance},label=lst1]
+var MyClass = function(name) {
+	this.name = name;
+};
+
+var created = new MyClass("Title");
+\end{lstlisting}
+
+Metody je do objektu možno přidávat několika způsoby. Na první pohled se jeví jako nejjednodušší možnost přiřadit funkci přímo do vlastnosti. Tento postup ale přináší několik problémů, z nichž nejvýznamnější je nemožnost přístupu k těmto metodám v případě dědění. V praxi se tedy používá definice třídních metod pomocí vlastnosti \texttt{prototype}. Tuto vlastnost má každá funkce, její výchozí hodnotou je prázdný objekt. Umožňuje volání rodičovských metod a často se také využívá vlastnosti, že po úpravě prototypu se tato úprava projeví i v rámci již existujících objektů. Příklad je vidět v ukázce \ref{lst2}.
+
+\begin{lstlisting}[caption={Ukázka využití prototypu},label=lst2]
+MyClass.prototype = {
+	getName: function() {
+		return this.name;
+	}
+};
+
+var name = created.getName();
+\end{lstlisting}
+
+Jako další požadavek na objektový návrh lze uvést dědičnost. K tomuto účelu je opět využíván prototyp. Dříve byly používány vlastní funkce, které ručně nastavily prototyp na~instanci rodičovské funkce, v novějších verzích JavaScriptu (ECMAScript 5.1 a novější) je možné k tomuto účelu využít funkci \texttt{Object.create}.
+
+Často zmiňovaným problémem v rámci objektového programování v JavaScriptu je klíčové slovo \texttt{this}. Typickým příkladem je použití anonymních metod v rámci objektů. Uvnitř anonymní metody totiž \texttt{this} odkazuje právě na tuto metodu a ne na rodičovský objekt. Častým řešením je proto následující konstrukce, kdy si programátor uvnitř metody objektu uloží hodnotu \texttt{this} do pomocné proměnné. Funkce \texttt{process} je tedy volána na~rodičovském objektu, viz ukázka \ref{lst3}.
+
+\begin{lstlisting}[caption={Nutnost ukládání proměnné this},label=lst3]
+var that = this;
+this.data.forEach(function(date) {
+	that.process(date);
+});
+\end{lstlisting}
+
+Vzhledem k těmto vlastnostem JavaScriptu vznikla řada projektů, které se některé problematické části snaží vyřešit nebo přinejmenším ulehčit. Minimalizují riziko vzniku chyb a umožňují programátorovi snazší zápis kódu. V současné době jsou nejpoužívanější CoffeeScript a TypeScript. Oba jsou v podstatě samostatnými programovacími jazyky. Jejich specifikem je, že jsou přeloženy (\uv{kompilovány}) do JavaScriptu. To umožňuje zavést konstrukce, které JavaScript přímo nepodporuje (typickým zástupcem je právě klíčové slovo \texttt{class}). Výhodou těchto jazyků je, že po zavedení nových vlastností do čistého JavaScriptu je možné kód pouze znovu přeložit a kompilátor tyto vlastnosti použije bez zásahu do kódu.
+
+\subsection{CoffeeScript}
+CoffeeScript přináší, kromě podpory pro třídy, celou řadu vylepšení \cite{coffeescript}. Upravuje syntaxi již existujících vlastností a konstrukcí tak, aby jejich použití programátorovi maximálně ulehčil. Hned na první pohled je významným rozdílem fakt, že není nutné příkazy zakončovat středníkem. Složené závorky, v JavaScriptu používané pro oddělení bloků kódu, jsou zde nahrazeny odsazením mezerami či tabulátory. Další významnou odlišností je také volání funkcí -- parametry nejsou ohraničeny závorkami, ale pouze odděleny mezerou.
+
+Jak je vidět, oproti JavaScriptu je CoffeeScript poměrně benevolentní. Na druhou stranu je ale nutné se naučit řadu poměrně nestandarních jazykových konstrukcí, které zavádí, což může způsobovat začátečníkům problémy. 
+
+\subsection{TypeScript}
+TypeScript je open source jazyk, jehož autorem je společnost Microsoft \cite{typescript}. Na rozdíl od CoffeeScriptu, který syntaxi JavaScript výrazně pozměňuje, je TypeScript pouze jeho rozšířením. Důležitou vlastností tak je, že jakýkoliv validní kód v JavaScriptu je také validním TypeScriptem. To umožňuje transparentní používání již existujících knihoven. Pravděpodobně nejvýraznějším rozdílem je (volitelně) typová kontrola během kompilace. Díky tomu je možné zavést pokročilé konstrukce, které podporují zavedené typové jazyky (C\#, Java...), například přetypování, dědičnost typů nebo generické typy. Umožňuje také definování rozhraní (\texttt{interface}), tříd (\texttt{class}) a modulů. Vzhledem k těmto vlastnostem a~transparentímu používání JavaScriptu bude pro vývoj nástroje použit právě TypeScript.
+
+\subsubsection{Definice tříd}
+TypeScript podporuje definici tříd syntaxí podobnou například Javě, C\# nebo standardu ECMAScript 6. Umožňuje definovat konstruktor, metody i třídní proměnné, včetně modifikátorů přístupu. Je však důležité si uvědomit, že všechny tyto vlastnosti -- především typovost a modifikátory přístupu -- jsou podporovány pouze v rámci TypeScriptu a v kódu přeložením do JavaScriptu lze již například k soukromým třídním proměnným bez problému přistupovat. Na zapouzdření se tedy po překladu není možné spolehnout.
+
+Třídy v TypeScriptu jsou volitelné a jejich použití není, stejně jako v JavaScriptu, vyžadováno. Definice třídy je vidět na ukázce \ref{lst4}.
+
+\begin{lstlisting}[float,floatplacement=h,caption={Definice třídy v TypeScriptu},label=lst4]
+class MyClass {
+    private name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+    
+    getName(): string {
+        return this.name;
+    }
+}
+\end{lstlisting}
+
+Jak je vidět, lze definovat typy parametrů metod (v tomto případě konstruktoru), proměnných i návratových hodnot. Kód třídy je poté kompilátorem TypeScriptu přeložen na~kód třídy podobný tomu, jaký byl uveden výše v příkladu definice pro JavaScript.
+
+\subsubsection{Dědičnost}
+V TypeScriptu lze používat klíčové slovo \texttt{extends} tak, jak ho známe například z výše zmíněné Javy. Vzhledem k existenci rozhraní je možné také použít v rámci definice třídy \texttt{implements}, čímž deklarujeme implementaci daného rozhraní.
+
+\subsubsection{Moduly}
+Moduly v TypeScriptu jsou konstrukcí, jež ovlivňuje viditelnost struktur, a jsou ekvivalentem jmenných prostorů z jiných jazyků. Struktury (třídy, proměnné) definované uvnitř modulu nejsou viditelné mimo něj bez explicitního uvedení klíčovým slovem \texttt{export}. Na~rozdíl od modifikátorů přístupu (\texttt{private}, {public} atd.) jsou definice modulů a exportovaných struktur přímo přeloženy do JavaScriptu.
+
+\section{Návrh zpracování}
+Funkcionalita nástroje je znázorněna na~obrázku \ref{obrWorkflow}. Ve~výchozím stavu nebude rozšíření vykonávat žádnou činnost -- vzhledem k~předpokládaným nárokům na zdroje (včetně připojení k internetu) je tato volba uživatelsky přívětivější a nebude zbytečně počítač zatěžovat. Po aktivaci \textit{editačního módu} začně aplikace zpracovávat stránky -- pro efektivnější zpracovávání lze využít možností \zk{zkAPI} prohlížeče tak, že bude aktivováno pouze na stránkách, jejichž adresa odpovídá vzoru \texttt{http(s)://*.wikipedia.org/wiki/*}. K tomuto omezení dochází zcela automaticky prostřednictvím definice v \texttt{manifest.json}. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{obrazky/workflow.png}
+	\caption{Návrh \uv{workflow} uživatelské části rozšíření}
+	\label{obrWorkflow}
+\end{figure}
+
+Zpracování stránky je pravděpodobně funkčně nejobsáhlejší část aplikace. Musí zde dojít k několika akcím -- prostřednictvím \texttt{content scriptu} bude do skriptu na pozadí odeslána informace o právě zobrazené stránce. Samotné zpracování musí proběhnout na~pozadí, z důvodu persistence dat -- především cachování článků\footnote{Ukládání již zpracovaných dat (náročných na výpočet či zdroje) tak, že při příštím použití budou rychle a levně k dispozici.}. Vzhledem k povaze výpočtů, jež je třeba vykonat, je bude pravděpodobně nutné spustit v rámci jiného vlákna nebo takovým způsobem (neblokujícím), aby neovlivňovaly plynulost uživatelského rozhraní a~vykonávání jiných akcí.
+
+Po stažení kompletního obsahu je možné z něj extrahovat odkazy článků, na něž daný článek odkazuje a které budou taktéž zpracovány. V textu se také nachází infobox, který je nutný k získání informací o článku.
+
+Poslední získanou informací z \zk{zkAPI} budou \textit{zpětné odkazy}, respektive jejich počet. Z~kombinace těchto informací a dalších faktorů bude poté přiřazeno zpracovávanému článku číselné ohodnocení, které následně bude zobrazeno v rámci uživatelského rozhraní (respektive přímo webové stránky) a~články budou zvýrazněny dle~jejich pravděpodobnosti.
+
+\subsection{Zpracování infoboxů}
+Jak již bylo řečeno v kapitole \ref{label:wikiformat}, infoboxy nelze zpracovat univerzálním způsobem, ale je nutné se zaměřit na specifický typ infoboxu a získávat informace v rámci něj. Infoboxy jsou také lokalizované do různých jazyků. Bylo by tedy vhodné část nástroje starající se o zpracování infoboxů vyčlenit tak, aby nezasahovala přímo do kódu a bylo ji možno rozšiřovat o další jazyky a typy infoboxů.
+
+\section{Návrh metriky}
+Ze získaných informací uvedených výše je možné vypočítat přibližnou relevanci (ohodnocení) článku vůči článkům již přidaným. Tato metrika bude obsahovat několik složek s~různými vahami. Systém výpočtu metrik bude taktéž navržen modulárně -- každá metrika bude samostatným modulem a bude tedy možné je libovolně přidávat, odebírat či editovat bez ovlivnění ostatních. Metriky pravděpodobně nebudou závislé na jazyku či typu infoboxu.
+
+Metrika článku bude číselná hodnota nabývající hodnoty $<0; 1>$, uživateli bude prezentována v procentech. Vzhledem k povaze metriky, kdy \uv{odhadujeme} uživatelovy preference a téma zájmu, je sice teoreticky možné dosáhnout 100\% jistoty relevance, avšak v praxi se taková výše jistoty jeví jako jen velmi obtížně dosažitelná (uživatel může mít vždy na mysli mírně odlišné či konkrétnější téma, než nástroj odhadne). Je tedy vhodné jednotlivé moduly navrhnout tak, aby s touto mírou nejistoty počítaly a 100 \% se svým ohodnocením blížily jen limitně nebo jich dosáhly jen ve velmi specifických případech.
+
+Pro výpočet relevance článku \texttt{a} tedy platí následující vztah
+
+\begin{equation}
+r_{total}(a) = \sum\limits_{i=0}^n r_{i}(a) \times w_{i},
+\end{equation}
+
+kde $r_{i}$ jsou jednotlivé moduly metriky, $w_{i}$ váhy těchto modulů a $r_{total}$ je celkové ohodnocení. Hodnota celkového ohodnocení nesmí překročit hodnotu 1, proto je nutné zajistit, aby byla suma všech vah byla v součtu menší či rovna 1.  
+
+\begin{equation}
+||w|| = \sum\limits_{i=0}^n w_{i} \leq 1
+\end{equation} 
+
+Každý modul metriky bude mít k dispozici kompletní získané údaje o daném článku (viz výše), zpracovaný infobox a již přidané články. Bude také definováno, zda modul potřebuje po změně stavu aplikace (typicky přidání či odebrání článku apod.) přepočítat svou hodnotu. Například počet externích článků (viz níže) se v krátkodobém horizontu prakticky nezmění, nebo jen velmi nevýznamně.
+
+\section{Uživatelské rozhraní}
+\label{label:ui}
+Vzhledem k prostřední, ve kterém je rozšíření spouštěno (rozhraní webového prohlížeče), je nutné zachovat jeho zvyklosti a doporučení. Protože bude rozšíření pracovat s aktivní webovou stránku, je možné maximálně využít i tento prostor -- pomocí Chrome \zk{zkAPI} je možné do stránky vkládat nové elementy a libovolně s nimi manipulovat.
+
+Na uživatelské rozhraní (UI) jsou kladeny určité nároky. Část uživatelského rozhraní bude zobrazována nezávisle na stránkách, tj. bude společná pro všechny stránky. Bude jí ale umožněna funkčnost nezávisle na tom, zda jsou nějaké stránky zobrazeny či ne. V~rámci této části bude umístěno tlačítko pro aktivaci či deaktivaci zpracovávání stránek. Součástí také bude seznam již přidaných článků -- zde budou v seznamu či tabulce zobrazeny a~bude umožněno jejich prohlížení (aktivní odkaz) a manipulace (mazání, v případě potřeby úprava).
+
+Součástí této části rozhraní bude také tlačítko pro exportování vytvořeného grafu. Po~aktivaci tlačítka bude zobrazen standardní dialog prohlížeče pro ukládání souborů. Bude zde také umístěno tlačítko aktivace vizualizace (viz dále). Vizualizace bude otevřena v novém okně prohlížeče (za využití \zk{zkAPI}). Zobrazení vizualizace bude prosté, bez ovládacích prvků.
+
+Je nutné uživateli poskytnout možnost přidávat články zobrazené (\uv{hlavní}) a odkazované (tj. odkazy uvnitř textu článku). V případě zobrazených článků je vhodné umístit informace (např. procentuální relevanci) a tlačítko pro přidání vedle nadpisu článku. Tím bude na tyto prvky kladena důležitost. Zároveň bude (vizuálně) očividné, že se prvky vztahují právě k zobrazenému článku.
+
+Odkazy na články podobným způsobem vyřešit nelze -- vzhledem k jejich počtu by přímá editace textu článku a zobrazení příslušných informací vedle odkazů způsobila problémy se zobrazením a výrazně by tím klesla přehlednost. Proto je vhodné tyto prvky zobrazit až při aktivaci odkazu, tedy pokud se nad ním nachází kurzor myši. V tomto nově zobrazeném panelu by byla možnost článek přidat (podobným tlačítkem jako u hlavního článku), zobrazit si základní zpracované informace a jeho relevanci (procentuálně). Odkazy na články by bylo vhodné obarvovat či jinak zvýraznit podle jejich relevance (výsledku metriky). Tím by měly relevantní články být zvýrazněny na úkor článků nepříbuzných či obecných. Toto zvýrazňování ale nesmí zhoršit čitelnost textu např. snížením kontrastu.
+
+Po přidání článku by měl být zobrazen panel se seznamem doporučených článků -- tedy takových, které byly doposud zpracovány a mají nejvyšší získané ohodnocení. Z tohoto seznamu bude možné články otevírat (odkazem) a také přímo přidávat.
+
+I když Chrome umožňuje vytvářet stránku s nastavením\footnote{Popsáno na \url{https://developer.chrome.com/extensions/options}.}, součástí nástroje nastavení nebude a~konfigurace bude probíhat pomocí souboru \texttt{Config.ts} při~překladu rozšíření.
+
+\subsection{Návrh rozhraní}
+Obrázek \ref{obrWireframe} zobrazuje návrh uživatelského rozhraní. Jedná se o \textit{wireframe}\footnote{Občas překládáno jako \textit{drátěný model}}, jeho cílem není navrhnout rozhraní naprosto detailně (o to se případně stará až grafický návrh), ale~naznačit rozvržení jednotlivých komponent.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.27]{obrazky/ui.png}
+	\caption{Návrh uživatelského rozhraní, tzv. wireframe}
+	\label{obrWireframe}
+\end{figure}
+
+Obrázek znázorňuje prostředí webového prohlížeče se zobrazenou stránkou Wikipedie. Obsahuje několik bodů:
+
+\begin{enumerate}
+	\item Tlačítko, které je do Chromu automaticky přidáno po načtení rozšíření. Po kliknutí levým tlačítkem myši je otevřena nabídka rozšíření, obsahující další ovládací prvky.
+	\item Tlačítko, které po aktivaci spustí zpracovávání stránek a aktuální stránku obnoví. Jelikož je tlačítko na první pohled jediným indikátorem aktivního rozšíření, musí být jasným způsobem rozlišen stav \uv{Vypnuto} a \uv{Zapnuto}.
+	\item První element z prvků uživatelského rozhraní rozšíření, který je součástí stránky. Toto tlačítko bude vloženo v blízkosti nadpisu a po jeho použití bude článek přidán. Pokud už se článek v poli přidaných článků již nachází, má toto tlačítko popisek \uv{Odebrat} a slouží ke smazání článku.
+	\item Ohodnocení článku dle metriky. V případě přidaného článku jsou tato procenta skryta.
+	\item Zobrazený panel po najetí myší na (zvýrazněný) odkaz. Nadpis bude zobrazovat skutečný titulek článku (tj. ne jen obsah daného odkazu). Kromě něj bude součástí zobrazeného panelu tlačítko s identickou funkcionalitou, jako u předešlého. V případě článků, kde byly úspěšně získány informace z infoboxu, budou zde některé z~nich zobrazeny. Pokud článek, na nějž článek odkazuje, ještě není zpracovaný, panel se nezobrazí.
+	\item Po přidání článku se zobrazí panel s navrženými články. Jeho účel byl popsán výše. Bude rovněž součástí stránky a po jeho zviditelnění bude obsah adekvátně zmenšen (zúžen).
+	\item Infobox zobrazené stránky. Obsahuje zpracovávané informace a odkazy na ostatní články.
+	\item Seznam přidaných článků. Články zde budou přehledně zobrazeny v tabulce či seznamu.
+\end{enumerate} 
+ 
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+ 
+ 
+ 
+\chapter{Implementace rozšíření}
+Výsledná aplikace odpovídá provedené analýze. Důraz byl především kladen na rozšiřitelnost. Moduly, u nichž se předpokládá, že budou upravovány (tj. parsery infoboxů a moduly metrik), byly navrženy tak, aby autorovi případných rozšíření bylo umožněno jednoduché zavedení nově vytvořených modulů do systému.
+
+\section{Architektura}
+V příloze \ref{att2} se nachází objektový diagram \zk{zkUML}, který znázorňuje návrh programu. Diagram je záměrně zjednodušený, některé vazby jsou vynechány tak, aby byl návrh přehlednější (např. ke třídě \texttt{Article}, kterou využívá většina aplikace). Uvedené metody a~vlastnosti jsou nejdůležitější z hlediska návrhu (jsou ale uvedeny všechny veřejné metody, čímž může \zk{zkUML} sloužit jako popis \zk{zkAPI}), nepodstatné uvedené nejsou.
+
+Jak je vidět, prostřednictvím Chrome \zk{zkAPI} je aplikace rozdělena na 3 součásti, jak již bylo uvedeno v teoretické části. Z hlediska návrhu je nejjednodušší část \texttt{Popup}, která se stará o zobrazování a obsluhu hlavní nabídky. Část \texttt{ContentScript} je vkládána do~každé stránky a zprostředkovává reprezentaci získaných dat ve stránce, případně zobrazuje prvky uživatelského rozhraní, které do stránky mají být vloženy. \texttt{Background} je skript na pozadí, kde jsou všechna data zpracována. Jak je na \zk{zkUML} diagramu vidět, tento skript není k~\zk{zkAPI} připojen přímo, ale přes \texttt{BackgroundListener} a \texttt{BackgroundProxy}. Třída \texttt{Back\-ground\-Listener} umožňuje zaregistrovat se k odposlechu událostí určitého typu a~při~vyvolání této události je zaregistrovaná metoda automaticky spuštěna. Jako prostředník mezi těmito třídami slouží třída \texttt{BackgroundProxy}. Typy událostí jsou definovány ve~třídě \texttt{Actions}, jejíž konstanty jsou využívány jako identifikátor událostí napříč aplikací.
+
+\section{Spuštění}
+Po načtení rozšíření do prohlížeče je rozšíření neaktivní, čímž šetří systémové prostředky tak, aby uživatelův prohlížeč zbytečně nezatěžovalo. Pro aktivaci zpracovávání stránek je nutné aktivovat režim editace prostřednictvím tlačítka v \textit{popupu} (viz kapitola \ref{label:ui}), čímž dojde (na stránkách Wikipedie) k~vložení skriptu \texttt{contentscript.js} přímo do stránky. Je zkontrolována podpora jazyka, který je zjištěn z adresy. Podporované jazyky jsou definovány v souboru \texttt{config.ts}) a je nutné, aby pro podporovaný jazyk existovala definice infoboxů v adresáři \texttt{data}.
+
+Po kontrole je adresa stránky odeslána do skriptu na pozadí -- \texttt{Background.ts}. Tím je započato zpracování aktuální stránky.
+
+\section{Komunikace s API}
+Prostřednictvím \zk{zkAPI} je aktuální stránka stažena. Z jejího obsahu je extrahován infobox a~také odkazy. Ty jsou následně zpracovávány stejným způsobem, jako zobrazená stránka -- s rozdílem, že jejich odkazy již dále zpracovávány nejsou. Všechny třídy starající se~o~komunikaci s Wikipedií a jejím \zk{zkAPI} se nachází v adresáři \texttt{Api}, respektive modulu \texttt{Api}. Všechny části komunikující s \zk{zkAPI} jsou pouze implementací rozhraní tak, aby mohly být v~případě potřeby nahrazeny. 
+
+Části aplikace, které komunikují s \zk{zkAPI} Wikipedie, nepokládají dotazy přímo, ale využívají dotazovou frontu. Vzhledem k omezení Wikipedie je potřeba, aby dotazy na její \zk{zkAPI} probíhaly sériově -- tzn. dotaz může být odeslán až po tom, co je obdržena odpověď (či chyba) z předchozího. V případě paralelního zasílání dotazů může dojít k přetěžování serveru a eventuálnímu zablokování přístupu \cite{serialquery}. V případě porušení tohoto pravidla (či~dalších limitů, např. počtu článků na dotaz apod.) Wikipedie nejprve odpovídá chybou či~prázdnou odpovědí -- což se stalo i při vývoji aplikace. K zablokování je tedy přistoupeno až při vícenásobném, dlouhodobém porušování podmínek.
+
+Dotazovou frontu, která toto chování zajišťuje, zastává třída \texttt{Pro\-ce\-ss\-ing.De\-fault\-Pro\-ce\-ssor} (která se také stará o základní zpracování -- viz dále kapitola \ref{label:processing}). V této frontě (poli) jsou uloženy informace o článcích, co mají být načteny (konkrétněji jejich URL, titulek a jazyk). Důležité je, že společně s nimi je uložena i informace o tom, z které stránky přišel požadavek na jejich zpracování -- v případě přechodu na jinou stránku či její opuštění jsou příslušné požadavky zrušeny a síť tak není zbytečně blokována. V případě, že by tato informace chyběla, rozšíření by neumožňovalo zpracovávání několika stránek naráz.
+
+Z \zk{zkAPI} jsou získávány 2 druhy dat:
+\begin{description}
+	\item[Obsah článků] Pro získání odkazů, které článek obsahuje, a především infoboxu je nutné stáhnout kompletní obsah článku ve formátu \texttt{wikitext}. Díky tomu, že v případě tohoto dotazu Wikipedie umožňuje získat až 50 článků najednou, je tato část velice efektivní (z hlediska odezvy). Na druhou stranu stahuje poměrně velké množství dat (při plném využití 50 článků řádově jednotky MB -- záleží samozřejmě na délce dílčích článků).
+	\item[Počet externích odkazů] Pro potřeby metriky je získávána informace o počtu zpětných odkazů na jednotlivé články. Zde je Wikipedie slabým článkem, jelikož neumožňuje dotázat se pouze na počet odkazů samotných, ale jen získat jejich seznam. Tento seznam je navíc omezen shora maximálně 500 odkazy na dotaz, což by při získávání kompletního počtu odkazů činilo tuto část úzkým hrdlem celé aplikace\footnote{Například anglická verze článku o 2. světové válce má v současné době zhruba 150 000 zpětných odkazů, tudíž získání odkazů jen tohoto článku by trvalo $(150000 \div 500) \times p = 300p$, kde $p$ je průměrná odezva.}. Proto je z~důvodu zvýšení rychlosti zpracování tento počet dotazů omezen na 2, tj. na~tisíc odkazů. Tento limit je možné pozměnit úpravou hodnoty v souboru \texttt{Config.ts}. Změnou hodnoty je dosaženo změny přesnosti příslušné metriky, ale za cenu velkého dopadu na výkon aplikace.
+\end{description}
+
+V rámci třídy \texttt{Background} je zavedena cache, která je prohledávána před jakýmkoliv dotazem na \zk{zkAPI}. Dotaz na každý článek je tedy položen pouze jednou.
+
+\section{Zpracování článků}
+\label{label:processing}
+Je evidentní, že zpracovávání článků je pevně provázáno s předchozí částí -- přesto, že se jedná o stejné třídy, jsou tyto části funkčně poměrně odlišné. Po stažení potřebných dat je vytvořena entita představující článek, což je rovněž prováděno v třídě \texttt{Pro\-ce\-ss\-ing.De\-fault\-Pro\-ce\-ssor}, a dojde ke zpracování odkazů článku a také infoboxu (viz dále). Vzhledem k velkým nárokům této části na výkon způsobovalo toto zpracování v prvních verzích rozšíření vysoké zatížení procesoru, což mělo negativní dopad na plynulost uživatelského rozhraní. Při zpracovávání informací o článcích je tedy velmi kladen důraz na složitost algoritmu. Především ale došlo k přesunu výkonné části do jiného vlákna na pozadí, díky čemuž jakákoliv činnost tohoto skriptu nemůže ovlivnit uživatelské rozhraní a jeho odezvu. Ve vlákně je spuštěna instance třídy \texttt{ProcessingWorker}.
+
+\subsubsection{Web Workers}
+JavaScript nepodporuje tradiční pojetí vláken (standardně představováno třídou \texttt{Thread} apod.), ale společně s HTML5 (avšak v odlišném standardu) byl zaveden koncept \texttt{Web Workers}. Ten umožňuje spouštění kódu JavaScriptu na pozadí tak, aby neovlivňoval uživatelské rozhraní, tedy skripty běžící v hlavním vlákně webu \cite{webworkers}.
+
+Web Workers umožňují načíst soubor a jeho kód spustit na pozadí při jeho vytvoření.
+\begin{lstlisting}
+var worker = new Worker("script.js");
+\end{lstlisting}
+
+S vláknem lze komunikovat prostřednictvím zpráv (událostí), pomocí nichž lze vláknu zprávy zasílat či je od něj přijímat. Zde se nachází drobná překážka -- při předání objektu zprávou je objekt pouze zkopírován, tj. není zachována jeho instance. Pokud se ale jedná o~objekt specifického typu, např. entitu článku, dojde k jeho přetypování na standardní objekt JavaScriptu (\texttt{Object}). Přestože jsou zachována všechna data, tento objekt již nemá žádné metody původního objektu. Je tedy nutné ručně vytvořit objekt nový a data do něj zkopírovat. Toto chování je, pochopitelně, prováděno z důvodu zachování vláknové bezpečnosti (\texttt{thread-safe}), může ale způsobit komplikace. Web Workers rovněž, na rozdíl od standardního pojetí vláken, nesdílí (globální) proměnné s hlavním vláknem a není tedy možný přístup např. k objektu \texttt{window} zobrazené stránky.
+
+\section{Zpracování infoboxů}
+Infoboxy je potřeba vyextrahovat z kompletního textu. To lze poměrně spolehlivě provést následujícím postupem:
+\begin{enumerate}
+	\item Nalézt začátek infoboxu. Úkoly podobného typu se nejlépe řeší pomocí regulárních výrazů. Zde lze využít faktu, že všechny infoboxy začínají sekvencí \texttt{\{\{Infobox}. Bohužel, vzhledem k tomu, že i tento text je zadáván ručně autorem článku, není možné se spolehnout na přesný tvar této sekvence. Regulární výraz tak musí počítat s existencí velkých i malých písmen, případně bílých znaků (mezera, tab). Odpovídající regulární výraz je tedy následovný: \texttt{/\{\{(\string\s*)infobox/gi}. Symbol \texttt{\string\s} zastupuje libovolný bílý znak, \texttt{gi} jsou pak modifikátory -- text odpovídající výrazu je tedy hledán v celém řetězci nezávisle na velikosti písma. Infobox se také v textu vůbec nacházet nemusí.
+	\item Získat typ infoboxu. Ten je prakticky vždy umístěn na stejném řádku jako výše nalezená počáteční sekvence, pro jeho získání tedy stačí pouze načíst zbytek příslušného řádku. Validním typem infoboxu je i případ, kdy je zbytek řádku prázdný -- jedná se o obecný infobox bez konkrétního typu.
+	\item Nalézt konec infoboxu. To bohužel nelze provést prostým nalezením posloupnosti znaků \texttt{\}\}}, protože se v infoboxu mohou vyskytovat další boxy a konstrukce, které jsou uvozeny a ukončeny stejnými znaky. Pro úlohy podobného typu lze tedy využít následující algoritmus:
+		\begin{enumerate}
+			\item S prvním znakem \texttt{\{}, který jsme nalezli v prvním bodě algoritmu, nastavíme kontrolní proměnnou na hodnotu 0. 
+			\item Procházíme od počáteční značky text znak po znaku. V případě, že je znak rovný \texttt{\{}, zvýšíme hodnotu kontrolní proměnné o 1. V případě \texttt{\}} hodnotu kontrolní proměnné snížíme.
+			\item Takto text prohledáváme do doby, než bude mít kontrolní proměnná znovu hodnotu 0, čímž jsme našli konec infoboxu.
+		\end{enumerate}
+\end{enumerate}
+
+Tím jsme získali kompletní infobox a můžeme tak pokračovat ve zpracování jeho obsahu. Ten je, jak už bylo popsáno v kapitole \ref{label:wikiformat}, ve formátu \texttt{klíč = hodnota}, přičemž tato dvojice je navíc uvozena znakem \texttt{|}. Cílem zpracování je uložit hodnoty do asociativního pole pod příslušným klíčem tak, aby mohly být efektivně zpracovávány.
+
+Vzhledem k tomu, že může být hodnota několikařádková a může obsahovat i formátovaný text, je výhodné provést celé zpracování ve~dvou krocích. Prvním krokem je projít každou řádku infoboxu a zjistit, zda obsahuje znak \texttt{=}. Pokud ano, zkopírujeme řádku na~nový řádek vytvořeného řetězce. Pokud ne, pouze daný řádek k vytvořenému řetězci připojíme (k posledně vytvořenému řádku). Tímto postupem dosáhneme toho, že po zpracování celého infoboxu dostaneme ve vytvořeném řetězci infobox ve tvaru \texttt{klíč = hodnota} tak, že je na každém řádku tato dvojice právě jednou.
+
+Tím můžeme vytvořit z tohoto zpracovaného řetězce asociativní pole pod příslušným klíčem a toto pole poskytnout modulům starajícím se o zpracování infoboxů (tzv. parserům).
+
+\subsection{Parsery infoboxů}
+Parsery jsou závislé na jazyce, protože klíče a typ infoboxu je lokalizované. Z toho důvodu jsou umístěny v adresáři \texttt{data} a dále v adresáři pro danou jazykovou verzi -- např. adresář \texttt{data/en} pro anglický jazyk. Je nutné, aby parsery a definice pro libovolný jazyk byly umístěny ve složce podle příslušného klíče jazyka tak, jak jej definuje Wikipedie \cite{listofwikis}.
+
+Definice typů infoboxů pro jazyk je umístěna v souboru \texttt{InfoboxTypes.json}. Tento soubor obsahuje především seznam typů infoboxů pro daný jazyk společně s entitami, na které budou namapovány. Kromě toho obsahuje také klíč \texttt{definitions}, což je seznam souborů obsahujících parsery. Bez této deklarace nebude při zpracování lánků příslušného jazyka neuvedený parser použit ani načten.
+
+Parser infoboxu je třída, která dědí od \texttt{Processing.InfoboxDefinition}. Při zpracování článku je seznam těchto parserů postupně procházen a na každém z nich je zavolána metoda \texttt{matches}. Té jsou předány informace o článku a uvnitř této metody je ověřeno, zda daný parser \uv{rozumí} infoboxu příslušného typu -- v takovém případě vrací návratovou hodnotu \texttt{true}. Díky výchozí implementaci této metody můžou nejjednodušší parsery přepsat pouze třídní proměnnou \texttt{matchingRegex} regulárním výrazem odpovídajícího typu a~není nutné definovat metodu \texttt{matches}.
+
+V případě, že je ověření úspěšné, je zavolána metoda \texttt{process} (kterou už každý parser musí implementovat povinně sám). Této metodě jsou předána všechna data o infoboxu a pouze na ní je, jaké informace z něj dokáže zpracovat. Zde je možné využít pomocné metody rodičovské třídy, především pro práci s daty.
+
+\subsection{Vytvoření nového parseru}
+Při vytváření nového parseru (či přímo jazyka) je vhodné využít již existujících příkladů a~některý parser zkopírovat (v případě vytváření jazyka rovnou celou složku, např. \texttt{en}). Pokud se parser dokáže rozhodnout o své způsobilosti zpracovávat informace jen na základě hlavičky infoboxu (tj. úvodní sekvence a typu), stačí přepsat pouze proměnnou \texttt{matching\-Regex}, jak bylo uvedeno výše. V opačném případě je nutné vytvořit vlastní implementaci třídy \texttt{matches}. V metodě \texttt{process} pak můžeme přistoupit k samotnému zpracování.
+
+Parser je rovněž nutné následně zaregistrovat v souboru \texttt{InfoboxTypes.json}. Je důležité si uvědomit, že parsery jsou vyhodnocovány v uvedeném pořadí a v případě shody je procházení ukončeno. Parsery nejsou překládány se zbytkem aplikace, ale je nutné je přeložit do JavaScriptu ručně (viz kapitola \ref{label:compilation}).
+
+\subsection{Provazování článků}
+\label{label:promises}
+Články a jejich infoboxy jsou zpracovány už při samotném načtení. Zde ale nastává problém: pokud se některému z parserů podaří v infoboxu získat informace, respektive rozpoznat vztah s jiným článkem, nemusí být tento článek k dispozici (zatím nebyl načten a~zpracován). Proto byl do aplikace zaveden koncept, který tento problém řeší pomocí třídy \texttt{Processing.LinkPromise}. Tato třída umožní odkázat na jiný článek (pouze pomocí jeho názvu, nemusí tedy v době zpracování existovat) a tomuto odkazu přiřadí kontext, tedy vztah s právě zpracovaným článkem. Při zpracování (typicky exportování) grafu jsou poté tyto odkazy procházeny a články jsou pomocí nich provazovány vztahem příslušného typu.
+
+\section{Ohodnocení článků}
+Každý článek je po vytvoření a zpracování infoboxu ohodnocen. Implementace metriky odpovídá návrhu v analytické části. Moduly, jež zastávají jednotlivé části metriky, jsou umístěny v adresáři \texttt{Processing.Rating}. Vzhledem k tomu, že tyto metriky nejsou závislé na jazykové verzi, nemusejí být umístěny v rámci jazykového modulu (avšak mohou být -- aplikace jejich umístění nevynucuje).
+
+Modul metriky musí implementovat rozhraní \texttt{Pro\-cess\-ing.\-Ra\-ting.\-Ra\-ting}. Toto rozhraní definuje několik vlastností:
+\begin{description}
+	\item[rate(article, added{[}{]})] Metoda, která slouží k samotnému ohodnocení článku \texttt{article}. Měla by vracet číslo (a neměla by jej nastavovat přímo článku), a to v intervalu $<0; 1>$. Pro hodnocení může metoda využít i druhý argument, který je do funkce předán -- pole článků, které již byly uživatelem přidány a článek \texttt{article} by k nim tedy měl být určitým způsobem relevantní.
+	\item[needsRecalculation] Vlastnost, která naznačuje, zda je nutné, aby byla hodnota metriky přepočítána při změně stavu aplikace, tj. při změně pole přidaných článků (pole \texttt{added[]}).
+	\item[uid] Unikátní identifikátor metriky (vlastnost). Kromě celkového ohodnocení článku je také udržováno pole s hodnotami jednotlivých metrik a tento unikátní identifikátor je použit jako klíč tohoto asociativního pole. To je využíváno při přepočtu metriky -- pokud je vlastnost \texttt{needsRecalculation} nastavena na \texttt{false}, je použita uložená hodnota z tohoto pole, v opačném případě je znovu použita metoda \texttt{rate}.
+\end{description}
+
+Metrika, která má být použita, je definována v souboru \texttt{Config.ts}, konkrétně konstantou \texttt{DEFAULT\_RATER}. Výchozí hodnotou je zde \texttt{BaseRating}, což je implementace zajišťující všechny uvedené vlastnosti metrik. Hodnotou jejího konstruktoru je pole metrik, které mají být použity pro výpočet celkové metriky, a příslušných priorit -- číselných hodnot, kterými mají být výsledky jednotlivých metrik vynásobeny.
+
+Tato metrika se zavoláním její metody \texttt{rate} projde všechny metriky předané v konstruktoru, zavolá jejich metodu \texttt{rate} a výsledek vynásobí její prioritou. Protože je metrika \texttt{BaseRating} nadřazenou ostatním, ukládá metriku přímo do entity článku. Do pole \texttt{ratings} ukládá výsledky jednotlivých metrik pod jejich \texttt{uid} způsobem uvedeným výše. Do vlastnosti \texttt{rating} výslednou číselnou hodnotu (výchozí hodnota je -1) a do \texttt{ra\-t\-ing\-Per\-cent\-age} výslednou hodnotu v textové podobě, včetně znaku \texttt{\%}, zaokrouhlenou na~určitý počet desetinných míst (výchozí řetězec \texttt{N/A}, tj. nedostupné). Toto zaokrouhlení lze ovlivnit další konstantou souboru \texttt{Config.ts} -- \texttt{RATING\_ROUNDING}.
+
+\subsection{Vytvoření nové metriky}
+Každá metrika musí implementovat výše zmíněné rozhraní, tj. metodu \texttt{rate} a 2 vlastnosti. Soubor s její třídou může být umístěn v jakémkoliv adresáři, je ale vhodné využít výchozí umístění, aby byl její kód překládán společně se zbytkem aplikace. Pokud je využívána jako rodičovský modul metrika \texttt{BaseRating}, je pro její funkčnost nutné přidat definici do pole konstruktoru v souboru \texttt{Config.ts} a podle uvážení zvolit váhu (prioritu) dané metriky, společně s příslušným upravením ostatních hodnot. Je nutné, aby suma těchto vah nepřesahovala hodnotu 1.
+
+Pro funkčnost v prohlížeči je také nutné přidat cestu k přeloženému souboru (tj. k souboru \texttt{.js}, nikoliv zdrojovému \texttt{.ts}) do klíče \texttt{background.scripts} v manifestu rozšíření (viz kapitola \ref{label:manifest}). Tím dojde k zavedení JavaScriptového souboru do prohlížeče.\footnote{Při definici nového parseru infoboxů není nutné cestu ke skriptu v manifestu uvádět, protože parsery jsou načítány odlišným způsobem.} 
+
+\section{Doporučené články}
+Panel s doporučenými články se objeví po každém přidání článku. Panel obsahuje deset článků s nejlepším ohodnocením (počet lze upravit v souboru \texttt{Config.ts}), které byly zatím zpracovány. Doporučené články lze pomocí tlačítka na panelu obnovit a články je možné procházet či~rovnou přidávat přímo z panelu.
+
+\section{Exportování grafu}
+Po zpracování popsaném v předešlých kapitolách může uživatel tyto články přidat do svého výběru. Pro znázornění svého výběru může uživatel využít tlačítko \textit{Visualisation} v hlavní nabídce rozšíření. Pro vizualizaci je využívána knihovna \textit{d3.js} a její modul \textit{bihisankey} (viz dále). Dojde k otevření nového okna s vizualizací jednotlivých uzlů (článků). Hrany mezi nimi představují odkazy mezi danými články, tloušťka těchto hran určuje pak počet těchto odkazů. Vizualizaci je možné využít jako znázornění vztahů mezi články, tématických okruhů nebo ji lze využít k odhalení nerelevantních článků.
+
+Když je uživatel se svým výběrem spokojen, může přistoupit k exportování přidaných článků ve formě grafu pro časovou osu. Pro tuto akci slouží tlačítko \textit{Export} v nabídce, po~jehož aktivaci je zobrazen standardní dialog pro soubor ke stažení a graf je tak vyexportován do souboru. Toto tlačítko je aktivní pouze v případě, že jsou některé články přidány.
+
+Všechny soubory využívané ke stahování se nachází ve jmenném prostoru \texttt{Export}. Hlavní třídou je \texttt{Download}, která se stará o samotné stažení souboru. Jako parametr v~konstruktoru přijímá výchozí název stahovaného souboru a především instanci rozhraní \texttt{For\-matter}. Toto rozhraní má jedinou metodu \texttt{format}, které lze předat seznam článků, které mají být uloženy. Takové abstraktní řešení bylo zvoleno záměrně -- při změně formátu exportovaného souboru nebo úpravě způsobu zpracování lze pouze zaměnit jednu třídu \texttt{Formatter} za jinou.
+
+Výchozí implementací je třída \texttt{JsFormatter}, která dokáže články naformátovat podle požadavku časové osy. Využívá dvě další třídy -- \texttt{ArticleFormatter} pro články (události osy) a~\texttt{Edge\-For\-matter} pro jejich propojení. Při ukládání článků jsou pouze přemapovány vlastnosti objektu tak, aby odpovídaly formátu časové osy, případně jsou nastaveny výchozí hodnoty, které osa vyžaduje (začátek nebo konec události je při neúspěšném odhadu nastaven na současný datum). Provazování článků je už komplexnější, jelikož jsou procházeny všechny objekty \texttt{LinkPromise} (viz kapitola \ref{label:promises}) a pomocí nich jsou články provázány.
+
+\section{Importování grafu}
+Články reprezentované grafem, které jsou z nástroje vyexportovány, je možné zpětně naimportovat pomocí tlačítka \textit{Import}. Toto tlačítko je aktivní, pouze pokud je vypnutý mód editace. Po kliknutí na toto tlačítko je zobrazen standardní dialog načítání souboru a je možné vybrat dříve exportovaný soubor. Po potvrzení dialogu jsou články postupně naimportovány, přičemž jsou zachovány případné úpravy data počátku a konce události a její typ, pokud byly před exportováním provedeny.
+
+Pro načítání je využit skript, který vytvoří v hlavní nabídce skrytý formulář pro soubor a simuluje kliknutí na tlačítko formuláře. Protože je manipulováno přímo se zdrojovým kódem stránky, je nutné, aby byl takový skript spuštěn v hlavní nabídce, nikoliv na pozadí (\texttt{Background}). Hlavní třídou starající se o vyvolání tohoto dialogu je \texttt{Upload}, která je součástí jmenného prostoru \texttt{Import}. Zde se také nachází rozhraní \texttt{Import} a jeho implementace \texttt{JsLoader}, což jsou součásti starající se o interpretaci načteného obsahu a jeho převedení na informace o článcích, které mají být zpracovány.
+
+\section{Překlad zdrojových kódů a spuštění}
+\label{label:compilation}
+Pro stažení veškerých závislostí je nutná instalace balíčkovacího nástroje Node Package Manager (\zk{zkNPM}). Pomocí tohoto nástroje je možné příkazem \texttt{npm install} nainstalovat všechny závislosti zcela automaticky. Jmenovitě pak pro vývoj nutný \texttt{Type\-Script} a balíček \texttt{Typings}, který zajišťuje stažení definic typů pro TypeScript (jeho konfigurace se nachází v souboru \texttt{typings.json}. Po instalaci všech závislostí je možné přeložit TypeScript do JavaScriptu, se kterým Chrome pracuje. To lze provést příkazem \texttt{tsc} -- je využit kompilátor TypeScriptu, jež je automaticky stažen nástrojem \zk{zkNPM}. Po~přeložení lze načíst celou složku (což je vhodné pouze pro~vývoj) volbou \textit{Načíst rozbalené rozšíření} nebo rozšíření zabalit pomocí volby \textit{Zabalit rozšíření} na adrese \url{chrome://extensions}. Tím vznikne soubor přípony \texttt{crx}, který je možné do~stejné stránky přesunout a~tím dojde k~instalaci. Tento soubor je možné samostatně publikovat.
+
+Eventuálně lze pak přeložit parsery pro jednotlivé jazyky, a to spuštěním příkazu \texttt{tsc} v adresáři \texttt{data/<jazyk>}. 
+\section{Použité knihovny}
+Všechny použité knihovny, jež nejsou součástí zdrojového kódu, lze nainstalovat pomocí \zk{zkNPM}.
+
+\subsection{TypeScript, Typings}
+Za knihovny lze pouvažovat i programovací jazyk, ve kterém je rozšíření vy\-tvo\-ře\-no~--~Ty\-pe\-Script a~balíček Typings.
+
+\subsection{jQuery}
+Tato knihovna se dá považovat za nepsaný standard ve světě JavaScriptu. Nanízí nepřeberné množství funkcí a možností. Často se používá pro manipulaci s DOM, kde nabízí příhodné zkratky. Dnes už poměrně velkou část funkcí této knihovny dokáže zastat novější verze JavaScriptu spolu s HTML5, avšak jQuery se stará o kompatibilitu a jednotné rozhraní napříč prohlížeči \cite{jqueryuse}.
+
+\subsection{Bootstrap}
+Bootstrap je HTML, CSS a JavaScriptový framework \cite{bootstrap}. Umožňuje rychlý návrh uživatelského rozhraní, které je ale zároveň vizuálně uspokojivé a tak je v řadě projektů použit jako základ pro design. K tomu poskytuje mnoho komponent, které lze v projektu použít. V~rozšíření jsou v zásadě použity 2 verze tohoto frameworku -- plná instalace, která je stažena pomocí \zk{zkNPM} a \uv{redukovaná verze}, která obsahuje ručně vybrané části a komponenty. Plná verze je použita v ovládacím panelu, především pro vzhled. Vytváří také přehlednou pruhovanou tabulku, která je použita pro zobrazení seznamu přidaných článků. Knihovna také obsahuje ikony, které jsou použity v tlačítkách a odkazech, což působí přehledněji a~zvyšuje použitelnost rozhraní \cite{iconusability}. 
+
+\subsection{qTip2}
+JavaScriptová knihovna, která je pluginem pro knihovnu jQuery. Umožňuje vytváření \uv{bub\-lin} připojených k HTML elementům. Má široké možnosti konfigurace, včetně podpory pro lazy-loading, která je využívána v případě zobrazování panelů nad zpracovanými odkazy.
+
+\subsection{d3.js}
+Knihovna umožňující vizualizaci dat a manipulaci s nimi \cite{d3js}. Není ale monolitickým nástrojem, umožňuje spíše knihovnu využívat pro definici vlastních komponent a pluginů. Pro vizualizaci spojitosti přidaných článků je použit plugin využívající knihovnu s názvem \textit{bihisankey} \cite{bihisankey}.
+
+\subsection{Implementace algoritmu MD5}
+JavaScript neobsahuje implementaci hashovacího algoritmu MD5, který je potřeba při~vytváření adresy obrázku, proto je používána knihovna přidávající podporu \cite{md5} \cite{imageurl}. Jelikož je v textu uveden obrázek pouze pomocí názvu souboru, jeho celou adresu je nutné vypočítat. K základní adrese \texttt{https://upload.wikimedia.org/wikipedia/commons/} je připojen první znak MD5 hashe názvu souboru, za lomítkem pak první 2 znaky a za dalším lomítkem název souboru. Někdy je slovo \texttt{commons} v adrese nahrazeno jazykovou verzí (např. \texttt{en}). Způsob detekce ale není nikde veřejně popsán a tento fakt je důvodem, proč se u některých článků načtení obrázku nezdaří.
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+% ==================================================================================================================================================================
+
+\chapter{Testování implementace}
+Při testování implementace je potřeba počítat s omezeným počtem definic infoboxů a zvolit pro testování takovou tématiku článků, aby bylo možné relevantně posoudit správnost výsledků. Jinak řečeno, za chybu je nutné považovat nesprávné či chybějící zpracování, ale nikoliv chybějící informace díky nepodporované tématice. Články byly samozřejmě zpracovány v angličtině, nicméně jejich názvy jsou zde pro přehlednost uvedeny v češtině. Testována byla dvě kritéria -- úspěšnost odhadu příbuzných témat (tedy relevance dalších článků) a úspěšnost získávání informací. Testování relevance bylo prováděno na~menším vzorku dat tak, abychom mohli posoudit ohodnocení konkrétního okruhu článků. Jako téma testování byla zvolena česká panovnická linie Lucemburků. 
+
+Při testování uměl nástroj rozpoznávat následující informace:
+
+\begin{description}
+	\item[Obrázky] Hlavní obrázek infoboxu (nemusí být uveden).
+	\item[Osoby] Obecné informace, které lze zpracovat z infoboxů všech osob bez ohledu na jejich konkrétní typ.
+		\begin{itemize}
+			\item Datum narození.
+			\item Datum úmrtí.
+			\item Místo narození.
+			\item Místo úmrtí.
+			\item Manželé, manželky.
+			\item Děti.
+		\end{itemize}
+	\item[Místa] Města, vesnice či obecně místa, usedlosti.
+		\begin{itemize}
+			\item Datum založení.
+			\item Hlavní představitel -- typicky starosta, primátor.
+		\end{itemize}
+	\item[Vojenský konflikt] Války či bitvy.
+		\begin{itemize}
+			\item Velitelé, vůdci. Může jich být v rámci konfliktu více. V tom případě dokáže nástroj rozpoznat jejich spojenectví.
+			\item Datum počátku konfliktu.
+			\item Datum konce konfliktu.
+			\item Nadřazený konflikt -- typicky bitvy jsou součástí některé války.
+		\end{itemize}
+	\item[Šlechta] Panovníci, obecně šlechta (anglicky \textit{royalty}).
+		\begin{itemize}
+			\item Rod, ke kterému daný šlechtic patří.
+			\item Následovník. Nástroj úmyslně nerozeznává předchůdce, protože by mezi předchůdcem a následovníkem existovaly vždy 2 vztahy.
+		\end{itemize}
+	\item[Šlechtický rod] Šlechtická linie.
+		\begin{itemize}
+			\item Datum počátku rodu.
+			\item Datum vymření rodu.
+		\end{itemize}
+\end{description}
+\clearpage
+Pro odhad relevance byly využity následující moduly (včetně jejich priorit):
+
+\begin{description}
+	\item[Rozpoznané vztahy] Byl rozpoznán vztah s některým z přidaných článků (30 \%).
+	\item[Odkaz z infoboxu] Na článek vede odkaz z infoboxu z přidaných článků (25 \%).
+	\item[Externí odkazy] Počet externích odkazů na článek (20 \%).
+	\item[Je událost] Byl rozpoznán počátek a konec události (10 \%).
+	\item[Odkaz z článku] Na článek vede odkaz z textu některého z přidaných článků (10 \%).
+\end{description}
+
+\section{Odhad relevance}
+Odhady relevance témat byly testovány pouze na samotné linii panovníků a~jejich následovníků. Jako první byl přidán článek o rodu samotném a poté bylo pokračováno v pořadí Jan Lucemburský, Karel IV., Václav IV. a konečně Zikmund. Před každým přidáním byl zaznamenán odhad nástroje pro daný článek.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l||l|l|l|l|l|}
+\hline
+Článek 		& Lucemburkové  & Jan Lucemburský	& Karel IV.	& Václav IV.& Zikmund  \\ \hline
+Ohodnocení 	& N/A 			& 30 \% 			& 95 \%		& 76 \%		& 89 \%\\ \hline
+\end{tabular}
+\caption{Odhad relevance článků}
+\label{tabRelevance}
+\end{table}
+
+Jak je v tabulce \ref{tabRelevance} vidět, odhad relevance je v tomto konkrétním případě poměrně spolehlivý a přináší uspokojivé výsledky. Před přidáním prvního článku je relevance \textit{N/A} (Not Available, nedostupné), jelikož nástroj nemá možnost článek porovnat s jiným. Po~přidání prvního článku vyroste relevance prvního z panovníků na \textit{30 \%}. Toto ohodnocení je nízké zejména z důvodu zmínění tohoto panovníka pouze v textu samotném, v infoboxu například uveden není. Po jeho přidání rapidně vzroste relevance Karla IV., z důvodu velkého provázání s Janem Lucemburským -- je jeho synem a nástupcem, což článek vezme v úvahu. Pro další panovníky jsou výsledky rovněž uspokojivé.
+
+Samotné hodnoty bez relativního srovnání s ostatními odkazy každé stránky jsou samozřejmě bezpředmětné. Na obrázku \ref{obrrelevance} je vidět část článku o Václavu IV. ve stavu před~přidáním posledního testovaného článku. Obsahuje několik odkazů, z nichž jeden směřuje právě na požadovaný článek o Zikmundovi. Jak je na obrázku vidět, je vizuálně velice dobře odlišený od ostatních článků, jejichž relevance se pohybuje v průměru okolo 30 \%.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{obrazky/sigismund.png}
+	\caption{Zvýraznění relevance článků}
+	\label{obrrelevance}
+\end{figure}
+
+\section{Rozpoznávání údajů}
+Pro úspěšnost získávání údajů a rozpoznávání vztahů byl zvolen širší okruh článků. Kromě rodu a panovnické linie byly přidány všechny manželky, a pokud byla uvedena, tak i místa narození a úmrtí. Úspěšnost získaných údajů byla posuzována zvlášť.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|r|}
+\hline
+Kritérium 					& Počet rozpoznání 	& Úspěšnost \\ \hline \hline
+Manželky					& 10/10				& 100 \%	\\ \hline
+Následovník 				& 3/3				& 100 \%	\\ \hline
+Datum narození (či počátek)	& 12/19				& 63 \%		\\ \hline
+Datum úmrtí (či konec)		& 10/15				& 67 \%		\\ \hline
+Místo narození, úmrtí		& 4/6				& 67 \%		\\ \hline
+Obrázek 					& 9/11				& 82 \%		\\ \hline
+Stereotyp 					& 12/19				& 63 \%		\\ \hline \hline
+Průměr 						& 					& 77 \%		\\ \hline
+\end{tabular}
+\caption{Úspěšnost získaných údajů}
+\label{tabMining}
+\end{table}
+
+Jak je v tabulce \ref{tabMining} možné vidět, na testovacím vzorku dat se celková úspěšnost rozpoznání dat pohybuje průměrně na hranici 77 \%. 100\% úspěšnosti dosahuje v případě rozpoznávání vztahů mezi ostatními osobami -- to je způsobeno neměnnou syntaxí těchto parametrů. Naopak nejnižší úspěšnost dosáhla data narození (či obecně ukončení události) společně se stereotypem, protože v případě těchto hodnot není striktně vyžadováno dodržování syntaxe. Z tohoto důvodu je možné v hlavní nabídce editovat právě tyto hodnoty. Vygenerovaný graf zobrazený v časové ose je možné vidět v příloze \ref{att3}, na obrázku je zobrazen detail Karla IV.

@@ -1,0 +1,21 @@
+\babel@toc {czech}{}
+\contentsline {chapter}{\numberline {1}\IeC {\'U}vod}{6}{chapter.2}
+\contentsline {chapter}{\numberline {2}Java Virtual Machine}{7}{chapter.3}
+\contentsline {chapter}{\numberline {3}Spr\IeC {\'a}va a struktura Java pam\IeC {\v e}ti}{8}{chapter.4}
+\contentsline {section}{\numberline {3.1}Garbage collector}{8}{section.5}
+\contentsline {section}{\numberline {3.2}Heap Dump}{9}{section.6}
+\contentsline {section}{\numberline {3.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{10}{section.8}
+\contentsline {chapter}{\numberline {4}Anal\IeC {\'y}za pam\IeC {\v e}ti}{11}{chapter.9}
+\contentsline {chapter}{\numberline {5}Anal\IeC {\'y}za zbyte\IeC {\v c}n\IeC {\'e}ho \IeC {\v c}erp\IeC {\'a}n\IeC {\'\i } pam\IeC {\v e}ti}{12}{chapter.10}
+\contentsline {chapter}{\numberline {6}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{13}{chapter.11}
+\contentsline {section}{\numberline {6.1}Eclipse MAT}{13}{section.12}
+\contentsline {section}{\numberline {6.2}VisualVM}{13}{section.13}
+\contentsline {section}{\numberline {6.3}Java Mission Control}{13}{section.14}
+\contentsline {section}{\numberline {6.4}JProfiler}{14}{section.15}
+\contentsline {chapter}{\numberline {7}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{15}{chapter.16}
+\contentsline {chapter}{\numberline {8}Anal\IeC {\'y}za a implementace...}{16}{chapter.17}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{17}{chapter.17}
+\contentsline {chapter}{Seznam zkratek}{18}{section*.20}
+\contentsline {chapter}{Literatura}{19}{section*.22}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{20}{section*.24}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{21}{chapter.25}
