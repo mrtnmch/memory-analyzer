@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  3 MAR 2019 00:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  3 MAR 2019 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -631,7 +631,7 @@ Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 ))
 \c@lstlisting=\count132
-<pdf/student-titulka.pdf, id=84, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=88, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 201.
@@ -640,7 +640,7 @@ File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 201.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<pdf/student-titulka.pdf, id=87, page=1, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=91, page=1, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 201
@@ -741,18 +741,25 @@ although it is yet undefined on input line 6.
  [8
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 24.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 25.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<obrazky/heapdump-performed.png, id=162, 781.92125pt x 350.30875pt>
+Package acronym Info: Label `acro:zkPID' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 29.
+<obrazky/heapdump-performed.png, id=167, 781.92125pt x 350.30875pt>
 File: obrazky/heapdump-performed.png Graphic file (type png)
 <use obrazky/heapdump-performed.png>
-Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 32.
+Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 36.
 
 (pdftex.def)             Requested size: 390.95967pt x 175.15395pt.
- [9 <./obrazky/heapdump-performed.png>] [10] [11
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10 <./obrazky/heapdump-performed.png>] [11
 
 ] [12
 
@@ -762,7 +769,8 @@ Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 32.
 
 ]) [16
 
-] (./sablona.lof)
+]
+(./sablona.lof)
 \tf@lof=\write6
 \openout6 = `sablona.lof'.
 
@@ -773,8 +781,7 @@ Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 32.
 ]
 \openout2 = `text/zkratky.aux'.
 
- (./text/zkratky.tex
-[18
+ (./text/zkratky.tex [18
 
 
 
@@ -820,14 +827,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 238.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 238.
 Package rerunfilecheck Info: File `sablona.out' has not changed.
-(rerunfilecheck)             Checksum: 1753237CB386D800D48A402F6F9C6743;2741.
+(rerunfilecheck)             Checksum: 7D1ACDFAF559CC6C06399CFEB7EB85A4;2883.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 238.
  ) 
 Here is how much of TeX's memory you used:
- 13316 strings out of 492641
- 188118 string characters out of 6131787
- 287120 words of memory out of 5000000
- 16923 multiletter control sequences out of 15000+600000
+ 13324 strings out of 492641
+ 188210 string characters out of 6131787
+ 287235 words of memory out of 5000000
+ 16929 multiletter control sequences out of 15000+600000
  36806 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,18n,43p,1075b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -842,10 +849,10 @@ usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/
 public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></u
 sr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/typ
 e1/public/tex-gyre/qtmri.pfb>
-Output written on sablona.pdf (20 pages, 430146 bytes).
+Output written on sablona.pdf (20 pages, 431845 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
- 44 named destinations out of 1000 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 292 PDF objects out of 1000 (max. 8388607)
+ 245 compressed objects within 3 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 214 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -3,7 +3,7 @@
 \chapter{Java Virtual Machine}
 
 \chapter{Správa a struktura Java paměti}
-Při vytváření programu má programátor na výběr ze dvou způsobů správy paměti -- spravované automaticky (typicky \zkratka{zkGC}) či manuálně, případně kombinací těchto přístupů. Ne každý jazyk nabízí oba -- typicky je k dispozici pouze jeden z přístupů, často je správa GC vynucena. Vzhledem k tomu, že majorita nejpopulárnějších programovacích jazyků za poslední roky se řadí mezi vysokoúrovňové, na toto vynucení \zkratka{zkGC} narazíme u většiny z nich, včetně Javy. Výjimkou jsou populární nízkoúrovňovější jazyky typu C a C++ \cite{stackoverflowinsights}\cite{tiobeindex}.
+Při vytváření programu má programátor na výběr ze dvou způsobů správy paměti -- spravované automaticky (typicky mechanismem typu \zkratka{zkGC} apod.) či manuálně, případně kombinací těchto přístupů. Ne každý jazyk nabízí oba -- typicky je k dispozici pouze jeden z přístupů, často je správa GC vynucena. Vzhledem k tomu, že majorita nejpopulárnějších programovacích jazyků za poslední roky se řadí mezi vysokoúrovňové, na toto vynucení \zkratka{zkGC} narazíme u většiny z nich, včetně Javy. Výjimkou jsou populární nízkoúrovňovější jazyky typu C a C++ \cite{stackoverflowinsights}\cite{tiobeindex}.
 
 Paměťovému modelu v Javě se věnuje \textit{JSR-133}, nicméně přesně nespecifikuje konkrétní rozdělení paměti a způsob jejího přidělování a uvolňování. Následný popis se tedy věnuje implementaci od společnosti Oracle – HotSpot. Zde je paměť rozdělena na 2 logické celky – \textit{young generation space} a \textit{old generation space}. Tato paměť, nazývaná \textit{heap} (halda), je rozdělena pouze v rámci JVM a následně je mapována na skutečnou fyzickou paměť \cite{jsr133}.
 
@@ -16,16 +16,20 @@ Toto rozdělení objektů do jednotlivých prostorů se jeví jako zbytečná ko
 \section{Garbage collector}
 \zkratka{zkGC} je nástroj, který odděluje jazyky s automatickou a manuální správou paměti – stará se o její přidělování, kontrolu a následné uvolnění, ať už pokud je jí málo a je zapotřebí jinde, v pravidelných intervalech nebo při jiných událostech. \zkratka{zkGC} je obecný termín, tj. neodkazuje na žádnou konkrétní implementaci a způsob chování. Často je v rámci jednoho jazyka (respektive běhového prostředí) zároveň implementováno hned několik algoritmů \zkratka{zkGC} a dle okolností je vybrán ten nejefektivnější a v danou chvíli nejvhodnější z nich. Některé algoritmy tak mohou běžet velmi rychle bez minimálního zásahu do běhu programu, zatímco jiné vyžadují pro svůj běh o něco delší čas. Často tak je nutné všechen běh kódu pozastavit; v takových případech toto spuštění \zkratka{zkGC} nazýváme \textit{stop-the-world} kolekcí (\uv{zastavení světa}, běhu). Pro program je toto zastavení transparentní.
 
-!TODO popis různých implementací G v Javě?
+TODO popis různých implementací GC v Javě?
 
 \section{Heap Dump}
 \textit{Heap dump} je textová nebo binární reprezentace paměti, kterou je možné uložit na disk a zachycuje aktuální stav aplikace. Při vytváření je činnost aplikace pozastavena. Dump je možné následně analyzovat a dále zpracovávat, je tak možné prozkoumat vnitřní stav aplikace v určitém bodě a např. řešit příčiny neočekávaného chování. 
 
+\subsection{Vytvoření dumpu}
 Prostředků k vytvoření dumpu je několik. Při správném nastavení (pomocí parametru \texttt{HeapDumpOnOutOfMemoryError}) k němu dojde při nedostatku paměti zcela automaticky. Mezi manuální způsoby vytvoření patří primárně nástroj \textit{JMAP}, který je publikován spolu se standardní distribucí Oracle JVM. Při použití tohoto nástroje je nutné naprosto přesně dodržet číslo verze JMAP a JRE, pod kterým cílová aplikace běží – dumpování rozdílných verzí není podporováno, je nutné dodržet rovnost verzí (major, minor i update).
 
 Mezi další způsoby vytvoření dumpu patří různé nástroje, debuggery a profilery typu Eclipse MAT, VisualVM nebo Java Mission Control (viz dále). Výhodou těchto nástrojů je, že dokáží zvládnout vytváření dumpu i napříč verzemi a dokonce implementacemi (z Oracle JDK na OpenJDK apod.)
 
-Další možnost je využít nějakou knihovní funkci a vytvářet tak dump programově. Zde je možné využít např. MBeans.
+Další možnost je využít některou z knihovních funkcí a vytvářet tak dump programově. Zde je možné využít např. MBeans. Nízkoúrovňovou možností je poté například použití Unixového nástroje \textit{gcore}, respektive \textit{GDB}, který se postará o vytvoření dumpu paměti procesu (pod daným \zkratka{zkPID}), tzv. \textit{core dump}. Z něj lze memory dump vyextrahovat. Pokročilejší nástroje typu VisualVM umí pracovat i napřímo s core dumpem.
+
+\subsubsection{Vztah dumpu vůči paměti procesu}
+Heap Dump přímo odpovídá části paměťového prostoru procesu, resp. heapu. Je tedy přímým otiskem části fyzické paměti tak, jak je uložena, v určitém časovém okamžiku. Toto je možné si experimentálně ověřit -- jak bylo zmíněno výše, z otisku fyzické paměti je možné heap dump získat. Je tedy evidentní, že při jeho vytvoření některým z výše uvedených způsobů nedochází k žádným úpravám a snímek je vytvořen \uv{tak jak je}. 
 
 \begin{figure}[h]
 	\centering
