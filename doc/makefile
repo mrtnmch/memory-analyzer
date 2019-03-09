@@ -9,6 +9,11 @@ doc: sablona.tex text/main.tex text/zkratky.tex text/literatura.tex
 	$(TEX) sablona.tex
 	xdg-open sablona.pdf
 
+open:
+	code -n text/main.tex
+	code text/zkratky.tex
+	code text/literatura.tex
+
 git:
 	git add .
 	git commit -m "Text update"
