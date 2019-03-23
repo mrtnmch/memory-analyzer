@@ -1,4 +1,52 @@
 \chapter{Úvod}
+Přes to, že cena hardware klesá a mzdy programátorů rostou, je často nutné přistoupit k optimalizaci existujícího programu, namísto prostého přidání systémových prostředků \cite{mooreslaw}\cite{devsalary}. Optimalizace může probíhat na několika úrovních. První z možností může být volba efektivnějšího algoritmu -- můžeme zkontrolovat, zda Big O\footnote{Big O složitost je...} složitost kritických částí našeho programu dosahuje maximálně polynomu přijatelného stupně, namísto např. exponenciály či faktoriálu. Tím je možné, především u vyššího počtu zpracovávaných prvků, dosáhnout výrazně rychlejšího běhu programu samotného.
+
+Dále můžeme optimalizovat na úrovni využití systémových prostředků, typicky paměti (RAM). Jako první můžeme zvážit používané technologie. Změna programovacího jazyku je často natolik drahá, že kompletní přepsání dotyčného software by nemuselo dávat, i přes dosaženou optimalizaci, ekononomický smysl. V rámci námi používaného jazyku tak můžeme, kromě našeho kódu samotného, analyzovat používané frameworky a knihovny. V praxi se můžeme setkat s tím, že závislost na knihovně je přidána pouze z důvodu využití jedné či několika jejích funkcionalit. To je vhodné během vývoje z důvodu rychlosti; později je možné některé z těchto knihoven a jimi poskytované funkce nahradit implementací vlastní a teoreticky tak ušetřit jednotky, desítky či stovky megabytů paměti. 
+
+V praxi mohou být následky nedůsledné optimalizace ještě vážnější. Systémy, které mají obsloužit vysoký počet požadavků za sekundu, je často nutné škálovat -- vytvářet nové, nezávislé jednotky těcho systémů. Ty se poté mohou střídat o příchozí požadavky. Každá neoptimalizace je tedy znásobena počtem těchto instancí. To může naprosto zbytečně zvyšovat náklady na provoz; a to ať už v případě vlastního serveru či cloudových služeb (tzv. serverless).
+
+Cílem této práce je zanalyzovat, k jakým nedostatkům dochází (a zda vůbec) při vývoji Java aplikací. Dále pak vytvořit nástroj, který na tyto nedostatky dokáže poukázat a uživateli napovědět, jakým způsobem by mohl použité prostředky svého programu redukovat a jeho běh tedy optimalizovat. Korektní fungování vytvořeného nástroje bude ověřeno na testovací aplikaci z pohledu správnosti a úplnosti výsledků. Následně také na větších, rozšířených a běžně používaných Java aplikacích, za účelem posouzení efektivity použití nástroje v praxi, případně také v komerční sféře.
+
+
+
+% =====================================================================================================================================================================================
+
+
+
+\chapter{Problém správy paměti}
+Při vytváření programu má jeho autor na výběr ze dvou způsobů správy paměti -- spravované automaticky (typicky mechanismem typu \zkratka{GC} apod.) či manuálně, případně kombinací těchto přístupů. Ne každý jazyk nabízí oba -- typicky je k dispozici pouze jeden z přístupů, často je správa GC vynucena. Vzhledem k tomu, že majorita nejpopulárnějších programovacích jazyků za poslední roky se řadí mezi vysokoúrovňové, na toto vynucení \zkratka{GC} narazíme u většiny z nich, včetně Javy \cite{stackoverflowinsights}\cite{tiobeindex}. Výjimkou jsou populární nízkoúrovňovější jazyky typu C a C++.
+
+\section{Garbage collector}
+\zkratka{GC} je nástroj, který odděluje jazyky s automatickou a manuální správou paměti – stará se o její přidělování, kontrolu a následné uvolnění, ať už pokud je jí málo a je zapotřebí jinde, v pravidelných intervalech nebo při jiných událostech. \zkratka{GC} je obecný termín, tj. neodkazuje na žádnou konkrétní implementaci a způsob chování. Často je v rámci jednoho jazyka (respektive běhového prostředí) zároveň implementováno hned několik algoritmů \zkratka{GC} a dle okolností je vybrán ten nejefektivnější a v danou chvíli nejvhodnější z nich. Některé algoritmy tak mohou běžet velmi rychle bez minimálního zásahu do běhu programu, zatímco jiné vyžadují pro svůj běh o něco delší čas. Často tak je nutné všechen běh kódu pozastavit; v takových případech toto spuštění \zkratka{GC} nazýváme \textit{stop-the-world} kolekcí (\uv{zastavení světa}, běhu). Pro program je toto zastavení transparentní.
+
+Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotlivé objekty, respektive jejich počet. Pokud je některý z objektů dále nereferencovaný (a tedy nedosažitelný -- nikdo na něj neukazuje; Java navíc nezná koncept ukazatelové aritmetiky, po odstranění poslední reference si tedy můžeme být jisti, že už znovu referencovat nikdy nepůjde), při další kolekci bude jím zabíraná paměť uvolněna. 
+
+
+
+% =====================================================================================================================================================================================
+
+
+
+\chapter{Analýza paměti}
+
+
+
+% =====================================================================================================================================================================================
+
+
+
+\chapter{Optimalizace užití paměti}
+
+Jak již bylo zmíněno v úvodu, využití paměti lze optimalizovat na několika úrovních. Vzhledem k tématu této práce se při uvažování optimalizací omezíme pouze na běžící Java aplkaci. Eliminaci případných zbytečných knihoven, frameworků a nástrojů se věnovat rovněž nemusíme. Analyzovat procentuální využití nabízených funkcí knihovny by mohlo být zajímavé, nicméně tento typ zbytečného užívání paměti nelze přímo označit za memory waste.
+
+Můžeme tedy omezit samotné využití objektů -- zvážit, zda je potřebujeme, případně zda neexistuje vhodnější způsob či struktura pro jejich uchovávání. Jejich alokaci v paměti bychom rovněž meli omezit na nejkratší možnou dobu, po kterou si budeme jisti jejich využitím. Nicméně i zde je vhodné najít vhodný poměr mezi optimalizací a zbytečným úklidem objektu, který za několik okamžiků znovu budeme vytvářet.
+
+Nejpřímějším způsobem optimalizace užití paměti se může jevit odstranění objektů, které už nejsou zapotřebí a nikdo je tedy nevlastní. Takové objekty nicméně nemusíme v naší optimalizaci uvažovat. O jejich uvolnění z paměti se postará \zkratka{GC}. Této vlastnosti jazyku tedy můžeme využít a nepotřebné objekty ručně odstraňovat -- nastavit je jako \texttt{null}. K jejich uvolnění dojde i při opuštění aktuálního prostoru -- oboru platnosti lokální proměnné. K takovému uvolnění nicméně nedochází přímo zapomocí analýzy \zkratka{GC}, ale díky uložení lokálních proměnných v zásobníku, z kterého jsou při opuštění bloku odstraněny.
+
+
+
+% =====================================================================================================================================================================================
+
 
 
 \chapter{Java Virtual Machine}
@@ -9,8 +57,13 @@ Některé implementace \zkratka{JVM} umožňují přímý překlad do strojovéh
 \section{Java Bytecode}
 Java využívá dvoufázový překlad, tj. samotný zdrojový kód vytvořený programátorem je nejprve přeložen do \textit{bytecodu} (či česky bytekód). Bytecode je (či by měl být) platformě nezávislý soubor instrukcí, který následně \zkratka{JVM} vykoná v prostředí architektury a platformy, na které je spuštěn. To znamená, že zdrojový kód v jazyce Java (či kompatibilních jazycíc využívajících stejné prostředí, např. Kotlin), uložený typicky v souboru \texttt{.java}, je přeložen do bytecodu -- typicky s typu \texttt{.class}. Takové soubory je následně, obecně vzato, možné přenést na jinou platformu či architekturu a jestliže se zde nachází kompatibilní \zkratka{JVM}, je možné jej bez úpravy na daném systému vykonat a tedy program spustit. Bytecode se může přenášet formou klasických jednotlivých souborů \texttt{.class} či v zabalené formě, tj. archiv typu \texttt{.jar} (což je de facto pouze zip archiv s předem danou strukturou a volitelně přidanými informacemi -- manifestem, metadaty, podpůrnými soubory (\textit{resources})).
 
+
+
+% =====================================================================================================================================================================================
+
+
+
 \chapter{Správa a struktura Java paměti}
-Při vytváření programu má programátor na výběr ze dvou způsobů správy paměti -- spravované automaticky (typicky mechanismem typu \zkratka{GC} apod.) či manuálně, případně kombinací těchto přístupů. Ne každý jazyk nabízí oba -- typicky je k dispozici pouze jeden z přístupů, často je správa GC vynucena. Vzhledem k tomu, že majorita nejpopulárnějších programovacích jazyků za poslední roky se řadí mezi vysokoúrovňové, na toto vynucení \zkratka{GC} narazíme u většiny z nich, včetně Javy. Výjimkou jsou populární nízkoúrovňovější jazyky typu C a C++ \cite{stackoverflowinsights}\cite{tiobeindex}.
 
 Paměťovému modelu v Javě se věnuje \textit{JSR-133}, nicméně přesně nespecifikuje konkrétní rozdělení paměti a způsob jejího přidělování a uvolňování. Následný popis se tedy věnuje implementaci od společnosti Oracle – HotSpot. Zde je paměť rozdělena na 2 logické celky – \textit{young generation space} a \textit{old generation space}. Tato paměť, nazývaná \textit{heap} (halda), je rozdělena pouze v rámci JVM a následně je mapována na skutečnou fyzickou paměť \cite{jsr133}.
 
@@ -20,8 +73,12 @@ Po určitém počtu takových přežití (či jinak také povýšení) je objekt
 
 Toto rozdělení objektů do jednotlivých prostorů se jeví jako zbytečná komplikace, má však řadu výhod. První z nich je rychlost – nejvíce operací uvolnění je prováděno právě nad eden spacem, který je z prostorů nejmenší. Dále jsou tak objekty rozdělovány do skupin s podobnou charakteristikou (podobný věk, podobný počet a styl referencí apod.), na kterými je poté možné spustit rozdílné, pro dané skupiny specifické algoritmy pro jejich uvolnění.
 
-\section{Garbage collector}
-\zkratka{GC} je nástroj, který odděluje jazyky s automatickou a manuální správou paměti – stará se o její přidělování, kontrolu a následné uvolnění, ať už pokud je jí málo a je zapotřebí jinde, v pravidelných intervalech nebo při jiných událostech. \zkratka{GC} je obecný termín, tj. neodkazuje na žádnou konkrétní implementaci a způsob chování. Často je v rámci jednoho jazyka (respektive běhového prostředí) zároveň implementováno hned několik algoritmů \zkratka{GC} a dle okolností je vybrán ten nejefektivnější a v danou chvíli nejvhodnější z nich. Některé algoritmy tak mohou běžet velmi rychle bez minimálního zásahu do běhu programu, zatímco jiné vyžadují pro svůj běh o něco delší čas. Často tak je nutné všechen běh kódu pozastavit; v takových případech toto spuštění \zkratka{GC} nazýváme \textit{stop-the-world} kolekcí (\uv{zastavení světa}, běhu). Pro program je toto zastavení transparentní.
+\section{Garbage collection}
+	Spuštění \zkratka{GC} v Javě nelze vynutit ručně. Systému lze \textit{doporučit} jeho exekuci voláním metody \texttt{System.gc()}; \zkratka{JVM} se tím ale nemusí řídit a toto volání jednoduše ignorovat \cite{javagc}. 
+
+I v Javě můžeme narazit na problém úniků paměti, tzv. \textit{memory leaků}. Typicky se tento problém týká nízkoúrovňových jazyků typu C, nebo takových jazyků, kde je správa paměti v kompletní kompetenci autora programu. Často dojde k \uv{zapomenutí} některého ukazatele. Jeho smazáním se paměť stává nedostupnou a protože v daném jazyku není \zkratka{GC}, bude uvolněna teprve ukončením programu -- operačním systémem samotným. Toto chování je nebezpečné, protože pokud program poběží dlouhou dobu a bude alokovat paměť bez jejího následného uvolnění, dříve nebo později narazí na limit kladený ze strany operačního systému. Rovněž může jeho provozování být nepříjemné pro provozovatele programu, protože i když jeho běh operační systém neukončí, program bude zabírat zbytečně velké množství paměti.
+
+Ve spojení s \zkratka{GC} by tedy nemělo k únikům paměti typicky dojít. V Javě k nim může dojít především při nedůsledném používání vlastních zavaděčů tříd -- \textit{class loaderů}. Za únik paměti můžeme rovněž považovat neuzavřený popisovač otevřeného souboru, databáze či jiného zdroje. Pokud k němu ztratíme přístup, např. po vyhození výjimky bez uzavření tohoto popisovače v bloku \texttt{catch} či lépe \texttt{finally}, ztrácíme tím, spolu s popisovačem, i menší množství paměti. Při častějším výskytu problému ale v tomto případě pravděpodobně narazíme na horní limit popisovačů Javy či operačního systému -- ani tento zdroj není neomezený.
 
 TODO popis různých implementací GC v Javě?
 
@@ -35,7 +92,7 @@ Mezi další způsoby vytvoření dumpu patří různé nástroje, debuggery a p
 
 Další možnost je využít některou z knihovních funkcí a vytvářet tak dump programově. Zde je možné využít např. MBeans. Nízkoúrovňovou možností je poté například použití Unixového nástroje \textit{gcore}, respektive \textit{GDB}, který se postará o vytvoření dumpu paměti procesu (pod daným \zkratka{PID}), tzv. \textit{core dump}. Z něj lze memory dump vyextrahovat. Pokročilejší nástroje typu VisualVM umí pracovat i napřímo s core dumpem.
 
-\subsubsection{Vztah dumpu vůči paměti procesu}
+\subsection{Vztah dumpu vůči paměti procesu}
 Heap Dump přímo odpovídá části paměťového prostoru procesu, resp. heapu. Je tedy přímým otiskem části fyzické paměti tak, jak je uložena, v určitém časovém okamžiku. Toto je možné si experimentálně ověřit -- jak bylo zmíněno výše, z otisku fyzické paměti je možné heap dump získat. Je tedy evidentní, že při jeho vytvoření některým z výše uvedených způsobů nedochází k žádným úpravám a snímek je vytvořen \uv{tak jak je}. 
 
 \begin{figure}[h]
@@ -50,9 +107,11 @@ Při zpracování dumpu je nutné zohlednit fakt, že je vyexportovaný kompletn
 
 Pro práci nad heapem  (typicky ve formátu HPROF) je možné využít některou z implementací dotazovacího jazyku OQL (Object Query Language).
 
-\chapter{Analýza paměti}
 
-\chapter{Analýza zbytečného čerpání paměti}
+
+% =====================================================================================================================================================================================
+
+
 
 \chapter{Existující nástroje pro analýzu heapu}
 
@@ -73,10 +132,27 @@ Požadovanou funkcionalitu VisualVM v zásadě neposkytuje, umožňuje pouze k n
 Pro build je využíván nástroj Ant a v současné době je vyžadována Java verze 7 a vyšší.
 
 \section{Java Mission Control}
-Nástroj poskytovaný přímo spolu s distribucí Oracle JVM od verze 7 (konkrétně 7 Update 40 – 7u40), což je jeho výhodou. Mezi jeho možnosti patří např. využití paměti jednotlivými součástmi Java paměti (TODO: popsat spaces – eden space atd) a také umožňuje zobrazit jednotlivé instance objektů, nicméně neumožňuje jejich další analýzu.
+Nástroj poskytovaný přímo spolu s distribucí Oracle JVM od verze 7 (konkrétně 7 Update 40 – 7u40), což je jeho výhodou. Mezi jeho možnosti patří např. využití paměti jednotlivými součástmi Java paměti a také umožňuje zobrazit jednotlivé instance objektů, nicméně neumožňuje jejich další analýzu.
 
 \section{JProfiler}
 Komerční profiler, přesto velice používaný. Standardní licence stojí v době psaní 409 euro, akademická potom 179 euro. Je možné zažádat o licenci pro open source produkty, nicméně ta je podmíněna již vydanou verzí a existující webovou stránkou, což činí jakékoliv použití tohoto profileru v rámci práce nepraktickým. Profiler je používán především v komerční sféře, díky svým možnostem a dle výše uvedeného testu i nejvyšší úspěšností v odhalování bugů.
+
+\section{JHAT}
+Nástroj, který je přímou součásti distribuce Oracle JVM od verze 6. Nebyl nikdy oficiálně podporován a od počátku byl označen jako experimentální nástroj, z těchto důvodů byl tedy v Javě 11 naprosto odstraněn \cite{jep241}\cite{java11migration}. V rámci verzí Javy, které jej obsahují, ho lze využít jako \zkratka{CLI} aplikaci, která dokáže dump vytvoření pomocí např. \textit{JMAP} otevřít. Následně vytvoří webový server, jehož prostřednictvím poskytuje data získaná ze zpracovaného dumpu. Tato data je možné si poté zobrazit pomocí webového prohlížeče; zajímavým příkladem možného využití je následné rozparsování těchto dat jakožto formátu HTML a jejich další využití. Program je tedy možné využít jako prostředníka pro zpracování \cite{jhat}. Kromě \uv{prostého} zobrazení webové stránky umí \textit{JHAT} rovněž poskytovat zpracování pomocí jazyka \zkratka{OQL}.
+
+\section{\zkratka{OQL}}
+\zkratka{OQL} zmíním i jako samostatný způsob zpracování. Jedná se o jazyk, který slouží pro obecnou manipulaci s objekty, resp. s objektovými dokumenty \cite{odmgoql}\cite{oql}. Na první pohled si nelze nevšimnou jeho podobnosti s dotazovým jazykem SQL. Neomezuje se tedy pouze na zpracování Java heapu (či obecně paměti), ale je standardem, který pro tento účel lze využít. Z toho je možné usoudit, že standard jako takový pro zpracování nestačí -- je nutné využít některou z jeho implementací, která takové rozhraní přístupu k Java heapu umožňuje. Jednou z nich je právě výše zmíněný \textit{JHAT}.
+
+V příkladu \
+\begin{lstlisting}[caption={Příklad OQL}, label={oql}]
+select s from java.lang.String s where s.value.length >= 100
+\end{lstlisting}
+
+
+
+% =====================================================================================================================================================================================
+
+
 
 \chapter{Možnosti analýzy}
 Rovnost dvou či více objektů se dá definovat a zjišťovat různými způsoby. Je ale nutné si uvědomit, že v nejhorším případě, tj. pokud chceme najít všechny nadbytečné kopie každého objektu, je složitost této operace při nejmenším $O(n^n)$. Bylo by tedy vhodné se zamyslet, zda neexistuje způsob, jak počet porovnání snížit, případně navrhnout jednoduchou heuristiku, která by dokázala rychle ohodnotit, zda má vůbec smysl pokračovat v podrobnějším porovnání. V následujících případech tedy uvažujme objekty $A$, $B$, jejich třídy $C_A$ a $C_B$ a proměnné obou instancí $F_A^0..F_A^n$, respektive $F_B^0..F_B^n$.
@@ -87,7 +163,7 @@ Samozřejmě je nutné definovat i zastavovací podmínku, v případě Javy by 
 	$$ E(C_A, C_B) = P_c(C_A) \cap P_c(C_B) \notin \emptyset,$$
 kde $P_c(C)$ je množina třídy samotné a všech jejich rodičů bez “univerzálního předka” všech tříd, v tomto případě \textit{Object}:
 	$$ P_c(C) = \{C, P(C), P(P(C)), \dots, Object\} \setminus Object. $$
-Nejjednodušší cestou je prosté porovnání hodnot jednotlivých
+% Nejjednodušší cestou je prosté porovnání hodnot jednotlivých
 
 
 \chapter{Analýza a implementace}

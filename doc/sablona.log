@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  9 MAR 2019 11:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  23 MAR 2019 22:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -631,7 +631,7 @@ Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 ))
 \c@lstlisting=\count132
-<pdf/student-titulka.pdf, id=92, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=108, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 201.
@@ -640,7 +640,7 @@ File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 201.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<pdf/student-titulka.pdf, id=95, page=1, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=111, page=1, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 201
@@ -729,68 +729,78 @@ LaTeX Font Warning: Font shape `T1/qtm/m/sl' in size <12> not available
 ]
 \openout2 = `text/main.aux'.
 
- (./text/main.tex [6
+ (./text/main.tex
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 2.
+ [6
 
 
 ]
-Package acronym Info: Label `acro:JVM' newly defined as it shall be overridden
-although it is yet undefined on input line 5.
-Package acronym Info: Label `acro:AOT' newly defined as it shall be overridden
-although it is yet undefined on input line 7.
-Package acronym Info: Label `acro:JIT' newly defined as it shall be overridden
-although it is yet undefined on input line 7.
+Package acronym Info: Label `acro:GC' newly defined as it shall be overridden
+although it is yet undefined on input line 17.
+ [7
 
-Overfull \hbox (2.6866pt too wide) in paragraph at lines 7--8
+] [8
+
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 44.
+
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [9
+
+]
+Package acronym Info: Label `acro:JVM' newly defined as it shall be overridden
+although it is yet undefined on input line 53.
+Package acronym Info: Label `acro:AOT' newly defined as it shall be overridden
+although it is yet undefined on input line 55.
+Package acronym Info: Label `acro:JIT' newly defined as it shall be overridden
+although it is yet undefined on input line 55.
+
+Overfull \hbox (2.6866pt too wide) in paragraph at lines 55--56
 \T1/qtm/m/n/12 in-ter-pre-tace, nap°. Gra-alVM [[]]. V ta-ko-vém p°í-pad¥ ho-vo
 -°íme o tzv. [][]Ahead-Of-Time ([])[]
  []
 
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 10.
-(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [7
+[10
 
-]
-Package acronym Info: Label `acro:GC' newly defined as it shall be overridden
-although it is yet undefined on input line 13.
- [8
+] [11
 
 ]
 Package acronym Info: Label `acro:PID' newly defined as it shall be overridden
-although it is yet undefined on input line 36.
-<obrazky/heapdump-performed.png, id=176, 781.92125pt x 350.30875pt>
+although it is yet undefined on input line 93.
+<obrazky/heapdump-performed.png, id=216, 781.92125pt x 350.30875pt>
 File: obrazky/heapdump-performed.png Graphic file (type png)
 <use obrazky/heapdump-performed.png>
-Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 43.
-
+Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 100
+.
 (pdftex.def)             Requested size: 390.95967pt x 175.15395pt.
+ [12] [13 <./obrazky/heapdump-performed.png>] [14
 
+]
+Package acronym Info: Label `acro:CLI' newly defined as it shall be overridden
+although it is yet undefined on input line 141.
+ [15] [16
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9] [10 <./obrazky/heapdump-performed.png>] [11
-
-] [12
-
-] [13
-
-] [14] [15
-
-]) [16
+]) [17
 
 ]
 (./sablona.lof)
 \tf@lof=\write6
 \openout6 = `sablona.lof'.
 
- [17
+ [18
 
 
 
 ]
 \openout2 = `text/zkratky.aux'.
 
- (./text/zkratky.tex [18
+ (./text/zkratky.tex [19
 
 
 
@@ -798,18 +808,30 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 \openout2 = `text/literatura.aux'.
 
  (./text/literatura.tex
-Underfull \hbox (badness 1019) in paragraph at lines 7--8
+Underfull \hbox (badness 1019) in paragraph at lines 13--14
 []\T1/qtm/m/n/12 Developer Sur-vey Re-sults 2018 - Most Po-pu-lar Tech-no-lo-gi
 es. Stack Over-flow
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 7--8
+Underfull \hbox (badness 3849) in paragraph at lines 13--14
 \T1/qtm/m/n/12 In-si-ghts [on-line]. 2018 [cit. 2019-03-02]. Do-stupné z: []$\T
 1/lmtt/m/n/12 https : / / insights .
  []
 
-[19
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / en /
+ java / javase / 11 / migrate /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / java
+se / 7 / docs / technotes / tools /
+ []
+
+[20
 
 
 
@@ -818,14 +840,14 @@ Underfull \hbox (badness 3849) in paragraph at lines 7--8
 \tf@toa=\write7
 \openout7 = `sablona.toa'.
 
- [20
+ [21
 
 
 ]
 \openout2 = `text/prilohy.aux'.
 
  (./text/prilohy.tex
-(./text/uzivatelska-dokumentace.tex)) [21
+(./text/uzivatelska-dokumentace.tex)) [22
 
 
 ]
@@ -836,17 +858,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 238.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 238.
 Package rerunfilecheck Info: File `sablona.out' has not changed.
-(rerunfilecheck)             Checksum: B66D40F6A16CF97300000EC113FD45AA;3004.
+(rerunfilecheck)             Checksum: 78749BF307DC99B041AA9D0F5A0E5CCE;3574.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 238.
  ) 
 Here is how much of TeX's memory you used:
- 13343 strings out of 492641
- 188358 string characters out of 6131787
- 287490 words of memory out of 5000000
- 16946 multiletter control sequences out of 15000+600000
- 36806 words of font info for 37 fonts, out of 8000000 for 9000
+ 13411 strings out of 492641
+ 189199 string characters out of 6131787
+ 287750 words of memory out of 5000000
+ 16979 multiletter control sequences out of 15000+600000
+ 56997 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,18n,43p,1236b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,18n,43p,1186b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/tex-g
@@ -858,10 +880,10 @@ usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/
 public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></u
 sr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/typ
 e1/public/tex-gyre/qtmri.pfb>
-Output written on sablona.pdf (20 pages, 434048 bytes).
+Output written on sablona.pdf (21 pages, 443313 bytes).
 PDF statistics:
- 300 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 254 words of extra memory for PDF output out of 10000 (max. 10000000)
 
