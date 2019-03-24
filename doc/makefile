@@ -10,9 +10,7 @@ doc: sablona.tex text/main.tex text/zkratky.tex text/literatura.tex
 	xdg-open sablona.pdf
 
 open:
-	code -n text/main.tex
-	code text/zkratky.tex
-	code text/literatura.tex
+	code .
 
 git:
 	git add .

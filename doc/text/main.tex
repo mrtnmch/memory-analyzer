@@ -144,8 +144,10 @@ Nástroj, který je přímou součásti distribuce Oracle JVM od verze 6. Nebyl 
 \zkratka{OQL} zmíním i jako samostatný způsob zpracování. Jedná se o jazyk, který slouží pro obecnou manipulaci s objekty, resp. s objektovými dokumenty \cite{odmgoql}\cite{oql}. Na první pohled si nelze nevšimnou jeho podobnosti s dotazovým jazykem SQL. Neomezuje se tedy pouze na zpracování Java heapu (či obecně paměti), ale je standardem, který pro tento účel lze využít. Z toho je možné usoudit, že standard jako takový pro zpracování nestačí -- je nutné využít některou z jeho implementací, která takové rozhraní přístupu k Java heapu umožňuje. Jednou z nich je právě výše zmíněný \textit{JHAT}.
 
 V příkladu \
-\begin{lstlisting}[caption={Příklad OQL}, label={oql}]
-select s from java.lang.String s where s.value.length >= 100
+\begin{lstlisting}[caption={Příklad OQL}, label={oql}, frame={single}, language={SQL}]
+select s 
+from java.lang.String s 
+where s.value.length >= 100
 \end{lstlisting}
 
 

@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Make",
+            "command": "make",
+            "type": "shell",
+            "group": "build",
+            "args": []
+        },
+        {
+            "label": "Commit to Git",
+            "command": "make",
+            "type": "shell",
+            "group": "build",
+            "args": ["git"]
+        }
+        {
+            "label": "Open Chrome",
+            "type": "process",
+            "command": "google-chrome",
+            "args": [ "sablona.pdf" ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn":["Make"]
+        }
+    ]
+}

@@ -18,10 +18,11 @@
 \contentsline {section}{\numberline {7.3}Java Mission Control}{14}{section.20}
 \contentsline {section}{\numberline {7.4}JProfiler}{15}{section.21}
 \contentsline {section}{\numberline {7.5}JHAT}{15}{section.22}
-\contentsline {chapter}{\numberline {8}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{16}{chapter.23}
-\contentsline {chapter}{\numberline {9}Anal\IeC {\'y}za a implementace}{17}{chapter.24}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{18}{chapter.24}
-\contentsline {chapter}{Seznam zkratek}{19}{section*.27}
-\contentsline {chapter}{Literatura}{20}{section*.29}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{21}{section*.31}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{22}{chapter.32}
+\contentsline {section}{\numberline {7.6}\ac {OQL}}{15}{section.23}
+\contentsline {chapter}{\numberline {8}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{16}{chapter.28}
+\contentsline {chapter}{\numberline {9}Anal\IeC {\'y}za a implementace}{17}{chapter.29}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{18}{chapter.29}
+\contentsline {chapter}{Seznam zkratek}{19}{section*.32}
+\contentsline {chapter}{Literatura}{20}{section*.34}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{21}{section*.36}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{22}{chapter.37}
