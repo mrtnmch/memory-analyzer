@@ -1,11 +1,15 @@
 \chapter{Úvod}
-Přes to, že cena hardware klesá a mzdy programátorů rostou, je často nutné přistoupit k optimalizaci existujícího programu, namísto prostého přidání systémových prostředků \cite{mooreslaw}\cite{devsalary}. Optimalizace může probíhat na několika úrovních. První z možností může být volba efektivnějšího algoritmu -- můžeme zkontrolovat, zda Big O\footnote{Big O složitost je...} složitost kritických částí našeho programu dosahuje maximálně polynomu přijatelného stupně, namísto např. exponenciály či faktoriálu. Tím je možné, především u vyššího počtu zpracovávaných prvků, dosáhnout výrazně rychlejšího běhu programu samotného.
+Při vývoji programů se často můžeme setkat s neuspokojujícími parametry jejich běhu -- ať už z hlediska času běhu nebo využití systémových zdrojů. Přes to, že cena hardware klesá a mzdy programátorů rostou, je často nutné přistoupit k optimalizaci existujícího kódu, namísto prostého přidání systémových prostředků \cite{mooreslaw}\cite{devsalary}. To sice v některých případech pomoci může, nicméně problém neřeší -- pouze jej oddaluje. Pokud chceme podobným problémům v budoucnu předejít a vyhnout se dalším investicím do výkonu, musíme problémový program upravit -- optimalizovat.
 
-Dále můžeme optimalizovat na úrovni využití systémových prostředků, typicky paměti (RAM). Jako první můžeme zvážit používané technologie. Změna programovacího jazyku je často natolik drahá, že kompletní přepsání dotyčného software by nemuselo dávat, i přes dosaženou optimalizaci, ekononomický smysl. V rámci námi používaného jazyku tak můžeme, kromě našeho kódu samotného, analyzovat používané frameworky a knihovny. V praxi se můžeme setkat s tím, že závislost na knihovně je přidána pouze z důvodu využití jedné či několika jejích funkcionalit. To je vhodné během vývoje z důvodu rychlosti; později je možné některé z těchto knihoven a jimi poskytované funkce nahradit implementací vlastní a teoreticky tak ušetřit jednotky, desítky či stovky megabytů paměti. 
+Optimalizace může probíhat na několika úrovních. První z možností může být volba efektivnějšího algoritmu -- můžeme zkontrolovat, zda jsme pro řešení problému zvolili vhodný algoritmus a zda neexistuje způsob, jakým bychom mohli dotyčné části řešit efektivněji. Tím je možné, především u vyššího počtu zpracovávaných prvků, dosáhnout výrazně rychlejšího běhu programu samotného. Dále je možné rychlost běhu ovlivnit zefektivněním (či prostou redukcí) přístupů k zařízením (IO), ať už se jedná o práci s diskem nebo síťovou činnost. Dále můžeme optimalizovat na úrovni využití systémových prostředků, typicky paměti (RAM). Právě optimalizaci paměťových nároků se v této práci budu věnovat.
+
+I na snižování množství programem užité paměti lze pohlížet z několika různých úhlů. Navrhovaná řešení se mohou výrazně lišit dosaženými úsporami zdrojů, náročností či finanční nákladností. Jako první můžeme zvážit používané technologie. Změna programovacího jazyku je často natolik drahá, že kompletní přepsání dotyčného software ve většině případů nedává, i přes dosaženou optimalizaci, ekononomický smysl. V rámci námi používaného jazyku tak můžeme, kromě našeho kódu samotného, analyzovat používané frameworky a knihovny. V praxi se můžeme setkat s tím, že závislost na knihovně je přidána pouze z důvodu využití jedné či několika jejích funkcionalit. To je vhodné během vývoje z důvodu rychlosti; později je možné některé z těchto knihoven a jimi poskytované funkce nahradit implementací vlastní a teoreticky tak ušetřit jednotky, desítky či stovky megabytů paměti. Tím ovšem neoptimalizujeme data programu, ale velikost programu samotného.
+
+Na řadu tak přichází právě programová data -- konkrétně datové struktury a typy, které v aplikaci jako její autoři využíváme. A opět je možné k tomuto problému přistoupit z různých úhlů, lišících se pak především hloubkou a důsledností analýzy. Můžeme řešit, zda námi používané typy odpovídají povaze dat -- například, zda rozsah celočíselného typu odpovídá maximální hodnotě dané veličiny.
 
 V praxi mohou být následky nedůsledné optimalizace ještě vážnější. Systémy, které mají obsloužit vysoký počet požadavků za sekundu, je často nutné škálovat -- vytvářet nové, nezávislé jednotky těcho systémů. Ty se poté mohou střídat o příchozí požadavky. Každá neoptimalizace je tedy znásobena počtem těchto instancí. To může naprosto zbytečně zvyšovat náklady na provoz; a to ať už v případě vlastního serveru či cloudových služeb (tzv. serverless).
 
-Cílem této práce je zanalyzovat, k jakým nedostatkům dochází (a zda vůbec) při vývoji Java aplikací. Dále pak vytvořit nástroj, který na tyto nedostatky dokáže poukázat a uživateli napovědět, jakým způsobem by mohl použité prostředky svého programu redukovat a jeho běh tedy optimalizovat. Korektní fungování vytvořeného nástroje bude ověřeno na testovací aplikaci z pohledu správnosti a úplnosti výsledků. Následně také na větších, rozšířených a běžně používaných Java aplikacích, za účelem posouzení efektivity použití nástroje v praxi, případně také v komerční sféře.
+Cílem této práce je zanalyzovat, k jakým nedostatkům dochází (a zda vůbec) z pohledu neefektivního využití paměti při vývoji Java aplikací. Dále pak vytvořit nástroj, který na tyto nedostatky dokáže poukázat a uživateli napovědět, jakým způsobem by mohl použité prostředky svého programu redukovat a jeho běh tedy optimalizovat. Korektní fungování vytvořeného nástroje bude ověřeno na testovací aplikaci z pohledu správnosti a úplnosti výsledků. Následně pak také prověřeno na větších, rozšířených a běžně používaných Java aplikacích, za účelem posouzení efektivity použití nástroje v praxi, případně také v komerční sféře.
 
 
 
@@ -17,9 +21,9 @@ Cílem této práce je zanalyzovat, k jakým nedostatkům dochází (a zda vůbe
 Při vytváření programu má jeho autor na výběr ze dvou způsobů správy paměti -- spravované automaticky (typicky mechanismem typu \zkratka{GC} apod.) či manuálně, případně kombinací těchto přístupů. Ne každý jazyk nabízí oba -- typicky je k dispozici pouze jeden z přístupů, často je správa GC vynucena. Vzhledem k tomu, že majorita nejpopulárnějších programovacích jazyků za poslední roky se řadí mezi vysokoúrovňové, na toto vynucení \zkratka{GC} narazíme u většiny z nich, včetně Javy \cite{stackoverflowinsights}\cite{tiobeindex}. Výjimkou jsou populární nízkoúrovňovější jazyky typu C a C++.
 
 \section{Garbage collector}
-\zkratka{GC} je nástroj, který odděluje jazyky s automatickou a manuální správou paměti – stará se o její přidělování, kontrolu a následné uvolnění, ať už pokud je jí málo a je zapotřebí jinde, v pravidelných intervalech nebo při jiných událostech. \zkratka{GC} je obecný termín, tj. neodkazuje na žádnou konkrétní implementaci a způsob chování. Často je v rámci jednoho jazyka (respektive běhového prostředí) zároveň implementováno hned několik algoritmů \zkratka{GC} a dle okolností je vybrán ten nejefektivnější a v danou chvíli nejvhodnější z nich. Některé algoritmy tak mohou běžet velmi rychle bez minimálního zásahu do běhu programu, zatímco jiné vyžadují pro svůj běh o něco delší čas. Často tak je nutné všechen běh kódu pozastavit; v takových případech toto spuštění \zkratka{GC} nazýváme \textit{stop-the-world} kolekcí (\uv{zastavení světa}, běhu). Pro program je toto zastavení transparentní.
+\zkratka{GC} je nástroj, starající se o správu paměti programu -- její přidělování, kontrolu a následné uvolnění, ať už pokud je jí málo a je zapotřebí jinde, v pravidelných intervalech nebo při jiných událostech. \zkratka{GC} je obecný termín, tj. neodkazuje na žádnou konkrétní implementaci a způsob chování. Často je v rámci jednoho jazyka (respektive běhového prostředí) zároveň implementováno hned několik algoritmů \zkratka{GC} a dle okolností je vybrán ten nejefektivnější a v danou chvíli nejvhodnější z nich. Některé algoritmy tak mohou běžet velmi rychle bez minimálního zásahu do běhu programu, zatímco jiné vyžadují pro svůj běh o něco delší čas. Často tak je nutné všechen běh kódu pozastavit; v takových případech toto spuštění \zkratka{GC} nazýváme \textit{stop-the-world} (\uv{zastavení světa}, běhu). Pro program je toto zastavení transparentní.
 
-Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotlivé objekty, respektive jejich počet. Pokud je některý z objektů dále nereferencovaný (a tedy nedosažitelný -- nikdo na něj neukazuje; Java navíc nezná koncept ukazatelové aritmetiky, po odstranění poslední reference si tedy můžeme být jisti, že už znovu referencovat nikdy nepůjde), při další kolekci bude jím zabíraná paměť uvolněna. 
+Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotlivé objekty, respektive jejich počet. Pokud je některý z objektů dále nereferencovaný, při dalším běhu \zkratka{GC} bude jím zabíraná paměť uvolněna. Nereferencovaným objektem rozumíme, že je nedosažitelný -- nikdo na něj neukazuje. K takovým případům samozřejmě může docházet i v případě jazyků, které fungují bez \zkratka{GC}, např. \texttt{C}. Pokud daný jazyk nezná jiný způsob, jak se k dané paměti opětovně dostat, dochází k tzv. \textit{memory leakům}, tedy únikům paměti. V případě třeba zmíněného výše \texttt{C} nelze definitivně rozhodnout o nedostupnosti paměti -- díky ukazatelové aritmetice je možné paměť zpětně dopočítat. Java koncept ukazatelové aritmetiky nezná, po odstranění poslední reference si tedy můžeme být jisti, že už znovu referencovat nikdy nepůjde. V souvislosti s \textit{memory leaky} je nutné zdůraznit,  
 
 
 
@@ -28,6 +32,21 @@ Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotliv
 
 
 \chapter{Analýza paměti}
+
+Paměť je možné analyzovat za běhu programu nebo z jejího snímku -- reprezentace paměti v určitém okamžiku běhu programu.
+
+\section{Analýza za běhu programu}
+Během běhu programu lze analyzovat aktuální obsah paměti -- \zkratka{GC} koneckonců nedělá nic jiného. Problémem tohoto přístupu je ovšem dopad na výkon. I samotný \zkratka{GC}, ať už umožňující současný běh kódu nebo \textit{stop-the-world}, má výrazný dopad na výkon oproti jazykům či běhovým prostředím bez něj \cite{gc}. Jeho běh je navíc v drtivé většině případů natolik optimalizovaný, aby byl dopad na výkon samotného programu co nejmenší a jeho běh co nejrychlejší. Může využívat celou řadu nízkoúrovňových optimalizací, kterých -- v některých jazycích, včetně Javy -- dosáhnout nemůžeme. Z toho můžeme usoudit, že dopad analýzi paměti programu za jeho běhu by byl přinejmenším takový, jako dopad běhu \zkratka{GC}; pravděpodobně však výrazně vyšší. Stejně tak musíme uvažovat, že běh naší analýzy -- ať už pouze za účelem sběru dat pro pozdější zpracování -- bude výrazně složitější (či výkonově náročnější), než běh \zkratka{GC}.
+
+Dalším důvodem pro vyhnutí se analýze za běhu programu je povaha řešeného problému a tedy implementovaného algoritmu. Protože potřebujeme provádět hloubkovou analýzu (všech či vybraných) objektů programu, jejich neustálá změna by tuto analýzu za běhu programu učinila nemožnou. Respektive bychom se nemohli vyhnout eventuálním falešně negativním či positivním hlášením -- to si jednoduše můžeme představit. Jestliže s každým cyklem analýzy zpracujeme jeden objekt a během toho dojde ke změně dat některého z dalších objektů, pak by algoritmus zahlásil při zpracování dalších objektů falečně pozitivní nález. V žádném časovém okamžiku neexistovaly dva objekty se stejnými daty, algoritmus by je tak přesto označil.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{obrazky/runtime-analysis.png}
+	\caption{Využití paměti a provedení garbage kolekce před vytvořením dumpu (červeně).}
+	\label{obr2}
+\end{figure}
 
 
 
@@ -115,6 +134,8 @@ Pro práci nad heapem  (typicky ve formátu HPROF) je možné využít některou
 
 \chapter{Existující nástroje pro analýzu heapu}
 
+Analýza dumpu -- ať už manuální či automatická -- je využívána v případech, kdy nám debugování na úrovni kódu už nestačí a potřebujeme se podívat, jakým způsobem se program chová na pozadí. Rovněž je jeho analýza vhodná v okamžiku, kdy dojde k pádu (zejména v důsledku nedostatku paměti), kdy chceme zjistit příčinu pádu \uv{post mortem}. Můžeme tak odhalit problematické místo v programu a podrobná analýza nám tak umožní problém opravit.
+
 \section{Eclipse MAT}
 IBM Eclipse Memory Analyser Tooling je open source nástroj pro analýzu Java paměti. Po spuštění umožňuje otevřít již vygenerovaný dump Java heapu, umí jej ale i vytvořit. V rámci analýzy nabízí 2 konkrétní volby – analýzu memory leaků a memory bloatu – tj. neefektivního využití paměti a zbytečného plýtvání. 
 
@@ -143,7 +164,8 @@ Nástroj, který je přímou součásti distribuce Oracle JVM od verze 6. Nebyl 
 \section{\zkratka{OQL}}
 \zkratka{OQL} zmíním i jako samostatný způsob zpracování. Jedná se o jazyk, který slouží pro obecnou manipulaci s objekty, resp. s objektovými dokumenty \cite{odmgoql}\cite{oql}. Na první pohled si nelze nevšimnou jeho podobnosti s dotazovým jazykem SQL. Neomezuje se tedy pouze na zpracování Java heapu (či obecně paměti), ale je standardem, který pro tento účel lze využít. Z toho je možné usoudit, že standard jako takový pro zpracování nestačí -- je nutné využít některou z jeho implementací, která takové rozhraní přístupu k Java heapu umožňuje. Jednou z nich je právě výše zmíněný \textit{JHAT}.
 
-V příkladu \
+V příkladu \ref{oql}.
+
 \begin{lstlisting}[caption={Příklad OQL}, label={oql}, frame={single}, language={SQL}]
 select s 
 from java.lang.String s 
@@ -157,7 +179,7 @@ where s.value.length >= 100
 
 
 \chapter{Možnosti analýzy}
-Rovnost dvou či více objektů se dá definovat a zjišťovat různými způsoby. Je ale nutné si uvědomit, že v nejhorším případě, tj. pokud chceme najít všechny nadbytečné kopie každého objektu, je složitost této operace při nejmenším $O(n^n)$. Bylo by tedy vhodné se zamyslet, zda neexistuje způsob, jak počet porovnání snížit, případně navrhnout jednoduchou heuristiku, která by dokázala rychle ohodnotit, zda má vůbec smysl pokračovat v podrobnějším porovnání. V následujících případech tedy uvažujme objekty $A$, $B$, jejich třídy $C_A$ a $C_B$ a proměnné obou instancí $F_A^0..F_A^n$, respektive $F_B^0..F_B^n$.
+Rovnost dvou či více objektů se dá definovat a zjišťovat různými způsoby. Je ale nutné si uvědomit, že v nejhorším případě, tj. pokud chceme najít všechny nadbytečné kopie každého objektu, je složitost této operace $O(2^n)$. Bylo by tedy vhodné se zamyslet, zda neexistuje způsob, jak počet porovnání snížit, případně navrhnout jednoduchou heuristiku, která by dokázala rychle ohodnotit, zda má vůbec smysl pokračovat v podrobnějším porovnání. V následujících případech tedy uvažujme objekty $A$, $B$, jejich třídy $C_A$ a $C_B$ a proměnné obou instancí $F_A^0..F_A^n$, respektive $F_B^0..F_B^n$.
 
 První nápovědou samozřejmě může být porovnání tříd obou objektů -- $C_A$ a $C_B$. Pokud platí $C_A = C_B$, zřejmě má smysl se porovnáváním dále zabývat. V případě jejich nerovnosti není ale možné další porovnání zavrhnout, porovnat je nutné (či možné) i jejich rodiče. Definujeme-li tedy funkci pro zjištění přímého rodiče $P(C)$, potom rovnost objektů lze vyjádřit jako
     $$ E(C_A, C_B) \Leftrightarrow C_A = C_B \vee E(P(C_A), C_B) \vee E(C_A, P(C_B)).$$    

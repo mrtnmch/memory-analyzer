@@ -11,6 +11,9 @@ doc: sablona.tex text/main.tex text/zkratky.tex text/literatura.tex
 
 open:
 	code .
+	code text/main.tex
+	code text/literatura.tex
+	code text/zkratky.tex
 
 git:
 	git add .

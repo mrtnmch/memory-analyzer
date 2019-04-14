@@ -14,7 +14,7 @@
             "type": "shell",
             "group": "build",
             "args": ["git"]
-        }
+        },
         {
             "label": "Open Chrome",
             "type": "process",
