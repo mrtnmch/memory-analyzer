@@ -23,6 +23,7 @@
     <orderEntry type="library" name="Maven: org.gridkit.lab:jvm-attach-api:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.plantuml:plantuml:8059" level="project" />
     <orderEntry type="library" name="Maven: com.github.mxmxcz:hprof-parser:hprof-parser-1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
   </component>

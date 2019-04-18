@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DuplicateInstanceWaste implements Waste {
 	private static final String TITLE_TEMPLATE = "Duplicate instances of '%s'";
-	private static final String DESC_TEMPLATE = "Some instances of the '%s' class contain exactly the same data. They could be possibly replaced with one copy.";
+	private static final String DESC_TEMPLATE = "Some (%d) instances of the '%s' class contain exactly the same data. They could be possibly replaced with one copy.";
 
 	private final Collection<InstanceDump> duplicates;
 
@@ -32,7 +32,7 @@ public class DuplicateInstanceWaste implements Waste {
 
 	@Override
 	public String getDescription() {
-		return String.format(DESC_TEMPLATE, this.getAffectedClass());
+		return String.format(DESC_TEMPLATE, this.duplicates.size(), this.getAffectedClass());
 	}
 
 	@Override

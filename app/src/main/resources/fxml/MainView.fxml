@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx"
+<FlowPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cz.mxmx.memoryanalyzer.app.MainViewController">
-    <TableView fx:id="tableView" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-</GridPane>
+            fx:controller="cz.mxmx.memoryanalyzer.app.MainViewController"
+            fx:id="pane">
+    <TextField fx:id="dumpPath" />
+    <Button fx:id="selectDumpPath" text="Select memory dump" />
+    <Button fx:id="getNamespaces" text="Get namespaces" />
+</FlowPane>

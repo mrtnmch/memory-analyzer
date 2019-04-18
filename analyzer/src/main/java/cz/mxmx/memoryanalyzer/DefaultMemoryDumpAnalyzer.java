@@ -1,12 +1,12 @@
 package cz.mxmx.memoryanalyzer;
 
-import com.google.common.collect.Lists;
 import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
 import cz.mxmx.memoryanalyzer.parse.RawRecordHandler;
 import cz.mxmx.memoryanalyzer.parse.RecordHandler;
-import cz.mxmx.memoryanalyzer.process.DefaultMemoryDumpProcessor;
+import cz.mxmx.memoryanalyzer.process.GenericMemoryDumpProcessor;
+import cz.mxmx.memoryanalyzer.process.UserMemoryDumpProcessor;
 import cz.mxmx.memoryanalyzer.process.MemoryDumpProcessor;
 import cz.mxmx.memoryanalyzer.util.Normalization;
 import edu.tufts.eaftan.hprofparser.parser.HprofParser;
@@ -17,32 +17,68 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 
-    private final Collection<String> namespaces;
     private final RecordHandler recordHandler;
+	private final String path;
+	private final MemoryDumpProcessor genericProcessor = new GenericMemoryDumpProcessor();
+	private RawMemoryDump memoryDump;
 
-	public DefaultMemoryDumpAnalyzer(String namespace) {
-		this(Lists.newArrayList(namespace));
+	public DefaultMemoryDumpAnalyzer(String path) {
+		this(path, new RawRecordHandler());
     }
 
-	public DefaultMemoryDumpAnalyzer(String namespace, RecordHandler recordHandler) {
-		this(Lists.newArrayList(namespace), recordHandler);
-    }
-
-	public DefaultMemoryDumpAnalyzer(Collection<String> namespaces) {
-		this(namespaces, new RawRecordHandler());
-	}
-
-	public DefaultMemoryDumpAnalyzer(Collection<String> namespaces, RecordHandler recordHandler) {
-		this.namespaces = new ArrayList<>(namespaces);
+	public DefaultMemoryDumpAnalyzer(String path, RecordHandler recordHandler) {
+		this.path = path;
         this.recordHandler = recordHandler;
     }
 
-    @Override
-    public MemoryDump analyze(String path) throws FileNotFoundException, MemoryDumpAnalysisException {
+    private void runAnalysis() throws MemoryDumpAnalysisException, FileNotFoundException {
+		if(this.memoryDump == null) {
+			HprofParser parser = new HprofParser(this.recordHandler);
+			FileInputStream fs = new FileInputStream(path);
+			DataInputStream in = new DataInputStream(new BufferedInputStream(fs));
+
+			try {
+				parser.parse(in);
+				in.close();
+			} catch (IOException e) {
+				throw new MemoryDumpAnalysisException(e);
+			}
+
+			this.memoryDump = this.recordHandler.getMemoryDump();
+		}
+    }
+
+	@Override
+	public Set<String> getNamespaces() throws FileNotFoundException, MemoryDumpAnalysisException {
+		this.runAnalysis();
+		MemoryDump dump = this.genericProcessor.process(this.memoryDump);
+		Set<String> namespaces = new HashSet<>();
+
+		dump.getClasses().forEach((id, cl) -> {
+			namespaces.add(cl.getName());
+		});
+
+		return this.filterNamespaces(namespaces);
+	}
+
+	private Set<String> filterNamespaces(Set<String> namespaces) {
+		return namespaces
+				.stream()
+				.filter(namespace -> !namespace.contains("$") && !namespace.startsWith("["))
+				.map(namespace -> namespace.contains(".") ? namespace.substring(0, namespace.lastIndexOf(".")) : namespace)
+				.collect(Collectors.toSet());
+	}
+
+	@Override
+    public MemoryDump analyze(List<String> namespaces) throws FileNotFoundException, MemoryDumpAnalysisException {
 	    HprofParser parser = new HprofParser(this.recordHandler);
 	    FileInputStream fs = new FileInputStream(path);
 	    DataInputStream in = new DataInputStream(new BufferedInputStream(fs));
@@ -55,7 +91,7 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 	    }
 
 	    RawMemoryDump memoryDump = this.recordHandler.getMemoryDump();
-	    MemoryDumpProcessor processor = new DefaultMemoryDumpProcessor(Normalization.stringToRegexNamespaces(this.namespaces));
+	    MemoryDumpProcessor processor = new UserMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces));
 	    return processor.process(memoryDump);
     }
 }

@@ -75,7 +75,7 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 			}
 
 			parent = parent.getSuperClassDump();
-		} while(!parent.getName().equals(Object.class.getName()));
+		} while(parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
 
 		return false;
 	}

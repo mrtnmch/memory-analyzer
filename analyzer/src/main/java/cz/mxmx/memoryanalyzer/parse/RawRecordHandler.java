@@ -17,6 +17,7 @@ import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RawRecordHandler extends RecordHandler {
@@ -59,6 +60,11 @@ public class RawRecordHandler extends RecordHandler {
 				this.rawPrimitiveArrayDumps,
 				this.rawObjectArrayDumps
 		);
+	}
+
+	@Override
+	public List<String> getNamespaces() {
+		return null;
 	}
 
 	public void header(String format, int idSize, long time) {

@@ -8,16 +8,25 @@ import cz.mxmx.memoryanalyzer.model.memorywaste.DuplicateInstanceWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 	@Override
 	public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
 		List<Waste> wasteList = new ArrayList<>();
-		List<InstanceDump> processedInstances = new ArrayList<>();
+		Set<InstanceDump> processedInstances = new HashSet<>();
+//		List<InstanceDump> processedInstances = new ArrayList<>();
 
-		memoryDump.getUserInstances().forEach((id, instance) -> {
+		Map<Long, InstanceDump> userInstances = memoryDump.getUserInstances();
+
+		for(Map.Entry<Long, InstanceDump> entry : userInstances.entrySet()) {
+			Long id = entry.getKey();
+			InstanceDump instance = entry.getValue();
+
 			processedInstances.add(instance);
 
 			memoryDump.getUserInstances().forEach((id2, instance2) -> {
@@ -29,7 +38,14 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 					this.mergeWasteList(wasteList, instance, instance2);
 				}
 			});
-		});
+
+			double i = new ArrayList<>(memoryDump.getUserInstances().keySet()).indexOf(id);
+			if(i > 10000) { // TODO
+				break;
+			}
+		}
+
+		System.out.println();
 
 		return wasteList;
 	}
