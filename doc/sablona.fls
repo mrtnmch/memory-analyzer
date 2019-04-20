@@ -221,6 +221,9 @@ INPUT /home/mxmx/dev/memory-analyzer/doc/text/main.tex
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
+INPUT /usr/share/texmf/tex/latex/tex-gyre/ts1qtm.fd
+INPUT /usr/share/texmf/tex/latex/tex-gyre/ts1qtm.fd
+INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ts1-qtmr.tfm
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png
@@ -260,6 +263,7 @@ INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.out
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb

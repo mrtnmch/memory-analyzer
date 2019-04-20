@@ -2,28 +2,30 @@
 \contentsline {chapter}{\numberline {1}\IeC {\'U}vod}{7}{chapter.2}
 \contentsline {chapter}{\numberline {2}Probl\IeC {\'e}m spr\IeC {\'a}vy pam\IeC {\v e}ti}{9}{chapter.3}
 \contentsline {section}{\numberline {2.1}Garbage collector}{9}{section.4}
-\contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za pam\IeC {\v e}ti}{10}{chapter.5}
-\contentsline {section}{\numberline {3.1}Anal\IeC {\'y}za za b\IeC {\v e}hu programu}{10}{section.6}
-\contentsline {chapter}{\numberline {4}Optimalizace u\IeC {\v z}it\IeC {\'\i } pam\IeC {\v e}ti}{11}{chapter.8}
-\contentsline {chapter}{\numberline {5}Java Virtual Machine}{12}{chapter.9}
-\contentsline {section}{\numberline {5.1}Java Bytecode}{12}{section.10}
-\contentsline {chapter}{\numberline {6}Spr\IeC {\'a}va a struktura Java pam\IeC {\v e}ti}{13}{chapter.11}
-\contentsline {section}{\numberline {6.1}Garbage collection}{13}{section.12}
-\contentsline {section}{\numberline {6.2}Heap Dump}{14}{section.13}
-\contentsline {subsection}{\numberline {6.2.1}Vytvo\IeC {\v r}en\IeC {\'\i } dumpu}{14}{subsection.14}
-\contentsline {subsection}{\numberline {6.2.2}Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{14}{subsection.15}
-\contentsline {section}{\numberline {6.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{15}{section.17}
-\contentsline {chapter}{\numberline {7}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{16}{chapter.18}
-\contentsline {section}{\numberline {7.1}Eclipse MAT}{16}{section.19}
-\contentsline {section}{\numberline {7.2}VisualVM}{16}{section.20}
-\contentsline {section}{\numberline {7.3}Java Mission Control}{17}{section.21}
-\contentsline {section}{\numberline {7.4}JProfiler}{17}{section.22}
-\contentsline {section}{\numberline {7.5}JHAT}{17}{section.23}
-\contentsline {section}{\numberline {7.6}\ac {OQL}}{17}{section.24}
-\contentsline {chapter}{\numberline {8}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{19}{chapter.29}
-\contentsline {chapter}{\numberline {9}Anal\IeC {\'y}za a implementace}{20}{chapter.30}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{21}{chapter.30}
-\contentsline {chapter}{Seznam zkratek}{22}{section*.33}
-\contentsline {chapter}{Literatura}{23}{section*.35}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{24}{section*.37}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{25}{chapter.38}
+\contentsline {chapter}{\numberline {3}Struktura pam\IeC {\v e}ti programu}{10}{chapter.5}
+\contentsline {section}{\numberline {3.1}\ac {JVM} z\IeC {\'a}sobn\IeC {\'\i }k}{11}{section.6}
+\contentsline {chapter}{\numberline {4}Anal\IeC {\'y}za pam\IeC {\v e}ti}{12}{chapter.7}
+\contentsline {section}{\numberline {4.1}Anal\IeC {\'y}za za b\IeC {\v e}hu programu}{12}{section.8}
+\contentsline {chapter}{\numberline {5}Optimalizace u\IeC {\v z}it\IeC {\'\i } pam\IeC {\v e}ti}{13}{chapter.10}
+\contentsline {chapter}{\numberline {6}Java Virtual Machine}{14}{chapter.11}
+\contentsline {section}{\numberline {6.1}Java Bytecode}{14}{section.12}
+\contentsline {chapter}{\numberline {7}Spr\IeC {\'a}va a struktura Java pam\IeC {\v e}ti}{15}{chapter.13}
+\contentsline {section}{\numberline {7.1}Garbage collection}{15}{section.14}
+\contentsline {section}{\numberline {7.2}Heap Dump}{16}{section.15}
+\contentsline {subsection}{\numberline {7.2.1}Vytvo\IeC {\v r}en\IeC {\'\i } dumpu}{16}{subsection.16}
+\contentsline {subsection}{\numberline {7.2.2}Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{16}{subsection.17}
+\contentsline {section}{\numberline {7.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{17}{section.19}
+\contentsline {chapter}{\numberline {8}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{18}{chapter.20}
+\contentsline {section}{\numberline {8.1}Eclipse MAT}{18}{section.21}
+\contentsline {section}{\numberline {8.2}VisualVM}{18}{section.22}
+\contentsline {section}{\numberline {8.3}Java Mission Control}{19}{section.23}
+\contentsline {section}{\numberline {8.4}JProfiler}{19}{section.24}
+\contentsline {section}{\numberline {8.5}JHAT}{19}{section.25}
+\contentsline {section}{\numberline {8.6}\ac {OQL}}{19}{section.26}
+\contentsline {chapter}{\numberline {9}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{21}{chapter.31}
+\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{22}{chapter.32}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{23}{chapter.32}
+\contentsline {chapter}{Seznam zkratek}{24}{section*.35}
+\contentsline {chapter}{Literatura}{25}{section*.37}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{26}{section*.39}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{27}{chapter.40}

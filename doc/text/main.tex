@@ -23,9 +23,61 @@ Při vytváření programu má jeho autor na výběr ze dvou způsobů správy p
 \section{Garbage collector}
 \zkratka{GC} je nástroj, starající se o správu paměti programu -- její přidělování, kontrolu a následné uvolnění, ať už pokud je jí málo a je zapotřebí jinde, v pravidelných intervalech nebo při jiných událostech. \zkratka{GC} je obecný termín, tj. neodkazuje na žádnou konkrétní implementaci a způsob chování. Často je v rámci jednoho jazyka (respektive běhového prostředí) zároveň implementováno hned několik algoritmů \zkratka{GC} a dle okolností je vybrán ten nejefektivnější a v danou chvíli nejvhodnější z nich. Některé algoritmy tak mohou běžet velmi rychle bez minimálního zásahu do běhu programu, zatímco jiné vyžadují pro svůj běh o něco delší čas. Často tak je nutné všechen běh kódu pozastavit; v takových případech toto spuštění \zkratka{GC} nazýváme \textit{stop-the-world} (\uv{zastavení světa}, běhu). Pro program je toto zastavení transparentní.
 
-Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotlivé objekty, respektive jejich počet. Pokud je některý z objektů dále nereferencovaný, při dalším běhu \zkratka{GC} bude jím zabíraná paměť uvolněna. Nereferencovaným objektem rozumíme, že je nedosažitelný -- nikdo na něj neukazuje. K takovým případům samozřejmě může docházet i v případě jazyků, které fungují bez \zkratka{GC}, např. \texttt{C}. Pokud daný jazyk nezná jiný způsob, jak se k dané paměti opětovně dostat, dochází k tzv. \textit{memory leakům}, tedy únikům paměti. V případě třeba zmíněného výše \texttt{C} nelze definitivně rozhodnout o nedostupnosti paměti -- díky ukazatelové aritmetice je možné paměť zpětně dopočítat. Java koncept ukazatelové aritmetiky nezná, po odstranění poslední reference si tedy můžeme být jisti, že už znovu referencovat nikdy nepůjde. V souvislosti s \textit{memory leaky} je nutné zdůraznit,  
+Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotlivé objekty, respektive jejich počet. Pokud je některý z objektů dále nereferencovaný, při dalším běhu \zkratka{GC} bude jím zabíraná paměť uvolněna. Nereferencovaným objektem rozumíme, že je nedosažitelný -- nikdo na něj neukazuje. K takovým případům samozřejmě může docházet i v případě jazyků, které fungují bez \zkratka{GC}, např. \texttt{C}. Pokud daný jazyk nezná jiný způsob, jak se k dané paměti opětovně dostat, dochází k tzv. \textit{memory leakům}, tedy únikům paměti. V případě například výše zmíněného \texttt{C} nelze definitivně rozhodnout o nedostupnosti paměti -- díky ukazatelové aritmetice je možné paměť zpětně dopočítat i v případě, že v jednom časovém okamžiku na něj žádný ukazatel v paměti programu neukazuje. Java koncept ukazatelové aritmetiky nezná, po odstranění poslední reference si tedy můžeme být jisti, že už znovu referencovat nikdy nepůjde. V souvislosti s \textit{memory leaky} je nutné zdůraznit, že v tomto případě mám na mysli odstranění poslední reference v rámci paměti uživatelského programu. \zkratka{JVM}, který paměť spravuje, adresu objektu stále zná a je tak schopný jej v rámci běhu \zkratka{GC} odstranit.
 
 
+% =====================================================================================================================================================================================
+
+\chapter{Struktura paměti programu}
+
+Abychom mohli hledat v paměti a analyzovat nedostatky v rámci jejího využití, musíme nejprve porozumět její struktuře, různým typům oblastí a objektům v nich uložených. Přestože se mnoho následujících konceptů a pravidel vztahuje na ostatní jazyky (a v některých případech i na paměť spravovanou samotným operačním systémem), budu se primárně zaměřovat Javu. Specifikace \zkratka{JVM} neobsahuje žádnou konkrétní podobu paměti či její rozložení, stejně tak jako nespecifikuje žádný konkrétní algoritmus \zkratka{GC} a žádné optimalizace, které se mají nad běžícím kódem vykonávat. Tyto implementační detaily jsou ponechány na možnostech a tvůrčích schopnostech vývojářů, kteří standard implementují. Prostým požadavkem tak je korektní načtení dat ze souboru \texttt{class} a validní vykonání příslušných instrukcí.
+
+\zkratka{JVM}, stejně jako většina ostatních běhových prostředí a jazyků, rozeznává dva druhy datových typů -- primitivní a referenční. Proměnné primitivního typu tak obsahují přímo danou hodnotu, zatímco proměnné referenčních typů referencují (tj. ukazují na) jinde umístěnou paměť, v níž se nachází objekt.
+
+Primitivních datových typů je v Javě několik druhů, konkrétně:
+
+\begin{itemize}
+	\item numerické
+	\begin{itemize}
+		\item celočíselné
+			\begin{itemize}
+				\item \texttt{byte}
+				\item \texttt{short}
+				\item \texttt{int}
+				\item \texttt{long}
+				\item \texttt{char}
+			\end{itemize}
+		\item s plovoucí desetinnou čárkou
+			\begin{itemize}
+				\item \texttt{float}
+				\item \texttt{double}
+			\end{itemize}
+		\end{itemize}
+	\item \texttt{boolean}
+	\item \texttt{returnAddress}
+		\begin{itemize}
+			\item Speciální datový typ, sloužící jako pointer na \texttt{JVM} instrukce, konkrétně \texttt{jsr}, \texttt{ret} a \texttt{jsr\_w}. V běžném programu jej nicméně nemůžeme jako vývojáři použít ani modifikovat; \texttt{JVM} jej však zná a využívá.
+		\end{itemize}
+\end{itemize}
+
+Referenční datové typy jsou potom následující:
+
+\begin{itemize}
+	\item \texttt{class}
+	\item \texttt{array}
+	\item \texttt{interface}
+\end{itemize}
+
+Typ \texttt{array}, tedy pole, samozřejmě obsahuje seznam prvků určitého typu -- ten nazýváme typem komponenty. Proměnná referenčního typu je ukazatelem do paměti -- místa, kde je obsah objektu umístěn. Prázdný ukazatel, který nereferencuje žádné místo v paměti, nazýváme \texttt{null}. Tato hodnota je výchozí pro všechny proměnné referenčního typu, dokud jim není přiřazena hodnota \cite{jvms}. 
+
+\section{JVM zásobník}
+V případě, že v Javě mluvíme o zásobníku (stack), typicky máme na mysli \zkratka{JVM} zásobník. Kromě něj totiž ještě existuje nativní zásobník, který je vytvořený operačním systémem pro potřeby \zkratka{JVM} samotného. Kromě toho je využívaný i pro některé nízkoúrovňovější činnosti. \zkratka{JVM} stack je spravovaný běhovým prostředím samotným a slouží pro potřeby aplikací, které v rámci prostředí běží.
+
+Pro každé vlákno aplikace je vytvořený zásobník. Do něj jsou ukládány lokální proměnné, hodnoty parametrů metod a návratové hodmoty. Rovněž se stará o volání metod, respektive o návrat do volací metody po zavolání metody jiné. Stejně jako v jiných jazycích (třeba C) je paměť lokálních proměnných automaticky uvolněna při odebírání hodnot ze zásobníku. Takto alokovanou paměť tak není nutné spravovat \zkratka{GC} (či v případě C ručně uvolňovat).
+
+Právě velikost \zkratka{JVM} zásobníku je často omezující faktor při vývoji, na který v některých případech (např. nesprávně zastavovaná rekurze) narážíme. Jeho velikost můžeme nastavit jako parametr při spuštění programu -- konkrétně \texttt{Xss} (respektive \texttt{-XX:ThreadStackSize}). Jeho výchozí velikost je závislá na velikosti dostupné (virtuální) paměti. V souvislosti s nedostatkem paměti a velikostí zásobníku se můžeme setkat se dvěma typy výjimek. \texttt{StackOverflowError} je vyhozena v případě, že během výpočtu narazíme na horní hranici velikosti zásobníku. \texttt{JVM} se případně může pokusit velikost dynamicky zvýšit. Pokud však během této operace narazí na velikost výše zmíněné paměti (což je už limitace nastavená operačním systémem a případně i hardwarovou konfigurací), je vyhozena výjimka jiná -- \texttt{OutOfMemoryError}. Tato výjimka je rovněž produkována v případě, že ručně nastavíme velikost zásobníku takovou, že při jeho vytváření \texttt{JVM} narazí na limity paměti rovnou.
+
+\section{}
 
 % =====================================================================================================================================================================================
 
@@ -36,7 +88,7 @@ Obecně \zkratka{GC} funguje tak, že si udržuje seznam referencí na jednotliv
 Paměť je možné analyzovat za běhu programu nebo z jejího snímku -- reprezentace paměti v určitém okamžiku běhu programu.
 
 \section{Analýza za běhu programu}
-Během běhu programu lze analyzovat aktuální obsah paměti -- \zkratka{GC} koneckonců nedělá nic jiného. Problémem tohoto přístupu je ovšem dopad na výkon. I samotný \zkratka{GC}, ať už umožňující současný běh kódu nebo \textit{stop-the-world}, má výrazný dopad na výkon oproti jazykům či běhovým prostředím bez něj \cite{gc}. Jeho běh je navíc v drtivé většině případů natolik optimalizovaný, aby byl dopad na výkon samotného programu co nejmenší a jeho běh co nejrychlejší. Může využívat celou řadu nízkoúrovňových optimalizací, kterých -- v některých jazycích, včetně Javy -- dosáhnout nemůžeme. Z toho můžeme usoudit, že dopad analýzi paměti programu za jeho běhu by byl přinejmenším takový, jako dopad běhu \zkratka{GC}; pravděpodobně však výrazně vyšší. Stejně tak musíme uvažovat, že běh naší analýzy -- ať už pouze za účelem sběru dat pro pozdější zpracování -- bude výrazně složitější (či výkonově náročnější), než běh \zkratka{GC}.
+Během běhu programu lze analyzovat aktuální obsah paměti -- \zkratka{GC} koneckonců nedělá nic jiného. Problémem tohoto přístupu je ovšem dopad na výkon. I samotný \zkratka{GC}, ať už umožňující současný běh kódu nebo \textit{stop-the-world}, má výrazný dopad na výkon oproti jazykům či běhovým prostředím bez něj \cite{gc}. Navíc, běh \zkratka{GC}, stejně tak jako režie běhu samotného prostředí, jsou v drtivé většině případů v maximální možné míře optimalizovány, aby byl dopad na výkon samotného programu co nejmenší a jeho běh co nejrychlejší. Mohou využívat celou řadu nízkoúrovňových optimalizací, kterých -- v některých jazycích, včetně Javy -- dosáhnout prakticky nemůžeme. Z toho můžeme usoudit, že dopad analýzi paměti programu za jeho běhu by byl přinejmenším takový, jako dopad běhu \zkratka{GC}; pravděpodobně však výrazně vyšší. Stejně tak musíme uvažovat, že běh naší analýzy -- ať už pouze za účelem sběru dat pro pozdější zpracování -- bude výrazně složitější (či výkonově náročnější), než běh \zkratka{GC}.
 
 Dalším důvodem pro vyhnutí se analýze za běhu programu je povaha řešeného problému a tedy implementovaného algoritmu. Protože potřebujeme provádět hloubkovou analýzu (všech či vybraných) objektů programu, jejich neustálá změna by tuto analýzu za běhu programu učinila nemožnou. Respektive bychom se nemohli vyhnout eventuálním falešně negativním či positivním hlášením -- to si jednoduše můžeme představit. Jestliže s každým cyklem analýzy zpracujeme jeden objekt a během toho dojde ke změně dat některého z dalších objektů, pak by algoritmus zahlásil při zpracování dalších objektů falečně pozitivní nález. V žádném časovém okamžiku neexistovaly dva objekty se stejnými daty, algoritmus by je tak přesto označil.
 
@@ -69,7 +121,9 @@ Nejpřímějším způsobem optimalizace užití paměti se může jevit odstran
 
 
 \chapter{Java Virtual Machine}
-Program napsaný v Javě běží typicky v některé z implementací \zkratka{JVM}. \zkratka{JVM} je program, který slouží jako běhové prostředí pro uživatelský kód -- vykonává jeho instrukce a slouží tak jako prostředník mezi ním a operačním systémem (respektive jako interpret jeho kódu, který následně překládá do jiného jazyka, typicky strojového kódu dané architektury či platformy).
+Program napsaný v Javě běží typicky v některé z implementací \zkratka{JVM}. \zkratka{JVM} je program, který slouží jako běhové prostředí pro uživatelský kód -- vykonává jeho instrukce a slouží tak jako prostředník mezi ním a operačním systémem (respektive jako interpret jeho kódu, který následně překládá do jiného jazyka, typicky strojového kódu dané architektury či platformy). \zkratka{JVM} je možné si představit jako virtuální počítač -- má vlastní instrukční sadu a na základě ní provádí operace nad pamětí. Díky tomu je možné jej, v případě potřeby, implementovat i jako CPU -- taková hardwarová implementace se nazývá \textit{Java procesor}. 
+
+\zkratka{JVM} nemá ponětí o existenci Javy jako jazyku. Vidí pouze výsledek kompilace do bytecodu (viz dále), což je posloupnost operací z výše zmíněné instrukční sady. Jako analogii je možné zmínit instrukční sadu CPU a strojový kód -- CPU také netuší, jaký vyšší programovací jazyk je původcem strojového kódu, a při podobné implementaci kompilátoru dvou jazyků by to ani neměl šanci zjistit. Stejně tak se chová \zkratka{JVM} a bytecode -- ostatně existují i další jazyky na platformě \zkratka{JVM}, za všechny můžu jmenovat třeba populární Kotlin \cite{jvms-jvm}.
 
 Některé implementace \zkratka{JVM} umožňují přímý překlad do strojového kódu bez potřeby interpretace, např. GraalVM \cite{graalvm}. V takovém případě hovoříme o tzv. \zkratka{AOT} přístupu, místo \zkratka{JIT} postupu implementovaného v moderních verzích častěji používaných \zkratka{JVM}, např. HotSpot od společnosti Oracle [TODO zdroj, že HS používá JIT].
 
