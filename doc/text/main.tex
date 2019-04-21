@@ -72,50 +72,50 @@ Typ \texttt{array}, tedy pole, samozřejmě obsahuje seznam prvků určitého ty
 
 V násedujících odstavcích popisuji různé části paměti \texttt{JVM} -- viz obrázek \ref{obr-jvms-img}.
 
-\section{JVM zásobník}
-V případě, že v Javě mluvíme o zásobníku (stack), typicky máme na mysli \zkratka{JVM} zásobník. Kromě něj totiž ještě existuje nativní zásobník, který je vytvořený operačním systémem pro potřeby \zkratka{JVM} samotného. Kromě toho je využívaný i pro některé nízkoúrovňovější činnosti. \zkratka{JVM} stack je spravovaný běhovým prostředím samotným a slouží pro potřeby aplikací, které v rámci prostředí běží.
+\section{JVM stack}
+V případě, že v Javě mluvíme o stacku (zásobníku), typicky máme na mysli \zkratka{JVM} stack. Kromě něj totiž ještě existuje nativní stack, který je vytvořený operačním systémem pro potřeby \zkratka{JVM} samotného. Kromě toho je využívaný i pro některé nízkoúrovňovější činnosti. \zkratka{JVM} stack je spravovaný běhovým prostředím samotným a slouží pro potřeby aplikací, které v rámci prostředí běží.
 
-Pro každé vlákno aplikace je vytvořený zásobník. Do něj jsou ukládány lokální proměnné, hodnoty parametrů metod a návratové hodmoty. Rovněž se stará o volání metod, respektive o návrat do volací metody po zavolání metody jiné. Stejně jako v jiných jazycích (třeba C) je paměť lokálních proměnných automaticky uvolněna při odebírání hodnot ze zásobníku. Takto alokovanou paměť tak není nutné spravovat \zkratka{GC} (či v případě C ručně uvolňovat).
+Pro každé vlákno aplikace je vytvořený stack. Do něj jsou ukládány lokální proměnné, hodnoty parametrů metod a návratové hodmoty. Rovněž se stará o volání metod, respektive o návrat do volací metody po zavolání metody jiné. Stejně jako v jiných jazycích (třeba C) je paměť lokálních proměnných automaticky uvolněna při odebírání hodnot ze stacku. Takto alokovanou paměť tak není nutné spravovat \zkratka{GC} (či v případě C ručně uvolňovat).
 
-Právě velikost \zkratka{JVM} zásobníku je často omezující faktor při vývoji, na který v některých případech (např. nesprávně zastavovaná rekurze) narážíme. Jeho velikost můžeme nastavit jako parametr při spuštění programu -- konkrétně \texttt{Xss} (respektive \texttt{-XX:ThreadStackSize}). Jeho výchozí velikost je závislá na velikosti dostupné (virtuální) paměti. V souvislosti s nedostatkem paměti a velikostí zásobníku se můžeme setkat se dvěma typy výjimek. \texttt{StackOverflowError} je vyhozena v případě, že během výpočtu narazíme na horní hranici velikosti zásobníku. \texttt{JVM} se případně může pokusit velikost dynamicky zvýšit. Pokud však během této operace narazí na velikost výše zmíněné paměti (což je už limitace nastavená operačním systémem a případně i hardwarovou konfigurací), je vyhozena výjimka jiná -- \texttt{OutOfMemoryError}. Tato výjimka je rovněž produkována v případě, že ručně nastavíme velikost zásobníku takovou, že při jeho vytváření \texttt{JVM} narazí na limity paměti rovnou.
+Právě velikost \zkratka{JVM} stacku je často omezující faktor při vývoji, na který v některých případech (např. nesprávně zastavovaná rekurze) narážíme. Jeho velikost můžeme nastavit jako parametr při spuštění programu -- konkrétně \texttt{Xss} (respektive \texttt{-XX:ThreadStackSize}). Jeho výchozí velikost je závislá na velikosti dostupné (virtuální) paměti. V souvislosti s nedostatkem paměti a velikostí stacku se můžeme setkat se dvěma typy výjimek. \texttt{StackOverflowError} je vyhozena v případě, že během výpočtu narazíme na horní hranici velikosti stacku. \texttt{JVM} se případně může pokusit velikost dynamicky zvýšit. Pokud však během této operace narazí na velikost výše zmíněné paměti (což je už limitace nastavená operačním systémem a případně i hardwarovou konfigurací), je vyhozena výjimka jiná -- \texttt{OutOfMemoryError}. Tato výjimka je rovněž produkována v případě, že ručně nastavíme velikost stacku takovou, že při jeho vytváření \texttt{JVM} narazí na limity paměti rovnou.
 
 \subsection{Rámce}
-Rámce (\textit{frame}) přísluší právě jednomu zásobníku. Data v zásobníku jako takovém jsou totiž neměnná; jsou pouze přidávány/odebírány odkazy na rámce. V každém okamžiku je pro jedno vlákno aktivní právě jeden rámec. 
+Rámce (\textit{frame}) přísluší právě jednomu stacku. Data v něm jako takovém jsou totiž neměnná; jsou pouze přidávány/odebírány odkazy na rámce. V každém okamžiku je pro jedno vlákno aktivní právě jeden rámec. 
 
 \subsubsection{Lokální proměnné}
-Každý rámec obsahuje pole s lokálními proměnnými. Vzhledem k tomu, že je rámec vytvořen a vložen do \zkratka{JVM} zásobníku při volání metody a znovu odebrán a zničen při návratu z ní, právě toto pole zajišťuje uvolnení paměti alokovaných proměnných. Kromě promenných primitivního typu jsou v tomto poli uloženy rovněž reference na objekty v haldě (viz dále), jejich uvolnění sníží počet referencí na daný objekt a v případě dosažení nulové hodnoty je tento objekt připraven na uvolnění pomocí \zkratka{GC}.
+Každý rámec obsahuje pole s lokálními proměnnými. Vzhledem k tomu, že je rámec vytvořen a vložen do \zkratka{JVM} stacku při volání metody a znovu odebrán a zničen při návratu z ní, právě toto pole zajišťuje uvolnení paměti alokovaných proměnných. Kromě promenných primitivního typu jsou v tomto poli uloženy rovněž reference na objekty v heapu (viz dále), jejich uvolnění sníží počet referencí na daný objekt a v případě dosažení nulové hodnoty je tento objekt připraven na uvolnění pomocí \zkratka{GC}.
 
-\subsubsection{Zásobník operandů}
-Tento zásobník slouží pro mezivýpočty při provádění operací, převážně matematických.
+\subsubsection{stack operandů}
+Tento stack slouží pro mezivýpočty při provádění operací, převážně matematických.
 
 \section{Program counter registr}
 \textit{Program counter} (PC) je registr s adresou ukazující na operaci, která se má provést. Vzhledem k tomu, že Java umožňuje vícevláknový běh, má samozřejmě každé vlákno svůj PC. 
 
-\section{Zásobník nativních metod}
-Pokud má daná implementace \zkratka{JVM} podporovat i tzv. \texttt{native} metody, měla by obsahovat i zásobník nativních metod. Zdůrazňuji, že \textit{měla} -- specifikace zde benevolentně ponechává rozhodnutí na konkrétním řešení a tento zásobník nutně nevynucuje. Díky konceptu nativních metod je možné přímo z Javy volat kód napsaný např. v C. 
+\section{stack nativních metod}
+Pokud má daná implementace \zkratka{JVM} podporovat i tzv. \texttt{native} metody, měla by obsahovat i stack nativních metod. Zdůrazňuji, že \textit{měla} -- specifikace zde benevolentně ponechává rozhodnutí na konkrétním řešení a tento stack nutně nevynucuje. Díky konceptu nativních metod je možné přímo z Javy volat kód napsaný např. v C. 
 
-Stejně jako \zkratka{JVM} zásobník, i zásobník nativních metod v některých případech produkuje výjimky. Toto chování je totožné pro oba zásobníky; stejně tak typy těchto chybových stavů jsou stejné.
+Stejně jako \zkratka{JVM} stack, i stack nativních metod v některých případech produkuje výjimky. Toto chování je totožné pro oba stacky; stejně tak typy těchto chybových stavů jsou stejné.
 
-\section{Halda}
-Halda, tj. \textit{heap}, je část paměti, která je pro všechna vlákna programu společná a v Javě tomu není jinak. Díky tomu, že jsou všechny objekty alokovány právě na haldě, k nim můžeme přistupovat napříč metodami, objekty i vlákny. Díky tomu, že platnost v ní umístěných objektů není omezena žádným blokem platnosti (snad jen s výjimkou běhu programu samotného), nedojde k uvolnění jimi zabírané paměti automaticky při opuštění tohoto bloku tak, jak je tomu v případě zásobníku. Právě kvůli tomu nad haldou operuje \zkratka{GC}, který nepotřebné objekty vyhledává a jejich paměť uvolňuje.
+\section{Heap}
+Heap, tj. \textit{halda}, je část paměti, která je pro všechna vlákna programu společná a v Javě tomu není jinak. Díky tomu, že jsou všechny objekty alokovány právě v heapu, k nim můžeme přistupovat napříč metodami, objekty i vlákny. Díky tomu, že platnost v ní umístěných objektů není omezena žádným blokem platnosti (snad jen s výjimkou běhu programu samotného), nedojde k uvolnění jimi zabírané paměti automaticky při opuštění tohoto bloku tak, jak je tomu v případě stacku. Právě kvůli tomu nad heapem operuje \zkratka{GC}, který nepotřebné objekty vyhledává a jejich paměť uvolňuje.
 
-Kromě alokovaných objektů jsou rovněž v haldě uchovávány instanční proměnné. Právě z toho důvodu je nutné si dávat pozor na souběh při běhu ve více vláknech --  všechna při přístupu k instanční proměnní manipulují se stejným objektem.
+Kromě alokovaných objektů jsou rovněž v heapu uchovávány instanční proměnné. Právě z toho důvodu je nutné si dávat pozor na souběh při běhu ve více vláknech --  všechna při přístupu k instanční proměnní manipulují se stejným objektem.
 
-I halda má samozřejmě omezenou velikost. Ta se dá nastavit dvěma přepínači:
+I haheaplda má samozřejmě omezenou velikost. Ta se dá nastavit dvěma přepínači:
 
 \begin{itemize}
-	\item \texttt{Xms} -- Výchozí velikost haldy, s kterou Java nastartuje.
+	\item \texttt{Xms} -- Výchozí velikost heap, s kterou Java nastartuje.
 	\item \texttt{Xmx} -- Maximální velikost.
 \end{itemize}
 
-V případě 32 bitového systému jsou horní hranicí pro maximální velikost haldy 4 Gb, stejně jako v případě velikosti RAM (bez použití různých triků a rozšíření, jako třeba \textit{PAE}, apod.). Jak vyplývá z existence výše zmíněných přepínačů, \zkratka{JVM} dokáže s velikostí haldy dynamicky manipulovat. Program, respektive prostředí pro něj, tak spustí s výchozí hodnotou velikosti a v případě potřeby ji rozšiřuje (nebo naopak zmenšuje) až do maxima. Pokud si běh programu žádá více paměti v haldě, než může \zkratka{JVM} alokovat (tj. než má od systému k dispozici), vyhod, stejně jako v případě zásobníku, výjimku \texttt{OutOfMemoryError}. 
+V případě 32 bitového systému jsou horní hranicí pro maximální velikost heapu 4 Gb, stejně jako v případě velikosti RAM (bez použití různých triků a rozšíření, jako třeba \textit{PAE}, apod.). Jak vyplývá z existence výše zmíněných přepínačů, \zkratka{JVM} dokáže s velikostí heapu dynamicky manipulovat. Program, respektive prostředí pro něj, tak spustí s výchozí hodnotou velikosti a v případě potřeby ji rozšiřuje (nebo naopak zmenšuje) až do maxima. Pokud si běh programu žádá více paměti v heapu, než může \zkratka{JVM} alokovat (tj. než má od systému k dispozici), vyhod, stejně jako v případě stacku, výjimku \texttt{OutOfMemoryError}. 
 
-Halda je rozdělena dále do několika prostorů, jak je popsáno dále v kapitole \ref{memory-management}.
+Heap je rozdělen dále do několika prostorů, jak je popsáno dále v kapitole \ref{memory-management}.
 
 \section{Non-heap oblast}
 Kromě oblasti metod bsahuje pomocná data, která jsou potřeba pro interní zpracování a potřeby. 
 \subsection{Oblast metod}
-Oblast, která uchováva data jednotlivých metod. Pro každou načtenou třídu uchovává strukturu se seznamem metod, statickými proměnnými a kódem metod a konstruktorů. Na jednu ze struktur třídy směřuje ukazatel z aktuálně zpracovávaného rámce v zásobníku, pomocí kterého může aktuálně vykonávaný kód přistupovat ke statickým členům třídy.
+Oblast, která uchováva data jednotlivých metod. Pro každou načtenou třídu uchovává strukturu se seznamem metod, statickými proměnnými a kódem metod a konstruktorů. Na jednu ze struktur třídy směřuje ukazatel z aktuálně zpracovávaného rámce v stacku, pomocí kterého může aktuálně vykonávaný kód přistupovat ke statickým členům třídy.
 
 \begin{figure}[h]
 	\centering
@@ -157,7 +157,7 @@ Jak již bylo zmíněno v úvodu, využití paměti lze optimalizovat na několi
 
 Můžeme tedy omezit samotné využití objektů -- zvážit, zda je potřebujeme, případně zda neexistuje vhodnější způsob či struktura pro jejich uchovávání. Jejich alokaci v paměti bychom rovněž meli omezit na nejkratší možnou dobu, po kterou si budeme jisti jejich využitím. Nicméně i zde je vhodné najít vhodný poměr mezi optimalizací a zbytečným úklidem objektu, který za několik okamžiků znovu budeme vytvářet.
 
-Nejpřímějším způsobem optimalizace užití paměti se může jevit odstranění objektů, které už nejsou zapotřebí a nikdo je tedy nevlastní. Takové objekty nicméně nemusíme v naší optimalizaci uvažovat. O jejich uvolnění z paměti se postará \zkratka{GC}. Této vlastnosti jazyku tedy můžeme využít a nepotřebné objekty ručně odstraňovat -- nastavit je jako \texttt{null}. K jejich uvolnění dojde i při opuštění aktuálního prostoru -- oboru platnosti lokální proměnné. K takovému uvolnění nicméně nedochází přímo zapomocí analýzy \zkratka{GC}, ale díky uložení lokálních proměnných v zásobníku, z kterého jsou při opuštění bloku odstraněny.
+Nejpřímějším způsobem optimalizace užití paměti se může jevit odstranění objektů, které už nejsou zapotřebí a nikdo je tedy nevlastní. Takové objekty nicméně nemusíme v naší optimalizaci uvažovat. O jejich uvolnění z paměti se postará \zkratka{GC}. Této vlastnosti jazyku tedy můžeme využít a nepotřebné objekty ručně odstraňovat -- nastavit je jako \texttt{null}. K jejich uvolnění dojde i při opuštění aktuálního prostoru -- oboru platnosti lokální proměnné. K takovému uvolnění nicméně nedochází přímo zapomocí analýzy \zkratka{GC}, ale díky uložení lokálních proměnných v stacku, z kterého jsou při opuštění bloku odstraněny.
 
 
 
@@ -202,10 +202,10 @@ Pokud \texttt{JVM} narazí na třídu, podívá se do setu načtených tříd. J
 
 
 
-\chapter{Správa a struktura Java haldy}
+\chapter{Správa a struktura Java heapu}
 \label{memory-management}
 
-Paměťovému modelu v Javě se věnuje \textit{JSR-133}, nicméně přesně nespecifikuje konkrétní rozdělení paměti a způsob jejího přidělování a uvolňování. Následný popis se tedy věnuje implementaci od společnosti Oracle – HotSpot. Zde je paměť rozdělena na 2 logické celky – \textit{young generation space} a \textit{old generation space}. Tato paměť, tedy halda, je rozdělena pouze v rámci JVM a následně je mapována na skutečnou fyzickou paměť \cite{jsr133}.
+Paměťovému modelu v Javě se věnuje \textit{JSR-133}, nicméně přesně nespecifikuje konkrétní rozdělení paměti a způsob jejího přidělování a uvolňování. Následný popis se tedy věnuje implementaci od společnosti Oracle – HotSpot. Zde je paměť rozdělena na 2 logické celky – \textit{young generation space} a \textit{old generation space}. Tato paměť, tedy heap, je rozdělena pouze v rámci JVM a následně je mapována na skutečnou fyzickou paměť \cite{jsr133}.
 
 Young generation space, tedy doslova “prostor mladé generace”, je dále rozdělen na \textit{eden space} a prostory \textit{S0} a \textit{S1}. Eden space slouží k vytváření nových instancí objektů, je zde tedy vyhrazena část paměti nově vytvořenému objektu. Pokud v tomto prostoru není volno, proběhne uvolnění paměti (viz dále) přesunutím některých objektů do S0. Každý takový objekt obsahuje informaci o tom, kolik takových uvolnění daný objekt \uv{přežil}.
 
