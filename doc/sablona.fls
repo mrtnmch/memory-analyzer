@@ -227,6 +227,8 @@ INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ts1-qtmr.tfm
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/JVM_Internal_Architecture.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/JVM_Internal_Architecture.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/JVM_Internal_Architecture.png
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png
