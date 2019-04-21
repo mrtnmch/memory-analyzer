@@ -246,8 +246,10 @@ Při běhu paralelního \zkratka{GC} má tento typ priority -- kritéria, která
 \begin{description}
     \item[Maximální čas běhu] Nastavuje horní časový limit (v milisekundách), jak dlouho má být trvání jedné pauzy. Výchozí hodnota dobu trvání neomezuje. Pokud ručně nastavíme kratší čas, než je pro algoritmus optimální, můžeme výrazně snížit propustnost algoritmu.
     \item[Propustnost] Poměr času stráveného zpracováním garbage kolekce oproti času stráveného mimo ni (tj. času využívaného aplikací). Např. hodnota $9$ nastaví tento poměr na $10 \%$ ($\frac{1}{1+9}$). Výchozí hodnota je $1 \%$.
-    \item[Minimální \textit{footprint}] (stopa, využití prostředků)
+    \item[Minimální \textit{footprint}] (stopa, využití prostředků) Zajišťuje dodržení velikosti heapu.
 \end{description}
+
+Při běhu \zkratka{GC} je postupováno shora, tj. na propustnost je brán ohled pouze za podmínky, že je splněna maximální doba běhu. Analogicky je splněna podmínka minimálního footprintu.
 
 \subsection{G1 GC}
 G1 znamená \textit{Garbage First}. 
