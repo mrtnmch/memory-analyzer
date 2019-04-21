@@ -30,17 +30,22 @@
 \contentsline {subsection}{\numberline {7.2.1}Vytvo\IeC {\v r}en\IeC {\'\i } dumpu}{22}{subsection.47}
 \contentsline {subsection}{\numberline {7.2.2}Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{23}{subsection.48}
 \contentsline {section}{\numberline {7.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{23}{section.50}
-\contentsline {chapter}{\numberline {8}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{25}{chapter.51}
-\contentsline {section}{\numberline {8.1}Eclipse MAT}{25}{section.52}
-\contentsline {section}{\numberline {8.2}VisualVM}{25}{section.53}
-\contentsline {section}{\numberline {8.3}Java Mission Control}{26}{section.54}
-\contentsline {section}{\numberline {8.4}JProfiler}{26}{section.55}
-\contentsline {section}{\numberline {8.5}JHAT}{26}{section.56}
-\contentsline {section}{\numberline {8.6}\ac {OQL}}{26}{section.57}
-\contentsline {chapter}{\numberline {9}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{28}{chapter.62}
-\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{29}{chapter.63}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{30}{chapter.63}
-\contentsline {chapter}{Seznam zkratek}{32}{section*.66}
-\contentsline {chapter}{Literatura}{33}{section*.68}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{35}{section*.70}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{36}{chapter.71}
+\contentsline {section}{\numberline {7.4}Bin\IeC {\'a}rn\IeC {\'\i } form\IeC {\'a}t dumpu heapu}{24}{section.51}
+\contentsline {subsection}{\numberline {7.4.1}Hlavi\IeC {\v c}ka}{24}{subsection.52}
+\contentsline {subsection}{\numberline {7.4.2}T\IeC {\v e}lo}{24}{subsection.54}
+\contentsline {subsubsection}{Typy z\IeC {\'a}znam\IeC {\r u}}{24}{section*.56}
+\contentsline {subsubsection}{Typy dumpovan\IeC {\'y}ch hodnot}{25}{section*.58}
+\contentsline {chapter}{\numberline {8}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{26}{chapter.60}
+\contentsline {section}{\numberline {8.1}Eclipse MAT}{26}{section.61}
+\contentsline {section}{\numberline {8.2}VisualVM}{26}{section.62}
+\contentsline {section}{\numberline {8.3}Java Mission Control}{27}{section.63}
+\contentsline {section}{\numberline {8.4}JProfiler}{27}{section.64}
+\contentsline {section}{\numberline {8.5}JHAT}{27}{section.65}
+\contentsline {section}{\numberline {8.6}\ac {OQL}}{27}{section.66}
+\contentsline {chapter}{\numberline {9}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{29}{chapter.71}
+\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{30}{chapter.72}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{31}{chapter.72}
+\contentsline {chapter}{Seznam zkratek}{33}{section*.75}
+\contentsline {chapter}{Literatura}{34}{section*.77}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{36}{section*.79}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{37}{chapter.80}

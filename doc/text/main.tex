@@ -133,9 +133,9 @@ Oblast, která uchováva data jednotlivých metod. Pro každou načtenou třídu
             \item Pro třídy nebo rozhraní, která nejsou polem, obsahuje přímo jejich název
             \item Pro pole promitivního typu o \texttt{n} dimenzích začíná \texttt{n}-krát znakem \texttt{[}, pak následuje jméno komponenty pole. Pokud je toto navíc neprimitivního typu, jako prefix je přidán symbol \texttt{L} a postfix \texttt{;}.
         \end{itemize}
-    \item[Informace o polích]
-    \item[Informace o metodách]
-    \item[Informace o rozhraních]
+    \item[Informace o třídních promenných] Obsahuje název a typ.
+    \item[Informace o metodách] Obsahuje název a informace z hlavičky metody.
+    \item[Informace o rozhraních] Obsahuje názvy rozhraní a případně i jejich metody.   
     \item[Různé typy parametrů, návratové typy atd.]  
 \end{description}
 
@@ -297,7 +297,82 @@ Při zpracování dumpu je nutné zohlednit fakt, že je vyexportovaný kompletn
 
 Pro práci nad heapem  (typicky ve formátu HPROF) je možné využít některou z implementací dotazovacího jazyku OQL (Object Query Language).
 
+\section{Binární formát dumpu heapu}
+Binární formát dumpu Java heapu (\textit{hprof}) má specifikovaný formát, který je popsán v tabulkách \ref{table-hprof-header} a \ref{table-hprof-body}.
 
+\subsection{Hlavička}
+\begin{table}[ht!]
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+    \textbf{Velikost} & \textbf{Popis} \\ \hline \hline
+    $n + 1$ B & Formát a verze dumpu délky $n$. Velikost není specifikována, pole bytů je ukončeno hodnotou \texttt{NULL}. \\
+    4 B & Velikost identifikátorů. Mohou mít stejnou velikost jako ukazatele hostitelského systému, ale není to nutné. \\
+    4 B & Část data (high-order word) z Unix timestampu. \\
+    4 B & Část data (low-order word) z Unix timestampu.  \\ \hline                                                                   
+    \end{tabularx}
+    \caption{Hlavička \texttt{hprof} binárního formátu.}
+    \label{table-hprof-header}
+\end{table}
+
+\subsection{Tělo}
+Tělo formátu dumpu je složeno ze sekvence (či pole) položek následujícího formátu.
+\begin{table}[ht!]
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+    \textbf{Velikost} & \textbf{Popis} \\ \hline \hline
+    1 B & Tag -- typ záznamu -- viz tabulka \ref{table-hprof-types}. \\
+    4 B & Čas -- počet milisekund, které uplynule od Unix timestampu v hlavičce. \\
+    4 B & Délka -- počet bytů $n$, které následují a slouží jako obsah záznamu. \\
+    $n$ B & Obsah záznamu. \\ \hline                                                                   
+    \end{tabularx}
+    \caption{Tělo \texttt{hprof} binárního formátu.}
+    \label{table-hprof-body}
+\end{table}
+
+
+\subsubsection{Typy záznamů}
+Tabulka s tělem obsahuje pole záznamů, v nichž je typ záznamu -- pole \textit{tag}. Celkově je podporováno 13 následujících typů -- z toho většina má ještě, jako obsah, další -- více či méně komplexní -- strukturu.
+\begin{table}[ht!]
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+    \textbf{Tag} & \textbf{Popis} \\ \hline \hline
+    0x01 & Dump řetězce. \\
+    0x02 & Načtení třídy. \\
+    0x03 & Odstranění (ve smyslu opaku načtění) třídy. \\
+    0x04 & Rámec (položka) stacku. \\
+    0x05 & Stack trace. \\
+    0x06 & Alokace. \\
+    0x07 & Souhrn některých hodnot heapu. \\
+    0x0A & Počátek vlákna. \\
+    0x0B & Konec vlákna \\
+    0x0C/0x1C & Heap dump, respektive heap dump segment. \\
+    0x2C & Konec heap dumpu. \\
+    0x0D & CPU vzorkování. \\
+    0x0E & Hodnoty některých nastavení. \\ \hline                                                                   
+    \end{tabularx}
+    \caption{Typy položek \texttt{hprof} binárního formátu.}
+    \label{table-hprof-types}
+\end{table}
+
+\subsubsection{Typy dumpovaných hodnot}
+Některé z výše zmíněných typů (které jsem dále nerozepisoval) už obsahují přímo data programu (ať už uživatelská nebo pomocná). Proto jsou definovány typy těchto dat, které jsou shrnuty v tabulce \ref{table-hprof-data-types}. Pole jsou definována pomocí řetězcu s jejich názvem tak, jak by se objevily v Javě, tedy např. \texttt{int[][]}.
+\begin{table}[ht!]
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+    \textbf{Označení} & \textbf{Datový typ} \\ \hline \hline
+    2 & \texttt{Object}. \\
+    4 & \texttt{Boolean}. \\
+    5 & \texttt{Char}. \\
+    6 & \texttt{Float}. \\
+    7 & \texttt{Double}. \\
+    8 & \texttt{Byte}. \\
+    9 & \texttt{Short}. \\
+    10 & \texttt{Int}. \\
+    11 & \texttt{Long}. \\ \hline
+    \end{tabularx}
+    \caption{Datové typy položek \texttt{hprof} binárního formátu.}
+    \label{table-hprof-data-types}
+\end{table}
 
 % =====================================================================================================================================================================================
 

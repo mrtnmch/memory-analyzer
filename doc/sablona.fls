@@ -113,6 +113,10 @@ INPUT /usr/share/texmf/tex/latex/tex-gyre/tgtermes.sty
 INPUT /usr/share/texmf/tex/latex/tex-gyre/tgtermes.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/chngcntr/chngcntr.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/chngcntr/chngcntr.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/thesis.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/thesis.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.aux
