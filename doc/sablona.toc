@@ -27,7 +27,7 @@
 \contentsline {subsection}{\numberline {7.1.4}G1 GC}{22}{subsection.36}
 \contentsline {section}{\numberline {7.2}Heap Dump}{22}{section.37}
 \contentsline {subsection}{\numberline {7.2.1}Vytvo\IeC {\v r}en\IeC {\'\i } dumpu}{22}{subsection.38}
-\contentsline {subsection}{\numberline {7.2.2}Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{22}{subsection.39}
+\contentsline {subsection}{\numberline {7.2.2}Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{23}{subsection.39}
 \contentsline {section}{\numberline {7.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{23}{section.41}
 \contentsline {chapter}{\numberline {8}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{24}{chapter.42}
 \contentsline {section}{\numberline {8.1}Eclipse MAT}{24}{section.43}

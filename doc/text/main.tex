@@ -240,7 +240,14 @@ Algoritmus CMS \zkratka{GC} prozkoumává paměťový prostor heapu pomocí běh
 Typ běhu \zkratka{GC}, který zastaví všechna vlákna a provede nad nimi operaci uvolnění. Vzhledem k typu běhu je vhodný pouze pro menší aplikace nebo jednovláknové stroje. Všechny operace uvolnění běží pouze v jednom vlákně -- tato vlastnost jej činí zároveň velikce efektivním, protože není zapotřebí žádná synchronizace ani mezivláknová komunikace. Díky tomu, že zmrazí všechna ostatní vlákna, je vysloveně nevhodný pro aplikace, které se na vícevláknový běh spoléhají -- typicky například server, který musí poslouchat na portu a obsluhovat příchozí provoz.
 
 \subsection{Paralelní GC}
-Je výchozí volbou pro \zkratka{JVM} (pokud jej umožňuje hardware). Jak vyplývá z názvu, jeho běh je rozdělen do více vláken, narozdíl od seriového \zkratka{GC}. Je určen pro aplikace velkého rozsahu, které běží ve více vláknech (a na systémech, které tento běh umožňují). Konkrétní počet vláken, ve kterých \zkratka{GC} běží, je zvolen automaticky na základě dostupných zdrojů -- konkrétně paralelních vláken, které je schopen daný procesor obsluhovat zároveň. Kromě toho je tento počet rovněž možné nastavit ručně (pomocí parametru \texttt{-XX:ParallelGCThreads}).
+Je výchozí volbou pro \zkratka{JVM} (pokud jej umožňuje hardware). Jak vyplývá z názvu, jeho běh je rozdělen do více vláken, narozdíl od seriového \zkratka{GC}. Je určen pro aplikace velkého rozsahu, které běží ve více vláknech (a na systémech, které tento běh umožňují). Konkrétní počet vláken, ve kterých \zkratka{GC} běží, je zvolen automaticky na základě dostupných zdrojů -- konkrétně paralelních vláken, které je schopen daný procesor obsluhovat zároveň. Kromě toho je tento počet rovněž možné nastavit ručně (pomocí parametru \texttt{-XX:ParallelGCThreads}). 
+
+Při běhu paralelního \zkratka{GC} má tento typ priority -- kritéria, která musí splnit. Jejich priorita je v následujícím pořadí (sestupně):
+\begin{description}
+    \item[Maximální čas běhu] Nastavuje horní časový limit (v milisekundách), jak dlouho má být trvání jedné pauzy. Výchozí hodnota dobu trvání neomezuje. Pokud ručně nastavíme kratší čas, než je pro algoritmus optimální, můžeme výrazně snížit propustnost algoritmu.
+    \item[Propustnost] Poměr času stráveného zpracováním garbage kolekce oproti času stráveného mimo ni (tj. času využívaného aplikací). Např. hodnota $9$ nastaví tento poměr na $10 \%$ ($\frac{1}{1+9}$). Výchozí hodnota je $1 \%$.
+    \item[Minimální \textit{footprint}] (stopa, využití prostředků)
+\end{description}
 
 \subsection{G1 GC}
 G1 znamená \textit{Garbage First}. 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  21 APR 2019 15:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  21 APR 2019 15:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -722,25 +722,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 ] [21]
 Package acronym Info: Label `acro:PID' newly defined as it shall be overridden
-although it is yet undefined on input line 257.
-<obrazky/heapdump-performed.png, id=375, 781.92125pt x 350.30875pt>
+although it is yet undefined on input line 264.
+ [22]
+<obrazky/heapdump-performed.png, id=382, 781.92125pt x 350.30875pt>
 File: obrazky/heapdump-performed.png Graphic file (type png)
 <use obrazky/heapdump-performed.png>
-Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 264.
+Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 271.
 (pdftex.def)             Requested size: 390.95967pt x 175.15395pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[22] [23 </home/mxmx/dev/memory-analyzer/doc/obrazky/heapdump-performed.png>] [24
+ [23 </home/mxmx/dev/memory-analyzer/doc/obrazky/heapdump-performed.png>] [24
 
 ]
 Package acronym Info: Label `acro:CLI' newly defined as it shall be overridden
-although it is yet undefined on input line 307.
+although it is yet undefined on input line 314.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) [25]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 314.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 321.
  [26] [27
 
 ]) [28
@@ -848,18 +845,18 @@ Package rerunfilecheck Info: File `sablona.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 238.
  ) 
 Here is how much of TeX's memory you used:
- 14004 strings out of 492641
- 196976 string characters out of 6131787
- 313432 words of memory out of 5000000
- 17529 multiletter control sequences out of 15000+600000
- 37182 words of font info for 38 fonts, out of 8000000 for 9000
+ 14007 strings out of 492641
+ 197014 string characters out of 6131787
+ 313439 words of memory out of 5000000
+ 17530 multiletter control sequences out of 15000+600000
+ 40026 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,18n,44p,1504b,1303s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (34 pages, 969688 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmbi.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
+Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (34 pages, 997503 bytes).
 PDF statistics:
- 557 PDF objects out of 1000 (max. 8388607)
- 488 compressed objects within 5 object streams
+ 561 PDF objects out of 1000 (max. 8388607)
+ 491 compressed objects within 5 object streams
  112 named destinations out of 1000 (max. 500000)
  397 words of extra memory for PDF output out of 10000 (max. 10000000)
 
