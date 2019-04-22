@@ -477,4 +477,21 @@ a tuto funkci definujeme jako:
       \end{cases}.
 \end{equation}
 
+Z těchto vztahů ale vyplývají dva problémy:
+
+\begin{itemize}
+    \item Není zajištěna ochrana proti zacyklení v rámci rekurze.
+    \item Pro rekurzi není nastavena zastavovací podmínka.
+\end{itemize}
+
+První problém můžeme vyřešit jednoduše v rámci původní rovnice, její menší úpravou:
+    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j \wedge D(A, B, F_A^i, F_B^i) : E_F(F_A^i, F_B^i)$$
+A pomocnou funkci $D(A, B, f_1, f_2)$, která zjišťuje prostou rovnost objektů a slouží tedy jako ochrana proti zacyklení:
+    $$
+    D(A, B, f_1, f_2) = f_1 \neq A \vee f_1 \neq B \vee f_2 \neq A \vee f_2 \neq B
+    $$
+
+Problém druhý, tedy zastavovací podmínku, můžeme vyřešit pouhým počítáním hloubky (zanoření) porovnávání a přerušením tohoto zanořování v určité hloubce -- ideálně nastavitelné externě tak, abychom mohli volitelně ovlivňovat rychlost, ale i přesnost, algoritmu. Formálně je tento problém tedy možné definovat tak, že porovnávání referenčních typů budeme chápat jako strom, jehož rozvoj ukončíme při dosažení určité hloubky $h$.
+
+
 \chapter{Analýza a implementace}
