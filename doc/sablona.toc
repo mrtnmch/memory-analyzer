@@ -46,9 +46,9 @@
 \contentsline {section}{\numberline {9.1}Rovnost objekt\IeC {\r u}}{29}{section.72}
 \contentsline {section}{\numberline {9.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{30}{section.73}
 \contentsline {subsection}{\numberline {9.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{31}{subsection.74}
-\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{32}{chapter.76}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{33}{chapter.76}
-\contentsline {chapter}{Seznam zkratek}{35}{section*.79}
-\contentsline {chapter}{Literatura}{36}{section*.81}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{38}{section*.83}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{39}{chapter.84}
+\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{33}{chapter.77}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{34}{chapter.77}
+\contentsline {chapter}{Seznam zkratek}{36}{section*.80}
+\contentsline {chapter}{Literatura}{37}{section*.82}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{39}{section*.84}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{40}{chapter.85}

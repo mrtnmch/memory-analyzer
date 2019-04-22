@@ -466,7 +466,7 @@ Jak bylo popsáno v kapitole \ref{ref-types}, referenční -- tedy neprimitivní
 
 \subsection{Porovnávání referencovaných objektů}
 V případě, že je typ jedné z proměnných třídy jinou třídou (a proměnná tedy obsahuje referenci na instanci této třídy nebo \texttt{null}), měli bychom porovnat i rovnost tohoto odkazovaného objektu s objektem odkazovaným z druhé instance. Zobecníme tedy výše definovanou rovnost na funkci $E_F(f_1, f_2)$:
-    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: E_F(F_A^i, F_B^i)$$
+    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: E_F(F_A^i, F_B^j)$$
 
 a tuto funkci definujeme jako:
 \begin{equation}
@@ -485,13 +485,59 @@ Z těchto vztahů ale vyplývají dva problémy:
 \end{itemize}
 
 První problém můžeme vyřešit jednoduše v rámci původní rovnice, její menší úpravou:
-    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j \wedge D(A, B, F_A^i, F_B^i) : E_F(F_A^i, F_B^i)$$
+    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j \wedge D(A, B, F_A^i, F_B^j) : E_F(F_A^i, F_B^j)$$
 A pomocnou funkci $D(A, B, f_1, f_2)$, která zjišťuje prostou rovnost objektů a slouží tedy jako ochrana proti zacyklení:
     $$
     D(A, B, f_1, f_2) = f_1 \neq A \vee f_1 \neq B \vee f_2 \neq A \vee f_2 \neq B
     $$
 
-Problém druhý, tedy zastavovací podmínku, můžeme vyřešit pouhým počítáním hloubky (zanoření) porovnávání a přerušením tohoto zanořování v určité hloubce -- ideálně nastavitelné externě tak, abychom mohli volitelně ovlivňovat rychlost, ale i přesnost, algoritmu. Formálně je tento problém tedy možné definovat tak, že porovnávání referenčních typů budeme chápat jako strom, jehož rozvoj ukončíme při dosažení určité hloubky $h$.
+Problém druhý, tedy zastavovací podmínku, můžeme vyřešit pouhým počítáním hloubky (zanoření) porovnávání a přerušením tohoto zanořování v určité hloubce -- ideálně nastavitelné externě tak, abychom mohli volitelně ovlivňovat rychlost, a nevyhnutelně tak i přesnost, algoritmu. Formálně je tento problém tedy možné definovat tak, že porovnávání referenčních typů budeme chápat jako strom, jehož rozvoj ukončíme při dosažení určité hloubky $h$.
+
+Tento strom je vidět na obrázku \ref{obr-height}. Mějme dva objekty, $A_1$ a $A_2$. Oba mají po 2 proměnných, $F_{A_1}^1, F_{A_1}^2$, respektive $F_{A_2}^1, F_{A_2}^2$. Označme operaci tohoto porovnání jako $A$ a porovnání dvojic třídních proměnných jako $F_A^1, F_A^2$. Hloubka zanoření je v tuto chvíli $h=0$. Rekurzivně takto budeme sestupovat, dále tedy provádíme porovnání $B$ a $C$ obdobně, jako porovnání $A$, tentokrát s hloubkou zanoření $h=1$.
+
+Takto bychom sestupovali (dále s operacemi v hloubce $h=2$), dokud bychom nenarazili na horní limit $h_{max}$. V ten okamžik se můžeme zachovat ke všem proměnným jako k primitivním typům a dále rekurzivně nesestupovat.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=5cm,
+        thick,main node/.style={circle,draw,font=\sffamily\Large}]     
+        \node[main node] (1) {$A$};
+        \node[main node] (2) [below left of=1] {$B$};
+        \node[main node] (3) [below right of=1] {$C$};
+        \node[main node] (4) [below left of=2, xshift=0.8cm] {$D$};
+        \node[main node] (5) [below right of=2, xshift=-0.8cm] {$E$};
+        \node[main node] (6) [below left of=3, xshift=0.8cm] {$F$};
+        \node[main node] (7) [below right of=3, xshift=-0.8cm] {$G$};
+
+    \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [left] {$F_A^1$} (2)
+        edge node [right] {$F_A^2$} (3)
+    (2) edge node [left] {$F_B^1$} (4)
+        edge node [right] {$F_B^2$} (5)
+    (3) edge node [left] {$F_C^1$} (6)
+        edge node [right] {$F_C^2$} (7);
+
+    \draw (8cm,1.5cm) -- ++(90:-10cm);
+    \coordinate [label=below:$h$] (h) at (8.5cm,-8cm);
+
+    \end{tikzpicture}
+    \caption{Strom porovnávání objektů}
+    \label{obr-height}
+\end{figure}
+
+\subsection{Porovnávání řetězců}
+Porovnání řetězce jako takového je poměrně jednoduché, kromě vlastního řešení, které může být více či méně efektivní, můžeme byty převést opět do objektu typu \texttt{String} a využít metodu \texttt{equals}, kterou Java nabízí.
+
+Nicméně, pro zrychlení porovnávání můžeme využít výše zmíněného poznatku, že se Java v některých případech snaží uchovávat řetězce v tabulce symbolů. V takovém případě by stačilo pouze porovnat adresu, na kterou proměnná typu \texttt{String} ukazuje. To je prosté porovnání celočíselných hodnot, tedy triviální operace.
+
+\subsection{Porovnávání polí a kolekcí}
+Porovnávání polí je opět poměrně jednoduché a znamená prosté iterování nad všemi položkami pole a jejich porovnání podle výše zmíněných metod. 
+
+Musíme se pouze zamyslet, jakým způsobem chceme toto iterování provádět -- respektive, zda jsme ochotni vyměnit rychlost za přesnost. Prvky pole mohou být v různém pořadí. V takovém případě se problém redukuje na problém řazení, ktereý je v nejlepším případě $O(N logN)$ (např. pro \textit{Quick sort}). Nabízí se ovšem otázka, zda k takovému kroku chceme přistupovat -- implementace programu může být na pořadí prvků závislá a pokud bychom označili objekty s takovými poli jako duplikáty, mohlo by se jednat o falešně positivní případ. Rovnost polí $E_A(f_1, f_2)$, kde $f_1, f_2$ jsou třídní proměnné typu pole, obsahující prvky $p_1, p_2, ..., p_N$ je tedy možné definovat jako:
+
+$$
+E_A(f_1, f_2)=\forall f_1^i, f_2^j \epsilon f_1, f_2: i = j : E_F(f_1^i, f_2^j)
+$$
 
 
 \chapter{Analýza a implementace}
