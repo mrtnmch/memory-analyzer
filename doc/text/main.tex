@@ -305,7 +305,7 @@ Binární formát dumpu Java heapu (\textit{hprof}) má specifikovaný formát, 
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
     \textbf{Velikost} & \textbf{Popis} \\ \hline \hline
-    $n + 1$ B & Formát a verze dumpu délky $n$. Velikost není specifikována, pole bytů je ukončeno hodnotou \texttt{NULL}. \\
+    $n + 1$ B & Formát a verze dumpu délky $n$. Velikost není specifikována, pole bytů je ukončeno hodnotou \texttt{null}. \\
     4 B & Velikost identifikátorů. Mohou mít stejnou velikost jako ukazatele hostitelského systému, ale není to nutné. \\
     4 B & Část data (high-order word) z Unix timestampu. \\
     4 B & Část data (low-order word) z Unix timestampu.  \\ \hline                                                                   
@@ -453,7 +453,7 @@ Nyní jsou tedy objekty stejných (dle výše definovaných měřítek) tříd a
 
 Nyní je tedy možné definovat rovnost objektů následovně:
 
-    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A, F_B: F_A^i = F_B^i.$$
+    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: F_A^i = F_B^j.$$
 
 Jinak řečeno -- objekty $A$, $B$ jsou si rovny právě tehdy, když jsou si rovny jejich třídy pomocí výše navrhnuté metody a zároveň platí, že jsou si rovny všechny dvojice proměnných daných objektů. 
 
@@ -462,7 +462,19 @@ Teoreticky by samozřejmě bylo možné vyhledávat i napříč různými tříd
 \section{Rovnost složitějších objektů}
 Výše navrhnutý indikátor rovnosti ovšem postačuje pouze pro objekty tříd, jejichž proměnné jsou všechny primitivního typu. To ovšem neplatí v běžném programu netriviálního rozsahu prakticky nikdy. Už například prosté použití řetězce, tedy třídy \texttt{String}, tuto podmínku nesplňuje.
 
-Jak bylo popsáno v kapitole \ref{ref-types}
+Jak bylo popsáno v kapitole \ref{ref-types}, referenční -- tedy neprimitivní -- typy jsou odkazovány pomocí jejich adresy. Výše definovaný algoritsmus by tak porovnával ji -- pouze celočíselnou hodnotu. Takový algoritmus ovšem ve skutečnosti není o nic lepší, než prosté porovnání bytů daného objektu přímo v dumpu. Je tedy nutné zvolit vhodnější přístup.
 
+\subsection{Porovnávání referencovaných objektů}
+V případě, že je typ jedné z proměnných třídy jinou třídou (a proměnná tedy obsahuje referenci na instanci této třídy nebo \texttt{null}), měli bychom porovnat i rovnost tohoto odkazovaného objektu s objektem odkazovaným z druhé instance. Zobecníme tedy výše definovanou rovnost na funkci $E_F(f_1, f_2)$:
+    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: E_F(F_A^i, F_B^i)$$
+
+a tuto funkci definujeme jako:
+\begin{equation}
+    E_F(f_1, f_2)=
+      \begin{cases}
+        f_1 = f_2 & \text{pokud je typ proměnné primitivní} \\
+        E(f_1, f_2) & \text{pokud je typ proměnné referenční}
+      \end{cases}.
+\end{equation}
 
 \chapter{Analýza a implementace}

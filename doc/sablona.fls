@@ -117,6 +117,16 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/thesis.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/thesis.sty
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.aux
@@ -245,6 +255,8 @@ INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/heapdump-performed.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/heapdump-performed.png
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qtmr.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qtmr.tfm
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.lof
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.lof
 OUTPUT /home/mxmx/dev/memory-analyzer/doc/sablona.lof
@@ -273,6 +285,7 @@ INPUT /home/mxmx/dev/memory-analyzer/doc/text/prilohy.aux
 INPUT /home/mxmx/dev/memory-analyzer/doc/text/prilohy.aux
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.out
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.out
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc
@@ -280,6 +293,7 @@ INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmex10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
