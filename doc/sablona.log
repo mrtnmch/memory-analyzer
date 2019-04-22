@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  21 APR 2019 22:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  22 APR 2019 16:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -582,7 +582,7 @@ Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 ))
 \c@lstlisting=\count133
-<pdf/student-titulka.pdf, id=188, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=196, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 202.
@@ -591,7 +591,7 @@ File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 202.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<pdf/student-titulka.pdf, id=191, page=1, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=199, page=1, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 202.
@@ -659,10 +659,7 @@ LaTeX Font Warning: Font shape `T1/qtm/m/sl' in size <12> not available
 ] (/home/mxmx/dev/memory-analyzer/doc/sablona.toc [5
 
 
-]
-Package acronym Info: Label `acro:OQL' newly defined as it shall be overridden
-although it is yet undefined on input line 44.
-)
+])
 \tf@toc=\write5
 \openout5 = `sablona.toc'.
 
@@ -700,7 +697,7 @@ Overfull \hbox (49.63866pt too wide) in paragraph at lines 80--81
  []
 
 [11] [12]
-<obrazky/JVM_Internal_Architecture.png, id=320, 4061.1725pt x 2409.0pt>
+<obrazky/JVM_Internal_Architecture.png, id=331, 4061.1725pt x 2409.0pt>
 File: obrazky/JVM_Internal_Architecture.png Graphic file (type png)
 <use obrazky/JVM_Internal_Architecture.png>
 Package pdftex.def Info: obrazky/JVM_Internal_Architecture.png  used on input line 122.
@@ -710,7 +707,7 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 145.
  [14]
-<obrazky/runtime-analysis.png, id=345, 845.0772pt x 228.855pt>
+<obrazky/runtime-analysis.png, id=355, 845.0772pt x 228.855pt>
 File: obrazky/runtime-analysis.png Graphic file (type png)
 <use obrazky/runtime-analysis.png>
 Package pdftex.def Info: obrazky/runtime-analysis.png  used on input line 171.
@@ -732,7 +729,7 @@ Overfull \hbox (2.6866pt too wide) in paragraph at lines 201--202
 [17
 
 ]
-<obrazky/class-loader.png, id=368, 845.0772pt x 597.432pt>
+<obrazky/class-loader.png, id=378, 845.0772pt x 597.432pt>
 File: obrazky/class-loader.png Graphic file (type png)
 <use obrazky/class-loader.png>
 Package pdftex.def Info: obrazky/class-loader.png  used on input line 224.
@@ -746,7 +743,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ] [21] [22]
 Package acronym Info: Label `acro:PID' newly defined as it shall be overridden
 although it is yet undefined on input line 283.
-<obrazky/heapdump-performed.png, id=411, 781.92125pt x 350.30875pt>
+<obrazky/heapdump-performed.png, id=421, 781.92125pt x 350.30875pt>
 File: obrazky/heapdump-performed.png Graphic file (type png)
 <use obrazky/heapdump-performed.png>
 Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 290.
@@ -755,27 +752,29 @@ Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 290.
 
 ]
 Package acronym Info: Label `acro:CLI' newly defined as it shall be overridden
-although it is yet undefined on input line 408.
- (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+although it is yet undefined on input line 410.
+Package acronym Info: Label `acro:OQL' newly defined as it shall be overridden
+although it is yet undefined on input line 410.
+ [27] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [27] [28] [29
+) [28] [29
 
-]) [30
+] [30] [31]) [32
 
 ] (/home/mxmx/dev/memory-analyzer/doc/sablona.lof)
 \tf@lof=\write6
 \openout6 = `sablona.lof'.
 
- [31
+ [33
 
 
 
 ]
 \openout2 = `text/zkratky.aux'.
 
- (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.tex [32
+ (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.tex [34
 
-] [33
+] [35
 
 
 ])
@@ -826,7 +825,7 @@ Underfull \hbox (badness 6252) in paragraph at lines 52--53
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / specs / jvms / se8 / html / jvms-[]1 .
  []
 
-[34
+[36
 
 
 
@@ -846,17 +845,17 @@ Underfull \hbox (badness 6300) in paragraph at lines 65--66
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 http : / / hg . openjdk . java . net / jdk6 / jdk6 / jdk / raw-[]file / tip / src /
  []
 
-[35]) (/home/mxmx/dev/memory-analyzer/doc/sablona.toa)
+[37]) (/home/mxmx/dev/memory-analyzer/doc/sablona.toa)
 \tf@toa=\write7
 \openout7 = `sablona.toa'.
 
- [36
+ [38
 
 
 ]
 \openout2 = `text/prilohy.aux'.
 
- (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.tex (/home/mxmx/dev/memory-analyzer/doc/text/uzivatelska-dokumentace.tex)) [37
+ (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.tex (/home/mxmx/dev/memory-analyzer/doc/text/uzivatelska-dokumentace.tex)) [39
 
 
 ]
@@ -866,22 +865,22 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
 Package rerunfilecheck Info: File `sablona.out' has not changed.
-(rerunfilecheck)             Checksum: 345ACE16C68672D86B8861446A277477;6046.
+(rerunfilecheck)             Checksum: A6B5E8B1397F47DFA20D90870390B396;6398.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
  ) 
 Here is how much of TeX's memory you used:
- 14198 strings out of 492641
- 199300 string characters out of 6131787
- 319577 words of memory out of 5000000
- 17693 multiletter control sequences out of 15000+600000
+ 14205 strings out of 492641
+ 199369 string characters out of 6131787
+ 317634 words of memory out of 5000000
+ 17696 multiletter control sequences out of 15000+600000
  40026 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,18n,44p,1504b,1295s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmbi.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (36 pages, 1006163 bytes).
+Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (38 pages, 1012384 bytes).
 PDF statistics:
- 618 PDF objects out of 1000 (max. 8388607)
- 543 compressed objects within 6 object streams
- 133 named destinations out of 1000 (max. 500000)
- 429 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 640 PDF objects out of 1000 (max. 8388607)
+ 563 compressed objects within 6 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 445 words of extra memory for PDF output out of 10000 (max. 10000000)
 

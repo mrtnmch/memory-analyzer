@@ -61,7 +61,7 @@ Primitivních datových typů je v Javě několik druhů, konkrétně:
 \end{itemize}
 
 Referenční datové typy jsou potom následující:
-
+\label{ref-types}
 \begin{itemize}
 	\item \texttt{class}
 	\item \texttt{array}
@@ -85,13 +85,13 @@ Rámce (\textit{frame}) přísluší právě jednomu stacku. Data v něm jako ta
 \subsubsection{Lokální proměnné}
 Každý rámec obsahuje pole s lokálními proměnnými. Vzhledem k tomu, že je rámec vytvořen a vložen do \zkratka{JVM} stacku při volání metody a znovu odebrán a zničen při návratu z ní, právě toto pole zajišťuje uvolnení paměti alokovaných proměnných. Kromě promenných primitivního typu jsou v tomto poli uloženy rovněž reference na objekty v heapu (viz dále), jejich uvolnění sníží počet referencí na daný objekt a v případě dosažení nulové hodnoty je tento objekt připraven na uvolnění pomocí \zkratka{GC}.
 
-\subsubsection{stack operandů}
+\subsubsection{Stack operandů}
 Tento stack slouží pro mezivýpočty při provádění operací, převážně matematických.
 
 \section{Program counter registr}
 \textit{Program counter} (PC) je registr s adresou ukazující na operaci, která se má provést. Vzhledem k tomu, že Java umožňuje vícevláknový běh, má samozřejmě každé vlákno svůj PC. 
 
-\section{stack nativních metod}
+\section{Stack nativních metod}
 Pokud má daná implementace \zkratka{JVM} podporovat i tzv. \texttt{native} metody, měla by obsahovat i stack nativních metod. Zdůrazňuji, že \textit{měla} -- specifikace zde benevolentně ponechává rozhodnutí na konkrétním řešení a tento stack nutně nevynucuje. Díky konceptu nativních metod je možné přímo z Javy volat kód napsaný např. v C. 
 
 Stejně jako \zkratka{JVM} stack, i stack nativních metod v některých případech produkuje výjimky. Toto chování je totožné pro oba stacky; stejně tak typy těchto chybových stavů jsou stejné.
@@ -380,7 +380,9 @@ Některé z výše zmíněných typů (které jsem dále nerozepisoval) už obsa
 
 \chapter{Existující nástroje pro analýzu heapu}
 
-Analýza dumpu -- ať už manuální či automatická -- je využívána v případech, kdy nám debugování na úrovni kódu už nestačí a potřebujeme se podívat, jakým způsobem se program chová na pozadí. Rovněž je jeho analýza vhodná v okamžiku, kdy dojde k pádu (zejména v důsledku nedostatku paměti), kdy chceme zjistit příčinu pádu \uv{post mortem}. Můžeme tak odhalit problematické místo v programu a podrobná analýza nám tak umožní problém opravit.
+Analýza dumpu -- ať už manuální či automatická -- je využívána v případech, kdy nám debugování na úrovni kódu už nestačí a potřebujeme se podívat, jakým způsobem se program chová na pozadí. Některé typy problémů navíc pomocí debuggeru odhalíme jen těžko (nebo vůbec) a musíme tak zvolit nízkoúrovnější způsob, který dokáže odhalit problém napříč více částmi aplikace. Rovněž je taková analýza vhodná v okamžiku, kdy dojde k pádu (zejména v důsledku nedostatku paměti), kdy chceme zjistit příčinu pádu \uv{post mortem}. Můžeme tak odhalit problematické místo v programu a podrobná analýza nám tak umožní problém opravit.
+
+TODO přidat licence a další info.
 
 \section{Eclipse MAT}
 IBM Eclipse Memory Analyser Tooling je open source nástroj pro analýzu Java paměti. Po spuštění umožňuje otevřít již vygenerovaný dump Java heapu, umí jej ale i vytvořit. V rámci analýzy nabízí 2 konkrétní volby – analýzu memory leaků a memory bloatu – tj. neefektivního využití paměti a zbytečného plýtvání. 
@@ -407,10 +409,10 @@ Komerční profiler, přesto velice používaný. Standardní licence stojí v d
 \section{JHAT}
 Nástroj, který je přímou součásti distribuce Oracle JVM od verze 6. Nebyl nikdy oficiálně podporován a od počátku byl označen jako experimentální nástroj, z těchto důvodů byl tedy v Javě 11 naprosto odstraněn \cite{jep241}\cite{java11migration}. V rámci verzí Javy, které jej obsahují, ho lze využít jako \zkratka{CLI} aplikaci, která dokáže dump vytvoření pomocí např. \textit{JMAP} otevřít. Následně vytvoří webový server, jehož prostřednictvím poskytuje data získaná ze zpracovaného dumpu. Tato data je možné si poté zobrazit pomocí webového prohlížeče; zajímavým příkladem možného využití je následné rozparsování těchto dat jakožto formátu HTML a jejich další využití. Program je tedy možné využít jako prostředníka pro zpracování \cite{jhat}. Kromě \uv{prostého} zobrazení webové stránky umí \textit{JHAT} rovněž poskytovat zpracování pomocí jazyka \zkratka{OQL}.
 
-\section{\zkratka{OQL}}
+\section{OQL}
 \zkratka{OQL} zmíním i jako samostatný způsob zpracování. Jedná se o jazyk, který slouží pro obecnou manipulaci s objekty, resp. s objektovými dokumenty \cite{odmgoql}\cite{oql}. Na první pohled si nelze nevšimnou jeho podobnosti s dotazovým jazykem SQL. Neomezuje se tedy pouze na zpracování Java heapu (či obecně paměti), ale je standardem, který pro tento účel lze využít. Z toho je možné usoudit, že standard jako takový pro zpracování nestačí -- je nutné využít některou z jeho implementací, která takové rozhraní přístupu k Java heapu umožňuje. Jednou z nich je právě výše zmíněný \textit{JHAT}.
 
-V příkladu \ref{oql}.
+V příkladu \ref{oql} je možné vidět práci s \zkratka{OQL}.
 
 \begin{lstlisting}[caption={Příklad OQL}, label={oql}, frame={single}, language={SQL}]
 select s 
@@ -425,15 +427,42 @@ where s.value.length >= 100
 
 
 \chapter{Možnosti analýzy}
-Rovnost dvou či více objektů se dá definovat a zjišťovat různými způsoby. Je ale nutné si uvědomit, že v nejhorším případě, tj. pokud chceme najít všechny nadbytečné kopie každého objektu, je složitost této operace $O(2^n)$. Bylo by tedy vhodné se zamyslet, zda neexistuje způsob, jak počet porovnání snížit, případně navrhnout jednoduchou heuristiku, která by dokázala rychle ohodnotit, zda má vůbec smysl pokračovat v podrobnějším porovnání. V následujících případech tedy uvažujme objekty $A$, $B$, jejich třídy $C_A$ a $C_B$ a proměnné obou instancí $F_A^0..F_A^n$, respektive $F_B^0..F_B^n$.
 
-První nápovědou samozřejmě může být porovnání tříd obou objektů -- $C_A$ a $C_B$. Pokud platí $C_A = C_B$, zřejmě má smysl se porovnáváním dále zabývat. V případě jejich nerovnosti není ale možné další porovnání zavrhnout, porovnat je nutné (či možné) i jejich rodiče. Definujeme-li tedy funkci pro zjištění přímého rodiče $P(C)$, potom rovnost objektů lze vyjádřit jako
-    $$ E(C_A, C_B) \Leftrightarrow C_A = C_B \vee E(P(C_A), C_B) \vee E(C_A, P(C_B)).$$    
+\section{Rovnost objektů}
+Rovnost dvou či více objektů se dá definovat a zjišťovat různými způsoby. Je ale nutné si uvědomit, že v nejhorším případě, tj. pokud chceme najít všechny nadbytečné kopie každého objektu, je složitost této operace $O(2^n)$. Bylo by tedy vhodné se zamyslet, zda neexistuje způsob, jak počet porovnání snížit, případně navrhnout jednoduchou heuristiku, která by dokázala rychle ohodnotit, zda má vůbec smysl pokračovat v podrobnějším porovnání. V následujících případech tedy uvažujme objekty $A$, $B$, jejich třídy $C_A$ a $C_B$ a proměnné obou instancí $F_A^0..F_A^n$, respektive $F_B^0..F_B^n$. Hodnotu dané instanční proměnné definujeme jako $V(F)$. Pro potřeby algoritmu předpokládejme, že jsou tyto proměnné v určitém, předem očekávatelném pořadí, např. podle abecedy dle jejich názvu (nebo dle Unicode kódu pro speciální znaky).
+
+První nápovědou samozřejmě může být porovnání tříd obou objektů -- $C_A$ a $C_B$. Pokud platí $C_A = C_B$, zřejmě má smysl se porovnáváním dále zabývat. V případě jejich nerovnosti není ale možné další porovnání zavrhnout, porovnat je nutné (či možné) i jejich rodiče. V případě dědičnosti dvou tříd nelze automaticky vyloučit -- pokud potomek k rodičovské třídě nepřidává žádná data, pouze funkcionalitu, pak se z pohledu dat v paměti objekty rovnají, i když jsou sémanticky odlišné.
+
+Definujeme-li tedy funkci pro zjištění přímého rodiče $P(C)$, potom rovnost objektů (z pohledu jejich dat) lze vyjádřit jako
+    $$ E_C(C_A, C_B) \Leftrightarrow C_A = C_B \vee E_C(P(C_A), C_B) \vee E_C(C_A, P(C_B)).$$    
 Samozřejmě je nutné definovat i zastavovací podmínku, v případě Javy by tedy jeden z parametrů nesměl být třída typu \textit{Object}. Formálně je tedy možné tuto rovnost definovat jako
-	$$ E(C_A, C_B) = P_c(C_A) \cap P_c(C_B) \notin \emptyset,$$
+	$$ E_C(C_A, C_B) = P_c(C_A) \cap P_c(C_B) \notin \emptyset,$$
 kde $P_c(C)$ je množina třídy samotné a všech jejich rodičů bez “univerzálního předka” všech tříd, v tomto případě \textit{Object}:
 	$$ P_c(C) = \{C, P(C), P(P(C)), \dots, Object\} \setminus Object. $$
-% Nejjednodušší cestou je prosté porovnání hodnot jednotlivých
+
+Tím máme nastavnu podmínku nutnou -- bez rovnosti (tak, jak je výše definována) tříd nemá smysl porovnávat objekty. Nyní se můžeme zaměřit na porovnávání objektů a jejich proměnných samotných. Vzhledem k tomu, že máme zaručenu rovnost tříd, můžeme očekávat zhruba stejnou strukturu, názvy a typy instančních proměnných. Nicméně nemůžeme očekávat přímou rovnost těchto parametrů, díky tomu, jak jsem výše zadefinoval rovnost proměnných. Proto platí:
+    $$ F_A \subset F_B \vee F_A \subset. F_B $$
+
+Naším cílem je ovšem porovnání rovnosti. Musí tedy platit:
+
+    $$ \|F_A\| = \|F_B\|.$$
+
+Tato operace je pouhé porovnání dvou celočíselných hodnot (plus pravděpodobně zjištění velikosti pole), což je zanedbatelná operace, která algoritmus nezpomalí. Tímto je zajištěno, že porovnávané objekty patří pod stejnou třídu či jejího potomka, který nepřidává žádné instanční proměnné, tj. je z pohledu paměti zaměnitelný. To samozřejmě neznamená, že je stejný z pohledu sémantiky či funkcionality; to je však cena za to, že hledáme maximální možnou úsporu. Toto je ovšem funkcionalita, která je jednoduše regulovatelná, tj. v algoritmu je možnost přidat parametr, který bude ovlivňovat způsob porovnávání rovnosti tříd a případně zajistí, že takto budou označeny pouze třídy skutečně stejné, bez ohledu na dědičnost.
+
+Nyní jsou tedy objekty stejných (dle výše definovaných měřítek) tříd a mají stejný počet proměnných. Vzhledem k tomu, že proměnnou nelze při dědičnosti odebrat ani pozměnit. Maximálně je možné ji pouze překrýt, případně změnit pomocí reflexe, což jsou okrajové případy, jejich řešení by algoritmus pouze zbytečně zpomalovalo.
+
+Nyní je tedy možné definovat rovnost objektů následovně:
+
+    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A, F_B: F_A^i = F_B^i.$$
+
+Jinak řečeno -- objekty $A$, $B$ jsou si rovny právě tehdy, když jsou si rovny jejich třídy pomocí výše navrhnuté metody a zároveň platí, že jsou si rovny všechny dvojice proměnných daných objektů. 
+
+Teoreticky by samozřejmě bylo možné vyhledávat i napříč různými třídami, pouze na základě rovnosti všech hodnot proměnných. To by ovšem nedávalo velký smysl. Objekty, které algoritmus má vyhledat, jsou kandidáty pro odstranění z programu a nahrazení zbylou, jedinou instancí. To by v případě nerovnosti tříd nebylo možné. Naproti tomu, v případě nerovnosti tříd, kdy je ovšem jedna z nich součástí cesty dědičnosti třídy druhé, to možné je -- samozřejmě ale ne vždy. Minimálně to ale dává prostor se zamyslet, zda je skutečně nutné používat dědičnost, když jsou data obou objektů naprosto totožná. Pokud chceme dodržovat sémanticky správný pohled na objekty, nemusíme je kopírovat; stačí uchovávat pouze jedinou instanci a na správných místech použít přetypování (což je de facto polymorfismus).
+
+\section{Rovnost složitějších objektů}
+Výše navrhnutý indikátor rovnosti ovšem postačuje pouze pro objekty tříd, jejichž proměnné jsou všechny primitivního typu. To ovšem neplatí v běžném programu netriviálního rozsahu prakticky nikdy. Už například prosté použití řetězce, tedy třídy \texttt{String}, tuto podmínku nesplňuje.
+
+Jak bylo popsáno v kapitole \ref{ref-types}
 
 
 \chapter{Analýza a implementace}
