@@ -219,7 +219,7 @@ Pokud \texttt{JVM} narazí na třídu, podívá se do setu načtených tříd. J
 	\item \textit{Application class loader} načítá třídy z \texttt{CLASSPATH} (a třídy specifikované v Manifestu atd.)
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.5]{obrazky/class-loader.png}
 	\caption{Postup volání hierarchie class loaderů.}
@@ -434,18 +434,34 @@ Rovnost dvou či více objektů se dá definovat a zjišťovat různými způsob
 První nápovědou samozřejmě může být porovnání tříd obou objektů -- $C_A$ a $C_B$. Pokud platí $C_A = C_B$, zřejmě má smysl se porovnáváním dále zabývat. V případě jejich nerovnosti není ale možné další porovnání zavrhnout, porovnat je nutné (či možné) i jejich rodiče. V případě dědičnosti dvou tříd nelze automaticky vyloučit -- pokud potomek k rodičovské třídě nepřidává žádná data, pouze funkcionalitu, pak se z pohledu dat v paměti objekty rovnají, i když jsou sémanticky odlišné.
 
 Definujeme-li tedy funkci pro zjištění přímého rodiče $P(C)$, potom rovnost objektů (z pohledu jejich dat) lze vyjádřit jako
-    $$ E_C(C_A, C_B) \Leftrightarrow C_A = C_B \vee E_C(P(C_A), C_B) \vee E_C(C_A, P(C_B)).$$    
+
+\begin{equation}
+    E_C(C_A, C_B) \Leftrightarrow C_A = C_B \vee E_C(P(C_A), C_B) \vee E_C(C_A, P(C_B)).   
+\end{equation}
+
 Samozřejmě je nutné definovat i zastavovací podmínku, v případě Javy by tedy jeden z parametrů nesměl být třída typu \textit{Object}. Formálně je tedy možné tuto rovnost definovat jako
-	$$ E_C(C_A, C_B) = P_c(C_A) \cap P_c(C_B) \notin \emptyset,$$
+
+\begin{equation}
+E_C(C_A, C_B) = P_c(C_A) \cap P_c(C_B) \notin \emptyset,
+\end{equation}
+
 kde $P_c(C)$ je množina třídy samotné a všech jejich rodičů bez “univerzálního předka” všech tříd, v tomto případě \textit{Object}:
-	$$ P_c(C) = \{C, P(C), P(P(C)), \dots, Object\} \setminus Object. $$
+
+\begin{equation}
+P_c(C) = \{C, P(C), P(P(C)), \dots, Object\} \setminus Object.
+\end{equation}
 
 Tím máme nastavnu podmínku nutnou -- bez rovnosti (tak, jak je výše definována) tříd nemá smysl porovnávat objekty. Nyní se můžeme zaměřit na porovnávání objektů a jejich proměnných samotných. Vzhledem k tomu, že máme zaručenu rovnost tříd, můžeme očekávat zhruba stejnou strukturu, názvy a typy instančních proměnných. Nicméně nemůžeme očekávat přímou rovnost těchto parametrů, díky tomu, jak jsem výše zadefinoval rovnost proměnných. Proto platí:
-    $$ F_A \subset F_B \vee F_A \subset. F_B $$
+
+\begin{equation}
+F_A \subset F_B \vee F_A \subset. F_B 
+\end{equation}
 
 Naším cílem je ovšem porovnání rovnosti. Musí tedy platit:
 
-    $$ \|F_A\| = \|F_B\|.$$
+\begin{equation}
+\|F_A\| = \|F_B\|.
+\end{equation}
 
 Tato operace je pouhé porovnání dvou celočíselných hodnot (plus pravděpodobně zjištění velikosti pole), což je zanedbatelná operace, která algoritmus nezpomalí. Tímto je zajištěno, že porovnávané objekty patří pod stejnou třídu či jejího potomka, který nepřidává žádné instanční proměnné, tj. je z pohledu paměti zaměnitelný. To samozřejmě neznamená, že je stejný z pohledu sémantiky či funkcionality; to je však cena za to, že hledáme maximální možnou úsporu. Toto je ovšem funkcionalita, která je jednoduše regulovatelná, tj. v algoritmu je možnost přidat parametr, který bude ovlivňovat způsob porovnávání rovnosti tříd a případně zajistí, že takto budou označeny pouze třídy skutečně stejné, bez ohledu na dědičnost.
 
@@ -453,7 +469,9 @@ Nyní jsou tedy objekty stejných (dle výše definovaných měřítek) tříd a
 
 Nyní je tedy možné definovat rovnost objektů následovně:
 
-    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: F_A^i = F_B^j.$$
+\begin{equation}
+E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: F_A^i = F_B^j.
+\end{equation}
 
 Jinak řečeno -- objekty $A$, $B$ jsou si rovny právě tehdy, když jsou si rovny jejich třídy pomocí výše navrhnuté metody a zároveň platí, že jsou si rovny všechny dvojice proměnných daných objektů. 
 
@@ -466,7 +484,10 @@ Jak bylo popsáno v kapitole \ref{ref-types}, referenční -- tedy neprimitivní
 
 \subsection{Porovnávání referencovaných objektů}
 V případě, že je typ jedné z proměnných třídy jinou třídou (a proměnná tedy obsahuje referenci na instanci této třídy nebo \texttt{null}), měli bychom porovnat i rovnost tohoto odkazovaného objektu s objektem odkazovaným z druhé instance. Zobecníme tedy výše definovanou rovnost na funkci $E_F(f_1, f_2)$:
-    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: E_F(F_A^i, F_B^j)$$
+
+\begin{equation}
+E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j: E_F(F_A^i, F_B^j)
+\end{equation}
 
 a tuto funkci definujeme jako:
 \begin{equation}
@@ -485,11 +506,16 @@ Z těchto vztahů ale vyplývají dva problémy:
 \end{itemize}
 
 První problém můžeme vyřešit jednoduše v rámci původní rovnice, její menší úpravou:
-    $$ E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j \wedge D(A, B, F_A^i, F_B^j) : E_F(F_A^i, F_B^j)$$
-A pomocnou funkci $D(A, B, f_1, f_2)$, která zjišťuje prostou rovnost objektů a slouží tedy jako ochrana proti zacyklení:
-    $$
+
+\begin{equation}
+E(A, B) \Leftrightarrow E_C(C_A, C_B) \wedge \forall F_A^i, F_B^j \epsilon F_A, F_B: i = j \wedge D(A, B, F_A^i, F_B^j) : E_F(F_A^i, F_B^j)
+\end{equation}
+
+A pomocnou funkci $D(A, B, f_1, f_2)$, která zjišťuje prostou odlišnost objektů (na úrovni reference, adresy) a slouží tedy jako ochrana proti zacyklení:
+
+\begin{equation}
     D(A, B, f_1, f_2) = f_1 \neq A \vee f_1 \neq B \vee f_2 \neq A \vee f_2 \neq B
-    $$
+\end{equation}
 
 Problém druhý, tedy zastavovací podmínku, můžeme vyřešit pouhým počítáním hloubky (zanoření) porovnávání a přerušením tohoto zanořování v určité hloubce -- ideálně nastavitelné externě tak, abychom mohli volitelně ovlivňovat rychlost, a nevyhnutelně tak i přesnost, algoritmu. Formálně je tento problém tedy možné definovat tak, že porovnávání referenčních typů budeme chápat jako strom, jehož rozvoj ukončíme při dosažení určité hloubky $h$.
 
@@ -535,9 +561,11 @@ Porovnávání polí je opět poměrně jednoduché a znamená prosté iterován
 
 Musíme se pouze zamyslet, jakým způsobem chceme toto iterování provádět -- respektive, zda jsme ochotni vyměnit rychlost za přesnost. Prvky pole mohou být v různém pořadí. V takovém případě se problém redukuje na problém řazení, ktereý je v nejlepším případě $O(N logN)$ (např. pro \textit{Quick sort}). Nabízí se ovšem otázka, zda k takovému kroku chceme přistupovat -- implementace programu může být na pořadí prvků závislá a pokud bychom označili objekty s takovými poli jako duplikáty, mohlo by se jednat o falešně positivní případ. Rovnost polí $E_A(f_1, f_2)$, kde $f_1, f_2$ jsou třídní proměnné typu pole, obsahující prvky $p_1, p_2, ..., p_N$ je tedy možné definovat jako:
 
-$$
+\begin{equation}
 E_A(f_1, f_2)=\forall f_1^i, f_2^j \epsilon f_1, f_2: i = j : E_F(f_1^i, f_2^j)
-$$
+\end{equation}
+
+
 
 
 \chapter{Analýza a implementace}

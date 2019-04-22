@@ -44,11 +44,13 @@
 \contentsline {section}{\numberline {8.6}OQL}{27}{section.66}
 \contentsline {chapter}{\numberline {9}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{29}{chapter.71}
 \contentsline {section}{\numberline {9.1}Rovnost objekt\IeC {\r u}}{29}{section.72}
-\contentsline {section}{\numberline {9.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{30}{section.73}
-\contentsline {subsection}{\numberline {9.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{31}{subsection.74}
-\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{33}{chapter.77}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{34}{chapter.77}
-\contentsline {chapter}{Seznam zkratek}{36}{section*.80}
-\contentsline {chapter}{Literatura}{37}{section*.82}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{39}{section*.84}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{40}{chapter.85}
+\contentsline {section}{\numberline {9.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{31}{section.79}
+\contentsline {subsection}{\numberline {9.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{31}{subsection.80}
+\contentsline {subsection}{\numberline {9.2.2}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } \IeC {\v r}et\IeC {\v e}zc\IeC {\r u}}{32}{subsection.86}
+\contentsline {subsection}{\numberline {9.2.3}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{33}{subsection.87}
+\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{34}{chapter.89}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{35}{chapter.89}
+\contentsline {chapter}{Seznam zkratek}{37}{section*.92}
+\contentsline {chapter}{Literatura}{38}{section*.94}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{40}{section*.96}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{41}{chapter.97}
