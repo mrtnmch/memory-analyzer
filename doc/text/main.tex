@@ -77,7 +77,7 @@ V případě, že v Javě mluvíme o stacku (zásobníku), typicky máme na mysl
 
 Pro každé vlákno aplikace je vytvořený stack. Do něj jsou ukládány lokální proměnné, hodnoty parametrů metod a návratové hodmoty. Rovněž se stará o volání metod, respektive o návrat do volací metody po zavolání metody jiné. Stejně jako v jiných jazycích (třeba C) je paměť lokálních proměnných automaticky uvolněna při odebírání hodnot ze stacku. Takto alokovanou paměť tak není nutné spravovat \zkratka{GC} (či v případě C ručně uvolňovat).
 
-Právě velikost \zkratka{JVM} stacku je často omezující faktor při vývoji, na který v některých případech (např. nesprávně zastavovaná rekurze) narážíme. Jeho velikost můžeme nastavit jako parametr při spuštění programu -- konkrétně \texttt{Xss} (respektive \texttt{-XX:ThreadStackSize}). Jeho výchozí velikost je závislá na velikosti dostupné (virtuální) paměti. V souvislosti s nedostatkem paměti a velikostí stacku se můžeme setkat se dvěma typy výjimek. \texttt{StackOverflowError} je vyhozena v případě, že během výpočtu narazíme na horní hranici velikosti stacku. \texttt{JVM} se případně může pokusit velikost dynamicky zvýšit. Pokud však během této operace narazí na velikost výše zmíněné paměti (což je už limitace nastavená operačním systémem a případně i hardwarovou konfigurací), je vyhozena výjimka jiná -- \texttt{OutOfMemoryError}. Tato výjimka je rovněž produkována v případě, že ručně nastavíme velikost stacku takovou, že při jeho vytváření \texttt{JVM} narazí na limity paměti rovnou.
+Právě velikost \zkratka{JVM} stacku je často omezující faktor při vývoji, na který v některých případech (např. nesprávně zastavovaná rekurze) narážíme. Jeho velikost můžeme nastavit jako parametr při spuštění programu -- konkrétně \texttt{Xss} (respektive \texttt{-XX:ThreadStackSize}). Jeho výchozí velikost je závislá na velikosti dostupné (virtuální) paměti. V souvislosti s nedostatkem paměti a velikostí stacku se můžeme setkat se dvěma typy výjimek. \texttt{Stack\-Overflow\-Error} je vyhozena v případě, že během výpočtu narazíme na horní hranici velikosti stacku. \texttt{JVM} se případně může pokusit velikost dynamicky zvýšit. Pokud však během této operace narazí na velikost výše zmíněné paměti (což je už limitace nastavená operačním systémem a případně i hardwarovou konfigurací), je vyhozena výjimka jiná -- \texttt{OutOfMemoryError}. Tato výjimka je rovněž produkována v případě, že ručně nastavíme velikost stacku takovou, že při jeho vytváření \texttt{JVM} narazí na limity paměti rovnou.
 
 \subsection{Rámce}
 Rámce (\textit{frame}) přísluší právě jednomu stacku. Data v něm jako takovém jsou totiž neměnná; jsou pouze přidávány/odebírány odkazy na rámce. V každém okamžiku je pro jedno vlákno aktivní právě jeden rámec. 
@@ -565,7 +565,13 @@ Musíme se pouze zamyslet, jakým způsobem chceme toto iterování provádět -
 E_A(f_1, f_2)=\forall f_1^i, f_2^j \epsilon f_1, f_2: i = j : E_F(f_1^i, f_2^j)
 \end{equation}
 
+V případě kolekcí takto jednoduše rozhodnout možné není. Musíme si uvědomit, že přestože některé třídy sdílejí určité společné rozhraní (třeba \texttt{Collection}, \texttt{Map} apod.), jejich implementace uvnitř záleží na typu struktury, kterou zvolili pro reprezentaci ukládaných dat. V případě třídy \texttt{ArrayList} je možné takový problém redukovat na problém porovnávání pole; naopak v případě \texttt{LinkedList} je nutné několikanásobné porovnání $N$ objektů. To lze samozřejmě také redukovat na problém porovnání pole a dívat se na propojení listu na -- de facto -- iterátor. Nicméně už taková operace vyžaduje mezikrok navíc.
+
+\section{Efektivita využití polí a kolekcí}
+TODO
 
 
-
-\chapter{Analýza a implementace}
+\chapter{Analýza}
+\chapter{Implementace}
+\chapter{Ověření implementace}
+\chapter{Závěr}

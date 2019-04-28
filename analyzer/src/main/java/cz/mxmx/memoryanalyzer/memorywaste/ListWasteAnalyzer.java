@@ -24,7 +24,7 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 			instance.getInstanceFieldValues().forEach((field, value)-> {
 				if(value instanceof InstanceDump) {
 					if(this.isList((InstanceDump)value)) {
-						this.findWastedList(memoryDump, field, (InstanceDump)value, wasteList);
+						this.findWastedList(memoryDump, field, (InstanceDump)value, wasteList, instance, field);
 					}
 				}
 			});
@@ -33,13 +33,13 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 		return wasteList;
 	}
 
-	private void findWastedList(MemoryDump memoryDump, InstanceFieldDump field, InstanceDump value, List<Waste> wasteList) {
+	private void findWastedList(MemoryDump memoryDump, InstanceFieldDump field, InstanceDump value, List<Waste> wasteList, InstanceDump instance, InstanceFieldDump instanceFieldDump) {
 		InstanceArrayDump elements = this.getElements(memoryDump, value);
 
 		if(elements != null && elements.getValues() != null) {
 			long nullCount = findNullWastedList(elements);
 			if(nullCount > elements.getValues().size()/2) {
-				wasteList.add(new ListOfNullsWaste(value, elements.getValues(), nullCount));
+				wasteList.add(new ListOfNullsWaste(this, value, elements.getValues(), nullCount, instance, instanceFieldDump));
 			}
 		}
 	}

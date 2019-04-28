@@ -83,7 +83,7 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 			optWaste.get().addAffectedInstance(instance);
 			optWaste.get().addAffectedInstance(instance2);
 		} else {
-			wasteList.add(new DuplicateInstanceWaste(Lists.newArrayList(instance, instance2)));
+			wasteList.add(new DuplicateInstanceWaste(this, Lists.newArrayList(instance, instance2)));
 		}
 	}
 }

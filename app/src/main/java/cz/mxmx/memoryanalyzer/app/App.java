@@ -1,71 +1,128 @@
 package cz.mxmx.memoryanalyzer.app;
 
 import com.beust.jcommander.internal.Lists;
+import com.google.common.base.Strings;
 import cz.mxmx.memoryanalyzer.DefaultMemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.MemoryDumpAnalyzer;
 import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
 import cz.mxmx.memoryanalyzer.memorywaste.DefaultWasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzer;
+import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.stage.Stage;
-import net.sourceforge.plantuml.SourceStringReader;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
-public class App extends Application {
+public class App {
 	public static final List<String> NAMESPACES = Lists.newArrayList("com.intellij");
 //	public static final List<String> NAMESPACES = Lists.newArrayList("cz.mxmx");
 	public static final String PATH = "sandbox/data/heapdump-intellij-idea.hprof";
 
-
 	public static void main(String[] args) throws IOException, MemoryDumpAnalysisException {
-		launch(args);
-
-//		System.out.println("Processing " + PATH + "...");
-//		MemoryDumpAnalyzer memoryDumpAnalyzer = new DefaultMemoryDumpAnalyzer(PATH);
-//		Set<String> namespaces = memoryDumpAnalyzer.getNamespaces();
-//		MemoryDump parsedDump = memoryDumpAnalyzer.analyze(NAMESPACES);
-//		System.out.println("Done, found:");
-//		System.out.println("\tClasses: " + parsedDump.getClasses().size());
-//		System.out.println("\tInstances: " + parsedDump.getInstances().size());
-//		System.out.println("Namespace " + NAMESPACES.get(0));
-//		System.out.println("\tClasses: " + parsedDump.getUserClasses().size());
-//		System.out.println("\tInstances: " + parsedDump.getUserInstances().size());
-//
-//		System.out.println();
-//		System.out.println("Analyzing memory waste...");
-//		WasteAnalyzer wasteAnalyzer = new DefaultWasteAnalyzerPipeline();
-//		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(parsedDump);
-//		System.out.println("Done, found " + memoryWaste.size() + " possible ways to save memory:");
-//
-//		for (Waste waste : memoryWaste) {
-//			System.out.println("\t" + waste.getTitle() + ": " + waste.getDescription());
-//		}
-//
-
+		new App(args);
 	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        String resourcePath = "/fxml/MainView.fxml";
-        URL location = getClass().getResource(resourcePath);
-        FXMLLoader fxmlLoader = new FXMLLoader(location);
+	public App(String[] args) {
+		Options options = new Options();
 
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+		Option listOptions = new Option("l", "list", false, "list namespaces and exit");
+		listOptions.setRequired(false);
+		options.addOption(listOptions);
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+		Option pathOption = new Option("p", "path", true, "input dump file path");
+		pathOption.setRequired(true);
+		options.addOption(pathOption);
+
+		Option namespacesOption = new Option("n", "namespace", true, "namespace to analyze");
+		namespacesOption.setRequired(false);
+		options.addOption(namespacesOption);
+
+		CommandLineParser parser = new DefaultParser();
+		HelpFormatter formatter = new HelpFormatter();
+		CommandLine cmd;
+
+		try {
+			cmd = parser.parse(options, args);
+			String inputFilePath = cmd.getOptionValue("path");
+			String namespace = cmd.getOptionValue("namespace");
+			boolean list = cmd.hasOption("list");
+			DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
+
+			if(list) {
+				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
+				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
+
+				System.out.println("List of namespaces in the given memory dump:");
+				namespaces.forEach(ns -> {
+					System.out.format("\t%s\n", ns);
+				});
+
+			}
+			else {
+				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
+				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
+				this.processMemoryDump(memoryDump, namespace);
+			}
+
+			System.exit(0);
+
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+			formatter.printHelp("memory-analyzer", options);
+
+			System.exit(1);
+		} catch (FileNotFoundException | MemoryDumpAnalysisException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Set<String> getNamespaces(MemoryDumpAnalyzer analyzer) throws FileNotFoundException, MemoryDumpAnalysisException {
+		return analyzer.getNamespaces();
+	}
+
+	private MemoryDump getMemoryDump(MemoryDumpAnalyzer analyzer, String namespace) throws FileNotFoundException, MemoryDumpAnalysisException {
+		return analyzer.analyze(Lists.newArrayList(namespace));
+	}
+
+	private void processMemoryDump(MemoryDump memoryDump, String namespace) {
+		System.out.println("Done, found:");
+		System.out.println("\tClasses: " + memoryDump.getClasses().size());
+		System.out.println("\tInstances: " + memoryDump.getInstances().size());
+		System.out.println("Namespace " + namespace);
+		System.out.println("\tClasses: " + memoryDump.getUserClasses().size());
+		System.out.println("\tInstances: " + memoryDump.getUserInstances().size());
+
+		System.out.println();
+		System.out.println("Analyzing memory waste...");
+		WasteAnalyzerPipeline wasteAnalyzer = new DefaultWasteAnalyzerPipeline();
+		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
+		System.out.println("Done, found " + memoryWaste.size() + " possible ways to save memory:");
+
+		Map<WasteAnalyzer, List<Waste>> classes = memoryWaste.stream().collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
+		classes.forEach((type, list) -> {
+				System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
+				list
+					.stream()
+					.map(waste -> String.format("\t\t%s: %s", waste.getTitle(), waste.getDescription()))
+					.sorted()
+					.forEach(System.out::println);
+				System.out.println();
+			});
+	}
+
 }

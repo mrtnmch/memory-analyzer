@@ -1,5 +1,6 @@
 package cz.mxmx.memoryanalyzer.model.memorywaste;
 
+import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzer;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 
 import java.util.ArrayList;
@@ -11,8 +12,10 @@ public class DuplicateInstanceWaste implements Waste {
 	private static final String DESC_TEMPLATE = "Some (%d) instances of the '%s' class contain exactly the same data. They could be possibly replaced with one copy.";
 
 	private final Collection<InstanceDump> duplicates;
+	private final WasteAnalyzer sourceWasteAnalyzer;
 
-	public DuplicateInstanceWaste(Collection<InstanceDump> duplicates) {
+	public DuplicateInstanceWaste(WasteAnalyzer sourceWasteAnalyzer, Collection<InstanceDump> duplicates) {
+		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
 		if(duplicates.isEmpty()) {
 			throw new IllegalArgumentException("There must be at least 2 duplicates");
 		}
@@ -43,6 +46,11 @@ public class DuplicateInstanceWaste implements Waste {
 	@Override
 	public void addAffectedInstance(InstanceDump instanceDump) {
 		this.duplicates.add(instanceDump);
+	}
+
+	@Override
+	public WasteAnalyzer getSourceWasteAnalyzer() {
+		return this.sourceWasteAnalyzer;
 	}
 
 	private String getAffectedClass() {

@@ -11,16 +11,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:hprof-heap:0.10.1" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:hprof-heap:0.12" level="project" />
     <orderEntry type="library" name="Maven: org.gridkit.gzrand:gzrand:0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-core:0.10.1" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-cli:0.10.1" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-core:0.12" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-cli:0.12" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.30" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-stacktrace:0.10.1" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-hflame:0.10.1" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-jfr:0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-nps:0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.gridkit.lab:jvm-attach-api:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-stacktrace:0.12" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-hflame:0.12" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-jfr5:0.4" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-jfr6:0.4" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.jvmtool:sjk-nps:0.4" level="project" />
+    <orderEntry type="library" name="Maven: org.gridkit.lab:jvm-attach-api:1.5" level="project" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.plantuml:plantuml:8059" level="project" />

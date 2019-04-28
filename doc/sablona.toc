@@ -48,9 +48,13 @@
 \contentsline {subsection}{\numberline {9.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{31}{subsection.80}
 \contentsline {subsection}{\numberline {9.2.2}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } \IeC {\v r}et\IeC {\v e}zc\IeC {\r u}}{32}{subsection.86}
 \contentsline {subsection}{\numberline {9.2.3}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{33}{subsection.87}
-\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za a implementace}{34}{chapter.89}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{35}{chapter.89}
-\contentsline {chapter}{Seznam zkratek}{37}{section*.92}
-\contentsline {chapter}{Literatura}{38}{section*.94}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{40}{section*.96}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{41}{chapter.97}
+\contentsline {section}{\numberline {9.3}Efektivita vyu\IeC {\v z}it\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{33}{section.89}
+\contentsline {chapter}{\numberline {10}Anal\IeC {\'y}za}{34}{chapter.90}
+\contentsline {chapter}{\numberline {11}Implementace}{35}{chapter.91}
+\contentsline {chapter}{\numberline {12}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } implementace}{36}{chapter.92}
+\contentsline {chapter}{\numberline {13}Z\IeC {\'a}v\IeC {\v e}r}{37}{chapter.93}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{38}{chapter.93}
+\contentsline {chapter}{Seznam zkratek}{40}{section*.96}
+\contentsline {chapter}{Literatura}{41}{section*.98}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{43}{section*.100}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{44}{chapter.101}

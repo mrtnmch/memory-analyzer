@@ -1,13 +1,17 @@
 package cz.mxmx.memoryanalyzer.memorywaste;
 
+import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DefaultWasteAnalyzerPipeline extends WasteAnalyzerPipeline {
 
-	private static final List<WasteAnalyzer> ANALYZERS = new ArrayList<WasteAnalyzer>() {{
-		add(new DuplicateInstanceWasteAnalyzer());
-//		add(new ListWasteAnalyzer());
+	private static final Map<WasteAnalyzer, String> ANALYZERS = new HashMap<WasteAnalyzer, String>() {{
+		put(new DuplicateInstanceWasteAnalyzer(), "Duplicate instances");
+		put(new ListWasteAnalyzer(), "Ineffective list usage");
 	}};
 
 	public DefaultWasteAnalyzerPipeline() {
