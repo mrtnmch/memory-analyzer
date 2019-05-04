@@ -458,14 +458,15 @@ Nástroj poskytovaný přímo spolu s distribucí Oracle JVM od verze 7 (konkré
 \section{JProfiler}
 Komerční profiler, přesto velice používaný. Standardní licence stojí v době psaní 409 euro, akademická potom 179 euro. Je možné zažádat o licenci pro open source produkty, nicméně ta je podmíněna již vydanou verzí a existující webovou stránkou, což činí jakékoliv použití tohoto profileru v rámci práce nepraktickým. Profiler je používán především v komerční sféře, díky svým možnostem a dle výše uvedeného testu i nejvyšší úspěšností v odhalování bugů.
 
+\clearpage
 \subsection{Základní informace}
 
 \begin{description}
     \item[Licence] Proprietární -- placení software
     \item[Jazyk] Java
     \item[Zdrojový kód] Není opensource
-    \item[Výhody] Komerční nástroj, velké možnosti, stejně jako Eclipse MAT obsahuje proovnání základních objektů.
-    \item[Nevýhody] Není zdarma, není opensource.
+    \item[Výhody] Komeční nástroj, velké možnosti, obsahuje porovnání základních objektů.
+    \item[Nevýhody] Není zdarma.
 \end{description}
 
 \begin{figure}[ht!]
@@ -506,10 +507,8 @@ from java.lang.String s
 where s.value.length >= 100
 \end{lstlisting}
 
-\section{NetBeans HeapWalker}
-Součást IDE NetBeans, která dokáže pracovat se soubory typu HPROF. Z dumpu umí extrahovat třídy, jejich instance, proměnné a reference. K této funkcionalitě poskytuje grafické rozhraní, které je součástí NetBeans Profileru.
-
-\section{Hprof Heap Dump parser}
+\section{Knihovny}
+Knihovny představují způsob přístupu k problému, který by nevyžadoval zásah do již existujícího kódu, ale spíše jeho využití. A to tak, že se starají o jednu specifickou část, kterou tak není nutné implementovat znovu. I výše zmíněné aplikace lze považovat z pohledu API za knihovny, nicméně již vyžadují dodržení jejich struktury a zorientování se v, často velmi rozsáhlém, existujícím kódu.
 
 % =====================================================================================================================================================================================
 
@@ -700,7 +699,25 @@ V kapitole \ref{runtime-analysis} jsem došel k závěru, že analýza za běhu 
 
 Analýza za běhu by nicméně vyžadovala vytvoření modulu, který by se přilinkoval k projektu už během kompilace, tj. vyžadovala by cílenou implementaci autorem projektu. Jako druhou možnost by bylo možné využít některý ze systémů dodávaní modulů do již zkompilovaného projektu, např. frameworky OSGi nebo Spring (pomocí autokonfigurace). Takový přístup ale znovu přidává podmínky, které by autor programu musel splnit, aby mohl analýzu heapu využít -- konkrétně závislost na konkrétním frameworku, pro který bych přidal podporu. Ideální by tedy byla možnost analýzy bez konkrétních závislostí na čemkoliv kromě \zkratka{JVM}. Kromě skutečně nízkurúrovňových přístupů tak vychází analýza dumpu jako lepší z dvojice výše nabízených možností. 
 
-Standardní formát jako HPROF nabízí celou řadu existujících nástrojů a knihoven, které byly popsány v rámci kapitoly \ref{existing-solutions}. 
+Standardní formát jako HPROF nabízí celou řadu existujících nástrojů a knihoven, které byly popsány v rámci kapitoly \ref{existing-solutions}. Žádný z existujících nástrojů dle mého názoru neposkytuje dostatečnou podporu požadovaných funkcí -- přinejmenším do té míry, aby se vyplatilo investovat čas do analýzy jejich architektury a úpravy kódu.
+
+Dle mého názoru je tak nejvhodnější implementovat samostatný, nezávislý nástroj. Nicméně není nutné vyvíjet všechny součásti aplikace znovu. Pokud shrneme zadání a výše uvedená tvrzení, zjistíme, že jednou z činností, kterou můžeme nahradit, je načtení a zpracování souboru HPROF do \uv{dotazovatelné} podoby. Na základě této reprezantace dumpu v paměti můžeme dále provádět analýzu, což je činnost, na kterou se tato práce zaměřuje. Právě proto bych rád využil některou z knihoven, které by tuto činnost dokázaly efektivně provést.
+
+Po analýze a prozkoumání existujících projektů vyšel jako nejlepší kandidát projekt \textit{Hprof Heap Dump parser}.
+
+\subsection{Hprof Heap Dump parser}
+Jedná se o poměrně malou, v době psaní této práce stále udržovanou knihovnu, starající se o zpracování souboru HPROF. 
+
+\subsubsection{Základní informace}
+
+\begin{description}
+    \item[Licence] Apache License, Version 2.0
+    \item[Jazyk] Java
+    \item[Zdrojový kód] \url{https://github.com/eaftan/hprof-parser}
+\end{description}
+
+\subsubsection{Základní struktura}
+Hlavní třídou, která se stará o zpracování HPROF souboru a která nás tedy bude zajímat, je \texttt{HprofParser}. 
 
 \chapter{Implementace}
 \chapter{Ověření implementace}
