@@ -140,6 +140,7 @@ Oblast, která uchováva data jednotlivých metod. Pro každou načtenou třídu
 \end{description}
 
 \subsection{Řetězce}
+\label{java-strings}
 Kromě toho jsou zde uloženy i řetězce (\texttt{String} (i když to neplatí univerzálně, některé řetězce budou uloženy přímo v heapu). Java při vytváření řetězců může použít existující literál uložený v paměti tak, aby tento řetězec zbytečně nezabíral v paměti místo dvakrát či vícekrát. Toto chování lze případně vynutit voláním metody \texttt{intern} nad daným řetězcem -- viz ukázka \ref{intern}. 
 
 \begin{lstlisting}[caption={Příklad uchovávání řetězců a metody \texttt{intern}}, label={intern}, frame={single}, language={java}]
@@ -305,6 +306,7 @@ Některé z výše zmíněných typů (které jsem dále nerozepisoval) už obsa
 Paměť je možné analyzovat za běhu programu nebo z jejího snímku -- reprezentace paměti v určitém okamžiku běhu programu.
 
 \section{Analýza za běhu programu}
+\label{runtime-analysis}
 Během běhu programu lze analyzovat aktuální obsah paměti -- \zkratka{GC} koneckonců nedělá nic jiného. Problémem tohoto přístupu je ovšem dopad na výkon. I samotný \zkratka{GC}, ať už umožňující současný běh kódu nebo \textit{stop-the-world}, má výrazný dopad na výkon oproti jazykům či běhovým prostředím bez něj \cite{gc}. Navíc, běh \zkratka{GC}, stejně tak jako režie běhu samotného prostředí, jsou v drtivé většině případů v maximální možné míře optimalizovány, aby byl dopad na výkon samotného programu co nejmenší a jeho běh co nejrychlejší. Mohou využívat celou řadu nízkoúrovňových optimalizací, kterých -- v některých jazycích, včetně Javy -- dosáhnout prakticky nemůžeme. Z toho můžeme usoudit, že dopad analýzi paměti programu za jeho běhu by byl přinejmenším takový, jako dopad běhu \zkratka{GC}; pravděpodobně však výrazně vyšší. Stejně tak musíme uvažovat, že běh naší analýzy -- ať už pouze za účelem sběru dat pro pozdější zpracování -- bude výrazně složitější (či výkonově náročnější), než běh \zkratka{GC}.
 
 Dalším důvodem pro vyhnutí se analýze za běhu programu je povaha řešeného problému a tedy implementovaného algoritmu. Protože potřebujeme provádět hloubkovou analýzu (všech či vybraných) objektů programu, jejich neustálá změna by tuto analýzu za běhu programu učinila nemožnou -- z tohoto důvodu vyžadují různé implementace \zkratka{GC} \textit{stop-the-world}. Respektive bychom se nemohli vyhnout eventuálním falešně negativním či positivním hlášením -- to si jednoduše můžeme představit. Jestliže s každým cyklem analýzy zpracujeme jeden objekt a během toho dojde ke změně dat některého z dalších objektů, pak by algoritmus zahlásil při zpracování dalších objektů falečně pozitivní nález. V žádném časovém okamžiku neexistovaly dva objekty se stejnými daty, algoritmus by je tak přesto označil.
@@ -377,7 +379,7 @@ Pokud \texttt{JVM} narazí na třídu, podívá se do setu načtených tříd. J
 
 
 \chapter{Existující nástroje pro analýzu heapu}
-
+\label{existing-solutions}
 Analýza dumpu -- ať už manuální či automatická -- je využívána v případech, kdy nám debugování na úrovni kódu už nestačí a potřebujeme se podívat, jakým způsobem se program chová na pozadí. Některé typy problémů navíc pomocí debuggeru odhalíme jen těžko (nebo vůbec) a musíme tak zvolit nízkoúrovnější způsob, který dokáže odhalit problém napříč více částmi aplikace. Rovněž je taková analýza vhodná v okamžiku, kdy dojde k pádu (zejména v důsledku nedostatku paměti), kdy chceme zjistit příčinu pádu \uv{post mortem}. Můžeme tak odhalit problematické místo v programu a podrobná analýza nám tak umožní problém opravit.
 
 TODO přidat licence a další info.
@@ -385,9 +387,27 @@ TODO přidat licence a další info.
 \section{Eclipse MAT}
 IBM Eclipse Memory Analyser Tooling je open source nástroj pro analýzu Java paměti. Po spuštění umožňuje otevřít již vygenerovaný dump Java heapu, umí jej ale i vytvořit. V rámci analýzy nabízí 2 konkrétní volby – analýzu memory leaků a memory bloatu – tj. neefektivního využití paměti a zbytečného plýtvání. 
 
-MAT se analýzou memory bloatu přibližuje zamýšlenému výsledku této práce, bohužel ale nenabízí kompletní funkcionalitu v této oblasti. Omezuje se pouze na efektivní práci s řetězci (kterou už obsahuje Java, respektive JVM v základu, viz TODO) a dalšími základnímu typy, např. Map. Cílem práce je ale zpracování všech možných objektů, tato funkcionalita by se tak dala případně rozšířit.
+MAT se analýzou memory bloatu přibližuje zamýšlenému výsledku této práce, bohužel ale nenabízí kompletní funkcionalitu v této oblasti. Omezuje se pouze na efektivní práci s řetězci (kterou už obsahuje Java, respektive JVM v základu, viz \ref{java-strings}) a dalšími základnímu typy, např. Map. Cílem práce je ale zpracování všech možných objektů, tato funkcionalita by se tak dala případně rozšířit.
 
 Nástroj je založený na platformě Eclipse RCP (Rich Client Platform), respektive OSGi. Díky tomu je poměrně snadno rozšiřitelný, což je ale vyváženo velkým rozsahem aplikace, který vývoj a rozšíření naopak lehce komplikuje. Buildovacím nástrojem je zde Maven.
+
+\subsection{Základní informace}
+
+\begin{description}
+    \item[Licence] Eclipse Public License 1.0
+    \item[Jazyk] Java
+    \item[Zdrojový kód] \url{https://git.eclipse.org/c/mat/org.eclipse.mat.git} 
+    \item[Výhody] Již obsahuje základní funkcionalitu, která by se dala využít pro potřeby splnění zadání této práce.
+    \item[Nevýhody] Jedná se o velmi obsáhlý projekt, jehož úprava není jednoduchá a pro potřeby této práce je využitelný malý zlomek jeho funkcionality.
+\end{description}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.3]{obrazky/mat.png}
+	\caption{Rozhraní Eclipse MAT}
+	\label{obr-eclipse-mat}
+\end{figure}
+
 
 \section{VisualVM}
 Open source profiler pro Java platformu. Patří mezi nejpoužívanější profilery, respektive nástroje pro analýzu výkonu v Javě.
@@ -398,27 +418,98 @@ Požadovanou funkcionalitu VisualVM v zásadě neposkytuje, umožňuje pouze k n
 
 Pro build je využíván nástroj Ant a v současné době je vyžadována Java verze 7 a vyšší.
 
+\subsection{Základní informace}
+
+\begin{description}
+    \item[Licence] GPLv2 + CE
+    \item[Jazyk] Java
+    \item[Zdrojový kód] \url{https://github.com/oracle/visualvm} 
+    \item[Výhody] Populární nástroj, jehož vývoj je (v době psaní této práce) stále velmi aktivní.
+    \item[Nevýhody] Stejně jako v případě Eclipse MAT velmi rozsáhlý a komplikovaný projekt. Kromě předzpracování dumpu neposkytuje žádnou požadovanou funkcionalitu.
+\end{description}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.3]{obrazky/visualvm.png}
+	\caption{Rozhraní VisualVM}
+	\label{obr-visualvm}
+\end{figure}
+
 \section{Java Mission Control}
 Nástroj poskytovaný přímo spolu s distribucí Oracle JVM od verze 7 (konkrétně 7 Update 40 – 7u40), což je jeho výhodou. Mezi jeho možnosti patří např. využití paměti jednotlivými součástmi Java paměti a také umožňuje zobrazit jednotlivé instance objektů, nicméně neumožňuje jejich další analýzu.
+
+\subsection{Základní informace}
+
+\begin{description}
+    \item[Licence] Universal Permissive License (UPL), Version 1.0 nebo BSD
+    \item[Jazyk] Java
+    \item[Zdrojový kód] \url{https://hg.openjdk.java.net/jmc} 
+    \item[Výhody] Nástroj je součástí JDK, jeho rozšíření (formou pluginu) by mohlo výrazně přispět k použitelnosti vytvořené aplikace.
+    \item[Nevýhody] Neumí zpracovávat HPROF soubory.
+\end{description}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.3]{obrazky/jmc.png}
+	\caption{Rozhraní Java Mission Control}
+	\label{obr-jmc}
+\end{figure}
 
 \section{JProfiler}
 Komerční profiler, přesto velice používaný. Standardní licence stojí v době psaní 409 euro, akademická potom 179 euro. Je možné zažádat o licenci pro open source produkty, nicméně ta je podmíněna již vydanou verzí a existující webovou stránkou, což činí jakékoliv použití tohoto profileru v rámci práce nepraktickým. Profiler je používán především v komerční sféře, díky svým možnostem a dle výše uvedeného testu i nejvyšší úspěšností v odhalování bugů.
 
+\subsection{Základní informace}
+
+\begin{description}
+    \item[Licence] Proprietární -- placení software
+    \item[Jazyk] Java
+    \item[Zdrojový kód] Není opensource
+    \item[Výhody] Komerční nástroj, velké možnosti, stejně jako Eclipse MAT obsahuje proovnání základních objektů.
+    \item[Nevýhody] Není zdarma, není opensource.
+\end{description}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.3]{obrazky/jprofiler.png}
+	\caption{Rozhraní JProfileru}
+	\label{obr-jprofiler}
+\end{figure}
+
 \section{JHAT}
 Nástroj, který je přímou součásti distribuce Oracle JVM od verze 6. Nebyl nikdy oficiálně podporován a od počátku byl označen jako experimentální nástroj, z těchto důvodů byl tedy v Javě 11 naprosto odstraněn \cite{jep241}\cite{java11migration}. V rámci verzí Javy, které jej obsahují, ho lze využít jako \zkratka{CLI} aplikaci, která dokáže dump vytvoření pomocí např. \textit{JMAP} otevřít. Následně vytvoří webový server, jehož prostřednictvím poskytuje data získaná ze zpracovaného dumpu. Tato data je možné si poté zobrazit pomocí webového prohlížeče; zajímavým příkladem možného využití je následné rozparsování těchto dat jakožto formátu HTML a jejich další využití. Program je tedy možné využít jako prostředníka pro zpracování \cite{jhat}. Kromě \uv{prostého} zobrazení webové stránky umí \textit{JHAT} rovněž poskytovat zpracování pomocí jazyka \zkratka{OQL}.
+
+\subsection{Základní informace}
+
+\begin{description}
+    \item[Licence] SUN PUBLIC LICENSE Version 1.0
+    \item[Jazyk] Java
+    \item[Zdrojový kód] \url{https://download.java.net/openjdk/jdk8/}
+    \item[Výhody] Byl součástí starších verzí JDK, nyní už není.
+    \item[Nevýhody] Již není podporován. Nabízí jen základní funkcionalitu.
+\end{description}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.3]{obrazky/jhat.png}
+	\caption{Rozhraní JHAT}
+	\label{obr-jhat}
+\end{figure}
 
 \section{OQL}
 \zkratka{OQL} zmíním i jako samostatný způsob zpracování. Jedná se o jazyk, který slouží pro obecnou manipulaci s objekty, resp. s objektovými dokumenty \cite{odmgoql}\cite{oql}. Na první pohled si nelze nevšimnou jeho podobnosti s dotazovým jazykem SQL. Neomezuje se tedy pouze na zpracování Java heapu (či obecně paměti), ale je standardem, který pro tento účel lze využít. Z toho je možné usoudit, že standard jako takový pro zpracování nestačí -- je nutné využít některou z jeho implementací, která takové rozhraní přístupu k Java heapu umožňuje. Jednou z nich je právě výše zmíněný \textit{JHAT}.
 
-V příkladu \ref{oql} je možné vidět práci s \zkratka{OQL}.
+V příkladu \ref{example-oql} je možné vidět práci s OQL.
 
-\begin{lstlisting}[caption={Příklad OQL}, label={oql}, frame={single}, language={SQL}]
+\begin{lstlisting}[caption={Příklad OQL}, label={example-oql}, frame={single}, language={SQL}]
 select s 
 from java.lang.String s 
 where s.value.length >= 100
 \end{lstlisting}
 
+\section{NetBeans HeapWalker}
+Součást IDE NetBeans, která dokáže pracovat se soubory typu HPROF. Z dumpu umí extrahovat třídy, jejich instance, proměnné a reference. K této funkcionalitě poskytuje grafické rozhraní, které je součástí NetBeans Profileru.
 
+\section{Hprof Heap Dump parser}
 
 % =====================================================================================================================================================================================
 
@@ -584,14 +675,32 @@ Pole, jehož využití paměti je neefektivní, bude mít hodnotu této metriky 
 
 V následujících odstavcích a kapitolách se budu věnovat analýze řešení výše nastíněných problémů. Výsledné řešení musí být využitelné v praxi -- mělo by tak být robustní, vytvořené za využití stabilní softwarové platformy a výsledek by měl být pokud možno k dispozici co nejrychleji. Pro potřeby automatizace by mělo být k dispozici CLI rozhraní či API, grafické uživatelské rozhraní je tedy vedlejší a jeho vytvoření není nutné.
 
-\section{Způsob zpracování dumpu}
-Jak bylo zmíněno v předchozích kapitolách, !TODO!
-
 \section{Volba platformy}
 Vzhledem k tomu, že při řešení problému nejsme závislí na Javě samotné, ani v rámci API, nejsou na volbu platformy kladeny žádné speciální požadavky. Je nutné pouze načíst soubor HPROF a nad ním začít provádět analýzu -- jediným požadavkem je tak pouze základní IO.
 
-Volbou jiné platformy než \zkratka{JVM} společně s Javou nicméně vytváříme další závislost pro budoucí potenciální uživatele. Vzhledem k tomu, že neexistuje žádný důvod pro volbu jiné platformy (snad kromě případných osobních preferencí), nejvhodnější volba tak tedy připadá opět na Javu. Dá se navíc předpokládat, že bude poskytovat nástroje pro zpracování memory dumpu pro vlastní platformu.
+Volbou jiné platformy než \zkratka{JVM} společně s Javou nicméně vytváříme další závislost pro budoucí potenciální uživatele. Vzhledem k tomu, že neexistuje žádný důvod pro volbu jiné platformy (snad kromě případných osobních jazykových preferencí), nejvhodnější volba tak tedy připadá opět na Javu. Dá se navíc předpokládat, že bude poskytovat nástroje pro zpracování memory dumpu pro vlastní platformu. Tento požadavek tak omezuje volbu platformy pouze na \zkratka{JVM}.
 
+Teoreticky by bylo možné rovněž využít některý z jazyků využívajících platformu \zkratka{JVM}, např. již zmíněný Kotlin. Ten by mohl, za dodržení výše stanovených podmínek, přinést další výhody, třeba lepší podporu (v porovnání s Javou) pro tzv. stream API. To by mohlo znamenat výrazné zefektivnění zápisu některých operací nad listy a mapami, které se u zde řešeného problému dají očekávat ve velkém měřítku. S tím souvisí výborná podpora pro \textit{lambda} zápis. Nelze říci, že by tento \uv{syntaktický cukr}\footnote{\textit{Syntactic sugar} -- vlastnosti jazyků, které nepřidávají novou funkcionalitu, ale umožňují pohodlnější, rychlejší a úspornější zápis pro programátora.} zrychloval běh programu jako takového, ale mohl by výrazně urychlit jeho vývoj. Kromě toho je takový zápis intuitivnější (při alespoń základní zkušenosti s funkcionálním přístupem k programování), díky čemuž je možné očekávat nižší výskyt chyb.
+
+S tím souvisí i další vlastnost Kotlinu -- odolnost vůči chybám při přístupu k neinicializovaným objektům, v Javě známým jako \texttt{NullPointerException} (\texttt{NPE}, podobný koncept zná i velká část ostatních jazyků, včetně nízkoúrovňových, jako třeba \textit{Segmentation fault} v \texttt{C}), které vznikají nedostatečným či nedůsledným ošetřením vstupů a návratových hodnot. Kotlin vynucuje tzv. \textit{null safety} pomocí různých operátorů. Rovněž je ošetření volání, která by mohla vyvolat \texttt{NPE}, vynuceno na úrovni překladače, tj. na potenciální problém se přijde již při fázi překladu (a ne až za běhu -- \textit{runtime} -- jako je tomu u Javy), který selže a donutí nás chybu opravit. \texttt{NPE} se tímto přístupem z velké většiny podaří eliminovat -- i když se při nedůsledném užívání některých operátorů objevit může.
+
+Přes všechny tyto nesporné výhody Kotlinu (a případných dalších jazyků platformy \zkratka{JVM}, jako třeba Closure, Groovy, Scala apod.) je ale nutné se zamyslet, zda cena za ně není příliš vysoká. Především z pohledu udržitelnosti -- lze předpokládat, že tento projekt bude publikován jako open source. Proto by bylo vhodné vybrat některý z jazyků s majoritním podílem tak, aby byl případně projekt široce dostupný. Právě dostupnost by se, s využitím některého z méně rozšířených či \uv{exotičtějších} jazyků, drasticky snižovala.
+
+Z výše uvedených důvodů tedy výchází jako platforma pro vývoj \zkratka{JVM} a jazyk Java. Případně je při dalším vývoji možné využít Kotlin jako druhý jazyk, který dokáže s Javou spolupracovat i v rámci jednoho programu/projektu na úrovni API.
+
+\section{Způsob zpracování heapu}
+Jak bylo zmíněno v předchozích kapitolách, k přístupu ke zpracování heapu lze přistoupit mnoha různými způsoby. V zásadě je možné je redukovat na dva typy přístupu, a to
+
+\begin{itemize}
+    \item analýza za běhu programu, nebo
+    \item analýza dumpu paměti.
+\end{itemize}
+
+V kapitole \ref{runtime-analysis} jsem došel k závěru, že analýza za běhu programu by, stejně jako spuštění \zkratka{GC}, vyžadovala \textit{stop-the-world}. Což, společně s faktem, že HPROF formát paměťového dumpu je de facto otisk reálné paměti, redukuje oba problémy na analýzu stavu paměti v určitém časovém okamžiku -- jedná se tak vlastně o snímek (\textit{snapshot}) v tomto čase. 
+
+Analýza za běhu by nicméně vyžadovala vytvoření modulu, který by se přilinkoval k projektu už během kompilace, tj. vyžadovala by cílenou implementaci autorem projektu. Jako druhou možnost by bylo možné využít některý ze systémů dodávaní modulů do již zkompilovaného projektu, např. frameworky OSGi nebo Spring (pomocí autokonfigurace). Takový přístup ale znovu přidává podmínky, které by autor programu musel splnit, aby mohl analýzu heapu využít -- konkrétně závislost na konkrétním frameworku, pro který bych přidal podporu. Ideální by tedy byla možnost analýzy bez konkrétních závislostí na čemkoliv kromě \zkratka{JVM}. Kromě skutečně nízkurúrovňových přístupů tak vychází analýza dumpu jako lepší z dvojice výše nabízených možností. 
+
+Standardní formát jako HPROF nabízí celou řadu existujících nástrojů a knihoven, které byly popsány v rámci kapitoly \ref{existing-solutions}. 
 
 \chapter{Implementace}
 \chapter{Ověření implementace}
