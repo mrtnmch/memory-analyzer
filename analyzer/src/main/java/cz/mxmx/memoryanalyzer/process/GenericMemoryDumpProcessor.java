@@ -129,7 +129,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 			instanceValues.forEach((fieldName, fieldValue) -> {
 				Optional<InstanceFieldDump> any = value.getClassDump().getInstanceFields().stream().filter(field -> field.getName().equals(fieldName)).findAny();
 				any.ifPresent(instanceFieldDump -> {
-					if (instanceFieldDump.getType().equals(Object.class) && instances.get(((Long) (((Value) fieldValue).value))) != null) {
+					if (instanceFieldDump.getType().equals(Object.class) && ((Value) fieldValue).value instanceof Long &&  instances.get(((Long) (((Value) fieldValue).value))) != null) {
 						InstanceDump instanceDump = instances.get(((Long) (((Value) fieldValue).value)));
 						if (this.isString(instanceDump)) {
 							if (instanceDump.getInstanceFieldValues().isEmpty()) {
