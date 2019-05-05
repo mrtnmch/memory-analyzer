@@ -67,7 +67,7 @@ public class App {
 			boolean list = cmd.hasOption("list");
 			boolean help = cmd.hasOption("help");
 
-			if(list) {
+			if(list && !Strings.isNullOrEmpty(inputFilePath)) {
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
@@ -78,7 +78,7 @@ public class App {
 				});
 
 			}
-			else if(!Strings.isNullOrEmpty(namespace)) {
+			else if(!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
