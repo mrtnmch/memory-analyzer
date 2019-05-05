@@ -54,6 +54,7 @@
 \newlabel{obr-jvms-img}{{1}{13}{Struktura Java paměti \cite {jvms-img}}{figure.15}{}}
 \citation{jsr133}
 \@writefile{toc}{\contentsline {section}{\numberline {3.6}Runtime constant pool}{14}{section.16}}
+\newlabel{runtime-constant-pool}{{3.6}{14}{Runtime constant pool}{section.16}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}\IeC {\v R}et\IeC {\v e}zce}{14}{subsection.17}}
 \newlabel{java-strings}{{3.6.1}{14}{Řetězce}{subsection.17}{}}
 \newlabel{intern}{{3.1}{14}{Příklad uchovávání řetězců a metody \texttt {intern}}{lstlisting.18}{}}
@@ -95,6 +96,7 @@
 \newlabel{obr1}{{2}{18}{Využití paměti a provedení garbage kolekce před vytvořením dumpu (červeně)}{figure.35}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{18}{subsection.36}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Bin\IeC {\'a}rn\IeC {\'\i } form\IeC {\'a}t dumpu heapu}{19}{subsection.37}}
+\newlabel{hprof-format}{{3.7.4}{19}{Binární formát dumpu heapu}{subsection.37}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Hlavi\IeC {\v c}ka}{19}{section*.38}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hlavi\IeC {\v c}ka \texttt  {hprof} bin\IeC {\'a}rn\IeC {\'\i }ho form\IeC {\'a}tu.}}{19}{table.39}}
 \newlabel{table-hprof-header}{{1}{19}{Hlavička \texttt {hprof} binárního formátu}{table.39}{}}
@@ -187,31 +189,44 @@
 \newlabel{example-oql}{{7.1}{31}{Příklad OQL}{lstlisting.77}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {7.1}P\IeC {\v r}\IeC {\'\i }klad OQL}{31}{lstlisting.77}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.7}Knihovny}{32}{section.81}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.1}Hprof Heap Dump parser}{32}{subsection.82}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{33}{chapter.83}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}Rovnost objekt\IeC {\r u}}{33}{section.84}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{35}{section.91}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{35}{subsection.92}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Strom porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } objekt\IeC {\r u}}}{36}{figure.97}}
-\newlabel{obr-height}{{10}{36}{Strom porovnávání objektů}{figure.97}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } \IeC {\v r}et\IeC {\v e}zc\IeC {\r u}}{36}{subsection.98}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.3}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{37}{subsection.99}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.3}Efektivita vyu\IeC {\v z}it\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{37}{section.101}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Anal\IeC {\'y}za implementace}{39}{chapter.104}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.1}Volba platformy}{39}{section.105}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{33}{chapter.82}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Rovnost objekt\IeC {\r u}}{33}{section.83}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{35}{section.90}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{35}{subsection.91}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Strom porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } objekt\IeC {\r u}}}{36}{figure.96}}
+\newlabel{obr-height}{{10}{36}{Strom porovnávání objektů}{figure.96}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } \IeC {\v r}et\IeC {\v e}zc\IeC {\r u}}{36}{subsection.97}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.3}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{37}{subsection.98}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Efektivita vyu\IeC {\v z}it\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{37}{section.100}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Anal\IeC {\'y}za implementace}{39}{chapter.103}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.1}Volba platformy}{39}{section.104}}
 \acronymused{JVM}
 \acronymused{JVM}
 \acronymused{JVM}
 \acronymused{JVM}
 \acronymused{JVM}
-\@writefile{toc}{\contentsline {section}{\numberline {9.2}Zp\IeC {\r u}sob zpracov\IeC {\'a}n\IeC {\'\i } heapu}{40}{section.107}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.2}Zp\IeC {\r u}sob zpracov\IeC {\'a}n\IeC {\'\i } heapu}{40}{section.106}}
 \acronymused{GC}
 \acronymused{JVM}
-\@writefile{toc}{\contentsline {chapter}{\numberline {10}Implementace}{41}{chapter.108}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {11}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } implementace}{42}{chapter.109}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {12}Z\IeC {\'a}v\IeC {\v e}r}{43}{chapter.110}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}Hprof Heap Dump parser}{41}{section.107}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{41}{subsection.108}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}Z\IeC {\'a}kladn\IeC {\'\i } struktura}{41}{subsection.109}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {9.1}P\IeC {\v r}\IeC {\'\i }klad zpracov\IeC {\'a}n\IeC {\'\i } hlavi\IeC {\v c}ky ze souboru HPROF}{41}{lstlisting.110}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.3}RecordHandler}{42}{subsection.115}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.4}Definovan\IeC {\'e} entity}{44}{subsection.116}}
+\@writefile{toc}{\contentsline {subsubsection}{ClassInfo}{44}{section*.117}}
+\@writefile{toc}{\contentsline {subsubsection}{Instance}{44}{section*.118}}
+\@writefile{toc}{\contentsline {subsubsection}{InstanceField}{44}{section*.119}}
+\@writefile{toc}{\contentsline {subsubsection}{Constant}{44}{section*.120}}
+\@writefile{toc}{\contentsline {subsubsection}{Static}{44}{section*.121}}
+\@writefile{toc}{\contentsline {subsubsection}{Type}{44}{section*.122}}
+\@writefile{toc}{\contentsline {subsubsection}{Value}{45}{section*.123}}
+\@writefile{toc}{\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'\i } knihovny}{45}{section*.124}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {10}Implementace}{46}{chapter.125}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {11}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } implementace}{47}{chapter.126}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {12}Z\IeC {\'a}v\IeC {\v e}r}{48}{chapter.127}}
 \@setckpt{text/main}{
-\setcounter{page}{44}
+\setcounter{page}{49}
 \setcounter{equation}{0}
 \setcounter{enumi}{6}
 \setcounter{enumii}{0}
@@ -230,9 +245,9 @@
 \setcounter{table}{4}
 \setcounter{Item}{6}
 \setcounter{Hfootnote}{1}
-\setcounter{bookmark@seq@number}{51}
+\setcounter{bookmark@seq@number}{55}
 \setcounter{AM@survey}{0}
-\setcounter{lstnumber}{4}
+\setcounter{lstnumber}{5}
 \setcounter{parentequation}{0}
 \setcounter{section@level}{0}
 \setcounter{lstlisting}{0}

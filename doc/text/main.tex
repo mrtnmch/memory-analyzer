@@ -125,6 +125,7 @@ Oblast, která uchováva data jednotlivých metod. Pro každou načtenou třídu
 \end{figure}
 
 \section{Runtime constant pool}
+\label{runtime-constant-pool}
 \textit{Runtime constant pool} (volně přeloženo jako \textit{fond konstant pro běh}) je tabulka symbolů, která uchovává různé konstanty a informace nutné pro běh. Obsahuje následující položky.
 
 \begin{description}
@@ -221,6 +222,7 @@ Při zpracování dumpu je nutné zohlednit fakt, že je vyexportovaný kompletn
 Pro práci nad heapem  (typicky ve formátu HPROF) je možné využít některou z implementací dotazovacího jazyku OQL (Object Query Language).
 
 \subsection{Binární formát dumpu heapu}
+\label{hprof-format}
 Binární formát dumpu Java heapu (\textit{hprof}) má specifikovaný formát, který je popsán v tabulkách \ref{table-hprof-header} a \ref{table-hprof-body}.
 
 \subsubsection{Hlavička}
@@ -705,10 +707,10 @@ Dle mého názoru je tak nejvhodnější implementovat samostatný, nezávislý 
 
 Po analýze a prozkoumání existujících projektů vyšel jako nejlepší kandidát projekt \textit{Hprof Heap Dump parser}.
 
-\subsection{Hprof Heap Dump parser}
+\section{Hprof Heap Dump parser}
 Jedná se o poměrně malou, v době psaní této práce stále udržovanou knihovnu, starající se o zpracování souboru HPROF. 
 
-\subsubsection{Základní informace}
+\subsection{Základní informace}
 
 \begin{description}
     \item[Licence] Apache License, Version 2.0
@@ -716,8 +718,113 @@ Jedná se o poměrně malou, v době psaní této práce stále udržovanou knih
     \item[Zdrojový kód] \url{https://github.com/eaftan/hprof-parser}
 \end{description}
 
-\subsubsection{Základní struktura}
+\subsection{Základní struktura}
 Hlavní třídou, která se stará o zpracování HPROF souboru a která nás tedy bude zajímat, je \texttt{HprofParser}. 
+
+Jak bylo popsáno v kapitole \ref{hprof-format}, HPROF má standardizovaný, binární formát. Knihovna toho využívá a zpracovává ho přesně, jak by se dalo očekávat -- dle definovaných bytových délek načítá jednotlivé hodnoty. Protože zná (dle tabulek \ref{table-hprof-header} - \ref{table-hprof-data-types} ve stejné kapitole) význam těchto binárních hodnot i jejich datové typy, může celý soubor kompletně načíst, zpracovat a vystavět tak v paměti reprezentaci memory dumpu, který obsah souboru HPROF představuje.
+
+Například zpracování hlavičky:
+
+\begin{lstlisting}[caption={Příklad zpracování hlavičky ze souboru HPROF}, frame={single}, language={java}]
+    String format = readUntilNull(in);
+    int idSize = in.readInt();
+    long startTime = in.readLong();
+    handler.header(format, idSize, startTime);
+\end{lstlisting}
+
+Jak je vidět, načtení přesně odpovídá definici formátu hlavičky v tabulce \ref{table-hprof-header} -- položka s formátem souboru nemá stanovenou délku, jedná se o řetězec zakončený hodnotou \texttt{null}, tj. \texttt{\textbackslash0} (tzv. \textit{null-terminated} nebo také \textit{C-style} řetězce). Velikost identifikátorů je celočíselná hodnota o velikosti 4 B (tedy \textit{Integer}) a časové razítko jsou dvě 4B položky, což je v knihovně najednou načítáno jako \texttt{long}, což je typ, který má v Javě délku 8 B. Následně jsou tyto hodnoty publikovány skrze volání tzv. \texttt{RecordHandler} (viz dále).
+
+Po načtení hlavičky je v knihovně iterováno nad následujícími byty, kdy je vždy jako první načten \texttt{tag} -- typ záznamu. Dle této hodnoty je poté, pomocí přepínače \texttt{switch}, prováděna příslušná akce, respektive načtení dalších údajů, které se různí dle hodnoty položky \texttt{tag}. Na základě načtených hodnot jsou poté vytvořeny entity, které těmto datům přidávají informace (zejména z pohledu sémantiky dat) a které jsou dále publikovány skrze \texttt{RecordHandler}, stejně jako v případě hlavičky.
+
+\subsection{RecordHandler}
+Jedná se o rozhraní, které slouží jako posluchač (\texttt{listener}) volání třídy \texttt{HprofParser}, jejíž funkcionalita byla popsána výše. Má několik metod, nicméně pro potřeby této práce jsou zapotřebí zejména následující (společně s popisem vybraných důležitých parametrů):
+
+\begin{itemize}
+    \item \texttt{void header(String format, int idSize, long time)} -- Výše popsaná metoda pro zpracování hlavičky.
+    \item \texttt{void stringInUTF8(long id, String data)} -- Zpracování řetězce.
+        \begin{itemize}
+            \item \texttt{id} -- ID řetězce.
+            \item \texttt{data} -- Hodnota řetězce samotného.
+        \end{itemize}
+    \item \texttt{void loadClass(int classSerialNum, long classObjId,\\ int stackTraceSerialNum, long classNameStringId)} Načtení třídy. Této metody můžeme využít pro registrování všech tříd, které se v právě zpracovávaném dumpu nacházejí. Stejně tak existuje metoda \texttt{unloadClass}, kterou zde ale potřebovat nebudeme.
+        \begin{itemize}
+            \item \texttt{classObjId} -- Číselný identifikátor třídy.
+            \item \texttt{classNameStringId} -- Číslo řetězce, který uchovává název třídy.
+        \end{itemize}
+    \item \texttt{void classDump(long classObjId,
+    int stackTraceSerialNum, \\
+    long superClassObjId,
+    long classLoaderObjId,
+    long signersObjId, \\
+    long protectionDomainObjId,
+    long reserved1,
+    long reserved2,\\
+    int instanceSize,
+    Constant[] constants,
+    Static[] statics,\\
+    InstanceField[] instanceFields)} -- Podrobné informace o načítaných třídách, které se dají provázat společně s informacemi načtenými prostřednictvím metody \texttt{loadClass} pomocí jednotného \texttt{classObjId}.
+        \begin{itemize}
+            \item \texttt{classObjId} -- Číselný identifikátor třídy.
+            \item \texttt{superClassObjId} -- Číselný identifikátor třídy, kterou daná třída rozšiřuje. Díky tomuto poli jsme schopni zrekonstruovat kompletní strom dědičnosti všech tříd, až po \texttt{Object}.
+            \item \texttt{classLoaderObjId} -- Číselný identifikátor \texttt{Class\-Loaderu}, který se postaral o načtený této konkrétní třídy.
+            \item \texttt{constants} -- Pole s informacemi o konstantách, které třída definuje.
+            \item \texttt{statics} -- Pole s informacemi o statických položkách.
+            \item \texttt{instanceFields} -- Pole s informacemi o instančních proměnných. Pravděpodobně nejdůležitější pole pro potřeby splnění zadání této práce.
+        \end{itemize}
+    \item \texttt{void instanceDump(long objId, int stackTraceSerialNum, long \\ classObjId, Value<?>[] instanceFieldValues)} -- Informace o instancích.
+        \begin{itemize}
+            \item \texttt{objId} -- Číselný identifikátor instance (objektu).
+            \item \texttt{classObjId} -- Číselný identifikátor třídy, jejíž instancí je daný objekt. Koresponuje s identifikátory definovanými v rámci metod \texttt{classDump} a \texttt{loadClass}.
+            \item \texttt{InstanceFieldValues} -- Pole s hodnotami třídních proměnných, které byly definovány v metodě \texttt{classDump} s podrobnými informacemi o třídě. Jak je možné si všimnout, jedná se o generický typ, jehož hodnota je v době kompilace nejasná (\texttt{?}), proto lze očekávat, že v době načtení informací o instanci bude nutné přetypovat tuto hodnotu na základě informací o typu třídní proměnné.
+        \end{itemize}
+    \item \texttt{void objArrayDump(long objId, int stackTraceSerialNum, long \\ elemClassObjId, long[] elems)} -- Informace o poli, jehož prvky jsou referenčního typu. Protože se jedná o reference, hodnoty samotné představují pouze odkazy na objekty -- proto jsou typu \texttt{long}, což odpovídá hodnotě parametru \texttt{objId} definovanému v metodě \texttt{instanceDump}.
+    \begin{itemize}
+        \item \texttt{objId} -- Číselný identifikátor objektu, tedy tohoto pole.
+        \item \texttt{elemClassObjId} -- Číselný identifikátor třídy, jejíž instance představují prvky tohoto pole. Díky tomuto parametru můžeme pole definovat jako \texttt{<Class>[]} (kde \texttt{<Class> je název třídy}), namísto generického \texttt{Array} či \texttt{Object[]}.
+        \item \texttt{elems} -- Pole s referencemi na jednotlivé objekty.
+    \end{itemize}
+    \item \texttt{void primArrayDump(long objId, int stackTraceSerialNum, byte \\ elemType, Value<?>[] elems)} -- Informace o poli, jehož prvky jsou primitivního typu. Toto pole obsahuje přímo hodnoty.
+    \begin{itemize}
+        \item \texttt{objId} -- Číselný identifikátor objektu, tedy pole.
+        \item \texttt{elemType} -- Identifikátor typu, jehož prvky se v poli nachází. Tento identifikátor odpovídá typům definovaným v tabulce \ref{table-hprof-data-types}.
+        \item \texttt{elems} -- Samotné elementy, které se v poli nachází. Opět se jedná o generiku, proto musíme pomocí \texttt{elemType} a překladové tabulky zjistit typ a následně hodnotu přetypovat, abychom získali korektní hodnotu.
+    \end{itemize}
+\end{itemize}
+
+Kromě těchto metod, které budou potřeba, obsahuje rozhraní ještě velké množství metod, které se starají o zpracování ostatních informací z HPROF dumpu, které jsou v tomto případě zbytečné (informace o vláknech, zásobníku, rámcích, alokacích...). Abychom je nemuseli zbytečně implementovat (či vynechávat), definuje knihovna výchozí implementaci -- \texttt{NullRecordHandler}, se kterou v dokumentaci doporučuje pracovat v základu. Díky tomu můžeme tuto třídu rozšířit a přetížit pouze metody, které nás skutečně zajímají -- tedy ty, které jsou popsány výše. Ostatní tak můžeme ignorovat a zbytečně neznečišťují definici třídy prázdnými metodami.
+
+\subsection{Definované entity}
+Knihovna rovněž definuje některé entity (struktury), které umožňují snadnější zpracování dat načtených pomocí výše popsaných metod. Opět jsou některé v tomto případě zbytečné, proto se budu jen (stručně) věnovat těm, které využiji.
+
+\subsubsection{ClassInfo}
+Třída, která uchovává informace o definicích tříd, které se v souboru HPROF nacházejí. Obsahuje některá data z metody \texttt{classDump}, konkrétně ta, která jsem popisoval výše.
+
+\subsubsection{Instance}
+Jak vypovídá název této entity (a vlastně i ostatních), objekty této třídy představují instance tříd definovaných prostřednictvím \texttt{ClassInfo}. 
+
+\subsubsection{InstanceField}
+Představuje instanční proměnnou. Kromě typu (viz dále \texttt{Type}) obsahuje i název proměnné (\texttt{fieldNameStringId}), byť stále jako referenci typu \texttt{long}.
+
+\subsubsection{Constant}
+Třída reprezentující konstanty. Kromě hodnoty, která je uchovávána jako \texttt{Value<?>}, je zde \texttt{constantPoolIndex}, což představuje index v poli (tedy de facto ukazatel) konstant, o kterém jsem mluvil v kapitole \ref{runtime-constant-pool}.
+
+\subsubsection{Static}
+Statická položka třídy. Kromě hodnoty, která je generického typu \texttt{Value<?>}, obsahuje i název \texttt{staticFieldNameStringId}, jako referenci typu \texttt{long}.
+
+\subsubsection{Type}
+Jedná se o výčtový typ \texttt{enum}, který definuje typy dle tabulky \ref{table-hprof-data-types}, včetně jejich názvů a délky v bytech.
+
+\subsubsection{Value}
+\texttt{Value<T>} je generický typ, který slouží pro uchovávání hodnoty \texttt{T}. Kromě této hodnoty navíc uchovává typ \texttt{Type}. 
+
+Jak si bylo možné všimnou výše, většinou je v knihovně s třídou \texttt{Value} pracováno pomocí nespecifikované generiky \texttt{?}, což je trochu nešťastné řešení, které programátora využívající tuto knihovnu nutí k přetypování na základě hodnoty proměnné \texttt{Type}. To může vyvolat varování typu \textit{Unchecked cast} a jako takové vyžaduje věnování zvýšené pozornosti této části programu, protože může být zdrojem neočekávaných chyb. Takový blok kódu je tedy nutné důsledně ošetřit a ověřit, že přetypování můžeme skutečně bezpečně provést.
+
+\subsubsection{Použití knihovny}
+Protože knihovna přistupuje k načítání dumpu stále poměrně nízkoúrovňově, tedy na úrovni referencí jako celočíselných hodnot \texttt{long}, jednotlivých bytů atd., bylo by vhodné si napsat vlastní \texttt{RecordHandler}, za dodržení doporučení z dokumentace knihovny, tedy rozšířením třídy \texttt{NullRecordHandler}. Jediným účelem této třídy bude zachytit a zaznamenat všechny údaje tak, aby se daly dále pohodlně zpracovat. 
+
+Nad touto implementací rozhraní \texttt{RecordHandler} navrhuji vytvořít obálku (v terminologii \texttt{wrapper}), který bude předzpracovaná data využívat (bude tedy \texttt{RecordHandler} využívat formou delegování) a již je bude publikovat rovnou do aplikace. Oddělím tak tedy nízkoúrovňovou práci od té vyšší, abstraktnější úrovně, a zároveň tím dojde k oddělení API, čímž bude eventuálně možné nahradit knihovnu pro zpracování HPROF souboru jiným nástrojem či vlastní implementací při zachování API pro vysokoúrovňovou práci. Takové oddělení je ekvivalentem \textit{Repository} a \textit{Service} v případě přístupu k databázi (či jinému úložišti) -- při změně databáze, její struktury či přímo typu úložiště pouze změníme \textit{Repository}, jehož funkcionalitu zastřešuje \textit{Service}, který teprve využíváme ve zbytku aplikace -- koncentrujeme tak změnu pouze na jedno místo a zbytek aplikace zůstane netknutý. Stejně tak, jako bychom v případě této analogie užívali \textit{Service}, budeme využívat tuto obálku.
+
+Problémem, který při použití knihovny nastává, je udržitelnost -- respektive způsob jejího získání. 
 
 \chapter{Implementace}
 \chapter{Ověření implementace}
