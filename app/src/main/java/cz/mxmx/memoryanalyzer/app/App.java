@@ -52,6 +52,10 @@ public class App {
 		namespacesOption.setRequired(false);
 		options.addOption(namespacesOption);
 
+		Option helpOption = new Option("h", "help", false, "print help");
+		helpOption.setRequired(false);
+		options.addOption(helpOption);
+
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
 		CommandLine cmd;
@@ -61,9 +65,10 @@ public class App {
 			String inputFilePath = cmd.getOptionValue("path");
 			String namespace = cmd.getOptionValue("namespace");
 			boolean list = cmd.hasOption("list");
-			DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
+			boolean help = cmd.hasOption("help");
 
 			if(list) {
+				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
 
@@ -73,10 +78,15 @@ public class App {
 				});
 
 			}
-			else {
+			else if(!Strings.isNullOrEmpty(namespace)) {
+				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
 				this.processMemoryDump(memoryDump, namespace);
+			} else if(help) {
+				formatter.printHelp("memory-analyzer", options);
+			} else {
+				System.out.println("No action defined. See --help for more info.");
 			}
 
 			System.exit(0);
