@@ -822,7 +822,7 @@ Jak si bylo možné všimnou výše, většinou je v knihovně s třídou \textt
 \subsection{Použití knihovny}
 Protože knihovna přistupuje k načítání dumpu stále poměrně nízkoúrovňově, tedy na úrovni referencí jako celočíselných hodnot \texttt{long}, jednotlivých bytů atd., bylo by vhodné si napsat vlastní \texttt{RecordHandler}, za dodržení doporučení z dokumentace knihovny, tedy rozšířením třídy \texttt{NullRecordHandler}. Jediným účelem této třídy bude zachytit a zaznamenat všechny údaje tak, aby se daly dále pohodlně zpracovat. 
 
-Nad touto implementací rozhraní \texttt{RecordHandler} navrhuji vytvořít obálku (v terminologii \texttt{wrapper}), který bude předzpracovaná data využívat (bude tedy \texttt{RecordHandler} využívat formou delegování) a již je bude publikovat rovnou do aplikace. Oddělím tak tedy nízkoúrovňovou práci od té vyšší, abstraktnější úrovně, a zároveň tím dojde k oddělení API, čímž bude eventuálně možné nahradit knihovnu pro zpracování HPROF souboru jiným nástrojem či vlastní implementací při zachování API pro vysokoúrovňovou práci. Takové oddělení je ekvivalentem \textit{Repository} a \textit{Service} v případě přístupu k databázi (či jinému úložišti) -- při změně databáze, její struktury či přímo typu úložiště pouze změníme \textit{Repository}, jehož funkcionalitu zastřešuje \textit{Service}, který teprve využíváme ve zbytku aplikace -- koncentrujeme tak změnu pouze na jedno místo a zbytek aplikace zůstane netknutý. Stejně tak, jako bychom v případě této analogie užívali \textit{Service}, budeme využívat tuto obálku.
+Nad touto implementací rozhraní \texttt{RecordHandler} navrhuji vytvořít obálku (v terminologii \texttt{wrapper}, tj. návrhový vzor \texttt{Proxy}), který bude předzpracovaná data využívat (bude tedy \texttt{RecordHandler} využívat formou delegování) a již je bude publikovat rovnou do aplikace. Oddělím tak tedy nízkoúrovňovou práci od té vyšší, abstraktnější úrovně, a zároveň tím dojde k oddělení API, čímž bude eventuálně možné nahradit knihovnu pro zpracování HPROF souboru jiným nástrojem či vlastní implementací při zachování API pro vysokoúrovňovou práci. Takové oddělení je ekvivalentem \textit{Repository} a \textit{Service} v případě přístupu k databázi (či jinému úložišti) -- při změně databáze, její struktury či přímo typu úložiště pouze změníme \textit{Repository}, jehož funkcionalitu zastřešuje \textit{Service}, který teprve využíváme ve zbytku aplikace -- koncentrujeme tak změnu pouze na jedno místo a zbytek aplikace zůstane netknutý. Stejně tak, jako bychom v případě této analogie užívali \textit{Service}, budeme využívat tuto obálku.
 
 \subsubsection{Definování závislosti}
 Problémem, který při použití knihovny nastává, je udržitelnost -- respektive způsob jejího získání. V praxi není vhodné získávat závislosti pouhým přimým stažením zdrojových souborů nebo vytvořeného souboru JAR. Ztrácí se tím informace o tom, odkud soubory pochází, není možné je pohodlně a efektivně aktualizovat při budoucích změnách apod.
@@ -830,6 +830,55 @@ Problémem, který při použití knihovny nastává, je udržitelnost -- respek
 Proto je nutné (či přinejmenším vhodné) v projektu používat nástroje pro definici a získávání závislostí, jako třeba \textit{Maven} (který budu v projektu využívat), \textit{Ant} nebo \textit{Gradle} (či jejich ekvivalentů v dalších jazycích a platformách). Knihovna \textit{Hprof Heap Dump parser} sice definuje Maven modul prostřednictvím souboru \textit{POM}, nicméně není součástí žádného repozitáře -- konkrétně toho defaultního, tedy \url{maven.org}. Existují způsoby, jak proměnit v Maven repozitář přímo GitHub -- nicméně repozitář projektu nedefinuje žádnou verzi či stabilní větev, pouze \texttt{master}. To je z pohledu vývoje nebezpečné, protože může kód kdykoliv v průběhu vývoje rozbít prostou obnovou závislostí -- a může tak námi vyvíjený kód učinit nefuknčním.
 
 Vytvořil jsem proto fork (odnoš, zrcadlo původního repozitáře) ve vlastním profilu\footnote{Fork projektu je dostupný na \url{https://github.com/mxmxcz/hprof-parser}.}, ve kterém jsem provedl \textit{Maven release}, čímž jsem vytvořil verzi projektu. Zároveň s vydáním jsem definoval Git tag (což je lidsky čitelný název pro ukazatel na konkrétní verzi kódu v čase) \textit{hprof-parser-1.0}. Tím je zaručeno, že se odkazovaná verze projektu nikdy nezmění a zároveň tím nepřicházím o kontrolu nad případnou aktualizací projektu -- tu můžu provést případnou obnovou forku projektu a vydáním další verze. Nicméně je takto zaručeno, že podoba verze \textit{hprof-parser-1.0} bude stále stejná. Tu umožňuje případnou práci v týmu (všichni jeho členové mají dostupné stejné verze závislostí) a také výrazně přispívá ke stabilitě vyvíjeného softwaru.
+
+Pro zpřístupnění repozitáře na GitHubu skrze Maven je možné využít projekt \textit{jitpack.io}. Kromě Mavenu dokáže tento projekt rovněž obsluhovat i Gradle. Pro jeho použití je nutné do projektu přidat Maven repozitář:
+
+\begin{lstlisting}[caption={Definování Jitpack repozitáře v Mavenu}, frame={single}, language={xml}]
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+\end{lstlisting}
+
+Díky tomu máme dostupné všechny veřejné GitHub repozitáře jako Maven závislosti. Poté už můžežme specifikovat závislost samotnou, a to pomocí ID skupiny (\texttt{groupId}) ve tvaru \texttt{com.github.<username>} (kde \texttt{<username>} je uživatelské jméno na GitHubu) a jako ID artefaktu (\texttt{artifactId}) uvedeme název repozitáře. Jako verzi můžeme uvést tag (který jsme definovali výše), \texttt{master-SNAPSHOT} pro \texttt{master} větev (jak vypovídá název, jedná se o \texttt{SNAPSHOT} a taková závislost tedy nemá být použita nikde kromě vývoje) nebo ID Git commitu.
+
+Pro knihovnu můžeme tedy přidat závislost:
+\begin{lstlisting}[caption={Definování závislosti v Mavenu}, frame={single}, language={xml}]
+<dependencies>
+    <dependency>
+        <groupId>com.github.mxmxcz</groupId>
+        <artifactId>hprof-parser</artifactId>
+        <version>hprof-parser-1.0</version>
+    </dependency>
+</dependencies>
+\end{lstlisting}
+
+\section{Návrh struktury aplikace}
+Výše jsem definoval závislost na knihovně, který se bude starat o načtení a předzpracování paměťového dumpu ze souboru HPROF. Tato (stále ještě primitivní, triviální) reprezentace dumpu v paměti bude představovat vstupní data pro algoritmus, který je bude dále transformovat.
+
+Protože se dá očekávat, že mnou implementované analyzátory paměťových nedostatků a neefektivního využití paměti nebudou ani zdaleka kompletní, bylo by vhodné strukturu této části aplikace navrhnout tak, aby byla následná implementace dodatečných typů analýzy co nejjednodušší. Zároveň ale musí mít případný modul k dispozici všechna nutná data z dumpu tak, aby nebyl nástrojem nijak omezen.
+
+Tento problém jsem se tedy rozhodl řešit formou \uv{výrobní linky} -- často se také používají výrazy \textit{filter} či \textit{pipeline}. Jednotlivé analyzátory problémů (dále také \textit{moduly}) představují kroky na pomyslné výrobní lince, kterou prochází zpracovaný memory dump. Postupně tak na něm analyzátory mohou pracovat a vracet výsledky, které našly -- každý z nich se bude specializovat na jeden konkrétní typ. V budoucích verzích by také bylo teoreticky možné definovat závilost modulů s analyzátory na sobě, čímž by mohly využívat výsledky zpracované některým z předchozích modulů -- tuto funkcionalitu nicméně v rámci této práce implementovat nehodlám.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.55]{obrazky/pipeline.png}
+	\caption{Architektura jednotlivých modulů pro zpracování memory dumpu.}
+	\label{obr-pipeline}
+\end{figure}
+
+Na obrázku \ref{obr-pipeline} je jednoduchý diagram takové architektury. Do prvního modulu TODO
+
+Výhoda této architektury je vysoká míra nezávislosti kódu na sobě -- není tak problém přidat nový modul, s pouze minimálním zásahem do existujícího kódu (nebo také teoreticky bez zásahu, za využití např. autokonfigurace ve frameworku Spring). Kromě toho není problém takový kód paralelizovat - moduly jsou na sobě naprosto nezávislé. Architektura takové paralelizace je nastítěna na obrázku \ref{obr-pipeline-parallel}.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.55]{obrazky/parallel_pipeline.png}
+	\caption{Paralelní varianta k seriové architektuře z obrázku \ref{obr-pipeline}.}
+	\label{obr-pipeline-parallel}
+\end{figure}
 
 \chapter{Implementace}
 \chapter{Ověření implementace}

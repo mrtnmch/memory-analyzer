@@ -392,6 +392,16 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eurm5.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qtmr.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ec-qtmri.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt10.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png
+INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png
+INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png
+INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png
+INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png
+INPUT /home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.lof
 INPUT /home/mxmx/dev/memory-analyzer/doc/sablona.lof
 OUTPUT /home/mxmx/dev/memory-analyzer/doc/sablona.lof
