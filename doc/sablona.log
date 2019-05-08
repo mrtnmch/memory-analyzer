@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  6 MAY 2019 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  8 MAY 2019 21:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -542,6 +542,9 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \mathdisplay@stack=\toks29
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
+) (/usr/share/texlive/texmf-dist/tex/latex/nowidow/nowidow.sty
+Package: nowidow 2011/09/20 1.0 Easily prevent widows and orphans
+Package: nowidow 
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks30
 \pgfutil@tempdima=\dimen137
@@ -717,7 +720,14 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 \tikz@expandcount=\count149
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
-))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
+))) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count150
+\float@exts=\toks42
+\float@box=\box47
+\@float@everytoks=\toks43
+\@floatcapt=\box48
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
@@ -728,57 +738,57 @@ Package: thesis 2014/12/23v2.59LaTeX document class
 
 Styl 'thesis.sty' pro psani kvalifikacnich praci v(2.59) na VUT v Brne
 
-\USenglishvut=\count150
-\germanvut=\count151
-\austriavut=\count152
-\frenchvut=\count153
-\englishvut=\count154
-\czechvut=\count155
-\slovakvut=\count156
+\USenglishvut=\count151
+\germanvut=\count152
+\austriavut=\count153
+\frenchvut=\count154
+\englishvut=\count155
+\czechvut=\count156
+\slovakvut=\count157
 \thesis@tmp=\skip53
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 175.
+(hyperref)                removing `\\' on input line 177.
 
 (/home/mxmx/dev/memory-analyzer/doc/sablona.aux (/home/mxmx/dev/memory-analyzer/doc/text/main.aux) (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.aux) (/home/mxmx/dev/memory-analyzer/doc/text/literatura.aux) (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.aux))
 \openout1 = `sablona.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 193.
-LaTeX Font Info:    ... okay on input line 193.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 193.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 193.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 195.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 195.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    ... okay on input line 195.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count157
+\scratchcounter=\count158
 \scratchdimen=\dimen184
-\scratchbox=\box47
-\nofMPsegments=\count158
-\nofMParguments=\count159
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count160
+\scratchbox=\box49
+\nofMPsegments=\count159
+\nofMParguments=\count160
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count161
 \MPscratchDim=\dimen185
-\MPnumerator=\count161
-\makeMPintoPDFobject=\count162
-\everyMPtoPDFconversion=\toks43
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
+\everyMPtoPDFconversion=\toks45
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -791,18 +801,18 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\AtBeginShipoutBox=\box48
-Package hyperref Info: Link coloring OFF on input line 193.
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring OFF on input line 195.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count163
+\c@section@level=\count164
 )
-LaTeX Info: Redefining \ref on input line 193.
-LaTeX Info: Redefining \pageref on input line 193.
-LaTeX Info: Redefining \nameref on input line 193.
+LaTeX Info: Redefining \ref on input line 195.
+LaTeX Info: Redefining \pageref on input line 195.
+LaTeX Info: Redefining \nameref on input line 195.
  (/home/mxmx/dev/memory-analyzer/doc/sablona.out) (/home/mxmx/dev/memory-analyzer/doc/sablona.out)
 \@outlinefile=\write5
 \openout5 = `sablona.out'.
@@ -812,79 +822,79 @@ Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 ))
-\c@lstlisting=\count164
+\c@lstlisting=\count165
  ABD: EveryShipout initializing macros
-<pdf/student-titulka.pdf, id=256, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=260, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
-Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 207.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
-Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 207.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<pdf/student-titulka.pdf, id=259, page=1, 597.50829pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=263, page=1, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 205.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
  [2
 
  </home/mxmx/dev/memory-analyzer/doc/pdf/student-titulka.pdf{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}>]
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 221.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 223.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<ot1.cmap>>
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 221.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 223.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<oml.cmap>>
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 221.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 223.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<oms.cmap>>
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 221.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 223.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 221.
+(Font)              <12> on input line 223.
 <<omx.cmap>>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 221.
+(Font)              <8> on input line 223.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 221.
+(Font)              <6> on input line 223.
  [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 
  []
 
 
 LaTeX Font Warning: Font shape `T1/qtm/m/sl' in size <12> not available
-(Font)              Font shape `T1/qtm/m/it' tried instead on input line 222.
+(Font)              Font shape `T1/qtm/m/it' tried instead on input line 224.
 
 [4
 
@@ -923,11 +933,8 @@ Overfull \hbox (3.26268pt too wide) in paragraph at lines 80--81
 \T1/qtm/m/n/12 jako pa-ra-metr p°i spu²-t¥ní pro-gramu -- kon-krétn¥ \T1/lmtt/m/n/12 Xss \T1/qtm/m/n/12 (re-spek-tive \T1/lmtt/m/n/12 -XX:ThreadStackSize\T1/qtm/m/n/12 ).
  []
 
-
-LaTeX Warning: Reference `jvms-frames' on page 11 undefined on input line 83.
-
 [11] [12]
-<obrazky/JVM_Internal_Architecture.png, id=404, 4061.1725pt x 2409.0pt>
+<obrazky/JVM_Internal_Architecture.png, id=418, 4061.1725pt x 2409.0pt>
 File: obrazky/JVM_Internal_Architecture.png Graphic file (type png)
 <use obrazky/JVM_Internal_Architecture.png>
 Package pdftex.def Info: obrazky/JVM_Internal_Architecture.png  used on input line 122.
@@ -940,141 +947,138 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 Package acronym Info: Label `acro:PID' newly defined as it shall be overridden
 although it is yet undefined on input line 207.
  [17]
-<obrazky/heapdump-performed.png, id=455, 781.92125pt x 350.30875pt>
+<obrazky/heapdump-performed.png, id=473, 781.92125pt x 350.30875pt>
 File: obrazky/heapdump-performed.png Graphic file (type png)
 <use obrazky/heapdump-performed.png>
 Package pdftex.def Info: obrazky/heapdump-performed.png  used on input line 214.
 (pdftex.def)             Requested size: 390.95967pt x 175.15395pt.
- [18 </home/mxmx/dev/memory-analyzer/doc/obrazky/heapdump-performed.png>] [19] [20]
-<obrazky/runtime-analysis.png, id=489, 845.0772pt x 228.855pt>
-File: obrazky/runtime-analysis.png Graphic file (type png)
-<use obrazky/runtime-analysis.png>
-Package pdftex.def Info: obrazky/runtime-analysis.png  used on input line 319.
-(pdftex.def)             Requested size: 422.53757pt x 114.42722pt.
- [21
-
- </home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png>] [22
+ [18 </home/mxmx/dev/memory-analyzer/doc/obrazky/heapdump-performed.png>] [19] [20] [21
 
 ]
+<obrazky/runtime-analysis.png, id=517, 845.0772pt x 228.855pt>
+File: obrazky/runtime-analysis.png Graphic file (type png)
+<use obrazky/runtime-analysis.png>
+Package pdftex.def Info: obrazky/runtime-analysis.png  used on input line 327.
+(pdftex.def)             Requested size: 422.53757pt x 114.42722pt.
+ [22 </home/mxmx/dev/memory-analyzer/doc/obrazky/runtime-analysis.png>]
 Package acronym Info: Label `acro:AOT' newly defined as it shall be overridden
-although it is yet undefined on input line 349.
+although it is yet undefined on input line 344.
 Package acronym Info: Label `acro:JIT' newly defined as it shall be overridden
-although it is yet undefined on input line 349.
+although it is yet undefined on input line 344.
 
-Overfull \hbox (2.70546pt too wide) in paragraph at lines 349--350
+Overfull \hbox (2.70546pt too wide) in paragraph at lines 344--345
 \T1/qtm/m/n/12 in-ter-pre-tace, nap°. Gra-alVM [[]]. V ta-ko-vém p°í-pad¥ ho-vo-°íme o tzv. [][]Ahead-Of-Time ([])[]
  []
 
 [23
 
 ]
-<obrazky/class-loader.png, id=512, 845.0772pt x 597.432pt>
+<obrazky/class-loader.png, id=536, 845.0772pt x 597.432pt>
 File: obrazky/class-loader.png Graphic file (type png)
 <use obrazky/class-loader.png>
-Package pdftex.def Info: obrazky/class-loader.png  used on input line 372.
-(pdftex.def)             Requested size: 422.53757pt x 298.71527pt.
- [24] [25 </home/mxmx/dev/memory-analyzer/doc/obrazky/class-loader.png>]
-<obrazky/mat.png, id=533, 1421.31pt x 786.68906pt>
+Package pdftex.def Info: obrazky/class-loader.png  used on input line 367.
+(pdftex.def)             Requested size: 270.43022pt x 191.18214pt.
+ [24 </home/mxmx/dev/memory-analyzer/doc/obrazky/class-loader.png>]
+<obrazky/mat.png, id=554, 1421.31pt x 786.68906pt>
 File: obrazky/mat.png Graphic file (type png)
 <use obrazky/mat.png>
-Package pdftex.def Info: obrazky/mat.png  used on input line 408.
+Package pdftex.def Info: obrazky/mat.png  used on input line 403.
 (pdftex.def)             Requested size: 426.3963pt x 236.00853pt.
- [26
+ [25
 
-]
-<obrazky/visualvm.png, id=540, 1417.54594pt x 788.9475pt>
+] [26 </home/mxmx/dev/memory-analyzer/doc/obrazky/mat.png (PNG copy)>]
+<obrazky/visualvm.png, id=567, 1417.54594pt x 788.9475pt>
 File: obrazky/visualvm.png Graphic file (type png)
 <use obrazky/visualvm.png>
-Package pdftex.def Info: obrazky/visualvm.png  used on input line 435.
+Package pdftex.def Info: obrazky/visualvm.png  used on input line 430.
 (pdftex.def)             Requested size: 425.26707pt x 236.68607pt.
- [27 </home/mxmx/dev/memory-analyzer/doc/obrazky/mat.png (PNG copy)>]
-<obrazky/jmc.png, id=547, 1418.29875pt x 788.9475pt>
+<obrazky/jmc.png, id=569, 1418.29875pt x 788.9475pt>
 File: obrazky/jmc.png Graphic file (type png)
 <use obrazky/jmc.png>
-Package pdftex.def Info: obrazky/jmc.png  used on input line 455.
+Package pdftex.def Info: obrazky/jmc.png  used on input line 450.
 (pdftex.def)             Requested size: 425.4929pt x 236.68607pt.
- [28 </home/mxmx/dev/memory-analyzer/doc/obrazky/visualvm.png (PNG copy)>] [29 </home/mxmx/dev/memory-analyzer/doc/obrazky/jmc.png (PNG copy)>]
-<obrazky/jprofiler.png, id=558, 1421.31pt x 785.93625pt>
+ [27 </home/mxmx/dev/memory-analyzer/doc/obrazky/visualvm.png (PNG copy)>] [28 </home/mxmx/dev/memory-analyzer/doc/obrazky/jmc.png (PNG copy)>]
+<obrazky/jprofiler.png, id=582, 1421.31pt x 785.93625pt>
 File: obrazky/jprofiler.png Graphic file (type png)
 <use obrazky/jprofiler.png>
-Package pdftex.def Info: obrazky/jprofiler.png  used on input line 476.
+Package pdftex.def Info: obrazky/jprofiler.png  used on input line 471.
 (pdftex.def)             Requested size: 426.3963pt x 235.78268pt.
 Package acronym Info: Label `acro:CLI' newly defined as it shall be overridden
-although it is yet undefined on input line 482.
+although it is yet undefined on input line 477.
 Package acronym Info: Label `acro:OQL' newly defined as it shall be overridden
-although it is yet undefined on input line 482.
- [30
+although it is yet undefined on input line 477.
+ [29
 
  </home/mxmx/dev/memory-analyzer/doc/obrazky/jprofiler.png (PNG copy)>]
-<obrazky/jhat.png, id=571, 1417.54594pt x 791.95876pt>
+<obrazky/jhat.png, id=597, 1417.54594pt x 791.95876pt>
 File: obrazky/jhat.png Graphic file (type png)
 <use obrazky/jhat.png>
-Package pdftex.def Info: obrazky/jhat.png  used on input line 496.
+Package pdftex.def Info: obrazky/jhat.png  used on input line 491.
 (pdftex.def)             Requested size: 425.26707pt x 237.58946pt.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [31 </home/mxmx/dev/memory-analyzer/doc/obrazky/jhat.png (PNG copy)>] [32] [33
+) [30 </home/mxmx/dev/memory-analyzer/doc/obrazky/jhat.png (PNG copy)>] [31] [32
 
-] [34]
-Overfull \hbox (7.58344pt too wide) in paragraph at lines 610--611
+] [33]
+Overfull \hbox (7.58344pt too wide) in paragraph at lines 607--608
 []\T1/qtm/m/n/12 Problém druhý, tedy za-sta-vo-vací pod-mínku, m·-ºeme vy-°e-²it pou-hým po-£í-tá-ním hloubky
  []
 
-[35]
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 620.
+[34]
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 617.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 620.
+(Font)              <17.28> on input line 617.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 620.
+(Font)              <10> on input line 617.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 629.
+(Font)              <10.95> on input line 626.
 
-Overfull \hbox (16.20143pt too wide) in paragraph at lines 639--640
+Overfull \hbox (16.20143pt too wide) in paragraph at lines 636--637
  [][] 
  []
 
-[36] [37] [38]
+[35] [36] [37]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 684.
+(Font)              <7> on input line 681.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 684.
- [39
+(Font)              <5> on input line 681.
+ [38
 
-] [40]
-Overfull \hbox (10.60037pt too wide) in paragraph at lines 724--725
+] [39]
+Overfull \hbox (10.60037pt too wide) in paragraph at lines 721--722
 []\T1/qtm/m/n/12 Jak bylo po-psáno v ka-pi-tole []3.7.4[], HPROF má stan-dar-di-zo-vaný, bi-nární for-mát. Knihovna
  []
 
-[41]
-Overfull \hbox (1.33852pt too wide) in paragraph at lines 743--744
+[40]
+Overfull \hbox (1.33852pt too wide) in paragraph at lines 740--741
 []\T1/lmtt/m/n/12 void header(String format, int idSize, long time) \T1/qtm/m/n/12 -- Vý²e po-psaná me-
  []
 
 
-Overfull \hbox (8.66945pt too wide) in paragraph at lines 749--751
+Overfull \hbox (8.66945pt too wide) in paragraph at lines 746--748
 \T1/lmtt/m/n/12 int stackTraceSerialNum, long classNameStringId) \T1/qtm/m/n/12 Na-£tení t°ídy. Této me-
  []
 
 
-Overfull \hbox (4.789pt too wide) in paragraph at lines 768--769
+Overfull \hbox (4.789pt too wide) in paragraph at lines 765--766
 \T1/qtm/m/n/12 Díky to-muto poli jsme schopni zre-kon-stru-o-vat kom-pletní strom d¥-di£-nosti v²ech
  []
 
-[42]
-Overfull \hbox (1.99904pt too wide) in paragraph at lines 777--778
+[41]
+Overfull \hbox (1.99904pt too wide) in paragraph at lines 774--775
 \T1/qtm/m/n/12 spo-nuje s iden-ti-fi-ká-tory de-fi-no-va-nými v rámci me-tod \T1/lmtt/m/n/12 classDump \T1/qtm/m/n/12 a \T1/lmtt/m/n/12 loadClass\T1/qtm/m/n/12 . 
  []
 
-[43] [44]
-Overfull \hbox (1.86159pt too wide) in paragraph at lines 823--824
+[42] [43]
+Overfull \hbox (1.86159pt too wide) in paragraph at lines 820--821
 \T1/qtm/m/n/12 Protoºe knihovna p°i-stu-puje k na-£í-tání dumpu stále po-m¥rn¥ níz-ko-úrov-¬ov¥, tedy na úrovni
  []
 
-[45]
-Overfull \hbox (0.45345pt too wide) in paragraph at lines 834--835
+[44]
+Overfull \hbox (0.45345pt too wide) in paragraph at lines 831--832
 []\T1/qtm/m/n/12 Pro zp°í-stup-n¥ní re-po-zi-tá°e na Gi-tHubu skrze Ma-ven je moºné vy-u-ºít pro-jekt \T1/qtm/m/it/12 jit-pack.io\T1/qtm/m/n/12 .
  []
 
@@ -1082,38 +1086,38 @@ Overfull \hbox (0.45345pt too wide) in paragraph at lines 834--835
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [46]
-<obrazky/pipeline.png, id=713, 733.74126pt x 181.67876pt>
+) [45]
+<obrazky/pipeline.png, id=737, 733.74126pt x 181.67876pt>
 File: obrazky/pipeline.png Graphic file (type png)
 <use obrazky/pipeline.png>
-Package pdftex.def Info: obrazky/pipeline.png  used on input line 867.
+Package pdftex.def Info: obrazky/pipeline.png  used on input line 865.
 (pdftex.def)             Requested size: 403.55894pt x 99.92361pt.
- [47 </home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png>]
-<obrazky/parallel_pipeline.png, id=727, 733.74126pt x 201.75375pt>
+ [46 </home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png>]
+<obrazky/parallel_pipeline.png, id=755, 733.74126pt x 201.75375pt>
 File: obrazky/parallel_pipeline.png Graphic file (type png)
 <use obrazky/parallel_pipeline.png>
-Package pdftex.def Info: obrazky/parallel_pipeline.png  used on input line 878.
+Package pdftex.def Info: obrazky/parallel_pipeline.png  used on input line 876.
 (pdftex.def)             Requested size: 403.55894pt x 110.96489pt.
- [48 </home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png>] [49
+ [47 </home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png>] [48
 
-] [50
+] [49
 
-]) [51
+]) [50
 
 ] (/home/mxmx/dev/memory-analyzer/doc/sablona.lof)
 \tf@lof=\write7
 \openout7 = `sablona.lof'.
 
- [52
+ [51
 
 
 
 ]
 \openout2 = `text/zkratky.aux'.
 
- (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.tex [53
+ (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.tex [52
 
-] [54
+] [53
 
 
 ])
@@ -1130,105 +1134,106 @@ Underfull \hbox (badness 3849) in paragraph at lines 13--14
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+[][]$\T1/lmtt/m/n/12 https : / / www . oracle . com / technetwork / java / javase /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / en / java / javase / 11 / migrate /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / 7 / docs / technotes / tools /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / books . google . cz / books ? id = bAA9Z5WLdjQC & dq = OQL +
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 http : / / www . cs . utexas . edu / users / mckinley / papers /
  []
 
-
-Underfull \hbox (badness 7963) in paragraph at lines 46--47
-[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / 8 / docs / technotes / guides / vm /
- []
-
-
-Underfull \hbox (badness 6252) in paragraph at lines 49--50
-[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / specs / jvms / se8 / html / jvms-[]2 .
- []
-
-
-Underfull \hbox (badness 6252) in paragraph at lines 52--53
-[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / specs / jvms / se8 / html / jvms-[]1 .
- []
-
-[55
+[54
 
 
 
 
 ]
-Underfull \hbox (badness 6252) in paragraph at lines 55--56
+Underfull \hbox (badness 7963) in paragraph at lines 64--65
+[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / 8 / docs / technotes / guides / vm /
+ []
+
+
+Underfull \hbox (badness 6252) in paragraph at lines 67--68
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / specs / jvms / se8 / html / jvms-[]2 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 6252) in paragraph at lines 70--71
+[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / specs / jvms / se8 / html / jvms-[]1 .
+ []
+
+
+Underfull \hbox (badness 6252) in paragraph at lines 73--74
+[]\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / specs / jvms / se8 / html / jvms-[]2 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / 7 / docs / api / java / lang /
  []
 
 
-Overfull \hbox (63.44281pt too wide) in paragraph at lines 65--66
+Overfull \hbox (63.44281pt too wide) in paragraph at lines 83--84
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / medium . com / @govinda _ raj / all-[]you-[]need-[]to-[]know-[]jvm-[]36c0b59ba969$[] 
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 68--69
+Underfull \hbox (badness 6300) in paragraph at lines 86--87
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 http : / / hg . openjdk . java . net / jdk6 / jdk6 / jdk / raw-[]file / tip / src /
  []
 
-[56]) (/home/mxmx/dev/memory-analyzer/doc/sablona.toa)
+[55]) (/home/mxmx/dev/memory-analyzer/doc/sablona.toa)
 \tf@toa=\write8
 \openout8 = `sablona.toa'.
 
- [57
+ [56
 
 
 ]
 \openout2 = `text/prilohy.aux'.
 
- (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.tex (/home/mxmx/dev/memory-analyzer/doc/text/uzivatelska-dokumentace.tex)) [58
+ (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.tex (/home/mxmx/dev/memory-analyzer/doc/text/uzivatelska-dokumentace.tex)) [57
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 244.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 244.
  (/home/mxmx/dev/memory-analyzer/doc/sablona.aux (/home/mxmx/dev/memory-analyzer/doc/text/main.aux) (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.aux) (/home/mxmx/dev/memory-analyzer/doc/text/literatura.aux) (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 244.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 244.
 Package rerunfilecheck Info: File `sablona.out' has not changed.
-(rerunfilecheck)             Checksum: 6541ACF3011D2B440AB736E641BC22B2;8972.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
+(rerunfilecheck)             Checksum: 345BDD893949FCE35B44629DE2BEE1ED;9207.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 244.
  ) 
 Here is how much of TeX's memory you used:
- 25121 strings out of 492641
- 432387 string characters out of 6131787
- 515592 words of memory out of 5000000
- 28238 multiletter control sequences out of 15000+600000
+ 25230 strings out of 492641
+ 433954 string characters out of 6131787
+ 520434 words of memory out of 5000000
+ 28318 multiletter control sequences out of 15000+600000
  82341 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,55p,1504b,1928s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,55p,1528b,1406s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmbi.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (57 pages, 2234577 bytes).
+Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (56 pages, 2237662 bytes).
 PDF statistics:
- 940 PDF objects out of 1000 (max. 8388607)
- 827 compressed objects within 9 object streams
- 230 named destinations out of 1000 (max. 500000)
- 604 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 976 PDF objects out of 1000 (max. 8388607)
+ 864 compressed objects within 9 object streams
+ 251 named destinations out of 1000 (max. 500000)
+ 612 words of extra memory for PDF output out of 10000 (max. 10000000)
 
