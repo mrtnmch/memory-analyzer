@@ -217,7 +217,7 @@ Heap Dump přímo odpovídá části paměťového prostoru procesu, resp. heapu
 \end{figure}
 
 \subsection{Zpracování dumpu}
-Při zpracování dumpu je nutné zohlednit fakt, že je vyexportovaný kompletní paměťový prostor [TODO zdroj] a nachází se zde tedy i data objektů, které nás nutně nemusí zajímat – typicky knihovny nebo objekty Javy. Toto je možné zohlednit a filtrovat na základě jmenného prostoru (namespace), do kterého objekt patří.
+Při zpracování dumpu je nutné zohlednit fakt, že je vyexportovaný kompletní paměťový prostor (což výchází z výše uvedeného faktu, že i z \textit{core dumpu} lze memory dump získat) a nachází se zde tedy i data objektů, které nás nutně nemusí zajímat – typicky knihovny nebo objekty Javy. Toto je možné zohlednit a filtrovat na základě jmenného prostoru (namespace), do kterého objekt patří.
 
 Pro práci nad heapem  (typicky ve formátu HPROF) je možné využít některou z implementací dotazovacího jazyku OQL (Object Query Language).
 
@@ -341,7 +341,7 @@ Program napsaný v Javě běží typicky v některé z implementací \zkratka{JV
 
 \zkratka{JVM} nepracuje s žádným konkrétním vyšším jazykem (zdůrazňuji zde \uv{vyšším}, protože bytecode jazykem je, byť nízkoúrovňovým). Vidí pouze výsledek kompilace do bytecodu (viz dále), což je posloupnost operací z výše zmíněné instrukční sady. Jako analogii je možné zmínit instrukční sadu CPU a strojový kód -- na úrovni CPU již také nezjistíme, jaký vyšší programovací jazyk je původcem strojového kódu (tedy za předpokladu podobné implementace kompilátoru porovnávaných jazyků). Stejně tak se chová \zkratka{JVM} a bytecode -- ostatně existují i další jazyky na platformě \zkratka{JVM}, za všechny můžu jmenovat třeba populární Kotlin \cite{jvms-jvm}. Přeložený bytecode těchto jazyků by tedy měl být přinejmenším srovnatelný a neměl by se zásadně lišit.
 
-Některé implementace \zkratka{JVM} umožňují přímý překlad do strojového kódu bez potřeby interpretace, např. GraalVM \cite{graalvm}. V takovém případě hovoříme o tzv. \zkratka{AOT} přístupu, místo \zkratka{JIT} postupu implementovaného v moderních verzích častěji používaných \zkratka{JVM}, např. HotSpot od společnosti Oracle [TODO zdroj, že HS používá JIT].
+Některé implementace \zkratka{JVM} umožňují přímý překlad do strojového kódu bez potřeby interpretace, např. GraalVM \cite{graalvm}. V takovém případě hovoříme o tzv. \zkratka{AOT} přístupu, místo \zkratka{JIT} postupu implementovaného v moderních verzích častěji používaných \zkratka{JVM}, např. HotSpot od společnosti Oracle -- byť je zde silně optimalizovaný a o čístý \zkratka{JIT} přístup se nejedná \cite{hotspot-whitepaper}.
 
 \zkratka{JVM} se stará o načtení kódu ze souboru \texttt{.class}, dále o jeho verifikaci, spuštění a zároveň poskytuje tomuto kódu prostředí, v rámci kterého může běžet.
 
@@ -378,8 +378,6 @@ Pokud \texttt{JVM} narazí na třídu, podívá se do setu načtených tříd. J
 \chapter{Existující nástroje pro analýzu heapu}
 \label{existing-solutions}
 Analýza dumpu -- ať už manuální či automatická -- je využívána v případech, kdy nám debugování na úrovni kódu už nestačí a potřebujeme se podívat, jakým způsobem se program chová na pozadí. Některé typy problémů navíc pomocí debuggeru odhalíme jen těžko (nebo vůbec) a musíme tak zvolit nízkoúrovnější způsob, který dokáže odhalit problém napříč více částmi aplikace. Rovněž je taková analýza vhodná v okamžiku, kdy dojde k pádu (zejména v důsledku nedostatku paměti), kdy chceme zjistit příčinu pádu \uv{post mortem}. Můžeme tak odhalit problematické místo v programu a podrobná analýza nám tak umožní problém opravit.
-
-TODO přidat licence a další info.
 
 \section{Eclipse MAT}
 IBM Eclipse Memory Analyser Tooling je open source nástroj pro analýzu Java paměti. Po spuštění umožňuje otevřít již vygenerovaný dump Java heapu, umí jej ale i vytvořit. V rámci analýzy nabízí 2 konkrétní volby – analýzu memory leaků a memory bloatu – tj. neefektivního využití paměti a zbytečného plýtvání. 
@@ -743,7 +741,7 @@ Jedná se o rozhraní, které slouží jako posluchač (\texttt{listener}) volá
             \item \texttt{id} -- ID řetězce.
             \item \texttt{data} -- Hodnota řetězce samotného.
         \end{itemize}
-    \item \texttt{void loadClass(int classSerialNum, long classObjId,\\ int stackTraceSerialNum, long classNameStringId)} Načtení třídy. Této metody můžeme využít pro registrování všech tříd, které se v právě zpracovávaném dumpu nacházejí. Stejně tak existuje metoda \texttt{unloadClass}, kterou zde ale potřebovat nebudeme.
+    \item \texttt{void loadClass(int classDump, long classObjId,\\ int stackTraceSerialNum, long classNameStringId)} Načtení třídy. Této metody můžeme využít pro registrování všech tříd, které se v právě zpracovávaném dumpu nacházejí. Stejně tak existuje metoda \texttt{unloadClass}, kterou zde ale potřebovat nebudeme.
         \begin{itemize}
             \item \texttt{classObjId} -- Číselný identifikátor třídy.
             \item \texttt{classNameStringId} -- Číslo řetězce, který uchovává název třídy.
@@ -867,7 +865,7 @@ Tento problém jsem se tedy rozhodl řešit formou \uv{výrobní linky} -- čast
 	\label{obr-pipeline}
 \end{figure}
 
-Na obrázku \ref{obr-pipeline} je jednoduchý diagram takové architektury. Do prvního modulu TODO
+Na obrázku \ref{obr-pipeline} je jednoduchý diagram takové architektury. Jako \textit{pipeline} zde označuji řídící prvek, který má seznam zaregistrovaných modulů, řídí jejich spouštění (včetně třeba pořadí a paralelizace) a sbírá výsledky. Jako vstup přijímá reprezentaci dumpu. Ten předává modulu 1, který nad nám provede svou analýzu a vrátí zpět výsledek. Ten si \textit{pipeline} poznamená a obdobně spustí postupně všechny další moduly. Nakonec výsledky sjednotí a vrátí je jako návratovou hodnotu.
 
 Výhoda této architektury je vysoká míra nezávislosti kódu na sobě -- není tak problém přidat nový modul, s pouze minimálním zásahem do existujícího kódu (nebo také teoreticky bez zásahu, za využití např. autokonfigurace ve frameworku Spring). Kromě toho není problém takový kód paralelizovat - moduly jsou na sobě naprosto nezávislé. Architektura takové paralelizace je nastítěna na obrázku \ref{obr-pipeline-parallel}.
 
@@ -877,6 +875,9 @@ Výhoda této architektury je vysoká míra nezávislosti kódu na sobě -- nen�
 	\caption{Paralelní varianta k seriové architektuře z obrázku \ref{obr-pipeline}.}
 	\label{obr-pipeline-parallel}
 \end{figure}
+
+\section{Rozhraní pipeline a modulů}
+Rozhraní poskytované pro implementace pipeline a modulů musí umožňovat kompletní analýzu zpracovávaného dumpu. 
 
 \chapter{Implementace}
 \chapter{Ověření implementace}

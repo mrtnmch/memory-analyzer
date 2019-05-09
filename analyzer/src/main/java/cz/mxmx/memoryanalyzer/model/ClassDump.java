@@ -8,6 +8,7 @@ import java.util.List;
 public class ClassDump {
 	private final Long classId;
 	private final String name;
+	private final int serialNum;
 	private final ClassDump superClassDump;
 	private final List<InstanceDump> instances = new ArrayList<>();
 	private final List<FieldDump> constants = new ArrayList<>(); // TODO: parse constants as well
@@ -15,9 +16,10 @@ public class ClassDump {
 	private final List<InstanceFieldDump> instanceFields = new ArrayList<>();
 	private final List<ClassDump> childrenClasses = new ArrayList<>();
 
-	public ClassDump(Long classId, String name, ClassDump superClassDump) {
+	public ClassDump(Long classId, String name, int serialNum, ClassDump superClassDump) {
 		this.classId = classId;
 		this.name = name;
+		this.serialNum = serialNum;
 		this.superClassDump = superClassDump;
 	}
 
@@ -69,11 +71,16 @@ public class ClassDump {
 		return childrenClasses;
 	}
 
+	public int getSerialNum() {
+		return serialNum;
+	}
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
 				.append("classId", classId)
 				.append("name", name)
+				.append("serialNum", serialNum)
 				.append("superClassDump", superClassDump)
 				.append("instances", instances.size())
 				.append("childrenClasses", childrenClasses.size())

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  8 MAY 2019 21:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  9 MAY 2019 21:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -973,112 +973,112 @@ Overfull \hbox (2.70546pt too wide) in paragraph at lines 344--345
 [23
 
 ]
-<obrazky/class-loader.png, id=536, 845.0772pt x 597.432pt>
+<obrazky/class-loader.png, id=538, 845.0772pt x 597.432pt>
 File: obrazky/class-loader.png Graphic file (type png)
 <use obrazky/class-loader.png>
 Package pdftex.def Info: obrazky/class-loader.png  used on input line 367.
 (pdftex.def)             Requested size: 270.43022pt x 191.18214pt.
  [24 </home/mxmx/dev/memory-analyzer/doc/obrazky/class-loader.png>]
-<obrazky/mat.png, id=554, 1421.31pt x 786.68906pt>
+<obrazky/mat.png, id=556, 1421.31pt x 786.68906pt>
 File: obrazky/mat.png Graphic file (type png)
 <use obrazky/mat.png>
-Package pdftex.def Info: obrazky/mat.png  used on input line 403.
+Package pdftex.def Info: obrazky/mat.png  used on input line 401.
 (pdftex.def)             Requested size: 426.3963pt x 236.00853pt.
  [25
 
 ] [26 </home/mxmx/dev/memory-analyzer/doc/obrazky/mat.png (PNG copy)>]
-<obrazky/visualvm.png, id=567, 1417.54594pt x 788.9475pt>
+<obrazky/visualvm.png, id=569, 1417.54594pt x 788.9475pt>
 File: obrazky/visualvm.png Graphic file (type png)
 <use obrazky/visualvm.png>
-Package pdftex.def Info: obrazky/visualvm.png  used on input line 430.
+Package pdftex.def Info: obrazky/visualvm.png  used on input line 428.
 (pdftex.def)             Requested size: 425.26707pt x 236.68607pt.
-<obrazky/jmc.png, id=569, 1418.29875pt x 788.9475pt>
+<obrazky/jmc.png, id=571, 1418.29875pt x 788.9475pt>
 File: obrazky/jmc.png Graphic file (type png)
 <use obrazky/jmc.png>
-Package pdftex.def Info: obrazky/jmc.png  used on input line 450.
+Package pdftex.def Info: obrazky/jmc.png  used on input line 448.
 (pdftex.def)             Requested size: 425.4929pt x 236.68607pt.
  [27 </home/mxmx/dev/memory-analyzer/doc/obrazky/visualvm.png (PNG copy)>] [28 </home/mxmx/dev/memory-analyzer/doc/obrazky/jmc.png (PNG copy)>]
-<obrazky/jprofiler.png, id=582, 1421.31pt x 785.93625pt>
+<obrazky/jprofiler.png, id=584, 1421.31pt x 785.93625pt>
 File: obrazky/jprofiler.png Graphic file (type png)
 <use obrazky/jprofiler.png>
-Package pdftex.def Info: obrazky/jprofiler.png  used on input line 471.
+Package pdftex.def Info: obrazky/jprofiler.png  used on input line 469.
 (pdftex.def)             Requested size: 426.3963pt x 235.78268pt.
 Package acronym Info: Label `acro:CLI' newly defined as it shall be overridden
-although it is yet undefined on input line 477.
+although it is yet undefined on input line 475.
 Package acronym Info: Label `acro:OQL' newly defined as it shall be overridden
-although it is yet undefined on input line 477.
+although it is yet undefined on input line 475.
  [29
 
  </home/mxmx/dev/memory-analyzer/doc/obrazky/jprofiler.png (PNG copy)>]
-<obrazky/jhat.png, id=597, 1417.54594pt x 791.95876pt>
+<obrazky/jhat.png, id=599, 1417.54594pt x 791.95876pt>
 File: obrazky/jhat.png Graphic file (type png)
 <use obrazky/jhat.png>
-Package pdftex.def Info: obrazky/jhat.png  used on input line 491.
+Package pdftex.def Info: obrazky/jhat.png  used on input line 489.
 (pdftex.def)             Requested size: 425.26707pt x 237.58946pt.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) [30 </home/mxmx/dev/memory-analyzer/doc/obrazky/jhat.png (PNG copy)>] [31] [32
 
 ] [33]
-Overfull \hbox (7.58344pt too wide) in paragraph at lines 607--608
+Overfull \hbox (7.58344pt too wide) in paragraph at lines 605--606
 []\T1/qtm/m/n/12 Problém druhý, tedy za-sta-vo-vací pod-mínku, m·-ºeme vy-°e-²it pou-hým po-£í-tá-ním hloubky
  []
 
 [34]
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 617.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 615.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 617.
+(Font)              <17.28> on input line 615.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 617.
+(Font)              <10> on input line 615.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 626.
+(Font)              <10.95> on input line 624.
 
-Overfull \hbox (16.20143pt too wide) in paragraph at lines 636--637
+Overfull \hbox (16.20143pt too wide) in paragraph at lines 634--635
  [][] 
  []
 
 [35] [36] [37]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 681.
+(Font)              <7> on input line 679.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 681.
+(Font)              <5> on input line 679.
  [38
 
 ] [39]
-Overfull \hbox (10.60037pt too wide) in paragraph at lines 721--722
+Overfull \hbox (10.60037pt too wide) in paragraph at lines 719--720
 []\T1/qtm/m/n/12 Jak bylo po-psáno v ka-pi-tole []3.7.4[], HPROF má stan-dar-di-zo-vaný, bi-nární for-mát. Knihovna
  []
 
 [40]
-Overfull \hbox (1.33852pt too wide) in paragraph at lines 740--741
+Overfull \hbox (1.33852pt too wide) in paragraph at lines 738--739
 []\T1/lmtt/m/n/12 void header(String format, int idSize, long time) \T1/qtm/m/n/12 -- Vý²e po-psaná me-
  []
 
 
-Overfull \hbox (8.66945pt too wide) in paragraph at lines 746--748
+Overfull \hbox (8.66945pt too wide) in paragraph at lines 744--746
 \T1/lmtt/m/n/12 int stackTraceSerialNum, long classNameStringId) \T1/qtm/m/n/12 Na-£tení t°ídy. Této me-
  []
 
 
-Overfull \hbox (4.789pt too wide) in paragraph at lines 765--766
+Overfull \hbox (4.789pt too wide) in paragraph at lines 763--764
 \T1/qtm/m/n/12 Díky to-muto poli jsme schopni zre-kon-stru-o-vat kom-pletní strom d¥-di£-nosti v²ech
  []
 
 [41]
-Overfull \hbox (1.99904pt too wide) in paragraph at lines 774--775
+Overfull \hbox (1.99904pt too wide) in paragraph at lines 772--773
 \T1/qtm/m/n/12 spo-nuje s iden-ti-fi-ká-tory de-fi-no-va-nými v rámci me-tod \T1/lmtt/m/n/12 classDump \T1/qtm/m/n/12 a \T1/lmtt/m/n/12 loadClass\T1/qtm/m/n/12 . 
  []
 
 [42] [43]
-Overfull \hbox (1.86159pt too wide) in paragraph at lines 820--821
+Overfull \hbox (1.86159pt too wide) in paragraph at lines 818--819
 \T1/qtm/m/n/12 Protoºe knihovna p°i-stu-puje k na-£í-tání dumpu stále po-m¥rn¥ níz-ko-úrov-¬ov¥, tedy na úrovni
  []
 
 [44]
-Overfull \hbox (0.45345pt too wide) in paragraph at lines 831--832
+Overfull \hbox (0.45345pt too wide) in paragraph at lines 829--830
 []\T1/qtm/m/n/12 Pro zp°í-stup-n¥ní re-po-zi-tá°e na Gi-tHubu skrze Ma-ven je moºné vy-u-ºít pro-jekt \T1/qtm/m/it/12 jit-pack.io\T1/qtm/m/n/12 .
  []
 
@@ -1087,16 +1087,16 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) [45]
-<obrazky/pipeline.png, id=737, 733.74126pt x 181.67876pt>
+<obrazky/pipeline.png, id=739, 733.74126pt x 181.67876pt>
 File: obrazky/pipeline.png Graphic file (type png)
 <use obrazky/pipeline.png>
-Package pdftex.def Info: obrazky/pipeline.png  used on input line 865.
+Package pdftex.def Info: obrazky/pipeline.png  used on input line 863.
 (pdftex.def)             Requested size: 403.55894pt x 99.92361pt.
  [46 </home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png>]
-<obrazky/parallel_pipeline.png, id=755, 733.74126pt x 201.75375pt>
+<obrazky/parallel_pipeline.png, id=757, 733.74126pt x 201.75375pt>
 File: obrazky/parallel_pipeline.png Graphic file (type png)
 <use obrazky/parallel_pipeline.png>
-Package pdftex.def Info: obrazky/parallel_pipeline.png  used on input line 876.
+Package pdftex.def Info: obrazky/parallel_pipeline.png  used on input line 874.
 (pdftex.def)             Requested size: 403.55894pt x 110.96489pt.
  [47 </home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png>] [48
 
@@ -1184,17 +1184,17 @@ Underfull \hbox (badness 6252) in paragraph at lines 73--74
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / docs . oracle . com / javase / 7 / docs / api / java / lang /
  []
 
 
-Overfull \hbox (63.44281pt too wide) in paragraph at lines 83--84
+Overfull \hbox (63.44281pt too wide) in paragraph at lines 86--87
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 https : / / medium . com / @govinda _ raj / all-[]you-[]need-[]to-[]know-[]jvm-[]36c0b59ba969$[] 
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 86--87
+Underfull \hbox (badness 6300) in paragraph at lines 89--90
 []\T1/qtm/m/n/12 TODO []$\T1/lmtt/m/n/12 http : / / hg . openjdk . java . net / jdk6 / jdk6 / jdk / raw-[]file / tip / src /
  []
 
@@ -1222,18 +1222,18 @@ Package rerunfilecheck Info: File `sablona.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 244.
  ) 
 Here is how much of TeX's memory you used:
- 25230 strings out of 492641
- 433954 string characters out of 6131787
- 520434 words of memory out of 5000000
- 28318 multiletter control sequences out of 15000+600000
+ 25232 strings out of 492641
+ 433997 string characters out of 6131787
+ 520476 words of memory out of 5000000
+ 28319 multiletter control sequences out of 15000+600000
  82341 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,55p,1528b,1406s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmbi.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (56 pages, 2237662 bytes).
+Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (56 pages, 2238348 bytes).
 PDF statistics:
- 976 PDF objects out of 1000 (max. 8388607)
- 864 compressed objects within 9 object streams
- 251 named destinations out of 1000 (max. 500000)
+ 979 PDF objects out of 1000 (max. 8388607)
+ 867 compressed objects within 9 object streams
+ 252 named destinations out of 1000 (max. 500000)
  612 words of extra memory for PDF output out of 10000 (max. 10000000)
 

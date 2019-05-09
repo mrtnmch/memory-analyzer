@@ -19,4 +19,6 @@ public interface MemoryDump {
 	Map<Long, ArrayDump> getPrimitiveArrays();
 
 	Map<Long, InstanceArrayDump> getInstanceArrays();
+
+
 }

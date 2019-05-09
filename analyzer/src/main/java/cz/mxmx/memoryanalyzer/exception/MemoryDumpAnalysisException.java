@@ -1,5 +1,8 @@
 package cz.mxmx.memoryanalyzer.exception;
 
+/**
+ * An exception that happens during the analysis of a memory dump.
+ */
 public class MemoryDumpAnalysisException extends Exception {
     public MemoryDumpAnalysisException() {
     }

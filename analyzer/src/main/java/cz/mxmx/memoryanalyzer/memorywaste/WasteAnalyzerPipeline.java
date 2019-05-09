@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Base implementation of waste analyzer pipeline. Offers basic functionality that can be extended by any future pipeline
+ * to run analyzers in single or multiple threads.
+ */
 public abstract class WasteAnalyzerPipeline implements WasteAnalyzer {
 
 	private final Map<WasteAnalyzer, String> analyzers;

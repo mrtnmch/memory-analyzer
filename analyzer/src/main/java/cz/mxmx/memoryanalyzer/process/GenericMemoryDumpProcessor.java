@@ -1,5 +1,7 @@
 package cz.mxmx.memoryanalyzer.process;
 
+import cz.mxmx.memoryanalyzer.model.AllocSite;
+import cz.mxmx.memoryanalyzer.model.AllocSiteParent;
 import cz.mxmx.memoryanalyzer.model.ArrayDump;
 import cz.mxmx.memoryanalyzer.model.ClassDump;
 import cz.mxmx.memoryanalyzer.model.DumpHeader;
@@ -8,6 +10,10 @@ import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.ProcessedMemoryDump;
+import cz.mxmx.memoryanalyzer.model.StackFrame;
+import cz.mxmx.memoryanalyzer.model.StackTrace;
+import cz.mxmx.memoryanalyzer.model.raw.RawAllocSite;
+import cz.mxmx.memoryanalyzer.model.raw.RawAllocSiteParent;
 import cz.mxmx.memoryanalyzer.model.raw.RawClassDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawDumpHeader;
 import cz.mxmx.memoryanalyzer.model.raw.RawInstanceDump;
@@ -15,10 +21,13 @@ import cz.mxmx.memoryanalyzer.model.raw.RawLoadClassDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawObjectArrayDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawPrimitiveArrayDump;
+import cz.mxmx.memoryanalyzer.model.raw.RawStackFrame;
+import cz.mxmx.memoryanalyzer.model.raw.RawStackTrace;
 import cz.mxmx.memoryanalyzer.util.Normalization;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,6 +36,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 
@@ -55,6 +65,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		Map<Long, InstanceDump> instances = this.getInstances(rawMemoryDump, classes);
 		Map<Long, ArrayDump> primitiveArrays = this.getPrimitiveArrays(rawMemoryDump.getRawPrimitiveArrayDumps());
 		Map<Long, InstanceArrayDump> instanceArrays = this.getInstanceArrays(rawMemoryDump.getRawObjectArrayDumps(), instances, classes);
+		List<AllocSiteParent> allocSites = this.getAllocSites(rawMemoryDump.getRawAllocSiteParents());
+		List<StackTrace> stackTraces = this.getStackTraces(rawMemoryDump.getRawStackTraces(), rawMemoryDump.getRawStackFrames(), rawMemoryDump.getStringMap(), classes);
 
 		ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump(
 				null,
@@ -66,9 +78,68 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 				primitiveArrays,
 				instanceArrays
 		);
+
 		this.cache.put(rawMemoryDump, processedMemoryDump);
 
 		return processedMemoryDump;
+	}
+
+	private List<AllocSiteParent> getAllocSites(List<RawAllocSiteParent> rawAllocSiteParents) {
+		List<AllocSiteParent> allocSiteParents = new ArrayList<>();
+
+		for (RawAllocSiteParent rawAllocSiteParent : rawAllocSiteParents) {
+			List<AllocSite> sites = new ArrayList<>();
+
+			for (RawAllocSite rawSite : rawAllocSiteParent.getSites()) {
+				sites.add(new AllocSite(
+						rawSite.getArrayIndicator() == 1,
+						rawSite.getClassSerialNum(),
+						rawSite.getStackTraceSerialNum(),
+						rawSite.getLiveBytes(),
+						rawSite.getLiveInstances(),
+						rawSite.getBytesAllocated(),
+						rawSite.getInstancesAllocated()
+				));
+			}
+
+			allocSiteParents.add(new AllocSiteParent(
+					rawAllocSiteParent.getBitMaskFlags(),
+					rawAllocSiteParent.getCutoffRatio(),
+					rawAllocSiteParent.getLiveBytes(),
+					rawAllocSiteParent.getLiveInstances(),
+					rawAllocSiteParent.getBytesAllocated(),
+					rawAllocSiteParent.getInstancesAllocated(),
+					sites
+			));
+		}
+
+		return allocSiteParents;
+	}
+
+	private List<StackTrace> getStackTraces(List<RawStackTrace> rawStackTraces, List<RawStackFrame> rawStackFrames, Map<Long, String> stringMap, Map<Long, ClassDump> classes) {
+		List<StackTrace> stackTraces = new ArrayList<>();
+		Map<Long, StackFrame> idToRawStackFrame = rawStackFrames.stream().collect(Collectors.toMap(
+				RawStackFrame::getStackFrameId,
+				rawStackFrame -> new StackFrame(
+						rawStackFrame.getStackFrameId(),
+						stringMap.get(rawStackFrame.getMethodNameStringId()),
+						stringMap.get(rawStackFrame.getMethodSigStringId()),
+						stringMap.get(rawStackFrame.getSourceFileNameStringId()),
+						classes.values().stream().filter(c -> c.getSerialNum() == rawStackFrame.getClassSerialNum()).findAny().orElse(null),
+						rawStackFrame.getLocation()
+				)
+		));
+
+		for (RawStackTrace rawStackTrace : rawStackTraces) {
+			stackTraces.add(new StackTrace(
+					rawStackTrace.getStackTraceSerialNum(),
+					rawStackTrace.getThreadSerialNum(),
+					rawStackTrace.getNumFrames(),
+					Arrays.stream(rawStackTrace.getStackFrameIds()).mapToObj(idToRawStackFrame::get).collect(Collectors.toList())
+			));
+		}
+
+		return stackTraces;
 	}
 
 	private Map<Long, InstanceArrayDump> getInstanceArrays(Map<Long, RawObjectArrayDump> rawObjectArrayDumps, Map<Long, InstanceDump> instanceDumpMap, Map<Long, ClassDump> classDumpMap) {
@@ -252,7 +323,7 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 
 	protected ClassDump processClass(RawMemoryDump rawMemoryDump, Long id, ClassDump parent) {
 		RawLoadClassDump rawLoadClassDump = rawMemoryDump.getRawLoadClassDumps().get(id);
-		ClassDump classDump = new ClassDump(id, Normalization.getNormalizedClassname(rawLoadClassDump.getClassName()), parent);
+		ClassDump classDump = new ClassDump(id, Normalization.getNormalizedClassname(rawLoadClassDump.getClassName()), rawLoadClassDump.getClassSerialNum(), parent);
 
 		if (parent != null) {
 			parent.addChildClass(classDump);

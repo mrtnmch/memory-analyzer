@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Waste type that represents duplicate instances.
+ */
 public class DuplicateInstanceWaste implements Waste {
 	private static final String TITLE_TEMPLATE = "Duplicate instances of '%s'";
 	private static final String DESC_TEMPLATE = "Some (%d) instances of the '%s' class contain exactly the same data. They could be possibly replaced with one copy.";

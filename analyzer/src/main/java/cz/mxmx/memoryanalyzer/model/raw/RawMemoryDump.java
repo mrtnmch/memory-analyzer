@@ -7,25 +7,18 @@ import java.util.List;
 import java.util.Map;
 
 public class RawMemoryDump {
-	private final RawDumpHeader rawDumpHeader;
-	private final Map<Long, String> stringMap;
-	private final Map<Long, ClassInfo> classMap;
-	private final Map<Long, RawLoadClassDump> rawLoadClassDumps;
-	private final Map<Long, RawClassDump> rawClassDumps;
-	private final Map<Long, RawInstanceDump> rawInstanceDumps;
-	private final Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps;
-	private final Map<Long, RawObjectArrayDump> rawObjectArrayDumps;
-
-	public RawMemoryDump(RawDumpHeader rawDumpHeader, Map<Long, String> stringMap, Map<Long, ClassInfo> classMap, Map<Long, RawLoadClassDump> rawLoadClassDumps, Map<Long, RawClassDump> rawClassDumps, Map<Long, RawInstanceDump> rawInstanceDumps, Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps, Map<Long, RawObjectArrayDump> rawObjectArrayDumps) {
-		this.rawDumpHeader = rawDumpHeader;
-		this.stringMap = stringMap;
-		this.classMap = classMap;
-		this.rawLoadClassDumps = rawLoadClassDumps;
-		this.rawClassDumps = rawClassDumps;
-		this.rawInstanceDumps = rawInstanceDumps;
-		this.rawPrimitiveArrayDumps = rawPrimitiveArrayDumps;
-		this.rawObjectArrayDumps = rawObjectArrayDumps;
-	}
+	private RawDumpHeader rawDumpHeader;
+	private Map<Long, String> stringMap;
+	private Map<Long, ClassInfo> classMap;
+	private Map<Long, RawLoadClassDump> rawLoadClassDumps;
+	private Map<Long, RawClassDump> rawClassDumps;
+	private Map<Long, RawInstanceDump> rawInstanceDumps;
+	private Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps;
+	private Map<Long, RawObjectArrayDump> rawObjectArrayDumps;
+	private List<RawHeapSummary> rawHeapSummaries = new ArrayList<>();
+	private List<RawAllocSiteParent> rawAllocSiteParents = new ArrayList<>();
+	private List<RawStackTrace> rawStackTraces = new ArrayList<>();
+	private List<RawStackFrame> rawStackFrames = new ArrayList<>();
 
 	public RawDumpHeader getRawDumpHeader() {
 		return rawDumpHeader;
@@ -57,5 +50,81 @@ public class RawMemoryDump {
 
 	public Map<Long, RawObjectArrayDump> getRawObjectArrayDumps() {
 		return rawObjectArrayDumps;
+	}
+
+	public List<RawHeapSummary> getRawHeapSummaries() {
+		return rawHeapSummaries;
+	}
+
+	public List<RawAllocSiteParent> getRawAllocSiteParents() {
+		return rawAllocSiteParents;
+	}
+
+	public List<RawStackTrace> getRawStackTraces() {
+		return rawStackTraces;
+	}
+
+	public List<RawStackFrame> getRawStackFrames() {
+		return rawStackFrames;
+	}
+
+	public RawMemoryDump setRawDumpHeader(RawDumpHeader rawDumpHeader) {
+		this.rawDumpHeader = rawDumpHeader;
+		return this;
+	}
+
+	public RawMemoryDump setStringMap(Map<Long, String> stringMap) {
+		this.stringMap = stringMap;
+		return this;
+	}
+
+	public RawMemoryDump setClassMap(Map<Long, ClassInfo> classMap) {
+		this.classMap = classMap;
+		return this;
+	}
+
+	public RawMemoryDump setRawLoadClassDumps(Map<Long, RawLoadClassDump> rawLoadClassDumps) {
+		this.rawLoadClassDumps = rawLoadClassDumps;
+		return this;
+	}
+
+	public RawMemoryDump setRawClassDumps(Map<Long, RawClassDump> rawClassDumps) {
+		this.rawClassDumps = rawClassDumps;
+		return this;
+	}
+
+	public RawMemoryDump setRawInstanceDumps(Map<Long, RawInstanceDump> rawInstanceDumps) {
+		this.rawInstanceDumps = rawInstanceDumps;
+		return this;
+	}
+
+	public RawMemoryDump setRawPrimitiveArrayDumps(Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps) {
+		this.rawPrimitiveArrayDumps = rawPrimitiveArrayDumps;
+		return this;
+	}
+
+	public RawMemoryDump setRawObjectArrayDumps(Map<Long, RawObjectArrayDump> rawObjectArrayDumps) {
+		this.rawObjectArrayDumps = rawObjectArrayDumps;
+		return this;
+	}
+
+	public RawMemoryDump setRawHeapSummaries(List<RawHeapSummary> rawHeapSummaries) {
+		this.rawHeapSummaries = rawHeapSummaries;
+		return this;
+	}
+
+	public RawMemoryDump setRawAllocSiteParents(List<RawAllocSiteParent> rawAllocSiteParents) {
+		this.rawAllocSiteParents = rawAllocSiteParents;
+		return this;
+	}
+
+	public RawMemoryDump setRawStackTraces(List<RawStackTrace> rawStackTraces) {
+		this.rawStackTraces = rawStackTraces;
+		return this;
+	}
+
+	public RawMemoryDump setRawStackFrames(List<RawStackFrame> rawStackFrames) {
+		this.rawStackFrames = rawStackFrames;
+		return this;
 	}
 }

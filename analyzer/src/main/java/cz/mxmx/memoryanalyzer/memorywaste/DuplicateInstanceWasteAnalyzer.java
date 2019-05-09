@@ -14,12 +14,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Analyzer to find duplicate instances of objects.
+ */
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
+
 	@Override
 	public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
 		List<Waste> wasteList = new ArrayList<>();
 		Set<InstanceDump> processedInstances = new HashSet<>();
-//		List<InstanceDump> processedInstances = new ArrayList<>();
 
 		Map<Long, InstanceDump> userInstances = memoryDump.getUserInstances();
 
@@ -38,11 +41,6 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 					this.mergeWasteList(wasteList, instance, instance2);
 				}
 			});
-
-			double i = new ArrayList<>(memoryDump.getUserInstances().keySet()).indexOf(id);
-			if(i > 10000) { // TODO
-				break;
-			}
 		}
 
 		System.out.println();

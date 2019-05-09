@@ -1,12 +1,17 @@
 package cz.mxmx.memoryanalyzer.parse;
 
+import cz.mxmx.memoryanalyzer.model.raw.RawAllocSite;
+import cz.mxmx.memoryanalyzer.model.raw.RawAllocSiteParent;
 import cz.mxmx.memoryanalyzer.model.raw.RawClassDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawDumpHeader;
+import cz.mxmx.memoryanalyzer.model.raw.RawHeapSummary;
 import cz.mxmx.memoryanalyzer.model.raw.RawInstanceDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawLoadClassDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawObjectArrayDump;
 import cz.mxmx.memoryanalyzer.model.raw.RawPrimitiveArrayDump;
+import cz.mxmx.memoryanalyzer.model.raw.RawStackFrame;
+import cz.mxmx.memoryanalyzer.model.raw.RawStackTrace;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.AllocSite;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.ClassInfo;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Constant;
@@ -15,10 +20,13 @@ import edu.tufts.eaftan.hprofparser.parser.datastructures.Static;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RawRecordHandler extends RecordHandler {
 
@@ -43,6 +51,10 @@ public class RawRecordHandler extends RecordHandler {
 	private Map<Long, RawInstanceDump> rawInstanceDumps = new HashMap<>();
 	private Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps = new HashMap<>();
 	private Map<Long, RawObjectArrayDump> rawObjectArrayDumps = new HashMap<>();
+	private List<RawHeapSummary> rawHeapSummaries = new ArrayList<>();
+	private List<RawAllocSiteParent> rawAllocSiteParents = new ArrayList<>();
+	private List<RawStackTrace> rawStackTraces = new ArrayList<>();
+	private List<RawStackFrame> rawStackFrames = new ArrayList<>();
 
 	private static String getBasicType(byte type) {
 		return TYPE_TRANSLATION_MAP.get(new Byte(type).intValue());
@@ -50,16 +62,19 @@ public class RawRecordHandler extends RecordHandler {
 
 	@Override
 	public RawMemoryDump getMemoryDump() {
-		return new RawMemoryDump(
-				this.rawDumpHeader,
-				this.stringMap,
-				this.classMap,
-				this.rawLoadClassDumps,
-				this.rawClassDumps,
-				this.rawInstanceDumps,
-				this.rawPrimitiveArrayDumps,
-				this.rawObjectArrayDumps
-		);
+		return new RawMemoryDump()
+				.setRawDumpHeader(this.rawDumpHeader)
+				.setStringMap(this.stringMap)
+				.setClassMap(this.classMap)
+				.setRawLoadClassDumps(this.rawLoadClassDumps)
+				.setRawClassDumps(this.rawClassDumps)
+				.setRawInstanceDumps(this.rawInstanceDumps)
+				.setRawPrimitiveArrayDumps(this.rawPrimitiveArrayDumps)
+				.setRawObjectArrayDumps(this.rawObjectArrayDumps)
+				.setRawHeapSummaries(this.rawHeapSummaries)
+				.setRawAllocSiteParents(this.rawAllocSiteParents)
+				.setRawStackTraces(this.rawStackTraces)
+				.setRawStackFrames(this.rawStackFrames);
 	}
 
 	@Override
@@ -71,53 +86,49 @@ public class RawRecordHandler extends RecordHandler {
 		this.rawDumpHeader = new RawDumpHeader(format, idSize, time);
 	}
 
+	@Override
 	public void stringInUTF8(long id, String data) {
 		this.stringMap.put(id, data);
 	}
 
+	@Override
 	public void loadClass(int classSerialNum, long classObjId, int stackTraceSerialNum, long classNameStringId) {
-		this.rawLoadClassDumps.put(classObjId, new RawLoadClassDump(classObjId, this.stringMap.get(classNameStringId)));
+		this.rawLoadClassDumps.put(classObjId, new RawLoadClassDump(classObjId, this.stringMap.get(classNameStringId), classSerialNum));
 	}
 
+	@Override
 	public void allocSites(short bitMaskFlags, float cutoffRatio, int totalLiveBytes, int totalLiveInstances, long totalBytesAllocated, long totalInstancesAllocated, AllocSite[] sites) {
-		/*System.out.println("Alloc Sites:");
-		System.out.println("    bit mask flags: " + bitMaskFlags);
-		System.out.println("    incremental vs. complete: " + testBitMask(bitMaskFlags, 1));
-		System.out.println("    sorted by allocation vs. line: " + testBitMask(bitMaskFlags, 2));
-		System.out.println("    whether to force GC: " + testBitMask(bitMaskFlags, 4));
-		System.out.println("    cutoff ratio: " + cutoffRatio);
-		System.out.println("    total live bytes: " + totalLiveBytes);
-		System.out.println("    total live instances: " + totalLiveInstances);
-		System.out.println("    total bytes allocated: " + totalBytesAllocated);
-		System.out.println("    total instances allocated: " + totalInstancesAllocated);
+		List<RawAllocSite> allocSites = Arrays
+				.stream(sites)
+				.map(s -> new RawAllocSite(
+						s.arrayIndicator,
+						s.classSerialNum,
+						s.stackTraceSerialNum,
+						s.numLiveBytes,
+						s.numLiveInstances,
+						s.numBytesAllocated,
+						s.numInstancesAllocated)
+				).collect(Collectors.toList());
 
-		for(int i = 0; i < sites.length; ++i) {
-			System.out.println("        alloc site " + (i + 1) + ":");
-			System.out.print("            array indicator: ");
-			if (sites[i].arrayIndicator == 0) {
-				System.out.println("not an array");
-			} else {
-				System.out.println("array of " + getBasicType(sites[i].arrayIndicator));
-			}
-
-			System.out.println("            class serial num: " + sites[i].classSerialNum);
-			System.out.println("            stack trace serial num: " + sites[i].stackTraceSerialNum);
-			System.out.println("            num live bytes: " + sites[i].numLiveBytes);
-			System.out.println("            num live instances: " + sites[i].numLiveInstances);
-			System.out.println("            num bytes allocated: " + sites[i].numBytesAllocated);
-			System.out.println("            num instances allocated: " + sites[i].numInstancesAllocated);
-		}
-*/
+		this.rawAllocSiteParents.add(
+				new RawAllocSiteParent(
+						bitMaskFlags,
+						cutoffRatio,
+						totalLiveBytes,
+						totalLiveInstances,
+						totalBytesAllocated,
+						totalInstancesAllocated,
+						allocSites
+				)
+		);
 	}
 
+	@Override
 	public void heapSummary(int totalLiveBytes, int totalLiveInstances, long totalBytesAllocated, long totalInstancesAllocated) {
-		/*System.out.println("Heap Summary:");
-		System.out.println("    total live bytes: " + totalLiveBytes);
-		System.out.println("    total live instances: " + totalLiveInstances);
-		System.out.println("    total bytes allocated: " + totalBytesAllocated);
-		System.out.println("    total instances allocated: " + totalInstancesAllocated);*/
+		this.rawHeapSummaries.add(new RawHeapSummary(totalLiveBytes, totalLiveInstances, totalBytesAllocated, totalInstancesAllocated));
 	}
 
+	@Override
 	public void classDump(long classObjId, int stackTraceSerialNum, long superClassObjId, long classLoaderObjId, long signersObjId, long protectionDomainObjId, long reserved1, long reserved2, int instanceSize, Constant[] constants, Static[] statics, InstanceField[] instanceFields) {
 		RawClassDump dummy = new RawClassDump(classObjId, superClassObjId, instanceSize);
 		this.rawClassDumps.put(classObjId, dummy);
@@ -146,6 +157,7 @@ public class RawRecordHandler extends RecordHandler {
 		this.classMap.put(classObjId, new ClassInfo(classObjId, superClassObjId, instanceSize, instanceFields));
 	}
 
+	@Override
 	public void instanceDump(long objId, int stackTraceSerialNum, long classObjId, Value<?>[] instanceFieldValues) {
 		RawInstanceDump rawInstanceDump = new RawInstanceDump(objId, classObjId);
 		this.rawInstanceDumps.put(objId, rawInstanceDump);
@@ -170,23 +182,35 @@ public class RawRecordHandler extends RecordHandler {
 
 	}
 
+	@Override
 	public void objArrayDump(long objId, int stackTraceSerialNum, long elemClassObjId, long[] elems) {
 		RawObjectArrayDump arrayDummy = new RawObjectArrayDump(objId, elemClassObjId);
 		this.rawObjectArrayDumps.put(objId, arrayDummy);
 
-		for (int i = 0; i < elems.length; ++i) {
-			arrayDummy.addItem(elems[i]);
+		for (long elem : elems) {
+			arrayDummy.addItem(elem);
 		}
 
 	}
 
+	@Override
 	public void primArrayDump(long objId, int stackTraceSerialNum, byte elemType, Value<?>[] elems) {
 		RawPrimitiveArrayDump arrayDummy = new RawPrimitiveArrayDump(objId, getBasicType(elemType));
 		this.rawPrimitiveArrayDumps.put(objId, arrayDummy);
 
-		for (int i = 0; i < elems.length; ++i) {
-			arrayDummy.addItem(elems[i]);
+		for (Value<?> elem : elems) {
+			arrayDummy.addItem(elem);
 		}
 
+	}
+
+	@Override
+	public void stackFrame(long stackFrameId, long methodNameStringId, long methodSigStringId, long sourceFileNameStringId, int classSerialNum, int location) {
+		this.rawStackFrames.add(new RawStackFrame(stackFrameId, methodNameStringId, methodSigStringId, sourceFileNameStringId, classSerialNum, location));
+	}
+
+	@Override
+	public void stackTrace(int stackTraceSerialNum, int threadSerialNum, int numFrames, long[] stackFrameIds) {
+		this.rawStackTraces.add(new RawStackTrace(stackTraceSerialNum, threadSerialNum, numFrames, stackFrameIds));
 	}
 }

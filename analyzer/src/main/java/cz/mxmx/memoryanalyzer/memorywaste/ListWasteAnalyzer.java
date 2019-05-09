@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Analyzer to find ineffective list usage.
+ */
 public class ListWasteAnalyzer implements WasteAnalyzer {
 	@Override
 	public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
