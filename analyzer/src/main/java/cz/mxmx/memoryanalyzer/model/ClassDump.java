@@ -11,7 +11,7 @@ public class ClassDump {
 	private final int serialNum;
 	private final ClassDump superClassDump;
 	private final List<InstanceDump> instances = new ArrayList<>();
-	private final List<FieldDump> constants = new ArrayList<>(); // TODO: parse constants as well
+	private final List<FieldDump> constants = new ArrayList<>();
 	private final List<FieldDump> staticFields = new ArrayList<>();
 	private final List<InstanceFieldDump> instanceFields = new ArrayList<>();
 	private final List<ClassDump> childrenClasses = new ArrayList<>();
