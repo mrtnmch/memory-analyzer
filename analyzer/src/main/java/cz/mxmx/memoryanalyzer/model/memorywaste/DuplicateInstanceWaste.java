@@ -26,6 +26,10 @@ public class DuplicateInstanceWaste implements Waste {
 		this.duplicates = duplicates;
 	}
 
+	protected int getDuplicatesSize() {
+		return this.duplicates.size();
+	}
+
 	@Override
 	public Long estimateWastedBytes() {
 		return null;
@@ -62,5 +66,14 @@ public class DuplicateInstanceWaste implements Waste {
 				.findFirst()
 				.map(instance -> instance.getClassDump().getName())
 				.orElse(null);
+	}
+
+	@Override
+	public int compareTo(Waste o) {
+		if(o instanceof DuplicateInstanceWaste) {
+			return Integer.compare(((DuplicateInstanceWaste) o).getDuplicatesSize(), this.getDuplicatesSize());
+		}
+
+		return 0;
 	}
 }

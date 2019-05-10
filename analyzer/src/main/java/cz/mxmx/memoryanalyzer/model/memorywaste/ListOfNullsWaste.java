@@ -65,4 +65,13 @@ public class ListOfNullsWaste implements Waste {
 	public WasteAnalyzer getSourceWasteAnalyzer() {
 		return this.sourceWasteAnalyzer;
 	}
+
+	@Override
+	public int compareTo(Waste o) {
+		if(o instanceof ListOfNullsWaste) {
+			return Long.compare(((ListOfNullsWaste) o).nullCount, this.nullCount);
+		}
+
+		return 0;
+	}
 }

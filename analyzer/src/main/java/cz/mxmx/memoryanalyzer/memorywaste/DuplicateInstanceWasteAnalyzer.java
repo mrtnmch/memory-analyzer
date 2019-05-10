@@ -53,8 +53,8 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 			return false;
 		}
 
-		final boolean[] same = {true};
 		ClassDump classDump = instance.getClassDump();
+		final boolean[] same = {classDump.getInstanceFields().size() > 0};
 
 		classDump.getInstanceFields().forEach(field -> {
 			Object value = instance.getInstanceFieldValues().get(field);
@@ -78,8 +78,13 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 				.filter(waste -> this.instancesAreSame(waste.getAffectedInstances().get(0), instance)).findFirst();
 
 		if(optWaste.isPresent()) {
-			optWaste.get().addAffectedInstance(instance);
-			optWaste.get().addAffectedInstance(instance2);
+			if(!optWaste.get().getAffectedInstances().contains(instance)) {
+				optWaste.get().addAffectedInstance(instance);
+			}
+
+			if(!optWaste.get().getAffectedInstances().contains(instance2)) {
+				optWaste.get().addAffectedInstance(instance2);
+			}
 		} else {
 			wasteList.add(new DuplicateInstanceWaste(this, Lists.newArrayList(instance, instance2)));
 		}

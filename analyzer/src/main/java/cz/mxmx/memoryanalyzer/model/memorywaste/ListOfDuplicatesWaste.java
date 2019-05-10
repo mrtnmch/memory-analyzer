@@ -9,9 +9,9 @@ import java.util.List;
 
 public class ListOfDuplicatesWaste implements Waste {
 
-	private final WasteAnalyzer sourceWasteAnalyzer;
-	private final InstanceDump instance;
-	private final List<?> list;
+	protected final WasteAnalyzer sourceWasteAnalyzer;
+	protected final InstanceDump instance;
+	protected final List<?> list;
 
 	public ListOfDuplicatesWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, List<?> list) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
@@ -50,5 +50,14 @@ public class ListOfDuplicatesWaste implements Waste {
 	@Override
 	public WasteAnalyzer getSourceWasteAnalyzer() {
 		return this.sourceWasteAnalyzer;
+	}
+
+	@Override
+	public int compareTo(Waste o) {
+		if(o instanceof  ListOfDuplicatesWaste) {
+			return Integer.compare(((ListOfDuplicatesWaste) o).list.size(), this.list.size());
+		}
+
+		return 0;
 	}
 }

@@ -68,16 +68,14 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		List<AllocSiteParent> allocSites = this.getAllocSites(rawMemoryDump.getRawAllocSiteParents());
 		List<StackTrace> stackTraces = this.getStackTraces(rawMemoryDump.getRawStackTraces(), rawMemoryDump.getRawStackFrames(), rawMemoryDump.getStringMap(), classes);
 
-		ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump(
-				null,
-				dumpHeader,
-				instances,
-				classes,
-				null,
-				null,
-				primitiveArrays,
-				instanceArrays
-		);
+		ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump()
+				.setDumpHeader(dumpHeader)
+				.setInstances(instances)
+				.setClasses(classes)
+				.setPrimitiveArrays(primitiveArrays)
+				.setInstanceArrays(instanceArrays)
+				.setAllocSites(allocSites)
+				.setStackTraces(stackTraces);
 
 		this.cache.put(rawMemoryDump, processedMemoryDump);
 

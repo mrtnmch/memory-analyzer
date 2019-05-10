@@ -1,31 +1,21 @@
 package cz.mxmx.memoryanalyzer.model;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class ProcessedMemoryDump implements MemoryDump {
 
-	private final Collection<String> userNamespaces;
-	private final DumpHeader dumpHeader;
-	private final Map<Long, InstanceDump> instances;
-	private final Map<Long, ClassDump> classes;
-	private final Map<Long, InstanceDump> userInstances;
-	private final Map<Long, ClassDump> userClasses;
-	private final Map<Long, ArrayDump> primitiveArrays;
-	private final Map<Long, InstanceArrayDump> instanceArrays;
-
-	public ProcessedMemoryDump(Collection<String> userNamespaces, DumpHeader dumpHeader, Map<Long, InstanceDump> instances, Map<Long, ClassDump> classes, Map<Long, InstanceDump> userInstances, Map<Long, ClassDump> userClasses, Map<Long, ArrayDump> primitiveArrays, Map<Long, InstanceArrayDump> instanceArrays) {
-		this.userNamespaces = userNamespaces;
-		this.dumpHeader = dumpHeader;
-		this.instances = instances;
-		this.classes = classes;
-		this.userInstances = userInstances;
-		this.userClasses = userClasses;
-		this.primitiveArrays = primitiveArrays;
-		this.instanceArrays = instanceArrays;
-	}
+	private Collection<String> userNamespaces;
+	private DumpHeader dumpHeader;
+	private Map<Long, InstanceDump> instances;
+	private Map<Long, ClassDump> classes;
+	private Map<Long, InstanceDump> userInstances;
+	private Map<Long, ClassDump> userClasses;
+	private Map<Long, ArrayDump> primitiveArrays;
+	private Map<Long, InstanceArrayDump> instanceArrays;
+	private List<AllocSiteParent> allocSites;
+	private List<StackTrace> stackTraces;
 
 	@Override
 	public Collection<String> getUserNamespaces() {
@@ -66,14 +56,72 @@ public class ProcessedMemoryDump implements MemoryDump {
 	}
 
 	@Override
-	public String toString() {
-		return new ToStringBuilder(this)
-				.append("userNamespaces", userNamespaces)
-				.append("dumpHeader", dumpHeader)
-				.append("instances", instances.size())
-				.append("classes", classes.size())
-				.append("userInstances", userInstances.size())
-				.append("userClasses", userClasses.size())
-				.toString();
+	public List<AllocSiteParent> getAllocSites() {
+		return this.allocSites;
+	}
+
+	@Override
+	public List<StackTrace> getStackTraces() {
+		return this.stackTraces;
+	}
+
+	@Override
+	public ProcessedMemoryDump setUserNamespaces(Collection<String> userNamespaces) {
+		this.userNamespaces = userNamespaces;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setDumpHeader(DumpHeader dumpHeader) {
+		this.dumpHeader = dumpHeader;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setInstances(Map<Long, InstanceDump> instances) {
+		this.instances = instances;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setClasses(Map<Long, ClassDump> classes) {
+		this.classes = classes;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setUserInstances(Map<Long, InstanceDump> userInstances) {
+		this.userInstances = userInstances;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setUserClasses(Map<Long, ClassDump> userClasses) {
+		this.userClasses = userClasses;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setPrimitiveArrays(Map<Long, ArrayDump> primitiveArrays) {
+		this.primitiveArrays = primitiveArrays;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setInstanceArrays(Map<Long, InstanceArrayDump> instanceArrays) {
+		this.instanceArrays = instanceArrays;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setAllocSites(List<AllocSiteParent> allocSiteParents) {
+		this.allocSites = allocSiteParents;
+		return this;
+	}
+
+	@Override
+	public ProcessedMemoryDump setStackTraces(List<StackTrace> stackTraces) {
+		this.stackTraces = stackTraces;
+		return this;
 	}
 }

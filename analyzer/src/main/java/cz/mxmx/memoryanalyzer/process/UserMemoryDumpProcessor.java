@@ -31,16 +31,15 @@ public class UserMemoryDumpProcessor implements MemoryDumpProcessor {
 		Map<Long, ClassDump> userClasses = this.getUserClasses(preprocessed.getClasses());
 		Map<Long, InstanceDump> userInstances = this.getUserInstances(preprocessed.getInstances(), userClasses);
 
-		ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump(
-				this.namespaces,
-				preprocessed.getDumpHeader(),
-				preprocessed.getInstances(),
-				preprocessed.getClasses(),
-				userInstances,
-				userClasses,
-				preprocessed.getPrimitiveArrays(),
-				preprocessed.getInstanceArrays()
-		);
+		ProcessedMemoryDump processedMemoryDump = new ProcessedMemoryDump()
+				.setUserNamespaces(this.namespaces)
+				.setDumpHeader(preprocessed.getDumpHeader())
+				.setInstances(preprocessed.getInstances())
+				.setClasses(preprocessed.getClasses())
+				.setUserInstances(userInstances)
+				.setUserClasses(userClasses)
+				.setPrimitiveArrays(preprocessed.getPrimitiveArrays())
+				.setInstanceArrays(preprocessed.getInstanceArrays());
 
 		this.cache.put(rawMemoryDump, processedMemoryDump);
 		return processedMemoryDump;
