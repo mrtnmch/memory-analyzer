@@ -8,6 +8,8 @@ import cz.mxmx.memoryanalyzer.exception.MemoryDumpAnalysisException;
 import cz.mxmx.memoryanalyzer.memorywaste.DefaultWasteAnalyzerPipeline;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzer;
 import cz.mxmx.memoryanalyzer.memorywaste.WasteAnalyzerPipeline;
+import cz.mxmx.memoryanalyzer.model.InstanceDump;
+import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 import org.apache.commons.cli.CommandLine;
@@ -24,14 +26,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class App {
-	public static final List<String> NAMESPACES = Lists.newArrayList("com.intellij");
-//	public static final List<String> NAMESPACES = Lists.newArrayList("cz.mxmx");
-	public static final String PATH = "sandbox/data/heapdump-intellij-idea.hprof";
 
 	public static void main(String[] args) throws IOException, MemoryDumpAnalysisException {
 		new App(args);
@@ -43,6 +43,10 @@ public class App {
 		Option listOptions = new Option("l", "list", false, "list namespaces and exit");
 		listOptions.setRequired(false);
 		options.addOption(listOptions);
+
+		Option printFieldsOptions = new Option("f", "fields", false, "print the fields' values of the affected instances");
+		printFieldsOptions.setRequired(false);
+		options.addOption(printFieldsOptions);
 
 		Option pathOption = new Option("p", "path", true, "input dump file path");
 		pathOption.setRequired(true);
@@ -66,8 +70,9 @@ public class App {
 			String namespace = cmd.getOptionValue("namespace");
 			boolean list = cmd.hasOption("list");
 			boolean help = cmd.hasOption("help");
+			boolean fields = cmd.hasOption("fields");
 
-			if(list && !Strings.isNullOrEmpty(inputFilePath)) {
+			if (list && !Strings.isNullOrEmpty(inputFilePath)) {
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
@@ -77,13 +82,12 @@ public class App {
 					System.out.format("\t%s\n", ns);
 				});
 
-			}
-			else if(!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
+			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
-				this.processMemoryDump(memoryDump, namespace);
-			} else if(help) {
+				this.processMemoryDump(memoryDump, namespace, fields);
+			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
 			} else {
 				System.out.println("No action defined. See --help for more info.");
@@ -109,7 +113,7 @@ public class App {
 		return analyzer.analyze(Lists.newArrayList(namespace));
 	}
 
-	private void processMemoryDump(MemoryDump memoryDump, String namespace) {
+	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields) {
 		System.out.println("Done, found:");
 		System.out.println("\tClasses: " + memoryDump.getClasses().size());
 		System.out.println("\tInstances: " + memoryDump.getInstances().size());
@@ -125,14 +129,36 @@ public class App {
 
 		Map<WasteAnalyzer, List<Waste>> classes = memoryWaste.stream().collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
 		classes.forEach((type, list) -> {
-				System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
-				list
+			System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
+			list
 					.stream()
-					.map(waste -> String.format("\t\t%s: %s", waste.getTitle(), waste.getDescription()))
 					.sorted()
+					.map(waste -> String.format(
+							"\t\t%s: %s%s",
+							waste.getTitle(),
+							waste.getDescription(),
+							printFields ? this.dumpInstanceFields(waste) : ""
+					))
 					.forEach(System.out::println);
-				System.out.println();
-			});
+			System.out.println();
+		});
+	}
+
+	private String dumpInstanceFields(Waste waste) {
+		StringBuilder sb = new StringBuilder();
+		Optional<InstanceDump> first = waste.getAffectedInstances().stream().findFirst();
+
+		sb.append("\n");
+
+		if (first.isPresent()) {
+			for (InstanceFieldDump instanceField : first.get().getClassDump().getInstanceFields()) {
+				Object value = first.get().getInstanceFieldValues().get(instanceField);
+
+				sb.append(String.format("\t\t\t%s = `%s`\n", instanceField.getName(), value));
+			}
+		}
+
+		return sb.toString();
 	}
 
 }
