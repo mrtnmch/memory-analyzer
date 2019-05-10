@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  2 MAR 2019 22:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  10 MAY 2019 22:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -413,14 +413,14 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 89.
 Here is how much of TeX's memory you used:
  9941 strings out of 492641
  138912 string characters out of 6131787
- 226699 words of memory out of 5000000
+ 226700 words of memory out of 5000000
  13758 multiletter control sequences out of 15000+600000
  19744 words of font info for 21 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  31i,5n,28p,210b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/
 public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb>
-Output written on student-titulka.pdf (1 page, 52179 bytes).
+Output written on student-titulka.pdf (1 page, 52303 bytes).
 PDF statistics:
  22 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream

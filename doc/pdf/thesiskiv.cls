@@ -112,7 +112,7 @@
   {\subject{Bakalářská práce}\def\KIV@thesistype{bakalářskou}}{}
  \@ifclasswith{thesiskiv}{DP}
   {\subject{Diplomová práce}\def\KIV@thesistype{diplomovou}}{}
- \titlepagetown{Plzeň}
+ \titlepagetown{Plzeň,}
  \declarationtown{Plzni}
  \def\KIV@declarationname{Prohlášení}
  \def\KIV@declarationtext{Prohlašuji, že jsem \KIV@thesistype\ práci vypracoval\ifdeclarationfemale{a}\fi\ samostatně a výhradně s~použitím citovaných pramenů.}
