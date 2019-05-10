@@ -1,7 +1,5 @@
 package cz.mxmx.memoryanalyzer.model;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +26,9 @@ public class InstanceDump extends GenericDump {
 
 	@Override
 	public String toString() {
-		return "";
-		/*return new ToStringBuilder(this)
-				.append("classDump", classDump)
-				.append("instanceFieldValues", instanceFieldValues)
-				.append("instanceId", instanceId)
-				.toString();*/
+		return "InstanceDump{" +
+				"classDump=" + classDump.getName() +
+				", instanceId=" + instanceId +
+				'}';
 	}
 }

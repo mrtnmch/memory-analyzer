@@ -22,8 +22,11 @@ import org.apache.commons.cli.ParseException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -73,6 +76,7 @@ public class App {
 			boolean fields = cmd.hasOption("fields");
 
 			if (list && !Strings.isNullOrEmpty(inputFilePath)) {
+				System.out.println("Started at " + this.getNow());
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
@@ -81,12 +85,15 @@ public class App {
 				namespaces.forEach(ns -> {
 					System.out.format("\t%s\n", ns);
 				});
+				System.out.println("Finished at " + this.getNow());
 
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
+				System.out.println("Started at " + this.getNow());
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
 				this.processMemoryDump(memoryDump, namespace, fields);
+				System.out.println("Finished at " + this.getNow());
 			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
 			} else {
@@ -95,13 +102,12 @@ public class App {
 
 			System.exit(0);
 
-		} catch (ParseException e) {
-			System.out.println(e.getMessage());
+		} catch (ParseException | MemoryDumpAnalysisException e) {
+			System.out.println("Error: " + e.getMessage());
 			formatter.printHelp("memory-analyzer", options);
-
 			System.exit(1);
-		} catch (FileNotFoundException | MemoryDumpAnalysisException e) {
-			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: Couldn't find the specified input file.");
 		}
 	}
 
@@ -159,6 +165,12 @@ public class App {
 		}
 
 		return sb.toString();
+	}
+
+	private String getNow() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
 	}
 
 }
