@@ -10,13 +10,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserMemoryDumpProcessor implements MemoryDumpProcessor {
+public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
 
 	private final Map<RawMemoryDump, MemoryDump> cache = new HashMap<>();
 	private final MemoryDumpProcessor genericMemoryDumpProcessor;
 	private final Collection<String> namespaces;
 
-	public UserMemoryDumpProcessor(MemoryDumpProcessor genericMemoryDumpProcessor, Collection<String> namespaces) {
+	public FilteredMemoryDumpProcessor(MemoryDumpProcessor genericMemoryDumpProcessor, Collection<String> namespaces) {
 		this.genericMemoryDumpProcessor = genericMemoryDumpProcessor;
 		this.namespaces = namespaces;
 	}

@@ -77,11 +77,6 @@ public class RawRecordHandler extends RecordHandler {
 				.setRawStackFrames(this.rawStackFrames);
 	}
 
-	@Override
-	public List<String> getNamespaces() {
-		return null;
-	}
-
 	public void header(String format, int idSize, long time) {
 		this.rawDumpHeader = new RawDumpHeader(format, idSize, time);
 	}
@@ -132,26 +127,26 @@ public class RawRecordHandler extends RecordHandler {
 	public void classDump(long classObjId, int stackTraceSerialNum, long superClassObjId, long classLoaderObjId, long signersObjId, long protectionDomainObjId, long reserved1, long reserved2, int instanceSize, Constant[] constants, Static[] statics, InstanceField[] instanceFields) {
 		RawClassDump dummy = new RawClassDump(classObjId, superClassObjId, instanceSize);
 		this.rawClassDumps.put(classObjId, dummy);
-		int var21 = constants.length;
+		int length = constants.length;
 
-		int var22;
-		for (var22 = 0; var22 < var21; ++var22) {
-			Constant c = constants[var22];
+		int i;
+		for (i = 0; i < length; ++i) {
+			Constant c = constants[i];
 			dummy.addConstantField(c.constantPoolIndex, c.value);
 		}
 
-		var21 = statics.length;
+		length = statics.length;
 
-		for (var22 = 0; var22 < var21; ++var22) {
-			Static s = statics[var22];
+		for (i = 0; i < length; ++i) {
+			Static s = statics[i];
 			dummy.addStaticField(this.stringMap.get(s.staticFieldNameStringId), s.value);
 		}
 
-		var21 = instanceFields.length;
+		length = instanceFields.length;
 
-		for (var22 = 0; var22 < var21; ++var22) {
-			InstanceField i = instanceFields[var22];
-			dummy.addInstanceField(this.stringMap.get(i.fieldNameStringId), i.type.toString());
+		for (i = 0; i < length; ++i) {
+			InstanceField field = instanceFields[i];
+			dummy.addInstanceField(this.stringMap.get(field.fieldNameStringId), field.type.toString());
 		}
 
 		this.classMap.put(classObjId, new ClassInfo(classObjId, superClassObjId, instanceSize, instanceFields));

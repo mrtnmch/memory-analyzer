@@ -6,7 +6,7 @@ import cz.mxmx.memoryanalyzer.model.raw.RawMemoryDump;
 import cz.mxmx.memoryanalyzer.parse.RawRecordHandler;
 import cz.mxmx.memoryanalyzer.parse.RecordHandler;
 import cz.mxmx.memoryanalyzer.process.GenericMemoryDumpProcessor;
-import cz.mxmx.memoryanalyzer.process.UserMemoryDumpProcessor;
+import cz.mxmx.memoryanalyzer.process.FilteredMemoryDumpProcessor;
 import cz.mxmx.memoryanalyzer.process.MemoryDumpProcessor;
 import cz.mxmx.memoryanalyzer.util.Normalization;
 import edu.tufts.eaftan.hprofparser.parser.HprofParser;
@@ -16,31 +16,29 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 
-    private final RecordHandler recordHandler;
+	private final RecordHandler recordHandler;
 	private final String path;
 	private final MemoryDumpProcessor genericProcessor = new GenericMemoryDumpProcessor();
 	private RawMemoryDump memoryDump;
 
 	public DefaultMemoryDumpAnalyzer(String path) {
 		this(path, new RawRecordHandler());
-    }
+	}
 
 	public DefaultMemoryDumpAnalyzer(String path, RecordHandler recordHandler) {
 		this.path = path;
-        this.recordHandler = recordHandler;
-    }
+		this.recordHandler = recordHandler;
+	}
 
-    private void runAnalysis() throws MemoryDumpAnalysisException, FileNotFoundException {
-		if(this.memoryDump == null) {
+	private void runAnalysis() throws MemoryDumpAnalysisException, FileNotFoundException {
+		if (this.memoryDump == null) {
 			HprofParser parser = new HprofParser(this.recordHandler);
 			FileInputStream fs = new FileInputStream(path);
 			DataInputStream in = new DataInputStream(new BufferedInputStream(fs));
@@ -54,7 +52,7 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 
 			this.memoryDump = this.recordHandler.getMemoryDump();
 		}
-    }
+	}
 
 	@Override
 	public Set<String> getNamespaces() throws FileNotFoundException, MemoryDumpAnalysisException {
@@ -78,20 +76,9 @@ public class DefaultMemoryDumpAnalyzer implements MemoryDumpAnalyzer {
 	}
 
 	@Override
-    public MemoryDump analyze(List<String> namespaces) throws FileNotFoundException, MemoryDumpAnalysisException {
-	    HprofParser parser = new HprofParser(this.recordHandler);
-	    FileInputStream fs = new FileInputStream(path);
-	    DataInputStream in = new DataInputStream(new BufferedInputStream(fs));
-
-	    try {
-		    parser.parse(in);
-		    in.close();
-	    } catch (IOException e) {
-		    throw new MemoryDumpAnalysisException(e);
-	    }
-
-	    RawMemoryDump memoryDump = this.recordHandler.getMemoryDump();
-	    MemoryDumpProcessor processor = new UserMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces));
-	    return processor.process(memoryDump);
-    }
+	public MemoryDump analyze(List<String> namespaces) throws FileNotFoundException, MemoryDumpAnalysisException {
+		this.runAnalysis();
+		MemoryDumpProcessor processor = new FilteredMemoryDumpProcessor(this.genericProcessor, Normalization.stringToRegexNamespaces(namespaces));
+		return processor.process(this.memoryDump);
+	}
 }

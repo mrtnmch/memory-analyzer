@@ -19,6 +19,9 @@ import java.util.Map;
  * Analyzer to find ineffective list usage.
  */
 public class ListWasteAnalyzer implements WasteAnalyzer {
+
+	private static final double THRESHOLD = 0.5;
+
 	@Override
 	public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
 		List<Waste> wasteList = new ArrayList<>();
@@ -41,7 +44,7 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 
 		if(elements != null && elements.getValues() != null) {
 			long nullCount = findNullWastedList(elements);
-			if(nullCount > elements.getValues().size()/2) {
+			if(nullCount > elements.getValues().size() * THRESHOLD) {
 				wasteList.add(new ListOfNullsWaste(this, value, elements.getValues(), nullCount, instance, instanceFieldDump));
 			}
 		}

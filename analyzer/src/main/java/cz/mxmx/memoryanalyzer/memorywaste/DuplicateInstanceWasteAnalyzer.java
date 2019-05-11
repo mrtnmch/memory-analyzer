@@ -55,7 +55,8 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 	}
 
 	private boolean instancesAreSame(InstanceDump instance, InstanceDump instance2) {
-		if(!this.instancesOfSameClass(instance, instance2)) {
+		if(!this.instancesOfSameClass(instance, instance2)
+				|| instance.getInstanceFieldValues().size() != instance2.getInstanceFieldValues().size()) {
 			return false;
 		}
 
@@ -74,7 +75,27 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 	}
 
 	private boolean instancesOfSameClass(InstanceDump instance, InstanceDump instance2) {
-		return instance.getClassDump().equals(instance2.getClassDump());
+		ClassDump parent = instance.getClassDump();
+
+		do {
+			if (parent.equals(instance2.getClassDump())) {
+				return true;
+			}
+
+			parent = parent.getSuperClassDump();
+		} while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
+
+		parent = instance2.getClassDump();
+
+		do {
+			if (parent.equals(instance.getClassDump())) {
+				return true;
+			}
+
+			parent = parent.getSuperClassDump();
+		} while (parent != null && parent.getName() != null && !parent.getName().equals(Object.class.getName()));
+
+		return false;
 	}
 
 	private void mergeWasteList(List<Waste> wasteList, InstanceDump instance, InstanceDump instance2) {
