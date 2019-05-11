@@ -732,6 +732,7 @@ Jak je vidět, načtení přesně odpovídá definici formátu hlavičky v tabul
 Po načtení hlavičky je v knihovně iterováno nad následujícími byty, kdy je vždy jako první načten \texttt{tag} -- typ záznamu. Dle této hodnoty je poté, pomocí přepínače \texttt{switch}, prováděna příslušná akce, respektive načtení dalších údajů, které se různí dle hodnoty položky \texttt{tag}. Na základě načtených hodnot jsou poté vytvořeny entity, které těmto datům přidávají informace (zejména z pohledu sémantiky dat) a které jsou dále publikovány skrze \texttt{RecordHandler}, stejně jako v případě hlavičky.
 
 \subsection{RecordHandler}
+\label{hprof-lib-recordhandler}
 Jedná se o rozhraní, které slouží jako posluchač (\texttt{listener}) volání třídy \texttt{HprofParser}, jejíž funkcionalita byla popsána výše. Má několik metod, nicméně pro potřeby této práce jsou zapotřebí zejména následující (společně s popisem vybraných důležitých parametrů):
 
 \begin{itemize}
@@ -852,6 +853,7 @@ Pro knihovnu můžeme tedy přidat závislost:
 \end{lstlisting}
 
 \section{Návrh struktury aplikace}
+\label{app-structure}
 Výše jsem definoval závislost na knihovně, který se bude starat o načtení a předzpracování paměťového dumpu ze souboru HPROF. Tato (stále ještě primitivní, triviální) reprezentace dumpu v paměti bude představovat vstupní data pro algoritmus, který je bude dále transformovat.
 
 Protože se dá očekávat, že mnou implementované analyzátory paměťových nedostatků a neefektivního využití paměti nebudou ani zdaleka kompletní, bylo by vhodné strukturu této části aplikace navrhnout tak, aby byla následná implementace dodatečných typů analýzy co nejjednodušší. Zároveň ale musí mít případný modul k dispozici všechna nutná data z dumpu tak, aby nebyl nástrojem nijak omezen.
@@ -879,6 +881,61 @@ Výhoda této architektury je vysoká míra nezávislosti kódu na sobě -- nen�
 \section{Rozhraní pipeline a modulů}
 Rozhraní poskytované pro implementace pipeline a modulů musí umožňovat kompletní analýzu zpracovávaného dumpu. 
 
+TODO
+
 \chapter{Implementace}
+Nástroj jsem vytvořil jako konzolovou (CLI) aplikaci, jejíž použití, včetně možných parametrů, je popsáno v uživatelské dokumentaci v příloze \ref{usage-doc}. Aplikace slouží pouze jako vstupní bod a obsluhuje knihovnu, která je striktně oddělena -- k tomu využívám Maven moduly. 
+
+Hlavní rodičovský modul, který zastřešuje všechny ostatní, je \texttt{memory-analyzer}. Ten definuje tři submoduly:
+
+\begin{description}
+    \item[analyzer] Modul pro analýzu memory dumpu, tj. obsahující hlavní funkcionalitu. Dále se tedy budu věnovat popisu tohoto modulu.
+    \item[app] Poskytuje CLI. Z vytvořeného programu tak dělá spustitelnou aplikaci. Toto oddělení umožňuje jednoduché využití knihovny (tedy modulu \texttt{analyzer}) nezávisle v jiné aplikaci.
+    \item[example-app] Slouží pro testovací účely, jako jednoduchý prostředek pro vytváření memory dumpů, na nichž je knihovna testována.  
+\end{description}
+
+\section{Zpracování dumpu}
+Hlavním rozhraním celé knihovny je \texttt{MemoryDumpAnalyzer}, respektive jeho výchozí implementace -- třída \texttt{DefaultMemoryDumpAnalyzer}. Ty obsahují dvě metody, a to pro získání jmenných prostorů (\textit{namespace}) a pro analýzu jako takovou.
+
+\texttt{DefaultMemoryDumpAnalyzer} přijímá jako parametr konstruktoru cestu ke zpracovávanému memory dumpu (HPROF). Pro načtení jmenných prostorů potřebuje pouze právě cestu a implementaci abstraktní třídy \texttt{RecordHandler}.
+
+Tato třída rozšiřuje třídu \texttt{NullRecordHandler}, která byla zmíněna v kapitole \ref{hprof-lib-recordhandler}. Slouží tedy jako prostředník mezi mnou vytvořeným nástrojem a knihovnou pro zpracování dumpu. Protože \texttt{NullRecordHandler} je skutečně nízkoúrovňový a nabízí pouze metody pro přístup k datům memory dumpu, třída \texttt{RecordHandler} k ní přidává navíc metodu pro zisk předzpracovaného memory dumpu, třídy \texttt{RawMemoryDump}. Prefixem \texttt{Raw} označuji v programu třídy, které představují objekty z dumpu, ale nejsou ještě nijak zpracované a např. číselné hodnoty v nich nejsou nijak intepretované (např. reference na objekty jsou stále celočíselné hodnoty typu \texttt{long}).
+
+Důvodem pro toto řešení je způsob, jakým knihovna pro zpracování dumpu pracuje. Nenabízí žádný prostředek k získání všech dat, ale s každou načtenou částí dumpu zavolá metodu třídy \textit{NullRecordHandler} dle typu této části -- např. pro načtený rámec zásobníku zavolá metodu \texttt{stackFrame} s daty tohoto rámce. Obdobně takto volá metody pro ostatní typy.
+
+\texttt{RawRecordHandler} je tedy rozšířením \texttt{NullRecordHandler}. Při každém takovém volání metody si třída pouze uloží data jako mezivýsledek do jedné z map či listů, které obsahuje. Díky tomu je po kompletním průchodu knihovnou třída schopna poskytnout výše uvedený \texttt{RawMemoryDump}, což je třída agregující tyto výsledky, a to zavoláním metody \texttt{getMemoryDump}. Třída rovnež provádí základní převod z číselných identifikátorů typů na textovou reprezentaci (např. z 10 na \texttt{int}). Z takto předzpracovaného dumpu je možné rovněž získat jmenné prostory, které obsahuje. 
+
+Takto získaný předzpracovaný dump předá \texttt{DefaultMemoryDumpAnalyzer} pro další analýzu do třídy \texttt{GenericMemoryDumpProcessor}. Tato třída se stará o interpretaci dat a překládá tedy \texttt{Raw} objekty do jejich finální podoby. Nahrazuje tedy např. číselné identifikátory řetězců jejich skutečnými hodnotami, místo ID tříd přidává referenci na jejich reprezentaci v podobě třídy \texttt{ClassDump} apod.
+
+Jako obal okolo \texttt{DefaultMemoryDumpAnalyzer} slouží třída \texttt{Filtered\-Memory\-Dump\-Processor}. Ta implementuje stejné rozhraní, drtivou většinu funkcionality deleguje na \texttt{Default} variantu, ale přidává navíc (jak napovídá název) možnost filtrovat objekty podle specifikovaných jmenných prostorů. Není nutné tak dále pracovat se všemi objekty všech tříd, ale omezit se na ty, které uživatele zajímají.
+
+V tomto okamžiku je tedy k dispozici kompletně zpracovaný memory dump a v paměti se nachází jeho reprezentace pomocí objektů definovaných ve jmenném prostoru \texttt{cz.mxmx.memoryanalyzer.model}. Třídy a instance jsou navíc volitelně filtrovány pomocí specifikovaných balíků, do kterých patří (i když jsou samozřejme k dispozici i všechny ostatní objekty z dumpu).
+
+\section{Analýza plýtvání pamětí}
+
+Takto zpracovaný dump, tedy instance třídy \texttt{ProcessedMemoryDump} (respektive obecně rozhraní \texttt{MemoryDump}), je možné dále zpracovávat. Funkcionalita analýzy plýtvání je oddělena od zpracování dumpu. To tak může uživatel nástroje využít, analýzu plýtvání vynechat a nad zpracovaným dumpem provádět vlastní operace.
+
+Pro analýzu plýtvání je k dispozici rozhraní \texttt{WasteAnalyzer}, s pouze jedinou metodou, jak je vidět v ukázce \ref{waste-analyzer}. Toto rozhraní představuje \textit{pipeline} i \textit{moduly} z analýzy v kapitole \ref{app-structure} -- sdílejí tedy částečně vnější rozhraní. \textit{Pipeline} se odlišuje až prostřednictvím abstraktní třídy \texttt{WasteAnalyzerPipeline}, nicméně nijak zásadně -- od dědících tříd je pouze vyžadován seznam dalších implementací rozhraní \texttt{WasteAnalyzer}, které má tato \textit{pipeline} obsluhovat. Kromě toho přijímá ještě parametr \texttt{multiThreaded}, který přepíná mezi během v jednom či více vláken tak, jak bylo nastíněno na obrázcích \ref{obr-pipeline}, respektive \ref{obr-pipeline-parallel}. 
+
+\begin{lstlisting}[caption={Rozhraní pro analýzu plýtvání paměti ve zpracovaném dumpu}, label={waste-analyzer}, frame={single}, language={java}, float,floatplacement=H]
+public interface WasteAnalyzer {
+    List<Waste> findMemoryWaste(MemoryDump memoryDump);
+}
+\end{lstlisting}
+
+Výchozí implementací je \texttt{DefaultWasteAnalyzerPipeline}, kde jsou registrovány jednotlivé moduly a následně jsou spuštěny -- standardně pomocí více vláken. Nové moduly lze zaregistrovat jejich přidáním do mapy, která je uložena v konstantě \texttt{ANALYZERS}, společně s názvem tohoto modulu. Tím je tento modul automaticky zaveden do běhu programu a spouštěn při analýze, další kroky není třeba provádět. 
+
+\subsection{Analýza duplicit}
+Tento druh plýtvání hledá třída \texttt{DuplicateInstanceWasteAnalyzer}. Omezuje se na jmenné prostory specifikované uživatelem, což je samozřejmě opatření z výkonových důvodů -- analýzá má velice neefektivní (exponenciální) složitost, takže i přes toto zúžení analyzované množiny trvá běh tohoto modulu často poměrně dlouho. 
+
+Analýza je spouštěna paralelně, a to prostřednictvím metody \texttt{parallelStream}. Proces analýzy samotné data nijak nemění, proto není nutné řešit souběh. To ale neplatí pro přidávání výsledků; z těchto důvodů je zde využit blok \texttt{synchronized} společně s mapou zámků (pro každý list výsledků jeden zámek).
+
+Algoritmus iteruje nad všemi (filtrovanými) instancemi. Zároveň si udržuje seznam instancí již zpracovaných. Ty přeskakuje, stejně jako porovnávání identických objektů (porovnání objektu se sebou samotným). Přeskakuje i objekty bez proměnných -- algoritmus tak označoval výčtové typy jako duplicity.
+
+Nejdříve modul ověří rovnost tříd -- i s ohledem na dědičnost. Následně i rovnost počtu parametrů, bez níž nemá cenu instance porovnávat. Nakonec provede iteraci nad všemi parametry a zjistí jejich rovnost. V aktuální verzi analýza neřeší reference, tj. chová se k nim jako k číselným hodnotám.
+
+\subsection{Analýza kolekcí}
+Analyzování kolekcí se omezuje na objekty tříd rozšířujících \texttt{AbstractList}. Obdobným způsobem by samozřejmě šly řešit i kolekce jiných typů. Detekce tohoto typu plýtvání je řešena ve třídě \texttt{ListWasteAnalyzer}. Algoritmus prochází všechny filtrované instance a zjišťuje, zda jejich třída rozšiřuje výše zmíněnou abstraktní třídu. Pokud ano, zjistí, zda počet prázdných položek (tedy obsahujících hodnotu \texttt{null}) překračuje určitou mez, nastavitelnou v konstantě \texttt{THRESHOLD} (výchozí hodnota je 50 \%).
+
 \chapter{Ověření implementace}
 \chapter{Závěr}
