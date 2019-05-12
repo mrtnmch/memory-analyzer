@@ -990,20 +990,49 @@ Pomocí přepínače obslužné aplikace (který je v tomto případě zapnutý)
 Dalším typem plýtvání paměti je v tomto příkladě neefektivní využití paměti. Ve výpisu je vidět, v jaké třídě (včetně čísla instance) se list nachází, v jaké třídní proměnné a kolik místa je vyplýtváno. Rovněž je vidět ID pole s jeho prvky a velikost -- ta může být například i $0$ (v prvním případě), kdy je pole prázdné, protože má nastavenu výchozí velikost. Java jako výchozí velikost v případě prázdného listu nastavuje $10$, což se samozřejmě postupně (skokově) zvyšuje s přibývajícími prvky.
 
 \section{Testování Spring Boot}
-Jako reálnou testovací aplikaci, která má otevřený zdrojový kód, jsem si vybral framework \textit{Spring Boot}, v němž jsem vytvořil základní aplikaci \textit{Hello World}. Testoval jsem tedy framework samotný a ne aplikaci v něm vytvořenou. Dump z ní vytvořený má 74 MB.
+Jako reálnou testovací aplikaci, která má otevřený zdrojový kód, jsem si vybral framework \textit{Spring Boot}, v němž jsem vytvořil základní aplikaci \textit{Hello World}. Testoval jsem tedy framework samotný a ne aplikaci v něm vytvořenou. Dump z ní vytvořený má 74 MB. Výsledek testování je vidět v tabulce \ref{table-spring-boot-test}. 
 
-\begin{table}[]
-    \begin{tabular}{lrrrr}
-    \textbf{Namespace}           & \multicolumn{1}{l}{\textbf{Počet tříd}} & \multicolumn{1}{l}{\textbf{Počet instancí}} & \multicolumn{1}{l}{\textbf{Nalezené problémy}} & \multicolumn{1}{l}{\textbf{Trvání {[}s{]}}} \\
-    org                          & 2416                                    & 9093                                        & 347                                            & 14,8                                        \\
-    org.springframework          & 1555                                    & 6053                                        & 329                                            & 8,2                                         \\
-    org.springframework.boot     & 380                                     & 1506                                        & 27                                             & 4,2                                         \\
-    org.springframework.core     & 196                                     & 1585                                        & 5                                              & 4,4                                         \\
-    org.springframework.web      & 296                                     & 239                                         & 37                                             & 4,1                                         \\
-    org.springframework.boot.web & 75                                      & 27                                          & 1                                              & 4,0                                        
+\begin{table}[ht!]
+    \begin{tabular}{|l|r|r|r|r|}
+    \hline
+    \textbf{Jmenný proystor}           & \multicolumn{1}{|l|}{\textbf{Třídy}} & \multicolumn{1}{l|}{\textbf{Instance}} & \multicolumn{1}{l|}{\textbf{Nalezené problémy}} & \multicolumn{1}{l|}{\textbf{Trvání {[}s{]}}} \\ \hline \hline
+    org                          & 2416 & 9093     & 347         & 14,8     \\ \hline
+    org.springframework          & 1555 & 6053     & 329         & 8,2      \\ \hline
+    org.springframework.boot     & 380  & 1506     & 27          & 4,2      \\ \hline
+    org.springframework.core     & 196  & 1585     & 5           & 4,4      \\ \hline
+    org.springframework.web      & 296  & 239      & 37          & 4,1      \\ \hline
+    org.springframework.boot.web & 75   & 27       & 1           & 4,0     \\ \hline
     \end{tabular}
     \caption{Výsledek testování reálné aplikace -- Spring Boot}
     \label{table-spring-boot-test}
-    \end{table}
+\end{table}
+
+Opět jsem každý set spustil třikrát a výsledek trvání zprůměroval. Zvolil jsem v tomto případě odlišnou metodiku -- v případě reálné aplikace si samozřejmě nemůžeme zvolit velikost vygenerovaných dat. Proto jsem zvolil různé jmenné prostory s různými parametry, včetně poměrně obecného \texttt{org}.
+
+Jak je v tabulce vidět, charakteristiky dumpu se od testovací aplikace zásadně liší. Pro nejobecnější balík, tedy \texttt{org}, je poměr instancí na třídu zhruba 4 a všechny hodnoty se drží v nižších jednotkách, v případě posledního rostoru je tříd dokonce třikrát více, než instancí. Jak je vidiět, tato změna výrazně ovlivnila rychlost běhu programu tak, jak jsem uváděl v testu umělé aplikace. Nelze tedy evidentně tvrdit, že je složitost ve všech případech exponenciální, což je pozitivní zjištění. Na grafu \ref{obr-runtime-spring} je tato závislost doby běhu na počtu instancí vykreslena.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.38]{obrazky/runtime-boot.png}
+	\caption{Vztah času běhu analýzy oproti počtu instancí u Hello World Spring Bootu.}
+	\label{obr-runtime-spring}
+\end{figure}
+
+Jak je vidět, minimálně v rozsahu testovacích dat už algoritmus nabízí lepší než exponenciální složitost. Byť bychom mohli z dostupných dat dojít k závěru, že  předzpracování dumpu trvá zhruba 4 sekundy a analýza je tak ve 4 případech zanedbatelná, není tomu tak -- pro každý jmenný prostor je analýza jiná, tj. je závislá na velikosti tohoto prostoru. Pro potvrzení této hypotézy by toto zpracování muselo být totožné, což neplatí.
+
+
+Pokud nahlédneme do výsledků, zjistíme, že algoritmus odhalil třeba list \texttt{lines} ve třídě \texttt{DeferredLog}, která má sice nastavenu velikost $109$, nicméně neobsahuje ani jednu hodnotu. Dále například $38$ instancí třídy \texttt{Signature} obsahuje úplně stejná data, třídy \texttt{Default\-Flow\-Message\-Factory'} potom $34$ instancí.
+
+Z vypsaných proměnných instancí je vidět, že všechny duplicity jsou objekty poměrně malých tříd. Logicky, u větších tříd je více prostoru pro odlišení -- pak stačí, aby pouze jedna např. číselná hodnota měla jinou hodnotu a algoritmus objekt již jako duplicitu nedetekuje.
+
+\section{Intepretace výsledků}
+Vytvořený nástroj evidentně dokáže spolehlivě odhalit všechny uměle vytvořené problémy, jak bylo prokázáno na analýze testovací aplikace. Stejně tak dokáže detekovat plýtvání paměti v existujícím, běžně používaném frameworku a to i přes to, že v něm vytvořená aplikace byla svým rozsahem naprosto triviální a vlastně tak framework jen spustila. Lze očekávat, že v programu několikanásobně většího rozsahu bude problém četnější, byť za cenu delší analýzy.
+
+Doba běhu je evidentně závislá nejen na velikosti memory dumpu a počtu tříd a instancí, ale i na dalších charakteristikách, jako poměru instancí vůči třídám a počtu agregačních tříd, které algoritmus vytvoří -- tedy kolik různých duplicit se v dumpu nachází. Nicméně délku běhu nelze, kromě minoritních vylepšení, nijak zásadně zkrátit -- její limitací je složitost, která je, pro všechny dvojice z množiny objektů, zákonitě exponenciální.
+
+Nicméně si nemyslím, že je doba běhu zásadní překážkou. Analýza podobného typu pravděpodobně nikdy nebude součástí standardního procesu vývoje či testování, ale spíše jednorázovým nástrojem pro řešení problémů. V takovém případě není nutně vyžadována rychlost spuštění, ale spíše korektní a úplná detekce tak, aby bylo možné případný problém efektivně odstranit. V případě, že by to problém byl a analýza duplicit není zapotřebí, je možné (odstraněním jednoho řádku) tento modul vypnout a běh programu tak podstatně zrychlit -- tím je ale samozřejmě omezen pouze na neefektivní využití kolekcí, případně na funkcionalitu dalších modulů, které si uživatel může eventuálně doplnit.
 
 \chapter{Závěr}
+Jak je vidět, problémy s plýtváním paměti v reálném softwaru existují. Otázkou samozřejmě je, zda jsou jejich dopady natolik závažné, aby způsobovaly potíže, respektive zda jejich odstranění přináší znatelný rozdíl v užití systémových prostředků nebo rychlosti běhu programu. 
+
+Navržený nástroj dokáže na tyto problémy poukazovat a ve snímku běžícího programu je detekovat. Zároveň vytváří platformu, na které mohou stavět další nástroje a která je, díky striktnímu oddělení knihovny od aplikace, dostatečně flexibilní pro to, aby byl nástroj využitelný i pro jiné druhy práce s memory dumpem. V programu jsem kladl důraz na to, aby byl program jednoduše rozšiřitelný a aby například přidání nového modulu pro detekci neefektivního využití paměti znamenalo pouze implementaci jednoho rozhraní a přidání nové řádky pro registraci tohoto modulu. V memory dumpu se nepochybně dá nalézt celá řada způsobů, jakými lze v běžícím programu paměť ušetřit a práce zcela jistě všechny nepodchycuje. Kandidátem pro takové vylepšení je zpracování duplicit i s ohledem na reference, což je funkcionalita, která v rámci této práce implementována nebyla.

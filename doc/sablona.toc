@@ -82,11 +82,13 @@
 \contentsline {subsection}{\numberline {9.2.2}Anal\IeC {\'y}za kolekc\IeC {\'\i }}{51}{subsection.171}
 \contentsline {chapter}{\numberline {10}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } implementace}{53}{chapter.172}
 \contentsline {section}{\numberline {10.1}Testovac\IeC {\'\i } aplikace}{53}{section.173}
-\contentsline {chapter}{\numberline {11}Z\IeC {\'a}v\IeC {\v e}r}{56}{chapter.178}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{57}{chapter.178}
-\contentsline {chapter}{Seznam zkratek}{59}{section*.181}
-\contentsline {chapter}{Literatura}{60}{section*.183}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{62}{section*.185}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{63}{chapter.186}
-\contentsline {section}{\numberline {A.1}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace }{63}{section.187}
-\contentsline {section}{\numberline {A.2}V\IeC {\'y}pis programu }{64}{section.188}
+\contentsline {section}{\numberline {10.2}Testov\IeC {\'a}n\IeC {\'\i } Spring Boot}{56}{section.178}
+\contentsline {section}{\numberline {10.3}Intepretace v\IeC {\'y}sledk\IeC {\r u}}{57}{section.183}
+\contentsline {chapter}{\numberline {11}Z\IeC {\'a}v\IeC {\v e}r}{59}{chapter.184}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{60}{chapter.184}
+\contentsline {chapter}{Seznam zkratek}{62}{section*.187}
+\contentsline {chapter}{Literatura}{63}{section*.189}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{65}{section*.191}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{66}{chapter.192}
+\contentsline {section}{\numberline {A.1}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace }{66}{section.193}
+\contentsline {section}{\numberline {A.2}V\IeC {\'y}pis programu }{67}{section.194}
