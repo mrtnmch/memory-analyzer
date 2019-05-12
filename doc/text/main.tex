@@ -928,14 +928,82 @@ Výchozí implementací je \texttt{DefaultWasteAnalyzerPipeline}, kde jsou regis
 \subsection{Analýza duplicit}
 Tento druh plýtvání hledá třída \texttt{DuplicateInstanceWasteAnalyzer}. Omezuje se na jmenné prostory specifikované uživatelem, což je samozřejmě opatření z výkonových důvodů -- analýzá má velice neefektivní (exponenciální) složitost, takže i přes toto zúžení analyzované množiny trvá běh tohoto modulu často poměrně dlouho. 
 
-Analýza je spouštěna paralelně, a to prostřednictvím metody \texttt{parallelStream}. Proces analýzy samotné data nijak nemění, proto není nutné řešit souběh. To ale neplatí pro přidávání výsledků; z těchto důvodů je zde využit blok \texttt{synchronized} společně s mapou zámků (pro každý list výsledků jeden zámek).
+Testoval jsem spouštění analýzy paralelně, a to prostřednictvím metody \texttt{parallelStream}, nicméně žádná z testovaných metod paralelizace nepřinesla navíc žádné výhody -- a to především kvůli potřebě synchronizace výsledků, které je nutné slučovat.
 
 Algoritmus iteruje nad všemi (filtrovanými) instancemi. Zároveň si udržuje seznam instancí již zpracovaných. Ty přeskakuje, stejně jako porovnávání identických objektů (porovnání objektu se sebou samotným). Přeskakuje i objekty bez proměnných -- algoritmus tak označoval výčtové typy jako duplicity.
 
 Nejdříve modul ověří rovnost tříd -- i s ohledem na dědičnost. Následně i rovnost počtu parametrů, bez níž nemá cenu instance porovnávat. Nakonec provede iteraci nad všemi parametry a zjistí jejich rovnost. V aktuální verzi analýza neřeší reference, tj. chová se k nim jako k číselným hodnotám.
 
 \subsection{Analýza kolekcí}
-Analyzování kolekcí se omezuje na objekty tříd rozšířujících \texttt{AbstractList}. Obdobným způsobem by samozřejmě šly řešit i kolekce jiných typů. Detekce tohoto typu plýtvání je řešena ve třídě \texttt{ListWasteAnalyzer}. Algoritmus prochází všechny filtrované instance a zjišťuje, zda jejich třída rozšiřuje výše zmíněnou abstraktní třídu. Pokud ano, zjistí, zda počet prázdných položek (tedy obsahujících hodnotu \texttt{null}) překračuje určitou mez, nastavitelnou v konstantě \texttt{THRESHOLD} (výchozí hodnota je 50 \%).
+Analyzování kolekcí se omezuje na objekty tříd rozšířujících \texttt{AbstractList}. Obdobným způsobem by samozřejmě šly řešit i kolekce jiných typů. Detekce tohoto typu plýtvání je řešena ve třídě \texttt{ListWasteAnalyzer}. Algoritmus prochází všechny filtrované instance a zjišťuje, zda jejich třída rozšiřuje výše zmíněnou abstraktní třídu. Pokud ano, zjistí, zda počet prázdných položek (tedy obsahujících hodnotu \texttt{null}) překračuje určitou mez, nastavitelnou v konstantě \texttt{THRESHOLD} (výchozí hodnota je 50 \%). Analýza tedy samozřejmě funguje jen na typech, jejichž implementace využívá na pozadí pole. Toto pole prochází a počítá prvky \texttt{null}, jejichž počet potom porovná s deklarovanou velikostí pole (prostřednictvím instanční proměnné \texttt{size}), za využití výše uvedené konstanty.
+
+Druhým typem nad listy je hledání těch, které obsahují pouze duplicity -- všechny jejich prvky mají tedy pouze jednu hodnotu. Tato analýza vynechává listy s hodnotou \texttt{null} (ty jsou podchyceny předchozí detekcí) a počet prvků musí být vyšší než 1.
 
 \chapter{Ověření implementace}
+Program jsem testoval na několika testovacích souborech, které se lišily velikostí i složitostí -- některé z nich byly výsledkem memory dumpu výše zmíněného testovacího modulu (\texttt{example-app}), ostatní data potom pocházela z reálných aplikací, spuštěných na mém počátači. 
+
+\section{Testovací aplikace}
+Testovací modul umí vygenerovat poloprázdné kolekce, kolekce obsahující pouze duplikáty (konkrétně celočíselné) a objekty, které mají stejná data a zároveň vytvoří jednoduchou strukturu rodič-potomek. Jako parametr nástroj přijímá počet instancí, které má od každého typu vytvořit. Jedná se tedy o testování v \uv{laboratorních podmínkách}, na programu, který je specificky navržený pro testování daného problému.
+
+Aplikaci jsem postupně pustil s několika parametry ($N$), získal její memory dump a nad ním spustil analýzu, omezující se na jmenný prostor \texttt{cz.mx\-mx.me\-mory\-analyzer.e\-xa\-mple}. Analýzu jsem spustil pro každý soubor 3x a časové trvání jsem zprůměroval. Výsledek ukazuje tabulka \ref{table-example-app-results}.
+
+\begin{table}[ht!]
+    \begin{tabular}{|r|r|r|r|r|}
+        \hline
+    \multicolumn{1}{|r|}{\textbf{N}} & \multicolumn{1}{l|}{\textbf{Počet instancí}} & \multicolumn{1}{l|}{\textbf{Velikost dumpu {[}MB{]}}} & \multicolumn{1}{l|}{\textbf{Nalezené problémy}} & \multicolumn{1}{l|}{\textbf{Trvání {[}s{]}}} \\ \hline\hline
+    10 & 111   & 2,1     & 15  & 0,5   \\ \hline
+    20 & 421   & 2,6     & 25  & 0,5   \\ \hline
+    30 & 931   & 3,0     & 35  & 0,7   \\ \hline
+    40 & 1641  & 3,6     & 45  & 0,9   \\ \hline
+    50 & 2551  & 4,0     & 55  & 1,2   \\ \hline
+    60 & 3661  & 4,4     & 65  & 1,8   \\ \hline
+    70 & 4971  & 5,4     & 75  & 2,8   \\ \hline
+    80 & 6481  & 5,9     & 85  & 4,3   \\ \hline
+    90 & 8191  & 6,4     & 95  & 9,3   \\ \hline
+    100 & 10101 & 6,9& 105  & 17,3  \\ \hline
+    150 & 22651 & 11 & 155  & 71,4 \\ \hline
+    200 & 40201 & 15 & 205  & 322,2 \\ \hline                           
+    \end{tabular}
+    \caption{Výsledek měření na testovací umělé aplikaci.}
+    \label{table-example-app-results}
+\end{table}
+
+Díky datům v tabulce si lze povšimnou několika věcí. Doba délky běhu analýzy evidentně tolik nezáleží na velikosti dumpu, ale spíše na počtu instanců, které obsahuje. To je způsobeno metodikou testu a vlastnostmi analýzy -- díky omezenému počtu tříd, které testovací aplikace obsahuje. Algoritmus tak musí porovnávat velký počet instancí jako takových -- v reálné aplikaci výrazně algoritmus urychluje fakt, že většina instancí se liší třídou, kterou představují. Tuto \uv{identitu} algoritmus testuje jako první a výrazně urychluje běh. Laboratorní aplikace tedy představuje \uv{nejhorší možnou} situaci -- velké množství instancí pouze dvou tříd. Zhruba v 50 \% případů tak musí porovnávat každou dvojici instancí; ve skutečné aplikaci by typicky tento ukazatel byl zlomek tohoto čísla a pohyboval se někde v jednotkách procent (vycházím z předpokladu, že v níže uvedeném testu frameworku \textit{Spring Boot} byl poměr v testovaném jmenném prostoru průměrně zhruba $4$ instancí na třídu; zde je to $13400$).   
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.38]{obrazky/runtime.png}
+	\caption{Vztah času běhu analýzy oproti počtu instancí u testovací aplikace (tři třídy). Trend (exponenciální křivka) je vyznačen červeně.}
+	\label{obr-runtime}
+\end{figure}
+
+Jak je na grafu \ref{obr-runtime} vidět, v případě testovaí aplikace se složitost analýzy reálně skutečně blíží exponenciále, tedy hodnotě $O(2^n)$, k níž jsem došel v analýze. Je to opět způsobeno výše uvedeným poměrem instancí a tříd. Nicméně i k tomuto stavu ve výjimečných stavech a v případě specifických aplikací můžeme dospět a je vidět, že v některých případech při běhu aplikace můžeme narážet na toto omezení a výpočet může trvat delší čas. V reálné aplikaci se bude složitost blížit spíše $O(k2^{n_k})$, kde $k$ je počet tříd a $n_k$ je počet instancí dané třídy. Tato složitost je sice stále exponenciální, ale můžeme očekávat, že $n_k$ se bude pohybovat ve výrazně nižších hodnotách, $k$ potom ovlivňuje výběr jmenného prostoru. Samozřejmě platí, že čím konkrétnější jmenný prostor vybereme a čím méně tříd bude obsahovat, tím rychlejší analýza bude.
+
+Dále lze v tabulce ověřit test úplnosti -- jak je vidět, počet nalezených problémů je přímo úměrný $N$, na jehož základě je vytvořen příslušný počet instancí. V testovací aplikaci je pro každý z $N$ rodičovských prvků vytvořeno $N$ potomků. Všichni tito potomci mají stejná data -- vytváří tedy $N$ \uv{agregačních tříd}, v nichž mají všechny objekty stejná data. Každá taková třída je jedním problémem, tedy jedním případem plýtvání paměti. Takových tříd existuje tedy $N$ (pro každého z rodičů). Konstantně je poté vytvořeno 5 listů, na nichž jsou testovány zbylé případy neefektivného využití -- plýtvání místem v listech. Předpokládaný počet nalezených problémů je tedy $N+5$ a jak vidíme v tabulce, tento předpoklad detekce algoritmu splňuje.
+
+Nabízí se samozřejmě otázka, zda je program pro generování testovacích dat samotný správně. Kromě toho, že se jedná o skutečně jednoduchou aplikaci, si lze i zhruba ověřit počet generovaných instancí. Z výše uvedeného postupu pro generaci lze odvodit i předpokládaný počet těchto instancí, a to $N^2$ pro instance potomků, $N$ pro instance rodičů a $1$ instanci pro obslužnou aplikaci samotnou. Výsledný počet instancí je tedy $N^2 + N + 1$, což plně odpovídá reálným hodnotám.
+
+V příloze \ref{runtime-log} je vidět výpis programu (pro $N=10$). Jak je vidět, z celkového počtu $710$ tříd a $7707$ instancí program podle jmenného prostoru vyfiltroval $3$ třídy a $111$ instancí. Nad nimi začal hledat problémy s plýtváním paměti, kterých našel celkem 15 -- 10 případů duplikátních instancí, 4 neefektivního využití paměti a 1 případ listu, který má stejné hodnoty. Program běžel 471 ms (doba běhu programu je vypsána ve formátu \textit{ISO-8601}).
+
+Pomocí přepínače obslužné aplikace (který je v tomto případě zapnutý) je možné i vypisovat pole dotčených instancí. Jak je tedy vidět v případě duplikátů, například v prvním případě je hodnota pole \texttt{parent} instance třídy \texttt{Parent} číslo $29108685520$ a pole \texttt{name} s hodnotou \texttt{Child 1}. Všech 10 instancí třídy má v tomto případě tedy tyto hodnoty, i když se jedná o různé objekty. Analogicky to potom platí pro zbylých 9 případů duplikátů.
+
+Dalším typem plýtvání paměti je v tomto příkladě neefektivní využití paměti. Ve výpisu je vidět, v jaké třídě (včetně čísla instance) se list nachází, v jaké třídní proměnné a kolik místa je vyplýtváno. Rovněž je vidět ID pole s jeho prvky a velikost -- ta může být například i $0$ (v prvním případě), kdy je pole prázdné, protože má nastavenu výchozí velikost. Java jako výchozí velikost v případě prázdného listu nastavuje $10$, což se samozřejmě postupně (skokově) zvyšuje s přibývajícími prvky.
+
+\section{Testování Spring Boot}
+Jako reálnou testovací aplikaci, která má otevřený zdrojový kód, jsem si vybral framework \textit{Spring Boot}, v němž jsem vytvořil základní aplikaci \textit{Hello World}. Testoval jsem tedy framework samotný a ne aplikaci v něm vytvořenou. Dump z ní vytvořený má 74 MB.
+
+\begin{table}[]
+    \begin{tabular}{lrrrr}
+    \textbf{Namespace}           & \multicolumn{1}{l}{\textbf{Počet tříd}} & \multicolumn{1}{l}{\textbf{Počet instancí}} & \multicolumn{1}{l}{\textbf{Nalezené problémy}} & \multicolumn{1}{l}{\textbf{Trvání {[}s{]}}} \\
+    org                          & 2416                                    & 9093                                        & 347                                            & 14,8                                        \\
+    org.springframework          & 1555                                    & 6053                                        & 329                                            & 8,2                                         \\
+    org.springframework.boot     & 380                                     & 1506                                        & 27                                             & 4,2                                         \\
+    org.springframework.core     & 196                                     & 1585                                        & 5                                              & 4,4                                         \\
+    org.springframework.web      & 296                                     & 239                                         & 37                                             & 4,1                                         \\
+    org.springframework.boot.web & 75                                      & 27                                          & 1                                              & 4,0                                        
+    \end{tabular}
+    \caption{Výsledek testování reálné aplikace -- Spring Boot}
+    \label{table-spring-boot-test}
+    \end{table}
+
 \chapter{Závěr}
