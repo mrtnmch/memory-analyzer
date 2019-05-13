@@ -2,13 +2,13 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Struktura Java pam\IeC {\v e}ti \cite {jvms-img}.}}{14}{figure.16}
 \contentsline {figure}{\numberline {2}{\ignorespaces Vyu\IeC {\v z}it\IeC {\'\i } pam\IeC {\v e}ti a proveden\IeC {\'\i } garbage kolekce p\IeC {\v r}ed vytvo\IeC {\v r}en\IeC {\'\i }m dumpu (\IeC {\v c}erven\IeC {\v e}).}}{19}{figure.37}
 \contentsline {figure}{\numberline {3}{\ignorespaces Probl\IeC {\'e}m anal\IeC {\'y}zy pam\IeC {\v e}ti za b\IeC {\v e}hu programu.}}{23}{figure.56}
-\contentsline {figure}{\numberline {4}{\ignorespaces Postup vol\IeC {\'a}n\IeC {\'\i } hierarchie class loader\IeC {\r u}.}}{25}{figure.68}
-\contentsline {figure}{\numberline {5}{\ignorespaces Rozhran\IeC {\'\i } Eclipse MAT}}{27}{figure.73}
-\contentsline {figure}{\numberline {6}{\ignorespaces Rozhran\IeC {\'\i } VisualVM}}{28}{figure.77}
-\contentsline {figure}{\numberline {7}{\ignorespaces Rozhran\IeC {\'\i } Java Mission Control}}{29}{figure.81}
-\contentsline {figure}{\numberline {8}{\ignorespaces Rozhran\IeC {\'\i } JProfileru}}{30}{figure.85}
-\contentsline {figure}{\numberline {9}{\ignorespaces Rozhran\IeC {\'\i } JHAT}}{31}{figure.89}
-\contentsline {figure}{\numberline {10}{\ignorespaces Strom porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } objekt\IeC {\r u}}}{36}{figure.111}
+\contentsline {figure}{\numberline {4}{\ignorespaces Postup vol\IeC {\'a}n\IeC {\'\i } hierarchie class loader\IeC {\r u}.}}{25}{figure.67}
+\contentsline {figure}{\numberline {5}{\ignorespaces Rozhran\IeC {\'\i } Eclipse MAT}}{27}{figure.72}
+\contentsline {figure}{\numberline {6}{\ignorespaces Rozhran\IeC {\'\i } VisualVM}}{28}{figure.76}
+\contentsline {figure}{\numberline {7}{\ignorespaces Rozhran\IeC {\'\i } Java Mission Control}}{29}{figure.80}
+\contentsline {figure}{\numberline {8}{\ignorespaces Rozhran\IeC {\'\i } JProfileru}}{30}{figure.84}
+\contentsline {figure}{\numberline {9}{\ignorespaces Rozhran\IeC {\'\i } JHAT}}{31}{figure.88}
+\contentsline {figure}{\numberline {10}{\ignorespaces Strom porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } objekt\IeC {\r u}}}{36}{figure.112}
 \contentsline {figure}{\numberline {11}{\ignorespaces Architektura jednotliv\IeC {\'y}ch modul\IeC {\r u} pro zpracov\IeC {\'a}n\IeC {\'\i } memory dumpu.}}{47}{figure.159}
 \contentsline {figure}{\numberline {12}{\ignorespaces Paraleln\IeC {\'\i } varianta k seriov\IeC {\'e} architektu\IeC {\v r}e z obr\IeC {\'a}zku \ref {obr-pipeline}.}}{48}{figure.161}
 \contentsline {figure}{\numberline {13}{\ignorespaces Vztah \IeC {\v c}asu b\IeC {\v e}hu anal\IeC {\'y}zy oproti po\IeC {\v c}tu instanc\IeC {\'\i } u testovac\IeC {\'\i } aplikace (t\IeC {\v r}i t\IeC {\v r}\IeC {\'\i }dy). Trend (exponenci\IeC {\'a}ln\IeC {\'\i } k\IeC {\v r}ivka) je vyzna\IeC {\v c}en \IeC {\v c}erven\IeC {\v e}.}}{54}{figure.177}

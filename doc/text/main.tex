@@ -313,7 +313,7 @@ Můžeme tedy omezit samotné využití objektů -- zvážit, zda je potřebujem
 
 Nejpřímějším způsobem optimalizace užití paměti se může jevit odstranění objektů, které už nejsou zapotřebí a nikdo je tedy nevlastní. Takové objekty nicméně nemusíme v naší optimalizaci uvažovat. O jejich uvolnění z paměti se postará \zkratka{GC}. Této vlastnosti jazyku tedy můžeme využít a nepotřebné objekty ručně odstraňovat -- nastavit je jako \texttt{null}. K jejich uvolnění dojde i při opuštění aktuálního prostoru -- oboru platnosti lokální proměnné. K takovému uvolnění nicméně nedochází přímo zapomocí analýzy \zkratka{GC}, ale díky uložení lokálních proměnných v stacku, z kterého jsou při opuštění bloku odstraněny.
 
-TODO rezepsat dal?
+% TODO rezepsat dal?
 
 \section{Analýza za běhu programu}
 \label{runtime-analysis}
@@ -329,8 +329,8 @@ Dalším důvodem pro vyhnutí se analýze za běhu programu je povaha řešené
 	\label{obrRuntimeAnalysis}
 \end{figure}
 
-\section{Analýza memory dumpu}
-TODO
+%\section{Analýza memory dumpu}
+%TODO
 
 % =====================================================================================================================================================================================
 
@@ -505,7 +505,18 @@ where s.value.length >= 100
 \section{Knihovny}
 Knihovny představují způsob přístupu k problému, který by nevyžadoval zásah do již existujícího kódu, ale spíše jeho využití -- a to tak, že se starají o jednu specifickou část, kterou tak není nutné implementovat znovu. I výše zmíněné aplikace lze považovat z pohledu API za knihovny, nicméně již vyžadují dodržení jejich struktury a zorientování se v, často velmi rozsáhlém, existujícím kódu.
 
-TODO hprof knihovna
+\subsection{Hprof Heap Dump parser}
+Jedná se o poměrně malou, v době psaní této práce stále udržovanou knihovnu, starající se o zpracování souboru HPROF. Stará se o prosté zpracování memory dumpu (souboru HPROF), nad kterým vytváří jednoduché API. Knihovna je malá rozsahem a nepřidává mimo zpracování dumpu žádnou funkcionalitu navíc.
+
+\subsection{Základní informace}
+
+\begin{description}
+    \item[Licence] Apache License, Version 2.0
+    \item[Jazyk] Java
+    \item[Zdrojový kód] \url{https://github.com/eaftan/hprof-parser}
+    \item[Výhody] Malá knihovna, jednoduchý kód na pochopení.
+    \item[Nevýhody] Formát zpracovaného výsledku.
+\end{description}
 
 % =====================================================================================================================================================================================
 
@@ -703,16 +714,6 @@ Dle mého názoru je tak nejvhodnější implementovat samostatný, nezávislý 
 Po analýze a prozkoumání existujících projektů vyšel jako nejlepší kandidát projekt \textit{Hprof Heap Dump parser}.
 
 \section{Hprof Heap Dump parser}
-Jedná se o poměrně malou, v době psaní této práce stále udržovanou knihovnu, starající se o zpracování souboru HPROF. 
-
-\subsection{Základní informace}
-
-\begin{description}
-    \item[Licence] Apache License, Version 2.0
-    \item[Jazyk] Java
-    \item[Zdrojový kód] \url{https://github.com/eaftan/hprof-parser}
-\end{description}
-
 \subsection{Základní struktura}
 Hlavní třídou, která se stará o zpracování HPROF souboru a která nás tedy bude zajímat, je \texttt{HprofParser}. 
 
@@ -879,9 +880,9 @@ Výhoda této architektury je vysoká míra nezávislosti kódu na sobě -- nen�
 \end{figure}
 
 \section{Rozhraní pipeline a modulů}
-Rozhraní poskytované pro implementace pipeline a modulů musí umožňovat kompletní analýzu zpracovávaného dumpu. 
+Rozhraní poskytované pro implementace pipeline a modulů musí umožňovat kompletní analýzu zpracovávaného dumpu. Rozhodl jsem se rozhraní těchto dvou typů tedy sloučit -- na venek tak jejich API vypadá podobně, nicméně pipeline přidává navíc možnost iteraci nad dalšími moduly. Nebyl ale důvod rozhraní oddělovat -- oba typy slouží pro zpracování dumpu, kdy jako parametr předávám zpracovaná data a jako návratovou hodnotu očekávám analyzovaný výsledek.
 
-TODO
+Kromě toho tato struktura umožňuje vytvářet komplikovanější struktury, do jedné pipeline tak mohou být jako moduly přidávány jiné pipeliny, což může umožňovat jednodušší paralelizaci a striktnější rozdělení (\textit{decoupling}) funkcionality kódu.
 
 \chapter{Implementace}
 Nástroj jsem vytvořil jako konzolovou (CLI) aplikaci, jejíž použití, včetně možných parametrů, je popsáno v uživatelské dokumentaci v příloze \ref{usage-doc}. Aplikace slouží pouze jako vstupní bod a obsluhuje knihovnu, která je striktně oddělena -- k tomu využívám Maven moduly. 
@@ -1033,6 +1034,12 @@ Doba běhu je evidentně závislá nejen na velikosti memory dumpu a počtu tř�
 Nicméně si nemyslím, že je doba běhu zásadní překážkou. Analýza podobného typu pravděpodobně nikdy nebude součástí standardního procesu vývoje či testování, ale spíše jednorázovým nástrojem pro řešení problémů. V takovém případě není nutně vyžadována rychlost spuštění, ale spíše korektní a úplná detekce tak, aby bylo možné případný problém efektivně odstranit. V případě, že by to problém byl a analýza duplicit není zapotřebí, je možné (odstraněním jednoho řádku) tento modul vypnout a běh programu tak podstatně zrychlit -- tím je ale samozřejmě omezen pouze na neefektivní využití kolekcí, případně na funkcionalitu dalších modulů, které si uživatel může eventuálně doplnit.
 
 \chapter{Závěr}
-Jak je vidět, problémy s plýtváním paměti v reálném softwaru existují. Otázkou samozřejmě je, zda jsou jejich dopady natolik závažné, aby způsobovaly potíže, respektive zda jejich odstranění přináší znatelný rozdíl v užití systémových prostředků nebo rychlosti běhu programu. 
+Jak je možné vidět v předchozí kapitole, problémy s plýtváním paměti v reálném softwaru existují. Otázkou samozřejmě je, zda jsou jejich dopady natolik závažné, aby způsobovaly potíže, respektive zda jejich odstranění přináší znatelný rozdíl v užití systémových prostředků nebo rychlosti běhu programu. 
 
-Navržený nástroj dokáže na tyto problémy poukazovat a ve snímku běžícího programu je detekovat. Zároveň vytváří platformu, na které mohou stavět další nástroje a která je, díky striktnímu oddělení knihovny od aplikace, dostatečně flexibilní pro to, aby byl nástroj využitelný i pro jiné druhy práce s memory dumpem. V programu jsem kladl důraz na to, aby byl program jednoduše rozšiřitelný a aby například přidání nového modulu pro detekci neefektivního využití paměti znamenalo pouze implementaci jednoho rozhraní a přidání nové řádky pro registraci tohoto modulu. V memory dumpu se nepochybně dá nalézt celá řada způsobů, jakými lze v běžícím programu paměť ušetřit a práce zcela jistě všechny nepodchycuje. Kandidátem pro takové vylepšení je zpracování duplicit i s ohledem na reference, což je funkcionalita, která v rámci této práce implementována nebyla.
+Navržený nástroj dokáže na tyto problémy poukazovat a ve snímku běžícího programu je detekovat. Zároveň vytváří platformu, na které mohou stavět další nástroje a která je, díky striktnímu oddělení knihovny od uživatelské aplikace, dostatečně flexibilní pro to, aby byl nástroj využitelný i pro jiné druhy práce s memory dumpem. V programu jsem kladl důraz na to, aby byl jednoduše rozšiřitelný a aby například přidání nového modulu pro detekci neefektivního využití paměti znamenalo pouze implementaci jednoho rozhraní a přidání jedné řádky pro registraci tohoto modulu. 
+
+V memory dumpu se nepochybně dá nalézt celá řada dalších způsobů, jakými lze v běžícím programu paměť ušetřit a práce zcela jistě všechny nepodchycuje. Kandidátem pro takové vylepšení je zpracování duplicit i s ohledem na reference, což je funkcionalita, která v rámci této práce implementována nebyla. Stejně tak je možné zpracovávat ostatní typy kolekcí a pole.
+
+Přestože jsem potvrdil, že problém plýtvání paměti jako takový existuje, na testovaných aplikacích se neprojevil do té míry, že by ovlivnil parametry jejich běhu nebo zvyšoval zátěž na systém. Lze proto očekávat, že v běžné aplikaci většího rozsahu bude prostor pro ušetření paměti maximálně v jednotkách, v extrémních případech desítkách megabytů. I to je ale v době, kdy aplikace může běžet v kontejnerech škálovaných do většího množství instancí, zajímavé místo k optimalizaci -- zejména pak pro aplikace, které jsou na systémové prostředky skutečně náročné. Vlivem nepozornosti programátora může docházet i k výjimečným případům, kdy je ten samý objekt vytvářen stále dokola a zároveň jsou všechny instance udržovány v paměti. Pokud k tomuto problému dochází až po delší době běhu, např. po dnech či týdnech, je velice obtížné jej odhalit za užití standardních debugovacích nástrojů a zjistit příčinu stále narůstajícího využití paměti. V takových případech se může vytvořený nástroj hodit a pro zjištění a odstranění přičiny je možné jej použít.
+
+Kromě uvedených způsobů plýtvání pamětí může být velice jednoduše nástroj rozšířen o další způsoby detekce a je možné jej rovněž využít i pouze jako knihovnu, bez použití obslužné aplikace. Dále může vytvořený program sloužit jako užitečný nástroj pro efektivnější práci s dumpem pro různé účely, které se mohou zcela lišit od účelu této práce. 
