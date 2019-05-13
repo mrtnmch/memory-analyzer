@@ -160,13 +160,13 @@ diploma             % sazba diplomové práce
 %% Abstrakt
 \abstrakt
 {Práce popisuje různé problémy, kvůli kterým může dojít k neefektivnímu využití paměti v Javě. Zabývá se otázkou, zda vůbec v reálném software takové problémy existují a jakýmy způsoby je lze detekovat. Definuje také několik druhů těchto problémů, jako třeba duplicitních objektů nebo neefektivního použití kolekcí. Dále jsou popsány různé způsoby, jakými lze paměť Javy analyzovat, přičemž jako nejvhodnější způsob je zvoleno offline zpracování Java memory dumpu. Pro tento účel je vytvořena aplikace, která paměť dokáže prohledat a definovaná neefektivní využití označit. Tato aplikace je následně otestována na umělě vytvořené aplikaci a reálném software -- instanci frameworku Spring Boot.}
-{The thesis describes differents problems leading to possible ineffectivity in usage of Java memory. It also investigates whether such problems actually exist in commonly used software and if and how can be the problems detected. It defines several types of these problems, e.g. duplicate objects and infeffective usage of the Java collections. After that it describes possible ways to analyze Java memory and based on that, the offline Java memory dump processing approach is chosen. As a result of that, an application is created for such purpose. It is capable of searching for and marking the defined memory issues. The application is later tested on a laboratory program and also commonly used software -- an instance of the Spring Boot framework.}
+{The thesis describes different problems leading to possible ineffectiveness in the usage of Java memory. It also investigates whether such problems actually exist in commonly used software and if and how could the problems be detected. It defines several types of these problems, e.g. duplicate objects and ineffective usage of the Java collections. After that it describes possible ways to analyze Java memory and based on the analysis, the offline Java memory dump processing approach is chosen. As a result, an application is created for such a purpose. It is capable of searching for and marking the defined memory issues. The application is later tested on a laboratory program and also commonly used software -- an instance of the Spring Boot framework.}
 
 %% Klíčová slova
-\klicovaslova{Java, halda, memory dump, plýtvání pamětí, analýza paměti, hprof, duplicitní objekt \\ }{Java, heap, memory dump, memory wasting, memory analysis, hprof, duplicate object \\ }
+\klicovaslova{Java, haldy, memory dumpy, plýtvání pamětí, analýzy paměti, hprof, duplicitní objekty, efektivita kolekcí \\ }{Java, heaps, memory dumps, memory wastage, memory analysis, hprof, duplicate objects, collection effectivity \\ }
 
-%% Poděkování
-%\podekovanitext{Rád bych poděkoval vedoucímu bakalářské práce panu Ing.\ Richardu Lipkovi,\ Ph.D.\linebreak za~odborné vedení, vstřícný přístup, trpělivost a podnětné návrhy k~práci.}
+%Poděkování
+\podekovanitext{Rád bych poděkoval vedoucímu diplomové práce panu Ing.\ Richardu Lipkovi,\ Ph.D.\linebreak za~odborné vedení, vstřícný přístup, trpělivost a podnětné návrhy k~práci.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -213,16 +213,16 @@ diploma             % sazba diplomové práce
 %% Vložení zadání generovaného informačním systémem
 %\includepdf[pages=1,offset=19mm 0mm]{pdf/student-zadani}% název souboru nesmí obsahovat mezery!
 % nebo lze vytvořit prázdný list příkazem ze šablony
-%\stranka{}%
-% {\sffamily\Huge\centering ZDE VLOŽIT LIST ZADÁNÍ}%
-% {\sffamily\centering Z~důvodu správného číslování stránek}
+\stranka{}%
+{\sffamily\Huge\centering ZDE VLOŽIT LIST ZADÁNÍ}%
+{\sffamily\centering Z~důvodu správného číslování stránek}
 
 %% Vysázení stránky s abstraktem
 
 %% Vysázení prohlaseni o samostatnosti
 \vytvorprohlaseni
 \vytvorabstrakt
-% \vytvorpodekovani
+\vytvorpodekovani
 
 %% Vysázení poděkování
 

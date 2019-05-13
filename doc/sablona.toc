@@ -1,96 +1,100 @@
 \babel@toc {czech}{}
-\contentsline {chapter}{\numberline {1}\IeC {\'U}vod}{8}{chapter.2}
-\contentsline {chapter}{\numberline {2}Probl\IeC {\'e}m spr\IeC {\'a}vy pam\IeC {\v e}ti}{10}{chapter.3}
-\contentsline {section}{\numberline {2.1}Garbage collector}{10}{section.4}
-\contentsline {chapter}{\numberline {3}Struktura pam\IeC {\v e}ti programu}{11}{chapter.5}
-\contentsline {section}{\numberline {3.1}Struktura JVM stacku}{12}{section.6}
-\contentsline {subsection}{\numberline {3.1.1}R\IeC {\'a}mce}{12}{subsection.7}
-\contentsline {subsubsection}{Lok\IeC {\'a}ln\IeC {\'\i } prom\IeC {\v e}nn\IeC {\'e}}{12}{section*.8}
-\contentsline {subsubsection}{Stack operand\IeC {\r u}}{13}{section*.9}
-\contentsline {section}{\numberline {3.2}Program counter registr}{13}{section.10}
-\contentsline {section}{\numberline {3.3}Stack nativn\IeC {\'\i }ch metod}{13}{section.11}
-\contentsline {section}{\numberline {3.4}Heap}{13}{section.12}
-\contentsline {section}{\numberline {3.5}Non-heap oblast}{14}{section.13}
-\contentsline {subsection}{\numberline {3.5.1}Oblast metod}{14}{subsection.14}
-\contentsline {section}{\numberline {3.6}Runtime constant pool}{15}{section.17}
-\contentsline {subsection}{\numberline {3.6.1}\IeC {\v R}et\IeC {\v e}zce}{15}{subsection.18}
-\contentsline {section}{\numberline {3.7}Spr\IeC {\'a}va a struktura Java heapu}{15}{section.27}
-\contentsline {subsection}{\numberline {3.7.1}Garbage collection}{16}{subsection.28}
-\contentsline {subsubsection}{CMS GC}{17}{section*.29}
-\contentsline {subsubsection}{Seriov\IeC {\'y} GC}{17}{section*.30}
-\contentsline {subsubsection}{Paraleln\IeC {\'\i } GC}{17}{section*.31}
-\contentsline {subsubsection}{G1 GC}{18}{section*.32}
-\contentsline {subsection}{\numberline {3.7.2}Heap Dump}{18}{subsection.33}
-\contentsline {subsubsection}{Vytvo\IeC {\v r}en\IeC {\'\i } dumpu}{18}{section*.34}
-\contentsline {subsubsection}{Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{19}{section*.35}
-\contentsline {subsection}{\numberline {3.7.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{19}{subsection.38}
-\contentsline {subsection}{\numberline {3.7.4}Bin\IeC {\'a}rn\IeC {\'\i } form\IeC {\'a}t dumpu heapu}{20}{subsection.39}
-\contentsline {subsubsection}{Hlavi\IeC {\v c}ka}{20}{section*.40}
-\contentsline {subsubsection}{T\IeC {\v e}lo}{20}{section*.43}
-\contentsline {subsubsection}{Typy z\IeC {\'a}znam\IeC {\r u}}{20}{section*.46}
-\contentsline {subsubsection}{Typy dumpovan\IeC {\'y}ch hodnot}{20}{section*.49}
-\contentsline {chapter}{\numberline {4}Pr\IeC {\'a}ce s pam\IeC {\v e}t\IeC {\'\i }}{22}{chapter.52}
-\contentsline {section}{\numberline {4.1}Optimalizace u\IeC {\v z}it\IeC {\'\i } pam\IeC {\v e}ti}{22}{section.53}
-\contentsline {section}{\numberline {4.2}Anal\IeC {\'y}za za b\IeC {\v e}hu programu}{22}{section.54}
-\contentsline {section}{\numberline {4.3}Anal\IeC {\'y}za memory dumpu}{23}{section.57}
-\contentsline {chapter}{\numberline {5}Java Virtual Machine}{24}{chapter.58}
-\contentsline {section}{\numberline {5.1}Java Bytecode}{24}{section.59}
-\contentsline {section}{\numberline {5.2}Class loader}{25}{section.60}
-\contentsline {chapter}{\numberline {6}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{26}{chapter.69}
-\contentsline {section}{\numberline {6.1}Eclipse MAT}{26}{section.70}
-\contentsline {subsection}{\numberline {6.1.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{26}{subsection.71}
-\contentsline {section}{\numberline {6.2}VisualVM}{27}{section.74}
-\contentsline {subsection}{\numberline {6.2.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{27}{subsection.75}
-\contentsline {section}{\numberline {6.3}Java Mission Control}{28}{section.78}
-\contentsline {subsection}{\numberline {6.3.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{28}{subsection.79}
-\contentsline {section}{\numberline {6.4}JProfiler}{29}{section.82}
-\contentsline {subsection}{\numberline {6.4.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{30}{subsection.83}
-\contentsline {section}{\numberline {6.5}JHAT}{30}{section.86}
-\contentsline {subsection}{\numberline {6.5.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{31}{subsection.87}
-\contentsline {section}{\numberline {6.6}OQL}{31}{section.90}
-\contentsline {section}{\numberline {6.7}Knihovny}{32}{section.95}
-\contentsline {subsection}{\numberline {6.7.1}Hprof Heap Dump parser}{32}{subsection.96}
-\contentsline {subsection}{\numberline {6.7.2}Z\IeC {\'a}kladn\IeC {\'\i } informace}{32}{subsection.97}
-\contentsline {chapter}{\numberline {7}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{33}{chapter.98}
-\contentsline {section}{\numberline {7.1}Rovnost objekt\IeC {\r u}}{33}{section.99}
-\contentsline {section}{\numberline {7.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{35}{section.106}
-\contentsline {subsection}{\numberline {7.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{35}{subsection.107}
-\contentsline {subsection}{\numberline {7.2.2}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } \IeC {\v r}et\IeC {\v e}zc\IeC {\r u}}{37}{subsection.114}
-\contentsline {subsection}{\numberline {7.2.3}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{37}{subsection.115}
-\contentsline {section}{\numberline {7.3}Efektivita vyu\IeC {\v z}it\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{37}{section.117}
-\contentsline {chapter}{\numberline {8}N\IeC {\'a}vrh implementace}{39}{chapter.120}
-\contentsline {section}{\numberline {8.1}Volba platformy}{39}{section.121}
-\contentsline {section}{\numberline {8.2}Zp\IeC {\r u}sob zpracov\IeC {\'a}n\IeC {\'\i } heapu}{40}{section.123}
-\contentsline {section}{\numberline {8.3}Hprof Heap Dump parser}{41}{section.124}
-\contentsline {subsection}{\numberline {8.3.1}Z\IeC {\'a}kladn\IeC {\'\i } struktura}{41}{subsection.125}
-\contentsline {subsection}{\numberline {8.3.2}RecordHandler}{42}{subsection.131}
-\contentsline {subsection}{\numberline {8.3.3}Definovan\IeC {\'e} entity}{44}{subsection.132}
-\contentsline {subsubsection}{ClassInfo}{44}{section*.133}
-\contentsline {subsubsection}{Instance}{44}{section*.134}
-\contentsline {subsubsection}{InstanceField}{44}{section*.135}
-\contentsline {subsubsection}{Constant}{44}{section*.136}
-\contentsline {subsubsection}{Static}{44}{section*.137}
-\contentsline {subsubsection}{Type}{44}{section*.138}
-\contentsline {subsubsection}{Value}{44}{section*.139}
-\contentsline {subsection}{\numberline {8.3.4}Pou\IeC {\v z}it\IeC {\'\i } knihovny}{45}{subsection.140}
-\contentsline {subsubsection}{Definov\IeC {\'a}n\IeC {\'\i } z\IeC {\'a}vislosti}{45}{section*.141}
-\contentsline {section}{\numberline {8.4}N\IeC {\'a}vrh struktury aplikace}{46}{section.158}
-\contentsline {section}{\numberline {8.5}Rozhran\IeC {\'\i } pipeline a modul\IeC {\r u}}{48}{section.163}
-\contentsline {chapter}{\numberline {9}Implementace}{49}{chapter.164}
-\contentsline {section}{\numberline {9.1}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{49}{section.165}
-\contentsline {section}{\numberline {9.2}Anal\IeC {\'y}za pl\IeC {\'y}tv\IeC {\'a}n\IeC {\'\i } pam\IeC {\v e}t\IeC {\'\i }}{50}{section.166}
-\contentsline {subsection}{\numberline {9.2.1}Anal\IeC {\'y}za duplicit}{51}{subsection.171}
-\contentsline {subsection}{\numberline {9.2.2}Anal\IeC {\'y}za kolekc\IeC {\'\i }}{51}{subsection.172}
-\contentsline {chapter}{\numberline {10}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } implementace}{53}{chapter.173}
-\contentsline {section}{\numberline {10.1}Testovac\IeC {\'\i } aplikace}{53}{section.174}
-\contentsline {section}{\numberline {10.2}Testov\IeC {\'a}n\IeC {\'\i } Spring Boot}{56}{section.179}
-\contentsline {section}{\numberline {10.3}Intepretace v\IeC {\'y}sledk\IeC {\r u}}{57}{section.184}
-\contentsline {chapter}{\numberline {11}Z\IeC {\'a}v\IeC {\v e}r}{59}{chapter.185}
-\contentsline {chapter}{Literatura}{60}{section*.187}
-\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{62}{section*.187}
-\contentsline {chapter}{Seznam tabulek}{63}{section*.188}
-\contentsline {chapter}{Seznam zkratek}{64}{section*.191}
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{65}{section*.193}
-\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{66}{chapter.194}
-\contentsline {section}{\numberline {A.1}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace }{66}{section.195}
-\contentsline {section}{\numberline {A.2}V\IeC {\'y}pis programu }{67}{section.196}
+\contentsline {chapter}{\numberline {1}\IeC {\'U}vod}{10}{chapter.2}
+\contentsline {chapter}{\numberline {2}Probl\IeC {\'e}m spr\IeC {\'a}vy pam\IeC {\v e}ti}{12}{chapter.3}
+\contentsline {section}{\numberline {2.1}Garbage collector}{12}{section.4}
+\contentsline {chapter}{\numberline {3}Struktura pam\IeC {\v e}ti programu}{13}{chapter.5}
+\contentsline {section}{\numberline {3.1}Struktura JVM stacku}{14}{section.6}
+\contentsline {subsection}{\numberline {3.1.1}R\IeC {\'a}mce}{14}{subsection.7}
+\contentsline {subsubsection}{Lok\IeC {\'a}ln\IeC {\'\i } prom\IeC {\v e}nn\IeC {\'e}}{14}{section*.8}
+\contentsline {subsubsection}{Stack operand\IeC {\r u}}{15}{section*.9}
+\contentsline {section}{\numberline {3.2}Program counter registr}{15}{section.10}
+\contentsline {section}{\numberline {3.3}Stack nativn\IeC {\'\i }ch metod}{15}{section.11}
+\contentsline {section}{\numberline {3.4}Heap}{15}{section.12}
+\contentsline {section}{\numberline {3.5}Non-heap oblast}{16}{section.13}
+\contentsline {subsection}{\numberline {3.5.1}Oblast metod}{16}{subsection.14}
+\contentsline {section}{\numberline {3.6}Runtime constant pool}{17}{section.17}
+\contentsline {subsection}{\numberline {3.6.1}\IeC {\v R}et\IeC {\v e}zce}{17}{subsection.18}
+\contentsline {section}{\numberline {3.7}Spr\IeC {\'a}va a struktura Java heapu}{17}{section.27}
+\contentsline {subsection}{\numberline {3.7.1}Garbage collection}{18}{subsection.28}
+\contentsline {subsubsection}{CMS GC}{19}{section*.29}
+\contentsline {subsubsection}{Seriov\IeC {\'y} GC}{19}{section*.30}
+\contentsline {subsubsection}{Paraleln\IeC {\'\i } GC}{19}{section*.31}
+\contentsline {subsubsection}{G1 GC}{20}{section*.32}
+\contentsline {subsection}{\numberline {3.7.2}Heap Dump}{20}{subsection.33}
+\contentsline {subsubsection}{Vytvo\IeC {\v r}en\IeC {\'\i } dumpu}{20}{section*.34}
+\contentsline {subsubsection}{Vztah dumpu v\IeC {\r u}\IeC {\v c}i pam\IeC {\v e}ti procesu}{21}{section*.35}
+\contentsline {subsection}{\numberline {3.7.3}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{21}{subsection.38}
+\contentsline {subsection}{\numberline {3.7.4}Bin\IeC {\'a}rn\IeC {\'\i } form\IeC {\'a}t dumpu heapu}{22}{subsection.39}
+\contentsline {subsubsection}{Hlavi\IeC {\v c}ka}{22}{section*.40}
+\contentsline {subsubsection}{T\IeC {\v e}lo}{22}{section*.43}
+\contentsline {subsubsection}{Typy z\IeC {\'a}znam\IeC {\r u}}{22}{section*.46}
+\contentsline {subsubsection}{Typy dumpovan\IeC {\'y}ch hodnot}{22}{section*.49}
+\contentsline {chapter}{\numberline {4}Pr\IeC {\'a}ce s pam\IeC {\v e}t\IeC {\'\i }}{24}{chapter.52}
+\contentsline {section}{\numberline {4.1}Optimalizace u\IeC {\v z}it\IeC {\'\i } pam\IeC {\v e}ti}{24}{section.53}
+\contentsline {section}{\numberline {4.2}Anal\IeC {\'y}za za b\IeC {\v e}hu programu}{24}{section.54}
+\contentsline {section}{\numberline {4.3}Anal\IeC {\'y}za memory dumpu}{25}{section.57}
+\contentsline {chapter}{\numberline {5}Java Virtual Machine}{26}{chapter.58}
+\contentsline {section}{\numberline {5.1}Java Bytecode}{26}{section.59}
+\contentsline {section}{\numberline {5.2}Class loader}{27}{section.60}
+\contentsline {chapter}{\numberline {6}Existuj\IeC {\'\i }c\IeC {\'\i } n\IeC {\'a}stroje pro anal\IeC {\'y}zu heapu}{28}{chapter.69}
+\contentsline {section}{\numberline {6.1}Eclipse MAT}{28}{section.70}
+\contentsline {subsection}{\numberline {6.1.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{28}{subsection.71}
+\contentsline {section}{\numberline {6.2}VisualVM}{29}{section.74}
+\contentsline {subsection}{\numberline {6.2.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{29}{subsection.75}
+\contentsline {section}{\numberline {6.3}Java Mission Control}{30}{section.78}
+\contentsline {subsection}{\numberline {6.3.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{30}{subsection.79}
+\contentsline {section}{\numberline {6.4}JProfiler}{31}{section.82}
+\contentsline {subsection}{\numberline {6.4.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{32}{subsection.83}
+\contentsline {section}{\numberline {6.5}JHAT}{32}{section.86}
+\contentsline {subsection}{\numberline {6.5.1}Z\IeC {\'a}kladn\IeC {\'\i } informace}{33}{subsection.87}
+\contentsline {section}{\numberline {6.6}OQL}{33}{section.90}
+\contentsline {section}{\numberline {6.7}Knihovny}{34}{section.95}
+\contentsline {subsection}{\numberline {6.7.1}Hprof Heap Dump parser}{34}{subsection.96}
+\contentsline {subsection}{\numberline {6.7.2}Z\IeC {\'a}kladn\IeC {\'\i } informace}{34}{subsection.97}
+\contentsline {chapter}{\numberline {7}Mo\IeC {\v z}nosti anal\IeC {\'y}zy}{35}{chapter.98}
+\contentsline {section}{\numberline {7.1}Rovnost objekt\IeC {\r u}}{35}{section.99}
+\contentsline {section}{\numberline {7.2}Rovnost slo\IeC {\v z}it\IeC {\v e}j\IeC {\v s}\IeC {\'\i }ch objekt\IeC {\r u}}{37}{section.106}
+\contentsline {subsection}{\numberline {7.2.1}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } referencovan\IeC {\'y}ch objekt\IeC {\r u}}{37}{subsection.107}
+\contentsline {subsection}{\numberline {7.2.2}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } \IeC {\v r}et\IeC {\v e}zc\IeC {\r u}}{39}{subsection.114}
+\contentsline {subsection}{\numberline {7.2.3}Porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{39}{subsection.115}
+\contentsline {section}{\numberline {7.3}Efektivita vyu\IeC {\v z}it\IeC {\'\i } pol\IeC {\'\i } a kolekc\IeC {\'\i }}{39}{section.117}
+\contentsline {chapter}{\numberline {8}N\IeC {\'a}vrh implementace}{41}{chapter.120}
+\contentsline {section}{\numberline {8.1}Volba platformy}{41}{section.121}
+\contentsline {section}{\numberline {8.2}Zp\IeC {\r u}sob zpracov\IeC {\'a}n\IeC {\'\i } heapu}{42}{section.123}
+\contentsline {section}{\numberline {8.3}Hprof Heap Dump parser}{43}{section.124}
+\contentsline {subsection}{\numberline {8.3.1}Z\IeC {\'a}kladn\IeC {\'\i } struktura}{43}{subsection.125}
+\contentsline {subsection}{\numberline {8.3.2}RecordHandler}{44}{subsection.131}
+\contentsline {subsection}{\numberline {8.3.3}Definovan\IeC {\'e} entity}{46}{subsection.132}
+\contentsline {subsubsection}{ClassInfo}{46}{section*.133}
+\contentsline {subsubsection}{Instance}{46}{section*.134}
+\contentsline {subsubsection}{InstanceField}{46}{section*.135}
+\contentsline {subsubsection}{Constant}{46}{section*.136}
+\contentsline {subsubsection}{Static}{46}{section*.137}
+\contentsline {subsubsection}{Type}{46}{section*.138}
+\contentsline {subsubsection}{Value}{46}{section*.139}
+\contentsline {subsection}{\numberline {8.3.4}Pou\IeC {\v z}it\IeC {\'\i } knihovny}{47}{subsection.140}
+\contentsline {subsubsection}{Definov\IeC {\'a}n\IeC {\'\i } z\IeC {\'a}vislosti}{47}{section*.141}
+\contentsline {section}{\numberline {8.4}N\IeC {\'a}vrh struktury aplikace}{48}{section.158}
+\contentsline {section}{\numberline {8.5}Rozhran\IeC {\'\i } pipeline a modul\IeC {\r u}}{50}{section.163}
+\contentsline {chapter}{\numberline {9}Implementace}{51}{chapter.164}
+\contentsline {section}{\numberline {9.1}Zpracov\IeC {\'a}n\IeC {\'\i } dumpu}{51}{section.165}
+\contentsline {section}{\numberline {9.2}Anal\IeC {\'y}za pl\IeC {\'y}tv\IeC {\'a}n\IeC {\'\i } pam\IeC {\v e}t\IeC {\'\i }}{52}{section.166}
+\contentsline {subsection}{\numberline {9.2.1}Anal\IeC {\'y}za duplicit}{53}{subsection.171}
+\contentsline {subsection}{\numberline {9.2.2}Anal\IeC {\'y}za kolekc\IeC {\'\i }}{53}{subsection.172}
+\contentsline {chapter}{\numberline {10}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } implementace}{55}{chapter.173}
+\contentsline {section}{\numberline {10.1}Testovac\IeC {\'\i } aplikace}{55}{section.174}
+\contentsline {section}{\numberline {10.2}Testov\IeC {\'a}n\IeC {\'\i } Spring Boot}{58}{section.179}
+\contentsline {section}{\numberline {10.3}Intepretace v\IeC {\'y}sledk\IeC {\r u}}{59}{section.184}
+\contentsline {chapter}{\numberline {11}Z\IeC {\'a}v\IeC {\v e}r}{61}{chapter.185}
+\contentsline {chapter}{Literatura}{62}{section*.187}
+\contentsline {chapter}{Seznam obr\'{a}zk\r {u}}{65}{section*.187}
+\contentsline {chapter}{Seznam tabulek}{66}{section*.188}
+\contentsline {chapter}{Seznam zkratek}{67}{section*.191}
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{68}{section*.193}
+\contentsline {chapter}{\numberline {A}P\IeC {\v r}\IeC {\'\i }lohy }{69}{chapter.194}
+\contentsline {section}{\numberline {A.1}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace }{69}{section.195}
+\contentsline {subsection}{\numberline {A.1.1}Po\IeC {\v z}adavky pro v\IeC {\'y}voj a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i } projektu }{69}{subsection.196}
+\contentsline {subsection}{\numberline {A.1.2}Struktura projektu }{69}{subsection.197}
+\contentsline {subsection}{\numberline {A.1.3}Kompilace projektu }{69}{subsection.198}
+\contentsline {subsection}{\numberline {A.1.4}Spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i } programu a jeho parametry }{70}{subsection.201}
+\contentsline {section}{\numberline {A.2}V\IeC {\'y}pis programu }{71}{section.202}

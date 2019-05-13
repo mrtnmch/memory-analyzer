@@ -1,4 +1,33 @@
 \section{Uživatelská dokumentace}
 \label{usage-doc}
+\subsection{Požadavky pro vývoj a spuštění projektu}
+Pro spuštění programu je nutné mít nainstalovanou pouze Javu a to konkrétně JRE, minimálně ve verzi 1.8. Žádné další speciální požadavky kladeny nejsou -- pro získání dumpu je ale vhodné mít nějaký software, který umožňuje jeho pohodlné získání, např. VisualVM.
 
-TODO
+Pro vývoj (úpravu programu, jeho kompilaci, vytvoření spustitelného souboru JAR a vydání nové verze) je zapotřebí následující softwarová výbava:
+\begin{itemize}
+    \item Java JDK -- ve stejné verzi jako JRE, tj. minimálně \texttt{1.8}.
+    \item Maven 3 -- pro kompilaci modulů a vydání projektu, konkrétně byla testována poslední verze v době psaní, tj. \texttt{3.6.0}.
+\end{itemize}
+
+\subsection{Struktura projektu}
+Projekt je rozdělen do několika modulů a následující adresářové struktury:
+
+\begin{description}
+    \item[analyzer] Obsahuje zdrojové kódy vytvořené knihovny, která je využívána oslužnou aplikací.
+    \item[app] Obsahuje zdrojové kódy obslužné aplikace. Je vstupním bodem programu při jeho využití jako aplikace (resp. v případě, že nástroj není využíván formou knihovny).
+    \item[doc] Pro úplnost tento adresář obsahuje zdrojové soubory tohoto textu.
+    \item[sandbox] Obsahuje různé soubory, které se mohou při vývoji aplikace hodit -- především potom v adresáři \textit{data}, kde se nacházejí soubory HPROF, na kterých byl nástroj otestován. Rovněž obsahuje \textit{example-app}, tedy aplikaci pro generování testovacích dat a \textit{spring-boot-example}, což je jednoduchý projekt ve frameworku Spring Boot.
+    \item[test] Obsahuje skripty pro spuštění testovacích setů.
+    \item[pom.xml] Soubor nástroje Maven. Definuje rodičovský modul, který definuje jako submoduly některé z výše uvedených adresářů -- konkrétně \textit{sandbox/example-app}, \textit{app} a \textit{analyzer}.
+\end{description}
+
+\subsection{Kompilace projektu}
+Projekt je možné zkompilovat pomocí volitelného IDE, případně právě pomocí nástroje Maven a definovaných souborů \texttt{pom.xml}. Konkrétně lze celý projekt, včetně knihovny a obslužné aplikace, zkompilovat spuštěním následujícího příkazu v rodičovském adresáři (tedy tom, který obsahuje rodičovský \texttt{pom.xml} a který obsahuje výše popsané adresáře):
+
+\begin{lstlisting}[frame={single}]
+mvn clean package
+\end{lstlisting}
+
+Tento příklad předpokládá, že je lokace instalace Mavenu, tedy adresář se spustitelným souborem Mavenu \texttt{mvn}, součástí systémové cesty \texttt{PATH}.
+
+\subsection{Spuštění programu a jeho parametry}

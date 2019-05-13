@@ -948,7 +948,7 @@ Program jsem testoval na několika testovacích souborech, které se lišily vel
 \section{Testovací aplikace}
 Testovací modul umí vygenerovat poloprázdné kolekce, kolekce obsahující pouze duplikáty (konkrétně celočíselné) a objekty, které mají stejná data a zároveň vytvoří jednoduchou strukturu rodič-potomek. Jako parametr nástroj přijímá počet instancí, které má od každého typu vytvořit. Jedná se tedy o testování v \uv{laboratorních podmínkách}, na programu, který je specificky navržený pro testování daného problému.
 
-Aplikaci jsem postupně pustil s několika parametry ($N$), získal její memory dump a nad ním spustil analýzu, omezující se na jmenný prostor \texttt{cz.mx\-mx.me\-mory\-analyzer.e\-xa\-mple}. Analýzu jsem spustil pro každý soubor 3x a časové trvání jsem zprůměroval. Výsledek ukazuje tabulka \ref{table-example-app-results}.
+Aplikaci jsem postupně pustil s několika parametry ($N$), získal její memory dump a nad ním spustil analýzu, omezující se na jmenný prostor \texttt{cz.mx\-mx.me\-mory\-analyzer.e\-xa\-mple}. Analýzu jsem spustil pro každý soubor 3x a časové trvání jsem zprůměroval. Program jsem spouštěl na svém počítači s Ubuntu 18.10, SSD, procesorem Intel Core i5-6300U s frekvencí 2.40GHz (2 jádra, 4 vlákna) a 16 GB operační paměti. Výsledek ukazuje tabulka \ref{table-example-app-results}.
 
 \begin{table}[ht!]
     \begin{tabular}{|r|r|r|r|r|}
