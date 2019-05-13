@@ -329,8 +329,8 @@ Dalším důvodem pro vyhnutí se analýze za běhu programu je povaha řešené
 	\label{obrRuntimeAnalysis}
 \end{figure}
 
-%\section{Analýza memory dumpu}
-%TODO
+\section{Analýza memory dumpu}
+Analýzu memory dumpu, tedy \uv{otisku paměti} v určitém časovém okamžiku, lze považovat za offline analýzu -- program může běžet dál, případně ho můžeme ukončit, a analýzu provádět na souboru HPROF souběžně. Protože jsem výše v předchozí kapitole došel k závěru, že analýza za běhu programu by vyžadovala poměrně velký zásah do programu (či \zkratka{JVM}) samotného, je offline analýza logickým východiskem. Proto se ve zbytku práce budu věnovat tomuto způsobu analýzy, konkrétně pak v kapitolách \ref{heap-processing} a \ref{hprof-heap-dump-parser}.
 
 % =====================================================================================================================================================================================
 
@@ -696,6 +696,7 @@ Přes všechny tyto nesporné výhody Kotlinu (a případných dalších jazyků
 Z výše uvedených důvodů tedy výchází jako platforma pro vývoj \zkratka{JVM} a jazyk Java. Případně je při dalším vývoji možné využít Kotlin jako druhý jazyk, který dokáže s Javou spolupracovat i v rámci jednoho programu/projektu na úrovni API.
 
 \section{Způsob zpracování heapu}
+\label{heap-processing}
 Jak bylo zmíněno v předchozích kapitolách, k přístupu ke zpracování heapu lze přistoupit mnoha různými způsoby. V zásadě je možné je redukovat na dva typy přístupu, a to
 
 \begin{itemize}
@@ -714,6 +715,7 @@ Dle mého názoru je tak nejvhodnější implementovat samostatný, nezávislý 
 Po analýze a prozkoumání existujících projektů vyšel jako nejlepší kandidát projekt \textit{Hprof Heap Dump parser}.
 
 \section{Hprof Heap Dump parser}
+\label{hprof-heap-dump-parser}
 \subsection{Základní struktura}
 Hlavní třídou, která se stará o zpracování HPROF souboru a která nás tedy bude zajímat, je \texttt{HprofParser}. 
 
