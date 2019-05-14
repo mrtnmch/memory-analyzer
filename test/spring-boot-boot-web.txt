@@ -1,0 +1,19 @@
+Analyzing classes from namespace `org.springframework.boot.web` in `../sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org.springframework.boot.web
+	Classes: 75
+	Instances: 27
+
+Analyzing memory waste...
+
+Done, found 1 possible ways to save memory:
+	Ineffective list usage (1):
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory(29115367928)#tomcatContextCustomizers have a null value (6/10x).
+			size = `4`
+			elementData = `29115377480`
+
+
+Duration: PT3.916S

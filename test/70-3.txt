@@ -1,0 +1,319 @@
+Analyzing classes from namespace `cz.mxmx.memoryanalyzer.example` in `../sandbox/data/test-heapdump-70.hprof`...
+
+Done, found:
+	Classes: 707
+	Instances: 17510
+Namespace cz.mxmx.memoryanalyzer.example
+	Classes: 3
+	Instances: 4971
+
+Analyzing memory waste...
+
+Done, found 75 possible ways to save memory:
+	Duplicate instances (70):
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109367560}`
+			name = `Child 58`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29111014320}`
+			name = `Child 0`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109424400}`
+			name = `Child 54`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109657784}`
+			name = `Child 37`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109633688}`
+			name = `Child 41`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110967016}`
+			name = `Child 8`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109412352}`
+			name = `Child 56`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110027368}`
+			name = `Child 33`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109645736}`
+			name = `Child 39`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109418376}`
+			name = `Child 55`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110582336}`
+			name = `Child 9`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109639712}`
+			name = `Child 40`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110501600}`
+			name = `Child 17`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109337440}`
+			name = `Child 63`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109361536}`
+			name = `Child 59`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109576856}`
+			name = `Child 45`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110084208}`
+			name = `Child 29`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110576312}`
+			name = `Child 10`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110170776}`
+			name = `Child 20`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110507624}`
+			name = `Child 16`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108682736}`
+			name = `Child 69`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109343464}`
+			name = `Child 62`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110090232}`
+			name = `Child 28`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109526032}`
+			name = `Child 48`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110158728}`
+			name = `Child 22`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110489552}`
+			name = `Child 19`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109501936}`
+			name = `Child 52`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108762328}`
+			name = `Child 66`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109532056}`
+			name = `Child 47`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110096256}`
+			name = `Child 27`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110039416}`
+			name = `Child 31`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110164752}`
+			name = `Child 21`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110140656}`
+			name = `Child 25`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109588904}`
+			name = `Child 43`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110973032}`
+			name = `Child 7`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110985064}`
+			name = `Child 5`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109507960}`
+			name = `Child 51`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108756304}`
+			name = `Child 67`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109355512}`
+			name = `Child 60`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109582880}`
+			name = `Child 44`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110146680}`
+			name = `Child 24`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110558240}`
+			name = `Child 13`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110015320}`
+			name = `Child 35`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110033392}`
+			name = `Child 32`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110009296}`
+			name = `Child 36`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110564264}`
+			name = `Child 12`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29111022632}`
+			name = `Child 3`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29111034664}`
+			name = `Child 1`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110991080}`
+			name = `Child 4`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108774376}`
+			name = `Child 64`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109513984}`
+			name = `Child 50`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110513648}`
+			name = `Child 15`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110152704}`
+			name = `Child 23`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108768352}`
+			name = `Child 65`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110021344}`
+			name = `Child 34`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110570288}`
+			name = `Child 11`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109570832}`
+			name = `Child 46`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109349488}`
+			name = `Child 61`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29111028648}`
+			name = `Child 2`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110078184}`
+			name = `Child 30`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109594928}`
+			name = `Child 42`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109406328}`
+			name = `Child 57`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110979048}`
+			name = `Child 6`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109651760}`
+			name = `Child 38`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110495576}`
+			name = `Child 18`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109520008}`
+			name = `Child 49`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110102280}`
+			name = `Child 26`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108750280}`
+			name = `Child 68`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29110552216}`
+			name = `Child 14`
+
+		Duplicates of 'cz.mxmx.memoryanalyzer.example.Child': 70 instances of the 'cz.mxmx.memoryanalyzer.example.Child' class contain exactly the same data.
+			parent = `InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29109430424}`
+			name = `Child 53`
+
+
+	Ineffective list usage (4):
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in cz.mxmx.memoryanalyzer.example.App(29108579712)#emptyList have a null value (70000/70000x).
+			size = `0`
+			elementData = `29110615968`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in cz.mxmx.memoryanalyzer.example.App(29108579712)#mostlyEmptyList have a null value (69930/70000x).
+			size = `70`
+			elementData = `29110204656`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in cz.mxmx.memoryanalyzer.example.App(29108579712)#listOfDuplicates have a null value (69930/70000x).
+			size = `70`
+			elementData = `29109695888`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in cz.mxmx.memoryanalyzer.example.App(29108579712)#sameList have a null value (69930/70000x).
+			size = `70`
+			elementData = `29111041560`
+
+
+	List of duplicates (1):
+		List full of same values: All values in the list java.util.ArrayList#listOfDuplicates have the same value (70x).
+			size = `70`
+			elementData = `29109695888`
+
+
+Duration: PT2.809S

@@ -1,0 +1,1369 @@
+Analyzing classes from namespace `org` in `../sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org
+	Classes: 2416
+	Instances: 9093
+
+Analyzing memory waste...
+
+Done, found 347 possible ways to save memory:
+	Ineffective list usage (295):
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.logging.DeferredLog(29109427488)#lines have a null value (109/109x).
+			size = `0`
+			elementData = `29109427560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.core.ReactiveAdapterRegistry(29113580512)#adapters have a null value (32/32x).
+			size = `0`
+			elementData = `29113580560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116325280)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116326152`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116325112)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116325176`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116333184)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116333248`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116332848)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116332912`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116333016)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116333080`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116332680)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116332744`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116332344)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116332408`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116332512)#beanPostProcessors have a null value (11/11x).
+			size = `0`
+			elementData = `29116332576`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117417408)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117417456`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117515760)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117515808`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117515552)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117515600`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117318960)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117319008`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117417200)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117417248`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117416992)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117417040`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117515344)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117515392`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117318752)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117318800`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117515136)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117515184`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117318544)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117318592`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117416784)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117416832`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117416576)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117416624`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117514928)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117514976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117318336)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117318384`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117416368)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117416416`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117514720)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117514768`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117318128)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117318176`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117514512)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117514560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117317920)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117317968`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117416160)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117416208`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117415952)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117416000`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117514304)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117514352`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117317712)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117317760`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117317504)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117317552`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117415744)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117415792`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117514096)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117514144`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117513888)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117513936`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117317296)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117317344`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117415536)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117415584`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117419488)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117419536`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117419280)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117419328`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.connector.Request(29114814368)#locales have a null value (10/10x).
+			size = `0`
+			elementData = `29116028904`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117517632)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117517680`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117321040)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117321088`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117320832)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117320880`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117419072)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117419120`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117517424)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117517472`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117517216)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117517264`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117320624)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117320672`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117418864)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117418912`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117418656)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117418704`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117517008)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117517056`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117320416)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117320464`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117516800)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117516848`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117320208)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117320256`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117418448)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117418496`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117418240)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117418288`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117516592)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117516640`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117320000)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117320048`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117418032)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117418080`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117516384)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117516432`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117319792)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117319840`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117516176)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117516224`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117319584)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117319632`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117417824)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117417872`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117417616)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117417664`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117515968)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117516016`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117319376)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117319424`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117319168)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117319216`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117421360)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117421408`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117519712)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117519760`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117323120)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117323168`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117519504)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117519552`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117322912)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117322960`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117421152)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117421200`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117420944)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117420992`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117519296)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117519344`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117322704)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117322752`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117322496)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117322544`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117420736)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117420784`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117519088)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117519136`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117518880)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117518928`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117322288)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117322336`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.core.StandardWrapper(29115389088)#mappings have a null value (10/10x).
+			size = `0`
+			elementData = `29115392512`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117420528)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117420576`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117420320)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117420368`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117518672)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117518720`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117322080)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117322128`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117518464)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117518512`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117321872)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117321920`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117420112)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117420160`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117419904)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117419952`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117518256)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117518304`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117321664)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117321712`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117419696)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117419744`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117518048)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117518096`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117321456)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117321504`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117517840)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117517888`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117321248)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117321296`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117325200)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117325248`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117423440)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117423488`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117308768)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117308816`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117423232)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117423280`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117308560)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117308608`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117521584)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117521632`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117324992)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117325040`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117423024)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117423072`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117308352)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117308400`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117521376)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117521424`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117324784)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117324832`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117521168)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117521216`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117324576)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117324624`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117422816)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117422864`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117422608)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117422656`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117520960)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117521008`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117324368)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117324416`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117324160)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117324208`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117422400)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117422448`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117520752)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117520800`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117520544)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117520592`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117323952)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117324000`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117422192)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117422240`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117421984)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117422032`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117520336)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117520384`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117323744)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117323792`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117520128)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117520176`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117323536)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117323584`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117421776)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117421824`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117421568)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117421616`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117519920)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117519968`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117323328)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117323376`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117310848)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117310896`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117327280)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117327328`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117425520)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117425568`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117425312)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117425360`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117310640)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117310688`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117327072)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117327120`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117326864)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117326912`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117425104)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117425152`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117310432)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117310480`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117424896)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117424944`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117310224)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117310272`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117326656)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117326704`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117424688)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117424736`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117310016)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117310064`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117326448)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117326496`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117326240)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117326288`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.autoconfigure.condition.ConditionEvaluationReport(29109429168)#exclusions have a null value (10/10x).
+			size = `0`
+			elementData = `29109640872`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117424480)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117424528`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117309808)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117309856`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117424272)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117424320`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117309600)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117309648`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117326032)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117326080`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117325824)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117325872`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29116326256)#beanPostProcessors have a null value (10/11x).
+			size = `1`
+			elementData = `29116326320`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117424064)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117424112`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117309392)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117309440`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117309184)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117309232`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117325616)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117325664`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117423856)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117423904`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117423648)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117423696`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117308976)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117309024`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117325408)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117325456`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117312928)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117312976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117394792)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117394840`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117509496)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117509544`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117394584)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117394632`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117509288)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117509336`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117312720)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117312768`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117312512)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117312560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117394376)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117394424`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117509080)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117509128`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117508872)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117508920`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117312304)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117312352`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117394168)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117394216`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117393960)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117394008`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117508664)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117508712`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117312096)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117312144`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117311888)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117311936`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117393752)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117393800`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117393544)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117393592`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117311680)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117311728`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117327904)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117393384`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117311472)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117311520`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117425936)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117425984`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117311264)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117311312`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117327696)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117327744`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117327488)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117327536`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117425728)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117425776`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117311056)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117311104`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117396872)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117396920`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117511576)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117511624`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117315008)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117315056`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117396664)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117396712`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117511368)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117511416`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117314800)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117314848`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117314592)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117314640`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117396456)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117396504`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117511160)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117511208`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117396248)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117396296`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117510952)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117511000`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117314384)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117314432`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117314176)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117314224`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117396040)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117396088`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117510744)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117510792`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117510536)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117510584`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117313968)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117314016`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117395832)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117395880`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117395624)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117395672`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117510328)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117510376`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117313760)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117313808`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117313552)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117313600`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117395416)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117395464`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117510120)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117510168`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117395208)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117395256`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117509912)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117509960`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117313344)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117313392`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117395000)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117395048`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117509704)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117509752`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117313136)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117313184`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117415328)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117415376`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117513680)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117513728`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117317088)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117317136`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117316880)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117316928`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117415120)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117415168`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117414912)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117414960`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117316672)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117316720`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117414704)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117414752`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117316464)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117316512`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117316256)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117316304`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117512824)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117512872`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117512616)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117512664`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117316048)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117316096`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117315840)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117315888`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117397704)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117397752`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117512408)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117512456`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117512200)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117512248`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117315632)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117315680`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117397496)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117397544`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117397288)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117397336`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117511992)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117512040`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117315424)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117315472`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117315216)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117315264`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117397080)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117397128`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117511784)#injectedElements have a null value (10/10x).
+			size = `0`
+			elementData = `29117511832`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver(29116024168)#responseBodyAdvice have a null value (9/10x).
+			size = `1`
+			elementData = `29116027688`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29118743208)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29118743256`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118909704)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118909760`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118911888)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118911944`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118895592)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118895648`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.core.StandardWrapper(29115094040)#mappings have a null value (9/10x).
+			size = `1`
+			elementData = `29115588936`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118911256)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118911312`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118894616)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118894672`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.config.annotation.WebMvcConfigurerComposite(29116338936)#delegates have a null value (9/10x).
+			size = `1`
+			elementData = `29116338976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.webresources.StandardRoot(29113979256)#mainResources have a null value (9/10x).
+			size = `1`
+			elementData = `29117577240`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118910640)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118910696`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29115879432)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29115879480`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29115882280)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29115882328`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118896904)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118896960`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29115593760)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29115593808`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.annotation.InjectionMetadata(29117513032)#injectedElements have a null value (9/10x).
+			size = `1`
+			elementData = `29117513080`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.coyote.RequestGroupInfo(29114809512)#processors have a null value (9/10x).
+			size = `1`
+			elementData = `29114809904`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.apache.catalina.util.ManifestResource(29118904704)#availableExtensions have a null value (9/10x).
+			size = `1`
+			elementData = `29118904760`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.hibernate.validator.internal.metadata.BeanMetaDataManager(29115892160)#metaDataProviders have a null value (8/10x).
+			size = `2`
+			elementData = `29115892232`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter(29115726888)#requestResponseBodyAdvice have a null value (8/10x).
+			size = `2`
+			elementData = `29115891824`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.handler.HandlerExceptionResolverComposite(29116023912)#resolvers have a null value (7/10x).
+			size = `3`
+			elementData = `29116023960`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory(29115367928)#tomcatContextCustomizers have a null value (6/10x).
+			size = `4`
+			elementData = `29115377480`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver(29115092928)#supportedLocales have a null value (4/4x).
+			size = `0`
+			elementData = `29115092976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116026512)#requestBodyAdvice have a null value (4/4x).
+			size = `0`
+			elementData = `29116026560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29113961408)#resourceTransformers have a null value (4/4x).
+			size = `0`
+			elementData = `29117583888`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116025176)#requestBodyAdvice have a null value (4/4x).
+			size = `0`
+			elementData = `29116025224`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#resourceTransformers have a null value (4/4x).
+			size = `0`
+			elementData = `29115593376`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115724632)#resourceTransformers have a null value (4/4x).
+			size = `0`
+			elementData = `29115725976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115724632)#locationValues have a null value (4/4x).
+			size = `0`
+			elementData = `29115725136`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115879264)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115879384`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115879264)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115879312`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116026512)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29116026616`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29113961408)#resourceResolvers have a null value (3/4x).
+			size = `1`
+			elementData = `29117583688`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116025176)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29116025280`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115880984)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115881088`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115880984)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115881032`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.cors.CorsConfiguration(29113897040)#allowedMethods have a null value (3/4x).
+			size = `1`
+			elementData = `29113897160`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.cors.CorsConfiguration(29113897040)#allowedHeaders have a null value (3/4x).
+			size = `1`
+			elementData = `29113897216`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.cors.CorsConfiguration(29113897040)#allowedOrigins have a null value (3/4x).
+			size = `1`
+			elementData = `29113897104`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115882144)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115882248`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115882144)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115882192`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#resourceResolvers have a null value (3/4x).
+			size = `1`
+			elementData = `29115593192`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#locations have a null value (3/4x).
+			size = `1`
+			elementData = `29115592968`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#locationValues have a null value (3/4x).
+			size = `1`
+			elementData = `29115592792`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115887064)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115887168`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115887064)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115887112`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115885680)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115885784`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115885680)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115885728`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115724632)#resourceResolvers have a null value (3/4x).
+			size = `1`
+			elementData = `29115725776`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.beans.factory.support.DisposableBeanAdapter(29110292504)#beanPostProcessors have a null value (2/3x).
+			size = `1`
+			elementData = `29110292568`
+
+
+	Duplicate instances (52):
+		Duplicates of 'org.springframework.cglib.core.Signature': 38 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `setBeanFactory`
+			desc = `(Lorg/springframework/beans/factory/BeanFactory;)V`
+
+		Duplicates of 'org.apache.logging.log4j.message.DefaultFlowMessageFactory': 34 instances of the 'org.apache.logging.log4j.message.DefaultFlowMessageFactory' class contain exactly the same data.
+			exitText = `Exit`
+			entryText = `Enter`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 16 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `CGLIB$setBeanFactory$5`
+			desc = `(Lorg/springframework/beans/factory/BeanFactory;)V`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 8 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `CGLIB$setBeanFactory$4`
+			desc = `(Lorg/springframework/beans/factory/BeanFactory;)V`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 8 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `CGLIB$setBeanFactory$6`
+			desc = `(Lorg/springframework/beans/factory/BeanFactory;)V`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 7 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `found 'session' scope`
+
+		Duplicates of 'org.apache.juli.logging.DirectJDKLog': 5 instances of the 'org.apache.juli.logging.DirectJDKLog' class contain exactly the same data.
+			logger = `InstanceDump{classDump=java.util.logging.Logger, instanceId=29115470840}`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 4 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `toString`
+			desc = `()Ljava/lang/String;`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.couchbase.client.java.Bucket'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'reactor.core.publisher.Flux'`
+
+		Duplicates of 'org.springframework.format.datetime.standard.TemporalAccessorPrinter': 3 instances of the 'org.springframework.format.datetime.standard.TemporalAccessorPrinter' class contain exactly the same data.
+			formatter = `InstanceDump{classDump=java.time.format.DateTimeFormatter, instanceId=29109093376}`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 3 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `<init>`
+			desc = `()V`
+
+		Duplicates of 'org.springframework.format.datetime.standard.TemporalAccessorPrinter': 3 instances of the 'org.springframework.format.datetime.standard.TemporalAccessorPrinter' class contain exactly the same data.
+			formatter = `InstanceDump{classDump=java.time.format.DateTimeFormatter, instanceId=29114960688}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.datastax.driver.core.Cluster'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.mongodb.MongoClient'`
+
+		Duplicates of 'org.springframework.web.accept.ServletPathExtensionContentNegotiationStrategy': 3 instances of the 'org.springframework.web.accept.ServletPathExtensionContentNegotiationStrategy' class contain exactly the same data.
+			servletContext = `InstanceDump{classDump=org.apache.catalina.core.ApplicationContextFacade, instanceId=29113961568}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass found required class 'com.fasterxml.jackson.databind.ObjectMapper'`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 3 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `CGLIB$setBeanFactory$7`
+			desc = `(Lorg/springframework/beans/factory/BeanFactory;)V`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass found required class 'org.springframework.http.converter.json.Jackson2ObjectMapperBuilder'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.mongodb.reactivestreams.client.MongoClient'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.elasticsearch.client.Client'`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 3 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `loadObject`
+			desc = `()Ljava/lang/Object;`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType'`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `hashCode`
+			desc = `()I`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.jdbc.core.JdbcTemplate'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required classes 'io.undertow.Undertow', 'org.xnio.SslClientAuthMode'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.google.gson.Gson'`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `equals`
+			desc = `(Ljava/lang/Object;)Z`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `length`
+			desc = `()I`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnWebApplication did not find reactive web application classes`
+
+		Duplicates of 'org.springframework.format.datetime.standard.TemporalAccessorPrinter': 2 instances of the 'org.springframework.format.datetime.standard.TemporalAccessorPrinter' class contain exactly the same data.
+			formatter = `InstanceDump{classDump=java.time.format.DateTimeFormatter, instanceId=29109011952}`
+
+		Duplicates of 'org.springframework.web.context.support.ServletContextResource': 2 instances of the 'org.springframework.web.context.support.ServletContextResource' class contain exactly the same data.
+			path = `/`
+			servletContext = `InstanceDump{classDump=org.apache.catalina.core.ApplicationContextFacade, instanceId=29113961568}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'javax.jms.ConnectionFactory'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.web.reactive.function.client.WebClient'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) found bean 'jacksonObjectMapper'`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `append`
+			desc = `(Ljava/lang/String;)Ljava/lang/StringBuffer;`
+
+		Duplicates of 'org.springframework.format.datetime.standard.TemporalAccessorPrinter': 2 instances of the 'org.springframework.format.datetime.standard.TemporalAccessorPrinter' class contain exactly the same data.
+			formatter = `InstanceDump{classDump=java.time.format.DateTimeFormatter, instanceId=29114956512}`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `getName`
+			desc = `()Ljava/lang/String;`
+
+		Duplicates of 'org.springframework.core.convert.support.CollectionToArrayConverter': 2 instances of the 'org.springframework.core.convert.support.CollectionToArrayConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.convert.ApplicationConversionService, instanceId=29109005968}`
+
+		Duplicates of 'org.springframework.core.convert.support.CollectionToStringConverter': 2 instances of the 'org.springframework.core.convert.support.CollectionToStringConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.convert.ApplicationConversionService, instanceId=29109005968}`
+
+		Duplicates of 'org.apache.juli.logging.DirectJDKLog': 2 instances of the 'org.apache.juli.logging.DirectJDKLog' class contain exactly the same data.
+			logger = `InstanceDump{classDump=java.util.logging.Logger, instanceId=29115456944}`
+
+		Duplicates of 'org.springframework.boot.convert.CollectionToDelimitedStringConverter': 2 instances of the 'org.springframework.boot.convert.CollectionToDelimitedStringConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.convert.ApplicationConversionService, instanceId=29109005968}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass found required class 'javax.servlet.ServletRegistration'`
+
+		Duplicates of 'org.apache.juli.logging.DirectJDKLog': 2 instances of the 'org.apache.juli.logging.DirectJDKLog' class contain exactly the same data.
+			logger = `InstanceDump{classDump=java.util.logging.Logger, instanceId=29115391968}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'javax.json.bind.Jsonb'`
+
+		Duplicates of 'org.springframework.cglib.core.Signature': 2 instances of the 'org.springframework.cglib.core.Signature' class contain exactly the same data.
+			name = `beanNameViewResolver`
+			desc = `()Lorg/springframework/web/servlet/view/BeanNameViewResolver;`
+
+		Duplicates of 'org.springframework.core.convert.support.CollectionToStringConverter': 2 instances of the 'org.springframework.core.convert.support.CollectionToStringConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.autoconfigure.web.format.WebConversionService, instanceId=29114954288}`
+
+		Duplicates of 'org.springframework.core.convert.support.CollectionToArrayConverter': 2 instances of the 'org.springframework.core.convert.support.CollectionToArrayConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.autoconfigure.web.format.WebConversionService, instanceId=29114954288}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.web.reactive.config.WebFluxConfigurer'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required classes 'org.eclipse.jetty.server.Server', 'org.eclipse.jetty.util.Loader', 'org.eclipse.jetty.webapp.WebAppContext'`
+
+		Duplicates of 'org.springframework.boot.convert.CollectionToDelimitedStringConverter': 2 instances of the 'org.springframework.boot.convert.CollectionToDelimitedStringConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.context.properties.bind.BindConverter$TypeConverterConversionService, instanceId=29112544904}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.hazelcast.core.HazelcastInstance'`
+
+
+Duration: PT14.041S

@@ -1,0 +1,101 @@
+Analyzing classes from namespace `org.springframework.boot` in `../sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org.springframework.boot
+	Classes: 380
+	Instances: 1506
+
+Analyzing memory waste...
+
+Done, found 27 possible ways to save memory:
+	Duplicate instances (24):
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 7 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `found 'session' scope`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.couchbase.client.java.Bucket'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 4 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'reactor.core.publisher.Flux'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass found required class 'org.springframework.http.converter.json.Jackson2ObjectMapperBuilder'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.mongodb.reactivestreams.client.MongoClient'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass found required class 'com.fasterxml.jackson.databind.ObjectMapper'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.datastax.driver.core.Cluster'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.elasticsearch.client.Client'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 3 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.mongodb.MongoClient'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'javax.jms.ConnectionFactory'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.google.gson.Gson'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'com.hazelcast.core.HazelcastInstance'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.web.reactive.function.client.WebClient'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.jdbc.core.JdbcTemplate'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnWebApplication did not find reactive web application classes`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) found bean 'jacksonObjectMapper'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required classes 'io.undertow.Undertow', 'org.xnio.SslClientAuthMode'`
+
+		Duplicates of 'org.springframework.boot.convert.CollectionToDelimitedStringConverter': 2 instances of the 'org.springframework.boot.convert.CollectionToDelimitedStringConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.context.properties.bind.BindConverter$TypeConverterConversionService, instanceId=29112544904}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'javax.json.bind.Jsonb'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required class 'org.springframework.web.reactive.config.WebFluxConfigurer'`
+
+		Duplicates of 'org.springframework.boot.convert.CollectionToDelimitedStringConverter': 2 instances of the 'org.springframework.boot.convert.CollectionToDelimitedStringConverter' class contain exactly the same data.
+			conversionService = `InstanceDump{classDump=org.springframework.boot.convert.ApplicationConversionService, instanceId=29109005968}`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass found required class 'javax.servlet.ServletRegistration'`
+
+		Duplicates of 'org.springframework.boot.autoconfigure.condition.ConditionMessage': 2 instances of the 'org.springframework.boot.autoconfigure.condition.ConditionMessage' class contain exactly the same data.
+			message = `@ConditionalOnClass did not find required classes 'org.eclipse.jetty.server.Server', 'org.eclipse.jetty.util.Loader', 'org.eclipse.jetty.webapp.WebAppContext'`
+
+
+	Ineffective list usage (3):
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.logging.DeferredLog(29109427488)#lines have a null value (109/109x).
+			size = `0`
+			elementData = `29109427560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.autoconfigure.condition.ConditionEvaluationReport(29109429168)#exclusions have a null value (10/10x).
+			size = `0`
+			elementData = `29109640872`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory(29115367928)#tomcatContextCustomizers have a null value (6/10x).
+			size = `4`
+			elementData = `29115377480`
+
+
+Duration: PT3.924S

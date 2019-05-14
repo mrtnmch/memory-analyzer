@@ -1,0 +1,164 @@
+Analyzing classes from namespace `org.springframework.web` in `../sandbox/data/heapdump-spring-boot-example.hprof`...
+
+Done, found:
+	Classes: 7108
+	Instances: 159081
+Namespace org.springframework.web
+	Classes: 296
+	Instances: 239
+
+Analyzing memory waste...
+
+Done, found 37 possible ways to save memory:
+	Ineffective list usage (35):
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver(29116024168)#responseBodyAdvice have a null value (9/10x).
+			size = `1`
+			elementData = `29116027688`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29115882280)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29115882328`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29118743208)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29118743256`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29115593760)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29115593808`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.accept.ContentNegotiationManager(29115879432)#strategies have a null value (9/10x).
+			size = `1`
+			elementData = `29115879480`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.config.annotation.WebMvcConfigurerComposite(29116338936)#delegates have a null value (9/10x).
+			size = `1`
+			elementData = `29116338976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter(29115726888)#requestResponseBodyAdvice have a null value (8/10x).
+			size = `2`
+			elementData = `29115891824`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.handler.HandlerExceptionResolverComposite(29116023912)#resolvers have a null value (7/10x).
+			size = `3`
+			elementData = `29116023960`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116025176)#requestBodyAdvice have a null value (4/4x).
+			size = `0`
+			elementData = `29116025224`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115724632)#resourceTransformers have a null value (4/4x).
+			size = `0`
+			elementData = `29115725976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115724632)#locationValues have a null value (4/4x).
+			size = `0`
+			elementData = `29115725136`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29113961408)#resourceTransformers have a null value (4/4x).
+			size = `0`
+			elementData = `29117583888`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver(29115092928)#supportedLocales have a null value (4/4x).
+			size = `0`
+			elementData = `29115092976`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#resourceTransformers have a null value (4/4x).
+			size = `0`
+			elementData = `29115593376`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116026512)#requestBodyAdvice have a null value (4/4x).
+			size = `0`
+			elementData = `29116026560`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115879264)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115879384`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115879264)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115879312`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116025176)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29116025280`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115724632)#resourceResolvers have a null value (3/4x).
+			size = `1`
+			elementData = `29115725776`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29113961408)#resourceResolvers have a null value (3/4x).
+			size = `1`
+			elementData = `29117583688`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115887064)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115887168`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115887064)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115887112`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.cors.CorsConfiguration(29113897040)#allowedMethods have a null value (3/4x).
+			size = `1`
+			elementData = `29113897160`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.cors.CorsConfiguration(29113897040)#allowedHeaders have a null value (3/4x).
+			size = `1`
+			elementData = `29113897216`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.cors.CorsConfiguration(29113897040)#allowedOrigins have a null value (3/4x).
+			size = `1`
+			elementData = `29113897104`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115885680)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115885784`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115885680)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115885728`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#resourceResolvers have a null value (3/4x).
+			size = `1`
+			elementData = `29115593192`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#locations have a null value (3/4x).
+			size = `1`
+			elementData = `29115592968`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.resource.ResourceHttpRequestHandler(29115592232)#locationValues have a null value (3/4x).
+			size = `1`
+			elementData = `29115592792`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115880984)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115881088`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115880984)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115881032`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115882144)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115882248`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29115882144)#requestBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29115882192`
+
+		List full or mostly consisting of nulls: Values in the java.util.ArrayList in org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain(29116026512)#responseBodyAdvice have a null value (3/4x).
+			size = `1`
+			elementData = `29116026616`
+
+
+	Duplicate instances (2):
+		Duplicates of 'org.springframework.web.accept.ServletPathExtensionContentNegotiationStrategy': 3 instances of the 'org.springframework.web.accept.ServletPathExtensionContentNegotiationStrategy' class contain exactly the same data.
+			servletContext = `InstanceDump{classDump=org.apache.catalina.core.ApplicationContextFacade, instanceId=29113961568}`
+
+		Duplicates of 'org.springframework.web.context.support.ServletContextResource': 2 instances of the 'org.springframework.web.context.support.ServletContextResource' class contain exactly the same data.
+			path = `/`
+			servletContext = `InstanceDump{classDump=org.apache.catalina.core.ApplicationContextFacade, instanceId=29113961568}`
+
+
+Duration: PT4.277S
