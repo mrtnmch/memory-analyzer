@@ -20,12 +20,15 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import javax.xml.transform.Result;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -64,6 +67,10 @@ public class App {
 		helpOption.setRequired(false);
 		options.addOption(helpOption);
 
+		Option csvOption = new Option("c", "csv", false, "write the result also to an csv file");
+		csvOption.setRequired(false);
+		options.addOption(csvOption);
+
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
 		CommandLine cmd;
@@ -75,6 +82,7 @@ public class App {
 			boolean list = cmd.hasOption("list");
 			boolean help = cmd.hasOption("help");
 			boolean fields = cmd.hasOption("fields");
+			boolean csv = cmd.hasOption("csv");
 
 			if (list && !Strings.isNullOrEmpty(inputFilePath)) {
 				Runnable measure = this.measure();
@@ -90,14 +98,23 @@ public class App {
 
 				measure.run();
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
+				List<ResultWriter> resultWriters = new ArrayList<>();
+				resultWriters.add(new ConsoleResultWriter(namespace));
+
+				if(csv) {
+					resultWriters.add(new CsvResultWriter("result.csv", namespace));
+				}
+
 				Runnable measure = this.measure();
 
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
-				this.processMemoryDump(memoryDump, namespace, fields);
+				this.processMemoryDump(memoryDump, namespace, fields, resultWriters);
 
 				measure.run();
+
+				resultWriters.forEach(ResultWriter::close);
 			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
 			} else {
@@ -125,68 +142,11 @@ public class App {
 		return analyzer.analyze(Lists.newArrayList(namespace));
 	}
 
-	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields) {
-		System.out.println("Done, found:");
-		System.out.println("\tClasses: " + memoryDump.getClasses().size());
-		System.out.println("\tInstances: " + memoryDump.getInstances().size());
-		System.out.println("Namespace " + namespace);
-		System.out.println("\tClasses: " + memoryDump.getUserClasses().size());
-		System.out.println("\tInstances: " + memoryDump.getUserInstances().size());
-
-		System.out.println();
-		System.out.println("Analyzing memory waste...");
+	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields, List<ResultWriter> resultWriters) {
+		resultWriters.forEach(writer -> writer.write(memoryDump));
 		WasteAnalyzerPipeline wasteAnalyzer = new DefaultWasteAnalyzerPipeline();
 		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
-		System.out.println("Done, found " + memoryWaste.size() + " possible ways to save memory:");
-
-		Map<WasteAnalyzer, List<Waste>> classes = memoryWaste
-				.stream()
-				.collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
-
-		classes
-				.entrySet()
-				.stream()
-				.sorted(Map.Entry.comparingByValue(Comparator.comparingInt(value -> -value.size())))
-				.forEach(kv -> {
-					WasteAnalyzer type = kv.getKey();
-					List<Waste> list = kv.getValue();
-
-					System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
-					list
-							.stream()
-							.sorted()
-							.map(waste -> String.format(
-									"\t\t%s: %s%s",
-									waste.getTitle(),
-									waste.getDescription(),
-									printFields ? this.dumpInstanceFields(waste) : ""
-							))
-							.forEach(System.out::println);
-					System.out.println();
-				});
-	}
-
-	private String dumpInstanceFields(Waste waste) {
-		StringBuilder sb = new StringBuilder();
-		Optional<InstanceDump> first = waste.getAffectedInstances().stream().findFirst();
-
-		sb.append("\n");
-
-		if (first.isPresent()) {
-			for (InstanceFieldDump instanceField : first.get().getClassDump().getInstanceFields()) {
-				Object value = first.get().getInstanceFieldValues().get(instanceField);
-
-				sb.append(String.format("\t\t\t%s = `%s`\n", instanceField.getName(), value));
-			}
-		}
-
-		return sb.toString();
-	}
-
-	private String getNow() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		return dateFormat.format(date);
+		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields));
 	}
 
 	private Runnable measure() {

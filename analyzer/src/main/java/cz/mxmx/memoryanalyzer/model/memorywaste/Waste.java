@@ -12,4 +12,6 @@ public interface Waste extends Comparable<Waste> {
 	List<InstanceDump> getAffectedInstances();
 	void addAffectedInstance(InstanceDump instanceDump);
 	WasteAnalyzer getSourceWasteAnalyzer();
+	String getNominal();
+	String getSource();
 }

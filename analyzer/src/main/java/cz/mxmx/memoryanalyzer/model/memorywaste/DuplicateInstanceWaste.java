@@ -60,6 +60,16 @@ public class DuplicateInstanceWaste implements Waste {
 		return this.sourceWasteAnalyzer;
 	}
 
+	@Override
+	public String getNominal() {
+		return String.format("%d", this.duplicates.size());
+	}
+
+	@Override
+	public String getSource() {
+		return this.getAffectedClass();
+	}
+
 	private String getAffectedClass() {
 		return new ArrayList<>(this.getAffectedInstances())
 				.stream()

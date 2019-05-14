@@ -55,6 +55,16 @@ public class ListOfDuplicatesWaste implements Waste {
 	}
 
 	@Override
+	public String getNominal() {
+		return String.format("%d", this.size);
+	}
+
+	@Override
+	public String getSource() {
+		return String.format("%s#%s", this.instance.getClassDump().getName(), this.field.getName());
+	}
+
+	@Override
 	public int compareTo(Waste o) {
 		if(o instanceof  ListOfDuplicatesWaste) {
 			return Long.compare(((ListOfDuplicatesWaste) o).size, this.size);

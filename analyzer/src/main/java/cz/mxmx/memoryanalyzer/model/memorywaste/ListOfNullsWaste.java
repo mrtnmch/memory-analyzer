@@ -67,6 +67,16 @@ public class ListOfNullsWaste implements Waste {
 	}
 
 	@Override
+	public String getNominal() {
+		return String.format("%d/%d", this.nullCount, this.list.size());
+	}
+
+	@Override
+	public String getSource() {
+		return String.format("%s#%s", this.sourceInstance.getClassDump().getName(), this.sourceField.getName());
+	}
+
+	@Override
 	public int compareTo(Waste o) {
 		if(o instanceof ListOfNullsWaste) {
 			return Long.compare(((ListOfNullsWaste) o).nullCount, this.nullCount);
