@@ -11,8 +11,8 @@ import java.util.List;
  * Waste type that represents duplicate instances.
  */
 public class DuplicateInstanceWaste implements Waste {
-	private static final String TITLE_TEMPLATE = "Duplicate instances of '%s'";
-	private static final String DESC_TEMPLATE = "Some (%d) instances of the '%s' class contain exactly the same data. They could be possibly replaced with one copy.";
+	private static final String TITLE_TEMPLATE = "Duplicates of '%s'";
+	private static final String DESC_TEMPLATE = "%d instances of the '%s' class contain exactly the same data.";
 
 	private final Collection<InstanceDump> duplicates;
 	private final WasteAnalyzer sourceWasteAnalyzer;

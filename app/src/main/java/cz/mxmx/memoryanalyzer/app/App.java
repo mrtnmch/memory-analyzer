@@ -24,8 +24,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Collections;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +77,8 @@ public class App {
 			boolean fields = cmd.hasOption("fields");
 
 			if (list && !Strings.isNullOrEmpty(inputFilePath)) {
-				System.out.println("Started at " + this.getNow());
+				Runnable measure = this.measure();
+
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Loading namespaces from %s...\n\n", inputFilePath);
 				Set<String> namespaces = new TreeSet<>(this.getNamespaces(analyzer));
@@ -85,15 +87,17 @@ public class App {
 				namespaces.forEach(ns -> {
 					System.out.format("\t%s\n", ns);
 				});
-				System.out.println("Finished at " + this.getNow());
 
+				measure.run();
 			} else if (!Strings.isNullOrEmpty(namespace) && !Strings.isNullOrEmpty(inputFilePath)) {
-				System.out.println("Started at " + this.getNow());
+				Runnable measure = this.measure();
+
 				DefaultMemoryDumpAnalyzer analyzer = new DefaultMemoryDumpAnalyzer(inputFilePath);
 				System.out.format("Analyzing classes from namespace `%s` in `%s`...\n\n", namespace, inputFilePath);
 				MemoryDump memoryDump = this.getMemoryDump(analyzer, namespace);
 				this.processMemoryDump(memoryDump, namespace, fields);
-				System.out.println("Finished at " + this.getNow());
+
+				measure.run();
 			} else if (help) {
 				formatter.printHelp("memory-analyzer", options);
 			} else {
@@ -108,6 +112,8 @@ public class App {
 			System.exit(1);
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: Couldn't find the specified input file.");
+		} catch (Exception e) { // print out anything else
+			e.printStackTrace();
 		}
 	}
 
@@ -133,21 +139,31 @@ public class App {
 		List<Waste> memoryWaste = wasteAnalyzer.findMemoryWaste(memoryDump);
 		System.out.println("Done, found " + memoryWaste.size() + " possible ways to save memory:");
 
-		Map<WasteAnalyzer, List<Waste>> classes = memoryWaste.stream().collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
-		classes.forEach((type, list) -> {
-			System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
-			list
-					.stream()
-					.sorted()
-					.map(waste -> String.format(
-							"\t\t%s: %s%s",
-							waste.getTitle(),
-							waste.getDescription(),
-							printFields ? this.dumpInstanceFields(waste) : ""
-					))
-					.forEach(System.out::println);
-			System.out.println();
-		});
+		Map<WasteAnalyzer, List<Waste>> classes = memoryWaste
+				.stream()
+				.collect(Collectors.groupingBy(Waste::getSourceWasteAnalyzer));
+
+		classes
+				.entrySet()
+				.stream()
+				.sorted(Map.Entry.comparingByValue(Comparator.comparingInt(value -> -value.size())))
+				.forEach(kv -> {
+					WasteAnalyzer type = kv.getKey();
+					List<Waste> list = kv.getValue();
+
+					System.out.format("\t%s (%d):\n", wasteAnalyzer.getWasteTitle(type), list.size());
+					list
+							.stream()
+							.sorted()
+							.map(waste -> String.format(
+									"\t\t%s: %s%s",
+									waste.getTitle(),
+									waste.getDescription(),
+									printFields ? this.dumpInstanceFields(waste) : ""
+							))
+							.forEach(System.out::println);
+					System.out.println();
+				});
 	}
 
 	private String dumpInstanceFields(Waste waste) {
@@ -171,6 +187,15 @@ public class App {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		return dateFormat.format(date);
+	}
+
+	private Runnable measure() {
+		Instant now = Instant.now();
+
+		return () -> {
+			Duration duration = Duration.between(now, Instant.now());
+			System.out.format("Duration: %s\n", duration);
+		};
 	}
 
 }

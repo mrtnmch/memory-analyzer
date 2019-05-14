@@ -26,7 +26,7 @@ public class ListOfNullsWaste implements Waste {
 	}
 
 	private static final String TITLE_TEMPLATE = "List full or mostly consisting of nulls";
-	private static final String DESC_TEMPLATE = "All or most of the values in the %s in %s(%d)#%s have a null value (%d/%dx).";
+	private static final String DESC_TEMPLATE = "Values in the %s in %s(%d)#%s have a null value (%d/%dx).";
 
 	@Override
 	public Long estimateWastedBytes() {

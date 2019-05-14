@@ -5,7 +5,6 @@ import cz.mxmx.memoryanalyzer.model.InstanceArrayDump;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
-import cz.mxmx.memoryanalyzer.model.memorywaste.ListOfDuplicatesWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.ListOfNullsWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;

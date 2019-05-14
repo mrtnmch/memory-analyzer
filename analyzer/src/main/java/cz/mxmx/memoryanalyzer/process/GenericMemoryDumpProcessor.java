@@ -278,8 +278,8 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 			RawClassDump value = rawMemoryDump.getRawClassDumps().get(key);
 
 			if (value.getSuperClassObjectId() != 0L
-					&& !classes.containsKey(value.getSuperClassObjectId())
-					&& unprocessedClasses.contains(key)) {
+					&& (!classes.containsKey(value.getSuperClassObjectId())
+					|| unprocessedClasses.contains(key))) {
 				unprocessedClasses.add(key);
 				controlCount--;
 

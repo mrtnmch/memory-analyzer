@@ -5,21 +5,23 @@ import cz.mxmx.memoryanalyzer.model.InstanceArrayDump;
 import cz.mxmx.memoryanalyzer.model.InstanceDump;
 import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 import cz.mxmx.memoryanalyzer.model.MemoryDump;
+import cz.mxmx.memoryanalyzer.model.memorywaste.ListOfDuplicatesWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.ListOfNullsWaste;
 import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 import edu.tufts.eaftan.hprofparser.parser.datastructures.Value;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Analyzer to find ineffective list usage.
  */
-public class ListWasteAnalyzer implements WasteAnalyzer {
-
-	private static final double THRESHOLD = 0.5;
+public class ListOfDuplicatesAnalyzer implements WasteAnalyzer {
 
 	@Override
 	public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
@@ -42,23 +44,19 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 		InstanceArrayDump elements = this.getElements(memoryDump, value);
 
 		if(elements != null && elements.getValues() != null) {
-			long nullCount = findNullWastedList(elements);
-			if(nullCount > elements.getValues().size() * THRESHOLD) {
-				wasteList.add(new ListOfNullsWaste(this, value, elements.getValues(), nullCount, instance, instanceFieldDump));
+			long differentValues = findDifferentValues(elements);
+			long nonNullCount = elements.getValues().stream().filter(Objects::nonNull).count();
+
+			if(differentValues == 1 && nonNullCount > 1) {
+				wasteList.add(new ListOfDuplicatesWaste(this, value, field, nonNullCount));
 			}
 		}
 	}
 
-	private long findNullWastedList(InstanceArrayDump instanceArrayDump) {
-		final long[] nullCount = {0};
-
-		instanceArrayDump.getValues().forEach(val -> {
-			if(val == null) {
-				nullCount[0]++;
-			}
-		});
-
-		return nullCount[0];
+	private long findDifferentValues(InstanceArrayDump instanceArrayDump) {
+		Set<Object> objects = new HashSet<>(instanceArrayDump.getValues());
+		objects.remove(null);
+		return objects.size();
 	}
 
 	private InstanceArrayDump getElements(MemoryDump memoryDump, InstanceDump value) {

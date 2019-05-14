@@ -14,6 +14,7 @@ public class DefaultWasteAnalyzerPipeline extends WasteAnalyzerPipeline {
 	private static final Map<WasteAnalyzer, String> ANALYZERS = new HashMap<WasteAnalyzer, String>() {{
 		put(new DuplicateInstanceWasteAnalyzer(), "Duplicate instances");
 		put(new ListWasteAnalyzer(), "Ineffective list usage");
+		put(new ListOfDuplicatesAnalyzer(), "List of duplicates");
 	}};
 
 	private static final boolean RUN_MULTI_THREADED = true;

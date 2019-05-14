@@ -16,13 +16,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Analyzer to find duplicate instances of objects.
  */
 public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
-
-	private Map<List<Waste>, Object> locks = Collections.synchronizedMap(new HashMap<>());
 
 	@Override
 	public List<Waste> findMemoryWaste(MemoryDump memoryDump) {
@@ -31,12 +30,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 
 		Map<Long, InstanceDump> userInstances = memoryDump.getUserInstances();
 
-		userInstances.keySet().parallelStream().forEach(id -> {
+		userInstances.keySet().forEach(id -> {
 			InstanceDump instance = userInstances.get(id);
 
 			processedInstances.add(instance);
 
-			memoryDump.getUserInstances().keySet().parallelStream().forEach(id2 -> {
+			memoryDump.getUserInstances().keySet().forEach(id2 -> {
 				InstanceDump instance2 = memoryDump.getUserInstances().get(id2);
 
 				if (id.equals(id2) || processedInstances.contains(instance2)) {
@@ -99,26 +98,20 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 	}
 
 	private void mergeWasteList(List<Waste> wasteList, InstanceDump instance, InstanceDump instance2) {
-		if(!this.locks.containsKey(wasteList)) {
-			this.locks.put(wasteList, new Object());
-		}
+		Optional<Waste> optWaste = wasteList
+				.stream()
+				.filter(waste -> this.instancesAreSame(waste.getAffectedInstances().get(0), instance)).findFirst();
 
-		synchronized (this.locks.get(wasteList)) {
-			Optional<Waste> optWaste = wasteList
-					.stream()
-					.filter(waste -> this.instancesAreSame(waste.getAffectedInstances().get(0), instance)).findFirst();
-
-			if (optWaste.isPresent()) {
-				if (!optWaste.get().getAffectedInstances().contains(instance)) {
-					optWaste.get().addAffectedInstance(instance);
-				}
-
-				if (!optWaste.get().getAffectedInstances().contains(instance2)) {
-					optWaste.get().addAffectedInstance(instance2);
-				}
-			} else {
-				wasteList.add(new DuplicateInstanceWaste(this, Lists.newArrayList(instance, instance2)));
+		if (optWaste.isPresent()) {
+			if (!optWaste.get().getAffectedInstances().contains(instance)) {
+				optWaste.get().addAffectedInstance(instance);
 			}
+
+			if (!optWaste.get().getAffectedInstances().contains(instance2)) {
+				optWaste.get().addAffectedInstance(instance2);
+			}
+		} else {
+			wasteList.add(new DuplicateInstanceWaste(this, Lists.newArrayList(instance, instance2)));
 		}
 	}
 }
