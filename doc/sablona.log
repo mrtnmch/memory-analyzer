@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  13 MAY 2019 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.11.2)  14 MAY 2019 19:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -749,33 +749,33 @@ Styl 'thesis.sty' pro psani kvalifikacnich praci v(2.59) na VUT v Brne
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 177.
+(hyperref)                removing `\\' on input line 180.
 
 (/home/mxmx/dev/memory-analyzer/doc/sablona.aux (/home/mxmx/dev/memory-analyzer/doc/text/main.aux) (/home/mxmx/dev/memory-analyzer/doc/text/literatura.aux) (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.aux) (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.aux))
 \openout1 = `sablona.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 195.
-LaTeX Font Info:    ... okay on input line 195.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 195.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 195.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 198.
+LaTeX Font Info:    ... okay on input line 198.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 198.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 198.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    ... okay on input line 198.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count158
@@ -802,7 +802,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \AtBeginShipoutBox=\box50
-Package hyperref Info: Link coloring OFF on input line 195.
+Package hyperref Info: Link coloring OFF on input line 198.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -810,9 +810,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count164
 )
-LaTeX Info: Redefining \ref on input line 195.
-LaTeX Info: Redefining \pageref on input line 195.
-LaTeX Info: Redefining \nameref on input line 195.
+LaTeX Info: Redefining \ref on input line 198.
+LaTeX Info: Redefining \pageref on input line 198.
+LaTeX Info: Redefining \nameref on input line 198.
  (/home/mxmx/dev/memory-analyzer/doc/sablona.out) (/home/mxmx/dev/memory-analyzer/doc/sablona.out)
 \@outlinefile=\write5
 \openout5 = `sablona.out'.
@@ -827,78 +827,78 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 <pdf/student-titulka.pdf, id=324, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
-Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 210.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
-Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 210.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 <pdf/student-titulka.pdf, id=327, page=1, 597.50829pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 210.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 210.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 210.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 210.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
-Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 207.
+Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 210.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
  [2
 
  </home/mxmx/dev/memory-analyzer/doc/pdf/student-titulka.pdf{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}>]
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 218.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 221.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 218.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 221.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<ot1.cmap>>
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 218.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 221.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<oml.cmap>>
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 218.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 221.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<oms.cmap>>
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 218.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 221.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 218.
+(Font)              <12> on input line 221.
 <<omx.cmap>>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 218.
+(Font)              <8> on input line 221.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 218.
+(Font)              <6> on input line 221.
  [3] [4
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 224--224
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--224
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 
  []
 
 
 LaTeX Font Warning: Font shape `T1/qtm/m/sl' in size <12> not available
-(Font)              Font shape `T1/qtm/m/it' tried instead on input line 224.
+(Font)              Font shape `T1/qtm/m/it' tried instead on input line 227.
 
 [5
 
@@ -1089,54 +1089,49 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) [48]
-<obrazky/pipeline.png, id=835, 733.74126pt x 181.67876pt>
+<obrazky/pipeline.png, id=837, 733.74126pt x 181.67876pt>
 File: obrazky/pipeline.png Graphic file (type png)
 <use obrazky/pipeline.png>
-Package pdftex.def Info: obrazky/pipeline.png  used on input line 868.
+Package pdftex.def Info: obrazky/pipeline.png  used on input line 866.
 (pdftex.def)             Requested size: 403.55894pt x 99.92361pt.
  [49 </home/mxmx/dev/memory-analyzer/doc/obrazky/pipeline.png>]
-<obrazky/parallel_pipeline.png, id=854, 733.74126pt x 201.75375pt>
+<obrazky/parallel_pipeline.png, id=855, 733.74126pt x 201.75375pt>
 File: obrazky/parallel_pipeline.png Graphic file (type png)
 <use obrazky/parallel_pipeline.png>
-Package pdftex.def Info: obrazky/parallel_pipeline.png  used on input line 879.
+Package pdftex.def Info: obrazky/parallel_pipeline.png  used on input line 877.
 (pdftex.def)             Requested size: 403.55894pt x 110.96489pt.
  [50 </home/mxmx/dev/memory-analyzer/doc/obrazky/parallel_pipeline.png>] [51
 
 ]
-Overfull \hbox (1.9936pt too wide) in paragraph at lines 915--916
+Overfull \hbox (1.9936pt too wide) in paragraph at lines 913--914
 \T1/qtm/m/n/12 mocí spe-ci-fi-ko-va-ných ba-lík·, do kte-rých pat°í (i kdyº jsou sa-mo-z°ejme k dis-po-zici i v²echny
  []
 
-[52]
-Overfull \hbox (16.06851pt too wide) in paragraph at lines 934--935
-[]\T1/qtm/m/n/12 Testoval jsem spou²-t¥ní ana-lýzy pa-ra-leln¥, a to pro-st°ed-nic-tvím me-tody \T1/lmtt/m/n/12 parallelStream\T1/qtm/m/n/12 ,
- []
-
-[53] [54] [55
+[52] [53] [54] [55
 
 ]
-<obrazky/runtime.png, id=897, 1159.33125pt x 716.6775pt>
+<obrazky/runtime.png, id=898, 1159.33125pt x 716.6775pt>
 File: obrazky/runtime.png Graphic file (type png)
 <use obrazky/runtime.png>
-Package pdftex.def Info: obrazky/runtime.png  used on input line 978.
+Package pdftex.def Info: obrazky/runtime.png  used on input line 976.
 (pdftex.def)             Requested size: 440.55046pt x 272.34029pt.
 
-Overfull \hbox (13.75912pt too wide) in paragraph at lines 978--979
+Overfull \hbox (13.75912pt too wide) in paragraph at lines 976--977
  [][] 
  []
 
 [56 </home/mxmx/dev/memory-analyzer/doc/obrazky/runtime.png>] [57]
-Overfull \hbox (4.15662pt too wide) in paragraph at lines 999--1009
+Overfull \hbox (4.15662pt too wide) in paragraph at lines 997--1007
 [][]
  []
 
-<obrazky/runtime-boot.png, id=915, 1155.31625pt x 714.67pt>
+<obrazky/runtime-boot.png, id=916, 1155.31625pt x 714.67pt>
 File: obrazky/runtime-boot.png Graphic file (type png)
 <use obrazky/runtime-boot.png>
-Package pdftex.def Info: obrazky/runtime-boot.png  used on input line 1019.
+Package pdftex.def Info: obrazky/runtime-boot.png  used on input line 1017.
 (pdftex.def)             Requested size: 439.02475pt x 271.57741pt.
 
-Overfull \hbox (12.23341pt too wide) in paragraph at lines 1019--1020
+Overfull \hbox (12.23341pt too wide) in paragraph at lines 1017--1018
  [][] 
  []
 
@@ -1255,36 +1250,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--86
  (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.tex (/home/mxmx/dev/memory-analyzer/doc/text/uzivatelska-dokumentace.tex [69
 
 
-]) [70] (/home/mxmx/dev/memory-analyzer/doc/text/vypis-programu.tex))
-Underfull \hbox (badness 10000) in paragraph at lines 3--242
+]
+Overfull \hbox (5.21306pt too wide) in paragraph at lines 52--53
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [70] (/home/mxmx/dev/memory-analyzer/doc/text/vypis-programu.tex))
+Underfull \hbox (badness 10000) in paragraph at lines 3--245
 
  []
 
 [71]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 248.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 248.
  (/home/mxmx/dev/memory-analyzer/doc/sablona.aux (/home/mxmx/dev/memory-analyzer/doc/text/main.aux) (/home/mxmx/dev/memory-analyzer/doc/text/literatura.aux) (/home/mxmx/dev/memory-analyzer/doc/text/zkratky.aux) (/home/mxmx/dev/memory-analyzer/doc/text/prilohy.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 245.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 245.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 248.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 248.
 Package rerunfilecheck Info: File `sablona.out' has not changed.
-(rerunfilecheck)             Checksum: 4E50EDFA4BBD3D037BC3C13A465860EB;12034.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 245.
+(rerunfilecheck)             Checksum: 46571056C0971CA599EFCE03B892A1C3;12034.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 248.
  ) 
 Here is how much of TeX's memory you used:
- 25452 strings out of 492641
- 436981 string characters out of 6131787
- 944594 words of memory out of 5000000
- 28425 multiletter control sequences out of 15000+600000
+ 25465 strings out of 492641
+ 437120 string characters out of 6131787
+ 944669 words of memory out of 5000000
+ 28434 multiletter control sequences out of 15000+600000
  85130 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,55p,1528b,1406s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,55p,1528b,1408s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{section*.188} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmbi.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (70 pages, 2355148 bytes).
+Output written on /home/mxmx/dev/memory-analyzer/doc/sablona.pdf (70 pages, 2357176 bytes).
 PDF statistics:
- 1268 PDF objects out of 1440 (max. 8388607)
- 1131 compressed objects within 12 object streams
- 357 named destinations out of 1000 (max. 500000)
+ 1275 PDF objects out of 1440 (max. 8388607)
+ 1138 compressed objects within 12 object streams
+ 361 named destinations out of 1000 (max. 500000)
  750 words of extra memory for PDF output out of 10000 (max. 10000000)
 

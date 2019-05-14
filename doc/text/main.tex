@@ -144,7 +144,7 @@ Oblast, která uchováva data jednotlivých metod. Pro každou načtenou třídu
 \label{java-strings}
 Kromě toho jsou zde uloženy i řetězce (\texttt{String}) -- to platí však pouze pro tzv. internalizované řetězce. Některé řetězce budou uloženy přímo v heapu. Java při vytváření řetězců může použít existující literál uložený v paměti tak, aby tento řetězec zbytečně nezabíral v paměti místo dvakrát či vícekrát. Toto chování lze případně vynutit voláním metody \texttt{intern} nad daným řetězcem -- viz ukázka \ref{intern}. 
 
-\begin{lstlisting}[caption={Příklad uchovávání řetězců a metody \texttt{intern}}, label={intern}, frame={single}, language={java}, float,floatplacement=H]
+\begin{lstlisting}[caption={Příklad uchovávání řetězců a metody \texttt{intern}}, label={intern}, frame={single}, language={java}, float,floatplacement=H,captionpos=b]
     String s1 = "hello";
     String s2 = "hello";
     String s3 = new String("hello");
@@ -496,7 +496,7 @@ Nástroj, který je přímou součásti distribuce Oracle JVM od verze 6. Nebyl 
 
 V příkladu \ref{example-oql} je možné vidět práci s OQL.
 
-\begin{lstlisting}[caption={Příklad OQL}, label={example-oql}, frame={single}, language={SQL}, float,floatplacement=H]
+\begin{lstlisting}[caption={Příklad OQL}, label={example-oql}, frame={single}, language={SQL}, float,floatplacement=H,captionpos=b]
 select s 
 from java.lang.String s 
 where s.value.length >= 100
@@ -723,7 +723,7 @@ Jak bylo popsáno v kapitole \ref{hprof-format}, HPROF má standardizovaný, bin
 
 Například zpracování hlavičky:
 
-\begin{lstlisting}[caption={Příklad zpracování hlavičky ze souboru HPROF}, frame={single}, language={java}, float,floatplacement=H]
+\begin{lstlisting}[caption={Příklad zpracování hlavičky ze souboru HPROF}, frame={single}, language={java}, float,floatplacement=H,captionpos=b]
     String format = readUntilNull(in);
     int idSize = in.readInt();
     long startTime = in.readLong();
@@ -832,7 +832,7 @@ Vytvořil jsem proto fork (odnoš, zrcadlo původního repozitáře) ve vlastní
 
 Pro zpřístupnění repozitáře na GitHubu skrze Maven je možné využít projekt \textit{jitpack.io}. Kromě Mavenu dokáže tento projekt rovněž obsluhovat i Gradle. Pro jeho použití je nutné do projektu přidat Maven repozitář:
 
-\begin{lstlisting}[caption={Definování Jitpack repozitáře v Mavenu}, frame={single}, language={xml}, float,floatplacement=H]
+\begin{lstlisting}[caption={Definování Jitpack repozitáře v Mavenu}, frame={single}, language={xml}, float,floatplacement=H,captionpos=b]
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -841,11 +841,9 @@ Pro zpřístupnění repozitáře na GitHubu skrze Maven je možné využít pro
 </repositories>
 \end{lstlisting}
 
-Díky tomu máme dostupné všechny veřejné GitHub repozitáře jako Maven závislosti. Poté už můžežme specifikovat závislost samotnou, a to pomocí ID skupiny (\texttt{groupId}) ve tvaru \texttt{com.github.<username>} (kde \texttt{<username>} je uživatelské jméno na GitHubu) a jako ID artefaktu (\texttt{artifactId}) uvedeme název repozitáře. Jako verzi můžeme uvést tag (který jsme definovali výše), \texttt{master-SNAPSHOT} pro \texttt{master} větev (jak vypovídá název, jedná se o \texttt{SNAPSHOT} a taková závislost tedy nemá být použita nikde kromě vývoje) nebo ID Git commitu.
+Díky tomu máme dostupné všechny veřejné GitHub repozitáře jako Maven závislosti. Poté už můžežme specifikovat závislost samotnou, a to pomocí ID skupiny (\texttt{groupId}) ve tvaru \texttt{com.github.<username>} (kde \texttt{<username>} je uživatelské jméno na GitHubu) a jako ID artefaktu (\texttt{artifactId}) uvedeme název repozitáře. Jako verzi můžeme uvést tag (který jsme definovali výše), \texttt{master-SNAPSHOT} pro \texttt{master} větev (jak vypovídá název, jedná se o \texttt{SNAPSHOT} a taková závislost tedy nemá být použita nikde kromě vývoje) nebo ID Git commitu. Pro knihovnu můžeme tedy přidáme závislost -- viz ukázka \ref{hprof-dependency}.
 
-Pro knihovnu můžeme tedy přidat závislost:
-
-\begin{lstlisting}[caption={Definování závislosti v Mavenu}, frame={single}, language={xml}, float,floatplacement=H]
+\begin{lstlisting}[label={hprof-dependency}, caption={Definování závislosti v Mavenu}, frame={single}, language={xml}, float,floatplacement=H,captionpos=b]
 <dependencies>
     <dependency>
         <groupId>com.github.mxmxcz</groupId>
@@ -920,7 +918,7 @@ Takto zpracovaný dump, tedy instance třídy \texttt{ProcessedMemoryDump} (resp
 
 Pro analýzu plýtvání je k dispozici rozhraní \texttt{WasteAnalyzer}, s pouze jedinou metodou, jak je vidět v ukázce \ref{waste-analyzer}. Toto rozhraní představuje \textit{pipeline} i \textit{moduly} z analýzy v kapitole \ref{app-structure} -- sdílejí tedy částečně vnější rozhraní. \textit{Pipeline} se odlišuje až prostřednictvím abstraktní třídy \texttt{WasteAnalyzerPipeline}, nicméně nijak zásadně -- od dědících tříd je pouze vyžadován seznam dalších implementací rozhraní \texttt{WasteAnalyzer}, které má tato \textit{pipeline} obsluhovat. Kromě toho přijímá ještě parametr \texttt{multiThreaded}, který přepíná mezi během v jednom či více vláken tak, jak bylo nastíněno na obrázcích \ref{obr-pipeline}, respektive \ref{obr-pipeline-parallel}. 
 
-\begin{lstlisting}[caption={Rozhraní pro analýzu plýtvání paměti ve zpracovaném dumpu}, label={waste-analyzer}, frame={single}, language={java}, float,floatplacement=H]
+\begin{lstlisting}[caption={Rozhraní pro analýzu plýtvání paměti ve zpracovaném dumpu}, label={waste-analyzer}, frame={single}, language={java}, float,floatplacement=H,captionpos=b]
 public interface WasteAnalyzer {
     List<Waste> findMemoryWaste(MemoryDump memoryDump);
 }
@@ -931,7 +929,7 @@ Výchozí implementací je \texttt{DefaultWasteAnalyzerPipeline}, kde jsou regis
 \subsection{Analýza duplicit}
 Tento druh plýtvání hledá třída \texttt{DuplicateInstanceWasteAnalyzer}. Omezuje se na jmenné prostory specifikované uživatelem, což je samozřejmě opatření z výkonových důvodů -- analýzá má velice neefektivní (exponenciální) složitost, takže i přes toto zúžení analyzované množiny trvá běh tohoto modulu často poměrně dlouho. 
 
-Testoval jsem spouštění analýzy paralelně, a to prostřednictvím metody \texttt{parallelStream}, nicméně žádná z testovaných metod paralelizace nepřinesla navíc žádné výhody -- a to především kvůli potřebě synchronizace výsledků, které je nutné slučovat.
+Testoval jsem spouštění analýzy paralelně, a to prostřednictvím metody \texttt{parallel\-Stream}, nicméně žádný z testovaných způsobů rozdělení práce pro paralelizaci nepřinesl navíc žádné výhody -- a to především kvůli potřebě synchronizace výsledků, které je nutné slučovat.
 
 Algoritmus iteruje nad všemi (filtrovanými) instancemi. Zároveň si udržuje seznam instancí již zpracovaných. Ty přeskakuje, stejně jako porovnávání identických objektů (porovnání objektu se sebou samotným). Přeskakuje i objekty bez proměnných -- algoritmus tak označoval výčtové typy jako duplicity.
 
@@ -943,7 +941,7 @@ Analyzování kolekcí se omezuje na objekty tříd rozšířujících \texttt{A
 Druhým typem nad listy je hledání těch, které obsahují pouze duplicity -- všechny jejich prvky mají tedy pouze jednu hodnotu. Tato analýza vynechává listy s hodnotou \texttt{null} (ty jsou podchyceny předchozí detekcí) a počet prvků musí být vyšší než 1.
 
 \chapter{Ověření implementace}
-Program jsem testoval na několika testovacích souborech, které se lišily velikostí i složitostí -- některé z nich byly výsledkem memory dumpu výše zmíněného testovacího modulu (\texttt{example-app}), ostatní data potom pocházela z reálných aplikací, spuštěných na mém počátači. 
+Program jsem testoval na několika testovacích souborech, které se lišily velikostí i složitostí -- některé z nich byly výsledkem memory dumpu výše zmíněného testovacího modulu (\texttt{example-app}), ostatní data potom pocházela z reálných aplikací, spuštěných na mém počátači. Dále se budu věnovat výsledkům testování umělé aplikace vytvořené specificky pro tyto účely a také aplikaci využívající framework Spring Boot, tedy zástupce reálně používaného software s otevřeným zdrojovým kódem.
 
 \section{Testovací aplikace}
 Testovací modul umí vygenerovat poloprázdné kolekce, kolekce obsahující pouze duplikáty (konkrétně celočíselné) a objekty, které mají stejná data a zároveň vytvoří jednoduchou strukturu rodič-potomek. Jako parametr nástroj přijímá počet instancí, které má od každého typu vytvořit. Jedná se tedy o testování v \uv{laboratorních podmínkách}, na programu, který je specificky navržený pro testování daného problému.
@@ -980,7 +978,7 @@ Díky datům v tabulce si lze povšimnou několika věcí. Doba délky běhu ana
 	\label{obr-runtime}
 \end{figure}
 
-Jak je na grafu \ref{obr-runtime} vidět, v případě testovaí aplikace se složitost analýzy reálně skutečně blíží exponenciále, tedy hodnotě $O(2^n)$, k níž jsem došel v analýze. Je to opět způsobeno výše uvedeným poměrem instancí a tříd. Nicméně i k tomuto stavu ve výjimečných stavech a v případě specifických aplikací můžeme dospět a je vidět, že v některých případech při běhu aplikace můžeme narážet na toto omezení a výpočet může trvat delší čas. V reálné aplikaci se bude složitost blížit spíše $O(k2^{n_k})$, kde $k$ je počet tříd a $n_k$ je počet instancí dané třídy. Tato složitost je sice stále exponenciální, ale můžeme očekávat, že $n_k$ se bude pohybovat ve výrazně nižších hodnotách, $k$ potom ovlivňuje výběr jmenného prostoru. Samozřejmě platí, že čím konkrétnější jmenný prostor vybereme a čím méně tříd bude obsahovat, tím rychlejší analýza bude.
+Jak je na grafu \ref{obr-runtime} vidět, v případě testovaí aplikace se složitost analýzy reálně skutečně blíží exponenciále, tedy hodnotě $O(2^n)$ (kde $n$ je počet testovaných instancí), k níž jsem došel v analýze. Je to opět způsobeno výše uvedeným poměrem instancí a tříd. Nicméně i k tomuto stavu ve výjimečných stavech a v případě specifických aplikací můžeme dospět a je vidět, že v některých případech při běhu aplikace můžeme narážet na toto omezení a výpočet může trvat delší čas. V reálné aplikaci se bude složitost blížit spíše $O(k2^{n_k})$, kde $k$ je počet tříd a $n_k$ je počet instancí dané třídy. Tato složitost je sice stále exponenciální, ale můžeme očekávat, že $n_k$ se bude pohybovat ve výrazně nižších hodnotách, $k$ potom ovlivňuje výběr jmenného prostoru. Samozřejmě platí, že čím konkrétnější jmenný prostor vybereme a čím méně tříd bude obsahovat, tím rychlejší analýza bude.
 
 Dále lze v tabulce ověřit test úplnosti -- jak je vidět, počet nalezených problémů je přímo úměrný $N$, na jehož základě je vytvořen příslušný počet instancí. V testovací aplikaci je pro každý z $N$ rodičovských prvků vytvořeno $N$ potomků. Všichni tito potomci mají stejná data -- vytváří tedy $N$ \uv{agregačních tříd}, v nichž mají všechny objekty stejná data. Každá taková třída je jedním problémem, tedy jedním případem plýtvání paměti. Takových tříd existuje tedy $N$ (pro každého z rodičů). Konstantně je poté vytvořeno 5 listů, na nichž jsou testovány zbylé případy neefektivného využití -- plýtvání místem v listech. Předpokládaný počet nalezených problémů je tedy $N+5$ a jak vidíme v tabulce, tento předpoklad detekce algoritmu splňuje.
 
@@ -1012,7 +1010,7 @@ Jako reálnou testovací aplikaci, která má otevřený zdrojový kód, jsem si
 
 Opět jsem každý set spustil třikrát a výsledek trvání zprůměroval. Zvolil jsem v tomto případě odlišnou metodiku -- v případě reálné aplikace si samozřejmě nemůžeme zvolit velikost vygenerovaných dat. Proto jsem zvolil různé jmenné prostory s různými parametry, včetně poměrně obecného \texttt{org}.
 
-Jak je v tabulce vidět, charakteristiky dumpu se od testovací aplikace zásadně liší. Pro nejobecnější balík, tedy \texttt{org}, je poměr instancí na třídu zhruba 4 a všechny hodnoty se drží v nižších jednotkách, v případě posledního rostoru je tříd dokonce třikrát více, než instancí. Jak je vidiět, tato změna výrazně ovlivnila rychlost běhu programu tak, jak jsem uváděl v testu umělé aplikace. Nelze tedy evidentně tvrdit, že je složitost ve všech případech exponenciální, což je pozitivní zjištění. Na grafu \ref{obr-runtime-spring} je tato závislost doby běhu na počtu instancí vykreslena.
+Jak je v tabulce vidět, charakteristiky dumpu se od testovací aplikace zásadně liší. Pro nejobecnější balík, tedy \texttt{org}, je poměr instancí na třídu zhruba 4 a všechny hodnoty se drží v nižších jednotkách, v případě posledního rostoru je tříd dokonce třikrát více, než instancí. Jak je vidět, tato změna výrazně ovlivnila rychlost běhu programu tak, jak jsem uváděl v testu umělé aplikace. Nelze tedy evidentně tvrdit, že je složitost ve všech případech exponenciální, což je pozitivní zjištění. Na grafu \ref{obr-runtime-spring} je tato závislost doby běhu na počtu instancí vykreslena.
 
 \begin{figure}[ht!]
 	\centering
@@ -1021,8 +1019,7 @@ Jak je v tabulce vidět, charakteristiky dumpu se od testovací aplikace zásadn
 	\label{obr-runtime-spring}
 \end{figure}
 
-Jak je vidět, minimálně v rozsahu testovacích dat už algoritmus nabízí lepší než exponenciální složitost. Byť bychom mohli z dostupných dat dojít k závěru, že  předzpracování dumpu trvá zhruba 4 sekundy a analýza je tak ve 4 případech zanedbatelná, není tomu tak -- pro každý jmenný prostor je analýza jiná, tj. je závislá na velikosti tohoto prostoru. Pro potvrzení této hypotézy by toto zpracování muselo být totožné, což neplatí.
-
+Z obrázku můžeme vidět, že přestože při nižším počtu instancí se čas běhu drží poměrně stabilně okolo 4 sekund, s narůstajicím počtem instancí roste opět exponenciálně. Byť bychom mohli z dostupných dat dojít k závěru, že předzpracování dumpu trvá zhruba 4 sekundy a analýza je tak ve 4 případech zanedbatelná, není tomu tak -- pro každý jmenný prostor je analýza jiná, tj. je závislá na velikosti tohoto prostoru. Pro potvrzení této hypotézy by toto zpracování muselo být totožné, což neplatí.
 
 Pokud nahlédneme do výsledků, zjistíme, že algoritmus odhalil třeba list \texttt{lines} ve třídě \texttt{DeferredLog}, která má sice nastavenu velikost $109$, nicméně neobsahuje ani jednu hodnotu. Dále například $38$ instancí třídy \texttt{Signature} obsahuje úplně stejná data, třídy \texttt{Default\-Flow\-Message\-Factory'} potom $34$ instancí.
 
@@ -1042,6 +1039,6 @@ Navržený nástroj dokáže na tyto problémy poukazovat a ve snímku běžíc�
 
 V memory dumpu se nepochybně dá nalézt celá řada dalších způsobů, jakými lze v běžícím programu paměť ušetřit a práce zcela jistě všechny nepodchycuje. Kandidátem pro takové vylepšení je zpracování duplicit i s ohledem na reference, což je funkcionalita, která v rámci této práce implementována nebyla. Stejně tak je možné zpracovávat ostatní typy kolekcí a pole.
 
-Přestože jsem potvrdil, že problém plýtvání paměti jako takový existuje, na testovaných aplikacích se neprojevil do té míry, že by ovlivnil parametry jejich běhu nebo zvyšoval zátěž na systém. Lze proto očekávat, že v běžné aplikaci většího rozsahu bude prostor pro ušetření paměti maximálně v jednotkách, v extrémních případech desítkách megabytů. I to je ale v době, kdy aplikace může běžet v kontejnerech škálovaných do většího množství instancí, zajímavé místo k optimalizaci -- zejména pak pro aplikace, které jsou na systémové prostředky skutečně náročné. Vlivem nepozornosti programátora může docházet i k výjimečným případům, kdy je ten samý objekt vytvářen stále dokola a zároveň jsou všechny instance udržovány v paměti. Pokud k tomuto problému dochází až po delší době běhu, např. po dnech či týdnech, je velice obtížné jej odhalit za užití standardních debugovacích nástrojů a zjistit příčinu stále narůstajícího využití paměti. V takových případech se může vytvořený nástroj hodit a pro zjištění a odstranění přičiny je možné jej použít.
+Přestože jsem potvrdil, že problém plýtvání paměti jako takový existuje, na testovaných aplikacích, tedy omezeném vzorku dat, se neprojevil do té míry, že by ovlivnil parametry jejich běhu nebo zvyšoval zátěž na systém. Lze proto očekávat, že nedojde-li při vývoji aplikace k zásadní chybě v jejím návrhu, v běžném programu většího rozsahu bude prostor pro ušetření paměti maximálně v jednotkách, v extrémních případech desítkách megabytů. I to je ale v době, kdy aplikace může běžet v kontejnerech škálovaných do většího množství instancí, zajímavé místo k optimalizaci -- zejména pak pro aplikace, které jsou na systémové prostředky skutečně náročné. Vlivem nepozornosti programátora může docházet i k výjimečným případům, kdy je ten samý objekt vytvářen stále dokola a zároveň jsou všechny instance udržovány v paměti. Pokud k tomuto problému dochází až po delší době běhu, např. po dnech či týdnech, je velice obtížné jej odhalit za užití standardních debugovacích nástrojů a zjistit příčinu stále narůstajícího využití paměti. V takových případech se může vytvořený nástroj hodit a pro zjištění a odstranění přičiny je možné jej použít.
 
 Kromě uvedených způsobů plýtvání pamětí může být velice jednoduše nástroj rozšířen o další způsoby detekce a je možné jej rovněž využít i pouze jako knihovnu, bez použití obslužné aplikace. Dále může vytvořený program sloužit jako užitečný nástroj pro efektivnější práci s dumpem pro různé účely, které se mohou zcela lišit od účelu této práce. 

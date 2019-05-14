@@ -106,6 +106,9 @@ czech              % originální jazyk je čeština (výchozí)
 \renewcommand{\lstlistingname}{Ukázka}
 \newcommand{\dd}[1]{\mathrm{d}#1}
 
+\usepackage{chngcntr}
+\AtBeginDocument{\counterwithout{lstlisting}{chapter}}
+
 \usepackage[%
 %% Z následujících voleb lze použít pouze jednu
 % left,               % Rovnice a popisky plovoucich objektů budou %zarovnány vlevo

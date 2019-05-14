@@ -28,6 +28,26 @@ Projekt je možné zkompilovat pomocí volitelného IDE, případně právě pom
 mvn clean package
 \end{lstlisting}
 
-Tento příklad předpokládá, že je lokace instalace Mavenu, tedy adresář se spustitelným souborem Mavenu \texttt{mvn}, součástí systémové cesty \texttt{PATH}.
+Tento příklad předpokládá, že je lokace instalace Mavenu, tedy adresář se spustitelným souborem Mavenu \texttt{mvn}, součástí systémové cesty \texttt{PATH}. Pokud kompilace proběhne úspěšně, výsledný spustitelný soubor JAR se bude nacházet v adresáři \texttt{app/target}.
 
 \subsection{Spuštění programu a jeho parametry}
+Program se ovládá pomocí příkazové řádky. Nabízí několik parametrů:
+
+\begin{itemize}
+    \item \texttt{-p} -- Cesta k souboru HPROF, který má program analyzovat.
+    \item \texttt{-l} -- Pokud je parametr specifikován, program jako akci provede vypsání jmenných prostorů, které se ve specifikovaném souboru HPROF nacházejí.
+    \item \texttt{-n} -- Pokud je specifikován tento parametr společně s hodnotou, jako akce se provede analýza specifikovaného HPROF souboru. Očekává se parametr ve formátu jmenného prostoru, jehož třídy mají být analyzovány -- tedy např. \texttt{com.example}.
+    \item \texttt{-h} -- Výpis nápovědy.
+\end{itemize}
+
+Pro spuštění programu je povinný parametr \texttt{-p} a jeden z dvojice \texttt{-l} či \texttt{-n}. Pro vypsání jmenných prostorů ze souboru \texttt{priklad.hprof}, nacházejícího se ve složce se souborem JAR (\texttt{memory-analyzer.jar}), slouží tedy tento příkaz:
+
+\begin{lstlisting}[frame={single}]
+java -jar memory-analyzer.jar -p priklad.hprof -l
+\end{lstlisting}
+
+Pro analýzu stejného souboru potom příkaz následující -- za předpokladu, že výše uvedený příkaz vypsal jako jeden z výsledků \texttt{cz.zcu.kiv}.
+
+\begin{lstlisting}[frame={single}]
+java -jar memory-analyzer.jar -p priklad.hprof -n cz.zcu.kiv
+\end{lstlisting}
