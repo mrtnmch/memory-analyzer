@@ -1,0 +1,35 @@
+\chapter{Strojově čitelný výpis programu}
+\label{runtime-log-csv}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\tiny,columns=fullflexible,frame=single,breaklines=true,postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+    Namespace 
+    cz.mxmx.memoryanalyzer.example
+    
+    Classes,Instances
+    710,7707
+    3,111
+    
+    Type,Count,Aggregation,Fields
+    Total,15,true,
+    Duplicate instances,10,true,
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108685520}'|'name'='Child 1'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108684560}'|'name'='Child 2'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108686480}'|'name'='Child 0'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108650888}'|'name'='Child 3'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108649928}'|'name'='Child 4'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108647048}'|'name'='Child 7'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108646088}'|'name'='Child 8'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108648008}'|'name'='Child 6'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108645128}'|'name'='Child 9'
+    cz.mxmx.memoryanalyzer.example.Child,10,false,'parent'='InstanceDump{classDump=cz.mxmx.memoryanalyzer.example.Parent, instanceId=29108648968}'|'name'='Child 5'
+    
+    Ineffective list usage,4,true,
+    cz.mxmx.memoryanalyzer.example.App#emptyList,10000/10000,false,'size'='0'|'elementData'='29108787560'
+    cz.mxmx.memoryanalyzer.example.App#sameList,9990/10000,false,'size'='10'|'elementData'='29108717000'
+    cz.mxmx.memoryanalyzer.example.App#mostlyEmptyList,9990/10000,false,'size'='10'|'elementData'='29108860312'
+    cz.mxmx.memoryanalyzer.example.App#listOfDuplicates,9990/10000,false,'size'='10'|'elementData'='29108997736'
+    
+    List of duplicates,1,true,
+    java.util.ArrayList#listOfDuplicates,10,false,'size'='10'|'elementData'='29108997736'    
+\end{lstlisting}
+\end{minipage}

@@ -1,15 +1,15 @@
-\section{Uživatelská dokumentace}
+\chapter{Uživatelská dokumentace}
 \label{usage-doc}
-\subsection{Požadavky pro vývoj a spuštění projektu}
+\section{Požadavky pro vývoj a spuštění projektu}
 Pro spuštění programu je nutné mít nainstalovanou pouze Javu a to konkrétně JRE, minimálně ve verzi 1.8. Žádné další speciální požadavky kladeny nejsou -- pro získání dumpu je ale vhodné mít nějaký software, který umožňuje jeho pohodlné získání, např. VisualVM.
 
-Pro vývoj (úpravu programu, jeho kompilaci, vytvoření spustitelného souboru JAR a vydání nové verze) je zapotřebí následující softwarová výbava:
+Pro vývoj (úpravu programu, jeho kompilaci, vytvoření spustitelného souboru JAR a~vydání nové verze) je zapotřebí následující softwarová výbava:
 \begin{itemize}
     \item Java JDK -- ve stejné verzi jako JRE, tj. minimálně \texttt{1.8}.
     \item Maven 3 -- pro kompilaci modulů a vydání projektu, konkrétně byla testována poslední verze v době psaní, tj. \texttt{3.6.0}.
 \end{itemize}
 
-\subsection{Struktura projektu}
+\section{Struktura projektu}
 Projekt je rozdělen do několika modulů a následující adresářové struktury:
 
 \begin{description}
@@ -21,8 +21,8 @@ Projekt je rozdělen do několika modulů a následující adresářové struktu
     \item[pom.xml] Soubor nástroje Maven. Definuje rodičovský modul, který definuje jako submoduly některé z výše uvedených adresářů -- konkrétně \textit{sandbox/example-app}, \textit{app} a \textit{analyzer}.
 \end{description}
 
-\subsection{Kompilace projektu}
-Projekt je možné zkompilovat pomocí volitelného IDE, případně právě pomocí nástroje Maven a definovaných souborů \texttt{pom.xml}. Konkrétně lze celý projekt, včetně knihovny a obslužné aplikace, zkompilovat spuštěním následujícího příkazu v rodičovském adresáři (tedy tom, který obsahuje rodičovský \texttt{pom.xml} a který obsahuje výše popsané adresáře):
+\section{Kompilace projektu}
+Projekt je možné zkompilovat pomocí volitelného IDE, případně právě pomocí nástroje Maven a definovaných souborů \texttt{pom.xml}. Konkrétně lze celý projekt, včetně knihovny a~obslužné aplikace, zkompilovat spuštěním následujícího příkazu v rodičovském adresáři (tedy tom, který obsahuje rodičovský \texttt{pom.xml} a který obsahuje výše popsané adresáře):
 
 \begin{lstlisting}[frame={single}]
 mvn clean package
@@ -30,14 +30,16 @@ mvn clean package
 
 Tento příklad předpokládá, že je lokace instalace Mavenu, tedy adresář se spustitelným souborem Mavenu \texttt{mvn}, součástí systémové cesty \texttt{PATH}. Pokud kompilace proběhne úspěšně, výsledný spustitelný soubor JAR se bude nacházet v adresáři \texttt{app/target}.
 
-\subsection{Spuštění programu a jeho parametry}
+\section{Spuštění programu a jeho parametry}
 Program se ovládá pomocí příkazové řádky. Nabízí několik parametrů:
 
 \begin{itemize}
-    \item \texttt{-p} -- Cesta k souboru HPROF, který má program analyzovat.
-    \item \texttt{-l} -- Pokud je parametr specifikován, program jako akci provede vypsání jmenných prostorů, které se ve specifikovaném souboru HPROF nacházejí.
-    \item \texttt{-n} -- Pokud je specifikován tento parametr společně s hodnotou, jako akce se provede analýza specifikovaného HPROF souboru. Očekává se parametr ve formátu jmenného prostoru, jehož třídy mají být analyzovány -- tedy např. \texttt{com.example}.
-    \item \texttt{-h} -- Výpis nápovědy.
+    \item \texttt{-p}/\texttt{----path} -- Cesta k souboru HPROF, který má program analyzovat.
+    \item \texttt{-l}/\texttt{----list} -- Pokud je parametr specifikován, program jako akci provede vypsání jmenných prostorů, které se ve specifikovaném souboru HPROF nacházejí.
+    \item \texttt{-n}/\texttt{----namespace} -- Pokud je specifikován tento parametr společně s hodnotou, jako akce se provede analýza specifikovaného HPROF souboru. Očekává se parametr ve formátu jmenného prostoru, jehož třídy mají být analyzovány -- tedy např. \texttt{com.\-example}.
+    \item \texttt{-f}/\texttt{----fields} -- Přidá do výpisu i názvy a hodnoty proměnných nalezených instancí (pouze pro \texttt{-n}).
+    \item \texttt{-c}/\texttt{----csv} -- Vypíše výsledek kromě konzole i do souboru \texttt{results.csv} (pouze pro \texttt{-n}).
+    \item \texttt{-h}/\texttt{----help} -- Výpis nápovědy.
 \end{itemize}
 
 Pro spuštění programu je povinný parametr \texttt{-p} a jeden z dvojice \texttt{-l} či \texttt{-n}. Pro vypsání jmenných prostorů ze souboru \texttt{priklad.hprof}, nacházejícího se ve složce se souborem JAR (\texttt{memory-analyzer.jar}), slouží tedy tento příkaz:
@@ -50,4 +52,11 @@ Pro analýzu stejného souboru potom příkaz následující -- za předpokladu,
 
 \begin{lstlisting}[frame={single}]
 java -jar memory-analyzer.jar -p priklad.hprof -n cz.zcu.kiv
+\end{lstlisting}
+
+Následující příkad provede analýzu souboru, vypíše hodnoty proměnných z nalezených tříd a navíc výsledek uloží do CSV.
+
+\begin{lstlisting}[frame={single}]
+java -jar memory-analyzer.jar -p priklad.hprof -f -c -n 
+cz.zcu.kiv
 \end{lstlisting}
