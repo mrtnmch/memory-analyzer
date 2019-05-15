@@ -13,7 +13,7 @@ Pro vývoj (úpravu programu, jeho kompilaci, vytvoření spustitelného souboru
 Projekt je rozdělen do několika modulů a následující adresářové struktury:
 
 \begin{description}
-    \item[analyzer] Obsahuje zdrojové kódy vytvořené knihovny, která je využívána oslužnou aplikací.
+    \item[analyzer] Obsahuje zdrojové kódy vytvořené knihovny, která je využívána obslužnou aplikací.
     \item[app] Obsahuje zdrojové kódy obslužné aplikace. Je vstupním bodem programu při jeho využití jako aplikace (resp. v případě, že nástroj není využíván formou knihovny).
     \item[doc] Pro úplnost tento adresář obsahuje zdrojové soubory tohoto textu.
     \item[sandbox] Obsahuje různé soubory, které se mohou při vývoji aplikace hodit -- především potom v adresáři \textit{data}, kde se nacházejí soubory HPROF, na kterých byl nástroj otestován. Rovněž obsahuje \textit{example-app}, tedy aplikaci pro generování testovacích dat a \textit{spring-boot-example}, což je jednoduchý projekt ve frameworku Spring Boot.
@@ -54,7 +54,7 @@ Pro analýzu stejného souboru potom příkaz následující -- za předpokladu,
 java -jar memory-analyzer.jar -p priklad.hprof -n cz.zcu.kiv
 \end{lstlisting}
 
-Následující příkad provede analýzu souboru, vypíše hodnoty proměnných z nalezených tříd a navíc výsledek uloží do CSV.
+Následující příklad provede analýzu souboru, vypíše hodnoty proměnných z nalezených tříd a navíc výsledek uloží do CSV.
 
 \begin{lstlisting}[frame={single}]
 java -jar memory-analyzer.jar -p priklad.hprof -f -c -n 

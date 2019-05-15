@@ -2,14 +2,14 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Struktura Java pam\IeC {\v e}ti \cite {jvms-img}.}}{16}{figure.16}
 \contentsline {figure}{\numberline {2}{\ignorespaces Vyu\IeC {\v z}it\IeC {\'\i } pam\IeC {\v e}ti a proveden\IeC {\'\i } garbage kolekce p\IeC {\v r}ed vytvo\IeC {\v r}en\IeC {\'\i }m dumpu (\IeC {\v c}erven\IeC {\v e}).}}{21}{figure.37}
 \contentsline {figure}{\numberline {3}{\ignorespaces Probl\IeC {\'e}m anal\IeC {\'y}zy pam\IeC {\v e}ti za b\IeC {\v e}hu programu.}}{25}{figure.56}
-\contentsline {figure}{\numberline {4}{\ignorespaces Postup vol\IeC {\'a}n\IeC {\'\i } hierarchie class loader\IeC {\r u}.}}{27}{figure.68}
-\contentsline {figure}{\numberline {5}{\ignorespaces Rozhran\IeC {\'\i } Eclipse MAT}}{29}{figure.73}
-\contentsline {figure}{\numberline {6}{\ignorespaces Rozhran\IeC {\'\i } VisualVM}}{30}{figure.77}
-\contentsline {figure}{\numberline {7}{\ignorespaces Rozhran\IeC {\'\i } Java Mission Control}}{31}{figure.81}
-\contentsline {figure}{\numberline {8}{\ignorespaces Rozhran\IeC {\'\i } JProfileru}}{32}{figure.85}
-\contentsline {figure}{\numberline {9}{\ignorespaces Rozhran\IeC {\'\i } JHAT}}{33}{figure.89}
-\contentsline {figure}{\numberline {10}{\ignorespaces Strom porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } objekt\IeC {\r u}}}{38}{figure.113}
-\contentsline {figure}{\numberline {11}{\ignorespaces Architektura jednotliv\IeC {\'y}ch modul\IeC {\r u} pro zpracov\IeC {\'a}n\IeC {\'\i } memory dumpu.}}{49}{figure.160}
-\contentsline {figure}{\numberline {12}{\ignorespaces Paraleln\IeC {\'\i } varianta k seriov\IeC {\'e} architektu\IeC {\v r}e z obr\IeC {\'a}zku \ref {obr-pipeline}.}}{50}{figure.162}
-\contentsline {figure}{\numberline {13}{\ignorespaces Vztah \IeC {\v c}asu b\IeC {\v e}hu anal\IeC {\'y}zy oproti po\IeC {\v c}tu instanc\IeC {\'\i } u testovac\IeC {\'\i } aplikace (t\IeC {\v r}i t\IeC {\v r}\IeC {\'\i }dy). Trend (exponenci\IeC {\'a}ln\IeC {\'\i } k\IeC {\v r}ivka) je vyzna\IeC {\v c}en \IeC {\v c}erven\IeC {\v e}.}}{56}{figure.178}
-\contentsline {figure}{\numberline {14}{\ignorespaces Vztah \IeC {\v c}asu b\IeC {\v e}hu anal\IeC {\'y}zy oproti po\IeC {\v c}tu instanc\IeC {\'\i } u Hello World Spring Bootu.}}{59}{figure.183}
+\contentsline {figure}{\numberline {4}{\ignorespaces Postup vol\IeC {\'a}n\IeC {\'\i } hierarchie class loader\IeC {\r u}.}}{27}{figure.62}
+\contentsline {figure}{\numberline {5}{\ignorespaces Rozhran\IeC {\'\i } Eclipse MAT}}{30}{figure.73}
+\contentsline {figure}{\numberline {6}{\ignorespaces Rozhran\IeC {\'\i } VisualVM}}{31}{figure.77}
+\contentsline {figure}{\numberline {7}{\ignorespaces Rozhran\IeC {\'\i } Java Mission Control}}{32}{figure.81}
+\contentsline {figure}{\numberline {8}{\ignorespaces Rozhran\IeC {\'\i } JProfileru}}{33}{figure.85}
+\contentsline {figure}{\numberline {9}{\ignorespaces Rozhran\IeC {\'\i } JHAT}}{34}{figure.89}
+\contentsline {figure}{\numberline {10}{\ignorespaces Strom porovn\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } objekt\IeC {\r u}}}{39}{figure.113}
+\contentsline {figure}{\numberline {11}{\ignorespaces Architektura jednotliv\IeC {\'y}ch modul\IeC {\r u} pro zpracov\IeC {\'a}n\IeC {\'\i } memory dumpu.}}{50}{figure.160}
+\contentsline {figure}{\numberline {12}{\ignorespaces Paraleln\IeC {\'\i } varianta k s\IeC {\'e}riov\IeC {\'e} architektu\IeC {\v r}e z obr\IeC {\'a}zku \ref {obr-pipeline}.}}{51}{figure.162}
+\contentsline {figure}{\numberline {13}{\ignorespaces Vztah \IeC {\v c}asu b\IeC {\v e}hu anal\IeC {\'y}zy oproti po\IeC {\v c}tu instanc\IeC {\'\i } u testovac\IeC {\'\i } aplikace (t\IeC {\v r}i t\IeC {\v r}\IeC {\'\i }dy). Trend (exponenci\IeC {\'a}ln\IeC {\'\i } k\IeC {\v r}ivka) je vyzna\IeC {\v c}en \IeC {\v c}erven\IeC {\v e}.}}{57}{figure.178}
+\contentsline {figure}{\numberline {14}{\ignorespaces Vztah \IeC {\v c}asu b\IeC {\v e}hu anal\IeC {\'y}zy oproti po\IeC {\v c}tu instanc\IeC {\'\i } u Hello World Spring Bootu.}}{60}{figure.183}
