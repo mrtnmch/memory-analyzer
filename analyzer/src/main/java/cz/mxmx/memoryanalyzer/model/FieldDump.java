@@ -2,11 +2,20 @@ package cz.mxmx.memoryanalyzer.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * Processed field of a class/instance.
+ */
 public class FieldDump {
 	private final String name;
 	private final Class<?> type;
 	private final Object value;
 
+	/**
+	 * Creates a field representation.
+	 * @param name Field name.
+	 * @param type Field type.
+	 * @param value Field value.
+	 */
 	public FieldDump(String name, Class<?> type, Object value) {
 		this.name = name;
 		this.type = type;

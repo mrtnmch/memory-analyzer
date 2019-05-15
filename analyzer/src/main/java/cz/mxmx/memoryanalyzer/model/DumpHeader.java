@@ -6,11 +6,20 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Processed dump header.
+ */
 public class DumpHeader {
 	private final String format;
 	private final int idSize;
 	private final Date time;
 
+	/**
+	 * Creates a processed dump header.
+	 * @param format Format of the dump.
+	 * @param idSize Byte size of the IDs in the dump.
+	 * @param time Base datetime.
+	 */
 	public DumpHeader(String format, int idSize, Date time) {
 		this.format = format;
 		this.idSize = idSize;

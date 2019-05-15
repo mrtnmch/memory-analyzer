@@ -10,12 +10,31 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Filters the instances and classes via specified namespaces.
+ */
 public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
 
+	/**
+	 * Cache to stop memory dumps from re-processing.
+	 */
 	private final Map<RawMemoryDump, MemoryDump> cache = new HashMap<>();
+
+	/**
+	 * Generic memory dump to get raw data.
+	 */
 	private final MemoryDumpProcessor genericMemoryDumpProcessor;
+
+	/**
+	 * Namespaces to use as a filter.
+	 */
 	private final Collection<String> namespaces;
 
+	/**
+	 * Creates user-specific instances and classes processor.
+	 * @param genericMemoryDumpProcessor Generic processor which handles pre-processing.
+	 * @param namespaces Namespaces to use as a filter.
+	 */
 	public FilteredMemoryDumpProcessor(MemoryDumpProcessor genericMemoryDumpProcessor, Collection<String> namespaces) {
 		this.genericMemoryDumpProcessor = genericMemoryDumpProcessor;
 		this.namespaces = namespaces;
@@ -45,6 +64,12 @@ public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
 		return processedMemoryDump;
 	}
 
+	/**
+	 * Filters instances by the namespaces.
+	 * @param instances Instances to filter.
+	 * @param userClasses User classes.
+	 * @return Filtered instances.
+	 */
 	protected Map<Long, InstanceDump> getUserInstances(Map<Long, InstanceDump> instances, Map<Long, ClassDump> userClasses) {
 		Map<Long, InstanceDump> userInstances = new HashMap<>();
 
@@ -57,6 +82,11 @@ public class FilteredMemoryDumpProcessor implements MemoryDumpProcessor {
 		return userInstances;
 	}
 
+	/**
+	 * Filters classes by the namespaces.
+	 * @param classes Classes to filter.
+	 * @return Filtered classes.
+	 */
 	protected Map<Long, ClassDump> getUserClasses(Map<Long, ClassDump> classes) {
 		Map<Long, ClassDump> userClasses = new HashMap<>();
 

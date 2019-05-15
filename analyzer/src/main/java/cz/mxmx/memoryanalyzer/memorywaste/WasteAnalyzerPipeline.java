@@ -15,9 +15,21 @@ import java.util.stream.Stream;
  */
 public abstract class WasteAnalyzerPipeline implements WasteAnalyzer {
 
+	/**
+	 * Analyzers in the pipeline and their description.
+	 */
 	private final Map<WasteAnalyzer, String> analyzers;
+
+	/**
+	 * True if the analysis should be run in multiple threads.
+	 */
 	private final boolean multiThreaded;
 
+	/**
+	 * Creates a new pipeline with the given analyzers.
+	 * @param analyzers Analyzers of the new pipeline and their description.
+	 * @param multiThreaded True if the analysis should be run in multiple threads.
+	 */
 	public WasteAnalyzerPipeline(Map<WasteAnalyzer, String> analyzers, boolean multiThreaded) {
 		this.analyzers = analyzers;
 		this.multiThreaded = multiThreaded;
@@ -28,6 +40,11 @@ public abstract class WasteAnalyzerPipeline implements WasteAnalyzer {
 		return this.multiThreaded ? this.findMemoryWasteMultiThreaded(memoryDump) : this.findMemoryWasteSingleThreaded(memoryDump);
 	}
 
+	/**
+	 * Runs the analysis in multiple threads.
+	 * @param memoryDump Memory dump to analyse.
+	 * @return Found waste.
+	 */
 	private List<Waste> findMemoryWasteMultiThreaded(MemoryDump memoryDump) {
 		List<Waste> wasteList = new ArrayList<>();
 		List<Thread> threads = new ArrayList<>();
@@ -53,6 +70,11 @@ public abstract class WasteAnalyzerPipeline implements WasteAnalyzer {
 		return wasteList;
 	}
 
+	/**
+	 * Runs the analysis in a single thread.
+	 * @param memoryDump Memory dump to analyse.
+	 * @return Found waste.
+	 */
 	private List<Waste> findMemoryWasteSingleThreaded(MemoryDump memoryDump) {
 		return this.analyzers.keySet()
 				.stream()
@@ -63,6 +85,11 @@ public abstract class WasteAnalyzerPipeline implements WasteAnalyzer {
 				);
 	}
 
+	/**
+	 * Returns the title (description) of the given analyzer.
+	 * @param wasteAnalyzer Analyzer.
+	 * @return Analyzer's title.
+	 */
 	public String getWasteTitle(WasteAnalyzer wasteAnalyzer) {
 		return this.analyzers.get(wasteAnalyzer);
 	}

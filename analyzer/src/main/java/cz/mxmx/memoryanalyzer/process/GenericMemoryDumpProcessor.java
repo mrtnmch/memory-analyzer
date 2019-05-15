@@ -38,9 +38,19 @@ import java.util.Queue;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+/**
+ * Generic memory dump processor to handle translation of raw data into processed data.
+ */
 public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 
+	/**
+	 * Cache to stop re-creating of the memory dumps.
+	 */
 	private final Map<RawMemoryDump, MemoryDump> cache = new HashMap<>();
+
+	/**
+	 * Translation map from string into class representation.
+	 */
 	private static final Map<String, Class<?>> TYPE_TRANSLATION_MAP = new HashMap<String, Class<?>>() {{
 		put("object", Object.class);
 		put(null, Void.class);
@@ -82,6 +92,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return processedMemoryDump;
 	}
 
+	/**
+	 * Translates raw alloc site parents into processed ones.
+	 * @param rawAllocSiteParents Raw alloc site parents.
+	 * @return Processed alloc site parents.
+	 */
 	private List<AllocSiteParent> getAllocSites(List<RawAllocSiteParent> rawAllocSiteParents) {
 		List<AllocSiteParent> allocSiteParents = new ArrayList<>();
 
@@ -114,6 +129,14 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return allocSiteParents;
 	}
 
+	/**
+	 * Translates raw stack traces into processed ones.
+	 * @param rawStackTraces Raw stack traces.
+	 * @param rawStackFrames Raw stack frames.
+	 * @param stringMap Map of strings to translate String IDs into their values.
+	 * @param classes Classes.
+	 * @return Processed stack traces.
+	 */
 	private List<StackTrace> getStackTraces(List<RawStackTrace> rawStackTraces, List<RawStackFrame> rawStackFrames, Map<Long, String> stringMap, Map<Long, ClassDump> classes) {
 		List<StackTrace> stackTraces = new ArrayList<>();
 		Map<Long, StackFrame> idToRawStackFrame = rawStackFrames.stream().collect(Collectors.toMap(
@@ -140,6 +163,13 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return stackTraces;
 	}
 
+	/**
+	 * Translates raw instance arrays into processed ones.
+	 * @param rawObjectArrayDumps Raw instance dumps.
+	 * @param instanceDumpMap Instance map.
+	 * @param classDumpMap Class map.
+	 * @return Translated instance arrays.
+	 */
 	private Map<Long, InstanceArrayDump> getInstanceArrays(Map<Long, RawObjectArrayDump> rawObjectArrayDumps, Map<Long, InstanceDump> instanceDumpMap, Map<Long, ClassDump> classDumpMap) {
 		Map<Long, InstanceArrayDump> arrays = new HashMap<>();
 
@@ -156,6 +186,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return arrays;
 	}
 
+	/**
+	 * Translates raw primitive arrays into processed ones.
+	 * @param rawPrimitiveArrayDumps Raw primitive arrays.
+	 * @return Processed primitive arrays.
+	 */
 	private Map<Long, ArrayDump> getPrimitiveArrays(Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps) {
 		Map<Long, ArrayDump> arrays = new HashMap<>();
 
@@ -166,6 +201,12 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return arrays;
 	}
 
+	/**
+	 * Translates raw instances into processed ones.
+	 * @param rawMemoryDump Raw memory dump to process.
+	 * @param classes Classes.
+	 * @return Processed instances.
+	 */
 	protected Map<Long, InstanceDump> getInstances(RawMemoryDump rawMemoryDump, Map<Long, ClassDump> classes) {
 		Map<Long, InstanceDump> instances = new HashMap<>();
 
@@ -181,6 +222,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return instances;
 	}
 
+	/**
+	 * Translates instance fields into processed ones.
+	 * @param instances Instances to process.
+	 * @param rawMemoryDump Memory dump to use.
+	 */
 	private void processInstanceFields(Map<Long, InstanceDump> instances, RawMemoryDump rawMemoryDump) {
 		Queue<Long> queue = new LinkedList<>(instances.keySet());
 
@@ -232,10 +278,21 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		}
 	}
 
+	/**
+	 * Checks if an instance is String.
+	 * @param instanceDump Instance to check
+	 * @return True if the instance is {@link String}.
+	 */
 	private boolean isString(InstanceDump instanceDump) {
 		return instanceDump.getClassDump().getName().equals(String.class.getName());
 	}
 
+	/**
+	 * Extracts a string from arrays.
+	 * @param instanceDump Instance to process.
+	 * @param primitiveArrayDumpMap Primitive arrays.
+	 * @return String from the array.
+	 */
 	private String extractString(InstanceDump instanceDump, Map<Long, RawPrimitiveArrayDump> primitiveArrayDumpMap) {
 		final String[] ret = {null};
 
@@ -251,12 +308,22 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return ret[0];
 	}
 
+	/**
+	 * Translates char array into string.
+	 * @param list Values of the array.
+	 * @return Created string.
+	 */
 	private String charArrayToString(List<Object> list) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(sb::append);
 		return sb.toString();
 	}
 
+	/**
+	 * Translates raw classes into processed ones.
+	 * @param rawMemoryDump Memory dump to process.
+	 * @return Translated processed classes.
+	 */
 	protected Map<Long, ClassDump> getClasses(RawMemoryDump rawMemoryDump) {
 		Map<Long, ClassDump> classes = new HashMap<>();
 		Queue<Long> unprocessedClasses = new LinkedList<>();
@@ -299,6 +366,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return classes;
 	}
 
+	/**
+	 * Process class fields - instance fields, static fields and constant fields.
+	 * @param classes Classes to process.
+	 * @param rawMemoryDump Raw memory dump to use.
+	 */
 	private void processClassFields(Map<Long, ClassDump> classes, RawMemoryDump rawMemoryDump) {
 		classes.forEach((key, value) -> {
 			rawMemoryDump.getRawClassDumps().get(key).getInstanceFields().forEach((name, strType) -> {
@@ -319,6 +391,13 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		});
 	}
 
+	/**
+	 * Translate a raw class into processed one.
+	 * @param rawMemoryDump Raw memory class.
+	 * @param id ID of the class.
+	 * @param parent Class parent.
+	 * @return Processed class.
+	 */
 	protected ClassDump processClass(RawMemoryDump rawMemoryDump, Long id, ClassDump parent) {
 		RawLoadClassDump rawLoadClassDump = rawMemoryDump.getRawLoadClassDumps().get(id);
 		ClassDump classDump = new ClassDump(id, Normalization.getNormalizedClassname(rawLoadClassDump.getClassName()), rawLoadClassDump.getClassSerialNum(), parent);
@@ -330,6 +409,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		return classDump;
 	}
 
+	/**
+	 * Translate a raw header into processed one,
+	 * @param rawDumpHeader Raw header.
+	 * @return Processed header.
+	 */
 	protected DumpHeader getDumpHeader(RawDumpHeader rawDumpHeader) {
 		return new DumpHeader(
 				rawDumpHeader.getFormat(),
@@ -338,6 +422,11 @@ public class GenericMemoryDumpProcessor implements MemoryDumpProcessor {
 		);
 	}
 
+	/**
+	 * Translates a class name into an actual type.
+	 * @param classType Class name (type).
+	 * @return Translated type or null.
+	 */
 	protected Class<?> getClass(String classType) {
 		return TYPE_TRANSLATION_MAP.get(classType.toLowerCase());
 	}

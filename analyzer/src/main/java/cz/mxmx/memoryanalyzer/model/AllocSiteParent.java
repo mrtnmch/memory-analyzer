@@ -2,6 +2,9 @@ package cz.mxmx.memoryanalyzer.model;
 
 import java.util.List;
 
+/**
+ * Processed alloc site parent.
+ */
 public class AllocSiteParent {
 	private final short bitMaskFlags;
 	private final float cutoffRatio;
@@ -11,6 +14,16 @@ public class AllocSiteParent {
 	private final long instancesAllocated;
 	private final List<AllocSite> sites;
 
+	/**
+	 * Creates a processed alloc site parent.
+	 * @param bitMaskFlags Bit mask map.
+	 * @param cutoffRatio Parent's cutoff ratio.
+	 * @param liveBytes Number of "live" bytes.
+	 * @param liveInstances Number of "live" instances.
+	 * @param bytesAllocated Number of allocated bytes.
+	 * @param instancesAllocated Number of allocated instances.
+	 * @param sites List of the {@link AllocSite} in the parent.
+	 */
 	public AllocSiteParent(short bitMaskFlags, float cutoffRatio, int liveBytes, int liveInstances, long bytesAllocated, long instancesAllocated, List<AllocSite> sites) {
 		this.bitMaskFlags = bitMaskFlags;
 		this.cutoffRatio = cutoffRatio;

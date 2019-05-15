@@ -6,18 +6,69 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Raw representation of a whole memory dump.
+ */
 public class RawMemoryDump {
+
+	/**
+	 * Dump's header.
+	 */
 	private RawDumpHeader rawDumpHeader;
+
+	/**
+	 * Strings in the dump and their IDs as a key.
+	 */
 	private Map<Long, String> stringMap;
+
+	/**
+	 * Class info in the dump as their IDs as a key.
+	 */
 	private Map<Long, ClassInfo> classMap;
+
+	/**
+	 * Raw "load class" dumps as ID of the classes as a key.
+	 */
 	private Map<Long, RawLoadClassDump> rawLoadClassDumps;
+
+	/**
+	 * Classes in the memory dump and their IDs as a key.
+	 */
 	private Map<Long, RawClassDump> rawClassDumps;
+
+	/**
+	 * Instances in the memory dump and their IDs as a key.
+	 */
 	private Map<Long, RawInstanceDump> rawInstanceDumps;
+
+	/**
+	 * Primitive arrays in the memory dump and their IDs as a key.
+	 */
 	private Map<Long, RawPrimitiveArrayDump> rawPrimitiveArrayDumps;
+
+	/**
+	 * Object type arrays in the memory dump and their IDs as a key.
+	 */
 	private Map<Long, RawObjectArrayDump> rawObjectArrayDumps;
+
+	/**
+	 * Summary of the memory dump.
+	 */
 	private List<RawHeapSummary> rawHeapSummaries = new ArrayList<>();
+
+	/**
+	 * A list of the alloc site parents (and from them, the individual alloc sites).
+	 */
 	private List<RawAllocSiteParent> rawAllocSiteParents = new ArrayList<>();
+
+	/**
+	 * A list of stack traces.
+	 */
 	private List<RawStackTrace> rawStackTraces = new ArrayList<>();
+
+	/**
+	 * A list of stack frames of the {@link #rawStackTraces}.
+	 */
 	private List<RawStackFrame> rawStackFrames = new ArrayList<>();
 
 	public RawDumpHeader getRawDumpHeader() {

@@ -13,8 +13,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Result writer to the console.
+ */
 public class ConsoleResultWriter implements ResultWriter {
 
+	/**
+	 * Processed namespace.
+	 */
 	private final String namespace;
 
 	public ConsoleResultWriter(String namespace) {
@@ -64,6 +70,11 @@ public class ConsoleResultWriter implements ResultWriter {
 				});
 	}
 
+	/**
+	 * Creates a string with instance fields values.
+	 * @param waste Memory waste
+	 * @return String with fields.
+	 */
 	private String dumpInstanceFields(Waste waste) {
 		StringBuilder sb = new StringBuilder();
 		Optional<InstanceDump> first = waste.getAffectedInstances().stream().findFirst();

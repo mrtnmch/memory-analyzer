@@ -28,8 +28,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Raw record processor.
+ */
 public class RawRecordHandler extends RecordHandler {
 
+	/**
+	 * Type ID to name map.
+	 */
 	private static final Map<Integer, String> TYPE_TRANSLATION_MAP = new HashMap<Integer, String>() {{
 		put(2, "object");
 		put(3, null);
@@ -56,6 +62,11 @@ public class RawRecordHandler extends RecordHandler {
 	private List<RawStackTrace> rawStackTraces = new ArrayList<>();
 	private List<RawStackFrame> rawStackFrames = new ArrayList<>();
 
+	/**
+	 * Translates the type into its string name.
+	 * @param type Type to translate.
+	 * @return String name.
+	 */
 	private static String getBasicType(byte type) {
 		return TYPE_TRANSLATION_MAP.get(new Byte(type).intValue());
 	}
@@ -77,6 +88,7 @@ public class RawRecordHandler extends RecordHandler {
 				.setRawStackFrames(this.rawStackFrames);
 	}
 
+	@Override
 	public void header(String format, int idSize, long time) {
 		this.rawDumpHeader = new RawDumpHeader(format, idSize, time);
 	}

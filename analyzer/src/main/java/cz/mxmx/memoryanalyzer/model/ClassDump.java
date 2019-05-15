@@ -5,6 +5,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Processed class dump.
+ */
 public class ClassDump {
 	private final Long classId;
 	private final String name;
@@ -16,6 +19,13 @@ public class ClassDump {
 	private final List<InstanceFieldDump> instanceFields = new ArrayList<>();
 	private final List<ClassDump> childrenClasses = new ArrayList<>();
 
+	/**
+	 * Creates a processed class dump.
+	 * @param classId Class ID.
+	 * @param name Name of the class.
+	 * @param serialNum Class serial number.
+	 * @param superClassDump Class dump of the parent.
+	 */
 	public ClassDump(Long classId, String name, int serialNum, ClassDump superClassDump) {
 		this.classId = classId;
 		this.name = name;

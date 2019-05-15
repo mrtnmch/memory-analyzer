@@ -1,5 +1,8 @@
 package cz.mxmx.memoryanalyzer.model;
 
+/**
+ * Processed stack frame.
+ */
 public class StackFrame {
 	private final long stackFrameId;
 	private final String methodNameStringId;
@@ -8,11 +11,20 @@ public class StackFrame {
 	private final ClassDump classDump;
 	private final int location;
 
-	public StackFrame(long stackFrameId, String methodNameStringId, String methodSigStringId, String sourceFileNameStringId, ClassDump classDump, int location) {
+	/**
+	 * Creates a stack frame representation.
+	 * @param stackFrameId Stack frame ID.
+	 * @param methodNameString Method name.
+	 * @param methodSigString Method signature.
+	 * @param sourceFileNameString Source file name.
+	 * @param classDump Class dump.
+	 * @param location Location.
+	 */
+	public StackFrame(long stackFrameId, String methodNameString, String methodSigString, String sourceFileNameString, ClassDump classDump, int location) {
 		this.stackFrameId = stackFrameId;
-		this.methodNameStringId = methodNameStringId;
-		this.methodSigStringId = methodSigStringId;
-		this.sourceFileNameStringId = sourceFileNameStringId;
+		this.methodNameStringId = methodNameString;
+		this.methodSigStringId = methodSigString;
+		this.sourceFileNameStringId = sourceFileNameString;
 		this.classDump = classDump;
 		this.location = location;
 	}

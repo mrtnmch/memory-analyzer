@@ -7,13 +7,50 @@ import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 
 import java.util.List;
 
+/**
+ * List of duplicates waste. The found instances are all lists and their content has the exact same value:
+ * L1: A A A A A A -> one waste,
+ * L2: B B B B B B -> another waste.
+ */
 public class ListOfDuplicatesWaste implements Waste {
 
+	/**
+	 * Title template.
+	 */
+	private static final String TITLE_TEMPLATE = "List full of same values";
+
+	/**
+	 * Description template.
+	 */
+	private static final String DESC_TEMPLATE = "All values in the list %s#%s have the same value (%dx).";
+
+	/**
+	 * the source analyzer.
+	 */
 	protected final WasteAnalyzer sourceWasteAnalyzer;
+
+	/**
+	 * Instance holding the list.
+	 */
 	protected final InstanceDump instance;
+
+	/**
+	 * Field holding the list.
+	 */
 	private final InstanceFieldDump field;
+
+	/**
+	 * Size of the list.
+	 */
 	protected final long size;
 
+	/**
+	 * Creates the list of duplicates waste.
+	 * @param sourceWasteAnalyzer Source analyzer.
+	 * @param instance Instance holding the list.
+	 * @param field Field holding the list.
+	 * @param size Size of the problematic list.
+	 */
 	public ListOfDuplicatesWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, InstanceFieldDump field, long size) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
 		this.instance = instance;
@@ -21,8 +58,6 @@ public class ListOfDuplicatesWaste implements Waste {
 		this.size = size;
 	}
 
-	private static final String TITLE_TEMPLATE = "List full of same values";
-	private static final String DESC_TEMPLATE = "All values in the list %s#%s have the same value (%dx).";
 
 	@Override
 	public Long estimateWastedBytes() {

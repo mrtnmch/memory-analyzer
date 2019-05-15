@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A default implementation of {@link MemoryDump}.
+ */
 public class ProcessedMemoryDump implements MemoryDump {
 
 	private Collection<String> userNamespaces;

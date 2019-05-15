@@ -7,15 +7,60 @@ import cz.mxmx.memoryanalyzer.model.InstanceFieldDump;
 
 import java.util.List;
 
+/**
+ * Waste type - list full of nulls. The given instances are lists and their values are all or mostly nulls.
+ */
 public class ListOfNullsWaste implements Waste {
 
+	/**
+	 * Title template.
+	 */
+	private static final String TITLE_TEMPLATE = "List full or mostly consisting of nulls";
+
+	/**
+	 * Description template.
+	 */
+	private static final String DESC_TEMPLATE = "Values in the %s in %s(%d)#%s have a null value (%d/%dx).";
+
+	/**
+	 * Source analyzer.
+	 */
 	private final WasteAnalyzer sourceWasteAnalyzer;
+
+	/**
+	 * Instance of the list.
+	 */
 	private final InstanceDump instance;
+
+	/**
+	 * List of the values.
+	 */
 	private final List<?> list;
+
+	/**
+	 * Number of nulls in the {@link #instance}.
+	 */
 	private final long nullCount;
+
+	/**
+	 * Source instance holding the list as its variable.
+	 */
 	private final InstanceDump sourceInstance;
+
+	/**
+	 * Source field.
+	 */
 	private final InstanceFieldDump sourceField;
 
+	/**
+	 * Creates the list of nulls waste type.
+	 * @param sourceWasteAnalyzer Source analyzer.
+	 * @param instance Instance of the list.
+	 * @param list Values in the list.
+	 * @param nullCount Number of nulls in the list.
+	 * @param sourceInstance Source instance.
+	 * @param sourceField Source field.
+	 */
 	public ListOfNullsWaste(WasteAnalyzer sourceWasteAnalyzer, InstanceDump instance, List<?> list, long nullCount, InstanceDump sourceInstance, InstanceFieldDump sourceField) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
 		this.instance = instance;
@@ -25,8 +70,6 @@ public class ListOfNullsWaste implements Waste {
 		this.sourceField = sourceField;
 	}
 
-	private static final String TITLE_TEMPLATE = "List full or mostly consisting of nulls";
-	private static final String DESC_TEMPLATE = "Values in the %s in %s(%d)#%s have a null value (%d/%dx).";
 
 	@Override
 	public Long estimateWastedBytes() {

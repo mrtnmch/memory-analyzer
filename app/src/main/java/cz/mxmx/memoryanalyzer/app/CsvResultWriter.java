@@ -17,11 +17,29 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Result writer to the CSV format.
+ */
 public class CsvResultWriter implements ResultWriter {
+
+	/**
+	 * OS independent new line.
+	 */
 	private static final String NL = System.lineSeparator();
 
+	/**
+	 * Filename to save the result to.
+	 */
 	private final String filename;
+
+	/**
+	 * Namespace of the dump.
+	 */
 	private final String namespace;
+
+	/**
+	 * String builder to save the results into until they're saved into the file.
+	 */
 	private final StringBuilder sb;
 
 	public CsvResultWriter(String filename, String namespace) {
@@ -111,6 +129,11 @@ public class CsvResultWriter implements ResultWriter {
 				});
 	}
 
+	/**
+	 * Create a string representation of the instance fields.
+	 * @param waste Memory waste.
+	 * @return String representation of the instance fields.
+	 */
 	private String dumpInstanceFields(Waste waste) {
 		StringBuilder sb = new StringBuilder();
 		Optional<InstanceDump> first = waste.getAffectedInstances().stream().findFirst();

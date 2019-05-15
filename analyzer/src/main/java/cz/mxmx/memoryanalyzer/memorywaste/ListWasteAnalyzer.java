@@ -19,6 +19,9 @@ import java.util.Map;
  */
 public class ListWasteAnalyzer implements WasteAnalyzer {
 
+	/**
+	 * Ineffective list usage threshold above which the list is marked as ineffective.
+	 */
 	private static final double THRESHOLD = 0.5;
 
 	@Override
@@ -29,7 +32,7 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 			instance.getInstanceFieldValues().forEach((field, value)-> {
 				if(value instanceof InstanceDump) {
 					if(this.isList((InstanceDump)value)) {
-						this.findWastedList(memoryDump, field, (InstanceDump)value, wasteList, instance, field);
+						this.findWastedList(memoryDump, (InstanceDump)value, wasteList, instance, field);
 					}
 				}
 			});
@@ -38,7 +41,15 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 		return wasteList;
 	}
 
-	private void findWastedList(MemoryDump memoryDump, InstanceFieldDump field, InstanceDump value, List<Waste> wasteList, InstanceDump instance, InstanceFieldDump instanceFieldDump) {
+	/**
+	 * Search for a wasted list in the given parameters.
+	 * @param memoryDump Memory dump to look in.
+	 * @param value Instance of the list itself.
+	 * @param wasteList List with the results to put a new created Waste in.
+	 * @param instance Instance with the field.
+	 * @param instanceFieldDump Field where the list is stored in.
+	 */
+	private void findWastedList(MemoryDump memoryDump, InstanceDump value, List<Waste> wasteList, InstanceDump instance, InstanceFieldDump instanceFieldDump) {
 		InstanceArrayDump elements = this.getElements(memoryDump, value);
 
 		if(elements != null && elements.getValues() != null) {
@@ -49,6 +60,11 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 		}
 	}
 
+	/**
+	 * Find the number of nulls within the given array.
+	 * @param instanceArrayDump Array to check.
+	 * @return Number of nulls within the array.
+	 */
 	private long findNullWastedList(InstanceArrayDump instanceArrayDump) {
 		final long[] nullCount = {0};
 
@@ -61,6 +77,12 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 		return nullCount[0];
 	}
 
+	/**
+	 * Returns the elements from the given instance.
+	 * @param memoryDump Memory dump with the instance.
+	 * @param value Instance to process.
+	 * @return Instance of the underlying array or null.
+	 */
 	private InstanceArrayDump getElements(MemoryDump memoryDump, InstanceDump value) {
 		Map.Entry<InstanceFieldDump, Object> elementField = value.getInstanceFieldValues().entrySet().stream().filter((field) -> field.getKey().getName().equals("elementData")).findAny().orElse(null);
 
@@ -72,6 +94,11 @@ public class ListWasteAnalyzer implements WasteAnalyzer {
 		return null;
 	}
 
+	/**
+	 * Checks whether the given instance dump is a list (instance of {@link AbstractList}).
+	 * @param value Value to check.
+	 * @return True if the given parameter is a list, otherwise false.
+	 */
 	private boolean isList(InstanceDump value) {
 		ClassDump parent = value.getClassDump();
 		do {

@@ -17,6 +17,9 @@ public class DefaultWasteAnalyzerPipeline extends WasteAnalyzerPipeline {
 		put(new ListOfDuplicatesAnalyzer(), "List of duplicates");
 	}};
 
+	/**
+	 * Set to true of the analysis should be run in multiple threads.
+	 */
 	private static final boolean RUN_MULTI_THREADED = true;
 
 	public DefaultWasteAnalyzerPipeline() {

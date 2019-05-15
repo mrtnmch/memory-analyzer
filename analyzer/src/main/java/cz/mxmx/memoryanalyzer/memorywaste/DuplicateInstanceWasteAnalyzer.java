@@ -10,13 +10,11 @@ import cz.mxmx.memoryanalyzer.model.memorywaste.Waste;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Analyzer to find duplicate instances of objects.
@@ -53,6 +51,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 		return wasteList;
 	}
 
+	/**
+	 * Checks if the given instances are the same
+	 * @param instance Instance 1
+	 * @param instance2 Instance 2
+	 * @return True if the instances are the same, otherwise false.
+	 */
 	private boolean instancesAreSame(InstanceDump instance, InstanceDump instance2) {
 		if(!this.instancesOfSameClass(instance, instance2)
 				|| instance.getInstanceFieldValues().size() != instance2.getInstanceFieldValues().size()) {
@@ -73,6 +77,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 		return classDump.getInstanceFields().size() > 0;
 	}
 
+	/**
+	 * Checks if the instances are of the same class.
+	 * @param instance Instance 1
+	 * @param instance2 Instance 2
+	 * @return True if t he instances are of the same class, otherwise false
+	 */
 	private boolean instancesOfSameClass(InstanceDump instance, InstanceDump instance2) {
 		ClassDump parent = instance.getClassDump();
 
@@ -97,6 +107,12 @@ public class DuplicateInstanceWasteAnalyzer implements WasteAnalyzer {
 		return false;
 	}
 
+	/**
+	 * Merges the results into the given list, if similar exist, otherwise creates a new entry.
+	 * @param wasteList List with current results
+	 * @param instance New instance 1
+	 * @param instance2 New instance 2
+	 */
 	private void mergeWasteList(List<Waste> wasteList, InstanceDump instance, InstanceDump instance2) {
 		Optional<Waste> optWaste = wasteList
 				.stream()

@@ -134,14 +134,36 @@ public class App {
 		}
 	}
 
+	/**
+	 * Get namespaces from the given analyzer.
+	 * @param analyzer Analyzer to use.
+	 * @return Namespaces from the dump.
+	 * @throws FileNotFoundException Dump not found.
+	 * @throws MemoryDumpAnalysisException An error during processing.
+	 */
 	private Set<String> getNamespaces(MemoryDumpAnalyzer analyzer) throws FileNotFoundException, MemoryDumpAnalysisException {
 		return analyzer.getNamespaces();
 	}
 
+	/**
+	 * Get a dump from the given analyzer.
+	 * @param analyzer Analyzer to use.
+	 * @param namespace Namespaces to use as a filter.
+	 * @return Processed dump.
+	 * @throws FileNotFoundException Dump not found.
+	 * @throws MemoryDumpAnalysisException An error during processing.
+	 */
 	private MemoryDump getMemoryDump(MemoryDumpAnalyzer analyzer, String namespace) throws FileNotFoundException, MemoryDumpAnalysisException {
 		return analyzer.analyze(Lists.newArrayList(namespace));
 	}
 
+	/**
+	 * Run a processing of the given memory dump.
+	 * @param memoryDump Memory dump.
+	 * @param namespace Namespace to filter.
+	 * @param printFields True if the values should be printed out.
+	 * @param resultWriters Result writer.
+	 */
 	private void processMemoryDump(MemoryDump memoryDump, String namespace, boolean printFields, List<ResultWriter> resultWriters) {
 		resultWriters.forEach(writer -> writer.write(memoryDump));
 		WasteAnalyzerPipeline wasteAnalyzer = new DefaultWasteAnalyzerPipeline();
@@ -149,6 +171,10 @@ public class App {
 		resultWriters.forEach(writer -> writer.write(memoryWaste, wasteAnalyzer, printFields));
 	}
 
+	/**
+	 * Starts stopwatch and returns a callable; when the result is called, a time difference is printed to STOUT.
+	 * @return Callable to stop the stopwatch and print out the result.
+	 */
 	private Runnable measure() {
 		Instant now = Instant.now();
 

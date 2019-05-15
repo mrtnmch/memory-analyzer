@@ -11,12 +11,32 @@ import java.util.List;
  * Waste type that represents duplicate instances.
  */
 public class DuplicateInstanceWaste implements Waste {
+
+	/**
+	 * Title template of the memory waste.
+	 */
 	private static final String TITLE_TEMPLATE = "Duplicates of '%s'";
+
+	/**
+	 * Description template of the memory waste.
+	 */
 	private static final String DESC_TEMPLATE = "%d instances of the '%s' class contain exactly the same data.";
 
+	/**
+	 * Instances of the found duplicates.
+	 */
 	private final Collection<InstanceDump> duplicates;
+
+	/**
+	 * The source analyzer.
+	 */
 	private final WasteAnalyzer sourceWasteAnalyzer;
 
+	/**
+	 * Creates a representation of the duplicate waste type.
+	 * @param sourceWasteAnalyzer Source analyzer of this waste.
+	 * @param duplicates Initial instances (duplicates) Must contain at least one value.
+	 */
 	public DuplicateInstanceWaste(WasteAnalyzer sourceWasteAnalyzer, Collection<InstanceDump> duplicates) {
 		this.sourceWasteAnalyzer = sourceWasteAnalyzer;
 		if(duplicates.isEmpty()) {
@@ -70,6 +90,10 @@ public class DuplicateInstanceWaste implements Waste {
 		return this.getAffectedClass();
 	}
 
+	/**
+	 * Returns the class of the duplicates.
+	 * @return Class name.
+	 */
 	private String getAffectedClass() {
 		return new ArrayList<>(this.getAffectedInstances())
 				.stream()
